@@ -1,0 +1,23 @@
+﻿.month {
+
+}
+
+.week {
+}
+
+.calendar-day {
+    border: 1px solid #e0e0e0;
+    width: 150px;
+    height: 120px;
+}
+
+.day-caption {
+    padding: 5px 0px 4px 10px;
+}
+
+.event-row {
+    background: bisque;
+    border-radius: 3px;
+    margin: 3px;
+    text-align: center;
+}

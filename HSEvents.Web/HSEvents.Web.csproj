@@ -241,6 +241,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="client\pages\events\calendar\day.component.html" />
+    <Content Include="client\pages\events\calendar\calendar.component.html" />
+    <Content Include="client\pages\events\calendar\calendar.component.css" />
     <Content Include="client\pages\events\events.component.css" />
     <Content Include="client\pages\events\events.component.html" />
     <Content Include="client\pages\home\home.component.html" />
@@ -284,6 +287,8 @@
     <Compile Include="AppSettings.cs" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="client\pages\events\calendar\day.component.ts" />
+    <TypeScriptCompile Include="client\pages\events\calendar\calendar.component.ts" />
     <TypeScriptCompile Include="client\pages\events\events.component.ts" />
     <TypeScriptCompile Include="client\pages\events\events.module.ts" />
     <TypeScriptCompile Include="client\pages\home\home.component.ts" />

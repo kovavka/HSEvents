@@ -1,3 +1,11 @@
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+
+    color: #545c6a;
+    font-family: OpenSans-Semibold, "Helvetica Neue", Arial, Helvetica, sans-serif;
+}
+
 .navbar-blue {
     background-color: #003380;
     border-color: #080808;
@@ -16,7 +24,7 @@
 }
 
 .top-menu-items > li > a:hover,
-.top-menu-items > a:focus {
+.top-menu-items > li a:focus {
     color: #999999;
     background-color: transparent;
 }
