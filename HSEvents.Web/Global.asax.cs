@@ -1,18 +1,54 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 using System.Web.Http;
-using System.Web.Routing;
-using HSEvents.Server;
+using Microsoft.Practices.Unity;
+using Newtonsoft.Json.Serialization;
+using Unity.WebApi;
 
 namespace HSEvents
 {
-    public class WebApiApplication : System.Web.HttpApplication
+    public class Global : HttpApplication
     {
-        protected void Application_Start()
+        protected void Application_Start(object sender, EventArgs e)
         {
-            GlobalConfiguration.Configure(WebApiConfig.Register);
+            var container = new UnityContainer();
+            RegisterUnityComponents(container);
+
+            GlobalConfiguration.Configure(config =>
+            {
+                config.MapHttpAttributeRoutes();
+
+                config.Routes.MapHttpRoute(
+                    name: "AdminApi",
+                    routeTemplate: "api/admin/{controller}/{action}"
+                );
+
+                config.Routes.MapHttpRoute(
+                    name: "DefaultApi",
+                    routeTemplate: "api/{controller}/{action}"
+                );
+
+                config.Routes.MapHttpRoute(
+                    name: "Index",
+                    routeTemplate: "{controller}/{action}",
+                    defaults: new {controller = "Home", action = "Index"}
+                );
+
+                var jsonFormatter = config.Formatters.JsonFormatter;
+                jsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+                jsonFormatter.UseDataContractJsonSerializer = false;
+
+            });
+
+        }
+
+        private void RegisterUnityComponents(UnityContainer container)
+        {
+            GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
+        }
+
+        protected void Application_End(object sender, EventArgs e)
+        {
         }
     }
 }
