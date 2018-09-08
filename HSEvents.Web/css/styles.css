@@ -1,0 +1,30 @@
+.navbar-blue {
+    background-color: #003380;
+    border-color: #080808;
+}
+
+.navbar-title {
+    color: #ffffff;
+}
+.navbar-title:hover, .navbar-title:focus {
+    color: #ffffff;
+    background-color: transparent;
+}
+
+.top-menu-items > li > a {
+    color: #ffffff;
+}
+
+.top-menu-items > li > a:hover,
+.top-menu-items > a:focus {
+    color: #999999;
+    background-color: transparent;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.top-menu-container {
+    width: 90%;
+}
