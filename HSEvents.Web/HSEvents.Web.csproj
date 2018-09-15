@@ -247,7 +247,7 @@
     <Content Include="client\pages\events\events.component.css" />
     <Content Include="client\pages\events\events.component.html" />
     <Content Include="client\pages\home\home.component.html" />
-    <Content Include="client\menu.component.html" />
+    <Content Include="client\menus\top-menu.component.html" />
     <Content Include="dist\**" />
     <Content Include="client\app\app.component.css" />
     <Content Include="client\app\app.component.html" />
@@ -256,6 +256,9 @@
     <Content Include="Data\index-dev.html" />
     <Content Include="Global.asax" />
     <Content Include="package.json" />
+    <TypeScriptCompile Include="client\controls\directives\window-resize-event-handler.directive.ts" />
+    <Compile Include="Server\Api\Events\EventsController.cs" />
+    <Compile Include="Server\Api\Events\Models\MonthModels.cs" />
     <Compile Include="Server\Api\Home\HomeController.cs" />
     <Content Include="Scripts\scripts.js" />
     <Content Include="Scripts\systemjs.config.js" />
@@ -287,14 +290,17 @@
     <Compile Include="AppSettings.cs" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="client\pages\events\models\calendar.models.ts" />
+    <TypeScriptCompile Include="client\services\hse-httpclient.ts" />
     <TypeScriptCompile Include="client\pages\events\calendar\day.component.ts" />
     <TypeScriptCompile Include="client\pages\events\calendar\calendar.component.ts" />
+    <TypeScriptCompile Include="client\pages\events\events.service.ts" />
     <TypeScriptCompile Include="client\pages\events\events.component.ts" />
     <TypeScriptCompile Include="client\pages\events\events.module.ts" />
     <TypeScriptCompile Include="client\pages\home\home.component.ts" />
     <TypeScriptCompile Include="client\pages\home\home.module.ts" />
     <TypeScriptCompile Include="client\controls\controls.module.ts" />
-    <TypeScriptCompile Include="client\menu.component.ts" />
+    <TypeScriptCompile Include="client\menus\top-menu.component.ts" />
     <TypeScriptCompile Include="client\polyfills.ts" />
     <TypeScriptCompile Include="client\app\app.component.ts" />
     <TypeScriptCompile Include="client\app\app.module.ts" />

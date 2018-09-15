@@ -1,40 +1,14 @@
-﻿
-<div class="month">
-    <div class="week">
-        <day></day>
-        <day></day>
-        <day></day>
-        <day></day>
-        <day></day>
-        <day></day>
-        <day></day>
-    </div>
-    <div class="week">
-        <day></day>
-        <day></day>
-        <day></day>
-        <day></day>
-        <day></day>
-        <day></day>
-        <day></day>
-    </div>
-    <div class="week">
-        <day></day>
-        <day></day>
-        <day></day>
-        <day></day>
-        <day></day>
-        <day></day>
-        <day></day>
-    </div>
-    <div class="week">
-        <day></day>
-        <day></day>
-        <day></day>
-        <day></day>
-        <day></day>
-        <day></day>
-        <day></day>
-    </div>
+﻿<div #panel style="height: 40px;">panel</div>
+
+<div [style.height]="calendarHeight + 'px'"
+     class="month">
+    <ng-container *ngIf="currentMonth">
+        <div *ngFor="let week of currentMonth.weeks" class="week">
+            <day *ngFor="let eventDay of week.days"
+                 [events]="eventDay.events"
+                 [day]="eventDay.day"></day>
+        </div>
+    </ng-container>
 </div>
 
+<ng-container CwWindowResizeEventHandler (resize)="onResize($event)"></ng-container>

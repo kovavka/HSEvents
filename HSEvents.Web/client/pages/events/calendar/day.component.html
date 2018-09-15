@@ -1,10 +1,7 @@
 ﻿<div class="calendar-day">
-    <div class="day-caption">12</div>
+    <div class="day-caption">{{day}}</div>
     
-    <div class="event-row">Вышка в школы</div>
-    <div class="event-row">Вышка в школы</div>
-    <div class="event-row">Вышка в школы</div>
-
-    
-
+    <div *ngFor="let event of events"
+         class="event-row"
+         [style.background-color]="event.color">{{event.name}}</div>
 </div>

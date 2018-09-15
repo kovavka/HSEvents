@@ -2,10 +2,10 @@
 
 @Component({
     moduleId: module.id.toString(),
-    selector: 'menu',
-    templateUrl: 'menu.component.html'
+    selector: 'top-menu',
+	templateUrl: 'top-menu.component.html'
 })
-export class MenuComponent {
+export class TopMenuComponent {
 
 
 	get login():string {

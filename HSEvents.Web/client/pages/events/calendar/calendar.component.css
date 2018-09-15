@@ -3,12 +3,22 @@
 }
 
 .week {
+    width: 100%;
+    display: inline-block;
+}
+
+.week-row {
+
 }
 
 .calendar-day {
-    border: 1px solid #e0e0e0;
-    width: 150px;
-    height: 120px;
+    /*border: 1px solid #e0e0e0;*/
+    /*width: 150px;*/
+    /*height: 120px;*/
+
+    width: 14%;
+    height: 100%;
+    float: left;
 }
 
 .day-caption {
@@ -16,7 +26,6 @@
 }
 
 .event-row {
-    background: bisque;
     border-radius: 3px;
     margin: 3px;
     text-align: center;
