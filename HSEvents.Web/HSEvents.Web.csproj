@@ -253,7 +253,7 @@
     <Content Include="client\app\app.component.html" />
     <Content Include="favicon.ico" />
     <Content Include="css\styles.css" />
-    <Content Include="Data\index-dev.html" />
+    <Content Include="Data\index.html" />
     <Content Include="Global.asax" />
     <Content Include="package.json" />
     <TypeScriptCompile Include="client\controls\directives\window-resize-event-handler.directive.ts" />
@@ -314,6 +314,12 @@
     <Folder Include="App_Start\" />
     <Folder Include="Db\Migrations\" />
     <Folder Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Domain\Domain.csproj">
+      <Project>{c72149fd-ca39-418c-8b7d-f1f43e1182e9}</Project>
+      <Name>Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

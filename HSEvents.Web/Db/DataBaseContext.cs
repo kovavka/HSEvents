@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Domain.Events;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 
 namespace HSEvents.Db
@@ -17,6 +18,7 @@ namespace HSEvents.Db
     public sealed class DataBaseContext : DbContext
     {
         //public DbSet<User> Users { get; set; }
+        public DbSet<Event> Events { get; set; }
 
         public DataBaseContext(DbContextOptions options) : base(options)
         {
@@ -32,7 +34,7 @@ namespace HSEvents.Db
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
+           
         }
     }
 }
