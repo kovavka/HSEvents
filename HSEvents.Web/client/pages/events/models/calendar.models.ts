@@ -5,6 +5,7 @@
 export class EventDay {
 	events: EventItem[];
 	day: number;
+	currentMonth: boolean;
 }
 
 export class EventItem {

@@ -17,6 +17,7 @@ import localeRu from '@angular/common/locales/ru';
 import { TopMenuComponent } from "../menus/top-menu.component";
 import { EventsModule } from "../pages/events/events.module";
 import { HseHttpClient } from '../services/hse-httpclient';
+import { ControlsModule } from '../controls/controls.module';
 registerLocaleData(localeRu);
 
 @NgModule({
@@ -30,7 +31,8 @@ registerLocaleData(localeRu);
         AppRoutingModule,
         RouterModule,
 		HomeModule,
-		EventsModule
+		EventsModule,
+	    ControlsModule
     ],
     declarations: [
 		AppComponent,

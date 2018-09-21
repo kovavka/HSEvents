@@ -9,7 +9,7 @@ namespace HSEvents.Controllers
     [AllowAnonymous]
     public class HomeController : ApiController
     {
-        private const string HtmlTemplatePath = "~/Data/index-dev.html";
+        private const string HtmlTemplatePath = "~/Data/index.html";
 
         [HttpGet]
         public HttpResponseMessage Index()

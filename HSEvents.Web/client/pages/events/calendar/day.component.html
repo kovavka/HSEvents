@@ -1,7 +1,11 @@
-﻿<div class="calendar-day">
-    <div class="day-caption">{{day}}</div>
-    
-    <div *ngFor="let event of events"
-         class="event-row"
-         [style.background-color]="event.color">{{event.name}}</div>
+﻿
+<div class="calendar-day border-right"
+     [ngClass]="isMon?'border-left':''">
+    <div [ngClass]="!item.currentMonth?'prev-next-month-day':''">
+        <div class="day-caption">{{item.day}}</div>
+        <div *ngFor="let event of item.events"
+             class="event-row"
+             [ngClass]="!item.currentMonth?'prev-next-month-day':''"
+             [style.background-color]="event.color">{{event.name}}</div>
+    </div>
 </div>

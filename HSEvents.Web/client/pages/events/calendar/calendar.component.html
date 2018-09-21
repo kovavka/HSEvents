@@ -1,14 +1,40 @@
-﻿<div #panel style="height: 40px;">panel</div>
+﻿<div #panel class="month-panel">
+    <span onmousedown="return false" onselectstart="return false" >
+        <span role="button" class="arrows">
+            <a class="pointer"
+               (click)="onPrevMonthClick()">
+                <i _ngcontent-c6="" aria-hidden="true" class="fa-arrows fa fa-angle-left"></i>
+            </a>
+            <a class="pointer"
+               (click)="onNextMonthClick()">
+                <i _ngcontent-c6="" aria-hidden="true" class="fa-arrows fa fa-angle-right"></i>
+            </a>
+        </span>
 
-<div [style.height]="calendarHeight + 'px'"
+        <span onmousedown="return false" onselectstart="return false" role="button" class="current-month" *ngIf="currentMonth"> {{currentMonth.name}} {{currentDate.getFullYear()}}</span>
+    </span>
+</div>
+<div [style.height.px]="calendarHeight"
      class="month">
     <ng-container *ngIf="currentMonth">
-        <div *ngFor="let week of currentMonth.weeks" class="week">
-            <day *ngFor="let eventDay of week.days"
-                 [events]="eventDay.events"
-                 [day]="eventDay.day"></day>
+        <div class="week-title border-left">Пн</div>
+        <div class="week-title">Вт</div>
+        <div class="week-title">Ср</div>
+        <div class="week-title">Чт</div>
+        <div class="week-title">Пт</div>
+        <div class="week-title">Сб</div>
+        <div class="week-title">Вс</div>
+        <div *ngFor="let week of currentMonth.weeks"
+             class="week"
+             [ngClass]="weekClass">
+            <day *ngFor="let eventDay of week.days; index as i"
+                 [isMon]="i==0"
+                 [item]="eventDay">
+                <div>{{i
+        }}
+</div>
+            </day>
         </div>
     </ng-container>
 </div>
-
-<ng-container CwWindowResizeEventHandler (resize)="onResize($event)"></ng-container>
+<ng-container windowResizeEventHandler (resize)="onResize($event)"></ng-container>

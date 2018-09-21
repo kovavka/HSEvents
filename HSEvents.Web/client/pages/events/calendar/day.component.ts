@@ -1,5 +1,5 @@
 ﻿import { Component, Input } from '@angular/core';
-import { EventItem }from '../models/calendar.models';
+import { EventDay }from '../models/calendar.models';
 
 @Component({
     moduleId: module.id.toString(),
@@ -10,9 +10,9 @@ import { EventItem }from '../models/calendar.models';
 export class DayComponent {
 
 	@Input()
-	events: EventItem[];
-
+	item: EventDay;
+	
 	@Input()
-	day: number;
+	isMon: boolean = false;
     
 }

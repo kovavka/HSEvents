@@ -1,24 +1,42 @@
 ﻿.month {
-
 }
 
 .week {
     width: 100%;
-    display: inline-block;
+    /*display: inline-block;*/
 }
 
-.week-row {
+.week-6 {
+    height: 16.66666%;
+}
 
+.week-5 {
+    height: 20%;
+}
+
+.week-4 {
+    height: 25%;
+}
+
+.week-title {
+    width: 14.28571%;
+    float: left;
+    padding: 5px 0px 4px 10px;
+    border-right: 1px solid #afadad;
+    border-top: 1px solid #afadad;
 }
 
 .calendar-day {
-    /*border: 1px solid #e0e0e0;*/
-    /*width: 150px;*/
-    /*height: 120px;*/
-
-    width: 14%;
+    border-bottom: 1px solid #afadad;
+    border-right: 1px solid #afadad;
+    border-radius: 1px;
+    width: 14.28571%;
     height: 100%;
     float: left;
+}
+
+.border-left {
+    border-left: 1px solid #afadad;
 }
 
 .day-caption {
@@ -29,4 +47,35 @@
     border-radius: 3px;
     margin: 3px;
     text-align: center;
+}
+
+.prev-next-month-day {
+    opacity: 0.45;
+}
+
+.month-panel {
+    height: 48px;
+    background-color: #d2d2d2;
+    padding-top: 7px;
+}
+
+.arrows {
+    margin-left: 40%;
+}
+
+.arrows a {
+    margin-right: 7px;
+    text-decoration: none;
+}
+
+.fa-arrows {
+    color: #7e7b7b;
+}
+
+.current-month {
+    font-size: 23px;
+}
+
+a:hover {
+
 }
