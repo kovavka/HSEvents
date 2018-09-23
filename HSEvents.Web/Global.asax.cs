@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Web;
 using System.Web.Http;
+using Infrastructure;
 using Microsoft.Practices.Unity;
 using Newtonsoft.Json.Serialization;
 using Unity.WebApi;
@@ -40,6 +41,7 @@ namespace HSEvents
 
             });
 
+            //NHibernateHelper.CreateDb();
         }
 
         private void RegisterUnityComponents(UnityContainer container)

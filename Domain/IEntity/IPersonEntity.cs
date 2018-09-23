@@ -15,4 +15,5 @@ namespace Domain.IEntity
             ContactInfo =new ContactInfo();
         }
     }
+  
 }
