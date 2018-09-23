@@ -22,7 +22,7 @@ export class CalendarComponent implements AfterViewInit{
 
 	constructor(private eventsService: EventsService,
 		private changeDetector: ChangeDetectorRef) {
-		this.currentDate = new Date();
+		this.currentDate = new Date(2018, new Date().getMonth(), 1);
 		this.getMonth();
 	}
 

@@ -41,7 +41,7 @@ namespace HSEvents
 
             });
 
-            //NHibernateHelper.CreateDb();
+            NHibernateHelper.Configure();
         }
 
         private void RegisterUnityComponents(UnityContainer container)

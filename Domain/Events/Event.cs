@@ -18,12 +18,12 @@ namespace Domain.Events
         public virtual ICollection<Purchase> Purchases { get; set; }
         public virtual ICollection<Employee> Organizers { get; set; }
         public virtual ICollection<Employee> Lecturers { get; set; }
-        public virtual ICollection<Department> Departments { get; set; }
+        public virtual ISet<Department> Departments { get; set; }
         
         public virtual ICollection<AttendanceInfo> AttendanceInfo { get; set; }
 
 
-        public virtual ICollection<EventExecution> EventExecutions { get; set; }
+        public virtual ISet<EventExecution> EventExecutions { get; set; }
     }
 
     public enum EventType

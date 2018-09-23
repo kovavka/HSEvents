@@ -21,19 +21,25 @@ namespace Infrastructure
 {
     public class NHibernateHelper
     {
-        public static ISession OpenSession()
+        private static ISessionFactory sessionFactory;
+
+        public static void Configure()
         {
-            ISessionFactory sessionFactory = Fluently.Configure()
+            sessionFactory = Fluently.Configure()
                 .Database(MsSqlConfiguration.MsSql2012.ConnectionString(
                         @"Server=.; Initial Catalog=HSEvents; Integrated Security=SSPI;")
                     .ShowSql()
-                   
+
                 )
                 .Mappings(m => m.FluentMappings.Conventions.AddFromAssemblyOf<EnumConvention>())
                 .Mappings(m => m.FluentMappings.AddFromAssembly(Assembly.Load("Infrastructure")))
                 .ExposeConfiguration(cfg => new SchemaUpdate(cfg).Execute(true, false))
                 .BuildSessionFactory();
-            
+
+        }
+
+        public static ISession OpenSession()
+        {
             return sessionFactory.OpenSession();
         }
 

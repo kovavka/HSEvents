@@ -3,7 +3,10 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Web.Http;
+using Domain.Events;
+using Helpers;
 using HSEvents.Server.Api.Events.Models;
+using Infrastructure.Repositories;
 
 namespace HSEvents.Controllers
 {
@@ -31,7 +34,7 @@ namespace HSEvents.Controllers
                     days.Add(new EventDay()
                     {
                         Day = currentDate.Day,
-                        Events = ConvertToEventItems(events.Where(x => x.Date.Date == currentDate)),
+                        Events = events.Where(x => x.Date.Date == currentDate).ToList(),
                         CurrentMonth = currentDate.Month == month
                     });
 
@@ -52,31 +55,8 @@ namespace HSEvents.Controllers
                 Weeks = weeks
             };
 
-            //var firstWeek = new List<EventDay>();
-
-            //int currentDay = 1;
-            //if (monthStart.DayOfWeek != DayOfWeek.Monday)
-            //{
-            //    if (monthStart.DayOfWeek != DayOfWeek.Sunday)
-            //        for (int i = 0; i < UPPER; i++)
-            //        {
-
-            //        }
-            //    firstWeek.Insert(0,new EventDay());
-            //}
-
-
         }
 
-        private List<EventItem> ConvertToEventItems(IEnumerable<Event> events)
-        {
-            return events.Select(x=>new EventItem()
-            {
-                Id = x.Id,
-                Name = x.Name,
-                Color = x.Color
-            }).ToList();
-        }
 
         private DateTime CalculateFromDate(int year, int month)
         {
@@ -103,74 +83,34 @@ namespace HSEvents.Controllers
             return monthEnd.AddDays(needToAddLast);
         }
 
-
-        public class Event
+        private List<EventItem> GetEvents(DateTime fromDate, DateTime toDate)
         {
-            public long Id { get; set; }
-            public string Name { get; set; }
-            public string Color { get; set; }
+            var repo = new EventRepository();
+            
+            var dates = repo.GetAll()
+                .Where(x => x.EventExecutions.Any(xx => xx.Dates.Any(d => d.Date >= fromDate && d.Date <= toDate)))
+                .ToList()
+                .Select(x => new {Event = x, Dates = x.EventExecutions.SelectMany(xx => xx.Dates)})
+                .SelectMany(x => x.Dates.Select(xx => new {x.Event, xx.Date})).ToList();
 
-            public DateTime Date { get; set; }
+
+            var events = dates.Where(x => x.Date.Date >= fromDate && x.Date.Date <= toDate);
+
+            return events.ToList().Select(x => new EventItem()
+            {
+                Id = x.Event.Id,
+                Name = x.Event.Name,
+                Color = GetColor(x.Event.Departments),
+                Date = x.Date
+            }).ToList();
         }
 
-        private List<Event> GetEvents(DateTime fromDate, DateTime toDate)
+        private string GetColor(ICollection<Department> departments)
         {
-            return new List<Event>()
-            {
-                new Event()
-                {
-                    Id = 4,
-                    Color = "bisque",
-                    Name = "Вышка в школы",
-                    Date = new DateTime(2018, 9, 15)
-                },
+            if (!departments.Any() || departments.Count() > 1)
+                return "";
 
-                new Event()
-                {
-                    Id = 1,
-                    Color = "lightgreen",
-                    Name = "Вышка в школы",
-                    Date = new DateTime(2018, 9, 25)
-                },
-                new Event()
-                {
-                    Id = 2,
-                    Color = "bisque",
-                    Name = "День вышки",
-                    Date = new DateTime(2018, 9, 25)
-                },
-                new Event()
-                {
-                    Id = 3,
-                    Color = "deepskyblue",
-                    Name = "Полет",
-                    Date = new DateTime(2018, 9, 25)
-                },
-
-
-                new Event()
-                {
-                    Id = 1,
-                    Color = "lightgreen",
-                    Name = "Вышка в школы",
-                    Date = new DateTime(2018, 8, 28)
-                },
-                new Event()
-                {
-                    Id = 2,
-                    Color = "bisque",
-                    Name = "День вышки",
-                    Date = new DateTime(2018, 8, 28)
-                },
-                new Event()
-                {
-                    Id = 3,
-                    Color = "deepskyblue",
-                    Name = "Полет",
-                    Date = new DateTime(2018, 8, 28)
-                },
-            };
-
+            return departments.First().Color;
         }
     }
 }

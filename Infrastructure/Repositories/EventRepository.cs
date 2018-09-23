@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Domain.Events;
 using NHibernate;
+using NHibernate.Linq;
 
 namespace Infrastructure.Repositories
 {
@@ -16,9 +17,9 @@ namespace Infrastructure.Repositories
 
         public EventRepository()
         {
-            courseRepository = new CourseRepository();
-            AcademicCompetitionRepository = new AcademicCompetitionRepository();
-            schoolWorkRepository = new SchoolWorkRepository();
+            //courseRepository = new CourseRepository();
+            //AcademicCompetitionRepository = new AcademicCompetitionRepository();
+            //schoolWorkRepository = new SchoolWorkRepository();
         }
 
         public Event Get(int id)
@@ -43,6 +44,13 @@ namespace Infrastructure.Repositories
                 //.Union(AcademicCompetitionRepository.GetAll())
                 //.Union(schoolWorkRepository.GetAll());
         }
+
+        public IEnumerable<Event> GetForMonth()
+        {
+            return GetAll().FetchMany(x => x.Departments)
+                .FetchMany(x => x.EventExecutions);
+        }
+
 
         public void Delete(Event entity)
         {
