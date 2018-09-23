@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
+using HSEvents.Server.Api.Events;
 using Infrastructure;
 using Microsoft.Practices.Unity;
 using Newtonsoft.Json.Serialization;
@@ -41,11 +43,13 @@ namespace HSEvents
 
             });
 
-            NHibernateHelper.Configure();
+            Task.Factory.StartNew(NHibernateHelper.Configure);
         }
 
         private void RegisterUnityComponents(UnityContainer container)
         {
+            container.RegisterType<IEventsService, EventsService>();
+
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
         }
 

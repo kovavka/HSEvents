@@ -4,7 +4,7 @@ using System.Net.Http.Headers;
 using System.Web.Hosting;
 using System.Web.Http;
 
-namespace HSEvents.Controllers
+namespace HSEvents.Server.Api.Home
 {
     [AllowAnonymous]
     public class HomeController : ApiController

@@ -45,10 +45,12 @@ namespace Infrastructure.Repositories
                 //.Union(schoolWorkRepository.GetAll());
         }
 
-        public IEnumerable<Event> GetForMonth()
+        public IEnumerable<Event> GetForMonth(DateTime fromDate, DateTime toDate)
         {
-            return GetAll().FetchMany(x => x.Departments)
-                .FetchMany(x => x.EventExecutions);
+            return GetAll()
+                .FetchMany(x => x.Departments)
+                .FetchMany(x => x.EventExecutions)
+                .Where(x => x.EventExecutions.Any(xx => xx.Dates.Any(d => d.Date >= fromDate && d.Date <= toDate)));
         }
 
 

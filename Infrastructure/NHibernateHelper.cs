@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Reflection;
+using System.Threading;
 using DBCreator;
 using Domain;
 using Domain.Events;
@@ -40,6 +41,9 @@ namespace Infrastructure
 
         public static ISession OpenSession()
         {
+            while (sessionFactory==null)
+                Thread.Sleep(100);
+
             return sessionFactory.OpenSession();
         }
 

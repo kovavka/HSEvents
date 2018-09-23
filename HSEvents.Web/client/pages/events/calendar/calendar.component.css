@@ -20,6 +20,7 @@
 
 .week-title {
     width: 14.28571%;
+    height: 20px;
     float: left;
     padding: 5px 0px 4px 10px;
     border-right: 1px solid #afadad;

@@ -241,6 +241,7 @@
     <Content Include="Global.asax" />
     <Content Include="package.json" />
     <TypeScriptCompile Include="client\controls\directives\window-resize-event-handler.directive.ts" />
+    <Compile Include="Server\Api\Events\EventsService.cs" />
     <Compile Include="Server\Api\Events\EventsController.cs" />
     <Compile Include="Server\Api\Events\Models\MonthModels.cs" />
     <Compile Include="Server\Api\Home\HomeController.cs" />
