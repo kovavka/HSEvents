@@ -10,12 +10,31 @@ namespace HSEvents.Server.Api.Events
 {
     public interface IEventsService
     {
-        Month GetForMonth(int year, int month);
+        Month GetMonth(int year, int month);
+        SimpleEvent Get(int id);
     }
 
     public class EventsService : IEventsService
     {
-        public Month GetForMonth(int year, int month)
+        private readonly IEventsStorage eventsStorage;
+
+        public EventsService(IEventsStorage eventsStorage)
+        {
+            this.eventsStorage = eventsStorage;
+        }
+
+        public SimpleEvent Get(int id)
+        {
+            var @event = eventsStorage.Get(id);
+            return new SimpleEvent()
+            {
+                Name = @event.Name,
+                Info = @event.Info,
+                Type = @event.Type
+            };
+        }
+
+        public Month GetMonth(int year, int month)
         {
             var fromDate = CalculateFromDate(year, month);
             var toDate = CalculateToDate(year, month);
@@ -84,10 +103,7 @@ namespace HSEvents.Server.Api.Events
 
         private List<EventItem> GetEvents(DateTime fromDate, DateTime toDate)
         {
-            var repo = new EventRepository();
-
-            var events = repo.GetForMonth(fromDate, toDate);
-
+            var events = eventsStorage.GetForMonth(fromDate, toDate);
 
             var dates = events
                 .Select(x => new

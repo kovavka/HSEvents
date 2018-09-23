@@ -1,6 +1,7 @@
 ﻿import { Component, ViewChild, ElementRef, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { Month, Week } from '../models/calendar.models';
 import { EventsService } from '../events.service';
+import { EventCardComponent } from './eventCard/event-card.component';
 
 declare var jQuery;
 
@@ -19,6 +20,8 @@ export class CalendarComponent implements AfterViewInit{
 	@ViewChild('panel')
 	private panel: ElementRef;
 
+	@ViewChild('eventCard')
+	private eventCard: EventCardComponent; 
 
 	constructor(private eventsService: EventsService,
 		private changeDetector: ChangeDetectorRef) {
@@ -45,7 +48,7 @@ export class CalendarComponent implements AfterViewInit{
 		var windowHeight = jQuery(window).height();
 		var panelHeight = this.panel.nativeElement.offsetHeight;
 		
-		this.calendarHeight = windowHeight - panelHeight - 51 - 29;
+		this.calendarHeight = windowHeight - panelHeight - 70;
 		this.changeDetector.detectChanges();
 	}
 
@@ -83,5 +86,13 @@ export class CalendarComponent implements AfterViewInit{
 			break;
 		}
 		return className;
+	}
+
+	onEventClick(id: number) {
+		this.eventsService.get(id)
+			.subscribe(event => {
+				this.eventCard.show(event);
+			});
+		
 	}
 }

@@ -55,6 +55,16 @@ namespace DBCreator
             UpdateDB(SessionFactory);
         }
 
+        public static void CreateDB()
+        {
+            var factory = reBiuldConfiguration.BuildSessionFactory();
+
+            Run("Create database HSEvents;", factory);
+            factory.Close();
+
+            UpdateDB(SessionFactory);
+        }
+
         private static void Run(string queryString, ISessionFactory sessionFactory)
         {
             using (ISession session = sessionFactory.OpenSession())

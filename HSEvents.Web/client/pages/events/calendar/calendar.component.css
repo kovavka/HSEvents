@@ -45,9 +45,13 @@
 }
 
 .event-row {
+    background-color: #d8e4e4;
     border-radius: 3px;
     margin: 3px;
     text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .prev-next-month-day {
@@ -75,8 +79,4 @@
 
 .current-month {
     font-size: 23px;
-}
-
-a:hover {
-
 }

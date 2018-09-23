@@ -49,7 +49,8 @@ namespace HSEvents
         private void RegisterUnityComponents(UnityContainer container)
         {
             container.RegisterType<IEventsService, EventsService>();
-
+            container.RegisterType<IEventsStorage, EventsStorage>();
+            
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
         }
 

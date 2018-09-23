@@ -1,5 +1,5 @@
 ﻿<div #panel class="month-panel">
-    <span onmousedown="return false" onselectstart="return false" >
+    <span onmousedown="return false" onselectstart="return false">
         <span role="button" class="arrows">
             <a class="pointer"
                (click)="onPrevMonthClick()">
@@ -29,12 +29,14 @@
              [ngClass]="weekClass">
             <day *ngFor="let eventDay of week.days; index as i"
                  [isMon]="i==0"
-                 [item]="eventDay">
-                <div>{{i
-        }}
-</div>
+                 [item]="eventDay"
+                 (eventClick)="onEventClick($event)">
+                <div>{{i}}</div>
             </day>
         </div>
     </ng-container>
 </div>
+
+<event-card #eventCard></event-card>
+
 <ng-container windowResizeEventHandler (resize)="onResize($event)"></ng-container>

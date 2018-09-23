@@ -1,4 +1,4 @@
-﻿import { Component, Input } from '@angular/core';
+﻿import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { EventDay }from '../models/calendar.models';
 
 @Component({
@@ -14,5 +14,11 @@ export class DayComponent {
 	
 	@Input()
 	isMon: boolean = false;
-    
+
+	@Output()
+	eventClick: EventEmitter<number> = new EventEmitter();
+
+	onEventClick(id: number) {
+		this.eventClick.emit(id);
+	}
 }

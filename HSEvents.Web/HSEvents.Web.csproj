@@ -228,6 +228,7 @@
     <Content Include="client\pages\events\calendar\day.component.html" />
     <Content Include="client\pages\events\calendar\calendar.component.html" />
     <Content Include="client\pages\events\calendar\calendar.component.css" />
+    <Content Include="client\pages\events\calendar\eventCard\event-card.component.html" />
     <Content Include="client\pages\events\events.component.css" />
     <Content Include="client\pages\events\events.component.html" />
     <Content Include="client\pages\home\home.component.html" />
@@ -241,8 +242,10 @@
     <Content Include="Global.asax" />
     <Content Include="package.json" />
     <TypeScriptCompile Include="client\controls\directives\window-resize-event-handler.directive.ts" />
+    <Compile Include="Server\Api\Events\EventsStorage.cs" />
     <Compile Include="Server\Api\Events\EventsService.cs" />
     <Compile Include="Server\Api\Events\EventsController.cs" />
+    <Compile Include="Server\Api\Events\Models\EventModels.cs" />
     <Compile Include="Server\Api\Events\Models\MonthModels.cs" />
     <Compile Include="Server\Api\Home\HomeController.cs" />
     <Content Include="Scripts\scripts.js" />
@@ -274,6 +277,7 @@
     <Compile Include="AppSettings.cs" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="client\pages\events\calendar\eventCard\event-card.component.ts" />
     <TypeScriptCompile Include="client\pages\events\models\calendar.models.ts" />
     <TypeScriptCompile Include="client\services\hse-httpclient.ts" />
     <TypeScriptCompile Include="client\pages\events\calendar\day.component.ts" />

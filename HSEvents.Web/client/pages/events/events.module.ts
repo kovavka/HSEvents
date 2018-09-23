@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { CalendarComponent } from './calendar/calendar.component';
 import { DayComponent } from './calendar/day.component';
 import { ControlsModule } from '../../controls/controls.module';
+import { EventCardComponent } from './calendar/eventCard/event-card.component';
 
 @NgModule({
 	imports: [
@@ -16,12 +17,14 @@ import { ControlsModule } from '../../controls/controls.module';
 	declarations: [
 		EventsComponent,
 		CalendarComponent,
-		DayComponent
+		DayComponent,
+		EventCardComponent
 	],
 	exports: [
 		EventsComponent,
 		CalendarComponent,
-		DayComponent
+		DayComponent,
+		EventCardComponent
 	]
 })
 export class EventsModule { }

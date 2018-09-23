@@ -1,4 +1,5 @@
 ﻿using System.Web.Http;
+using Domain.Events;
 using HSEvents.Server.Api.Events.Models;
 
 namespace HSEvents.Server.Api.Events
@@ -15,7 +16,13 @@ namespace HSEvents.Server.Api.Events
         [HttpGet]
         public Month GetMonth(int year, int month)
         {
-            return eventsService.GetForMonth(year, month);
+            return eventsService.GetMonth(year, month);
+        }
+
+        [HttpGet]
+        public SimpleEvent Get(int id)
+        {
+            return eventsService.Get(id);
         }
     }
 }

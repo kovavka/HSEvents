@@ -36,7 +36,6 @@ namespace Infrastructure
                 .Mappings(m => m.FluentMappings.AddFromAssembly(Assembly.Load("Infrastructure")))
                 .ExposeConfiguration(cfg => new SchemaUpdate(cfg).Execute(true, false))
                 .BuildSessionFactory();
-
         }
 
         public static ISession OpenSession()
@@ -45,11 +44,6 @@ namespace Infrastructure
                 Thread.Sleep(100);
 
             return sessionFactory.OpenSession();
-        }
-
-        public static void CreateDb()
-        {
-            DataBaseHelper.ReBuildDB();
         }
     }
 
