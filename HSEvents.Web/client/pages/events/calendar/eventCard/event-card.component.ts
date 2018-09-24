@@ -52,7 +52,6 @@ export class EventCardComponent implements OnDestroy{
 
 		var windowHeight = jQuery(window).height();
 		var windowWidth = jQuery(window).width();
-		console.log(windowWidth);
 
 		if (windowHeight > 600 && windowWidth > 865) {
 			if (this.week < 4 && this.weekCount >= 5 || this.week < 3 && this.weekCount == 4)

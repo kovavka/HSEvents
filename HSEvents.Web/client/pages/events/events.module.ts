@@ -1,5 +1,6 @@
 ﻿
 import { EventsComponent } from './events.component';
+import { EventEditorComponent } from './event-editor.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
@@ -18,13 +19,15 @@ import { EventCardComponent } from './calendar/eventCard/event-card.component';
 		EventsComponent,
 		CalendarComponent,
 		DayComponent,
-		EventCardComponent
+		EventCardComponent,
+		EventEditorComponent
 	],
 	exports: [
 		EventsComponent,
 		CalendarComponent,
 		DayComponent,
-		EventCardComponent
+		EventCardComponent,
+		EventEditorComponent
 	]
 })
 export class EventsModule { }

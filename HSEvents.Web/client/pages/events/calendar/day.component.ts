@@ -34,4 +34,8 @@ export class DayComponent {
 		};
 		this.eventClick.emit(args);
 	}
+
+	isToday(day: number): boolean {
+		return day == new Date().getDate();
+	}
 }

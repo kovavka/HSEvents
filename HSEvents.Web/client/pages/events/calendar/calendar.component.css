@@ -43,6 +43,16 @@
     padding: 5px 0px 4px 10px;
 }
 
+.day-caption span {
+    text-align: center;
+}
+
+.today {
+    background-color: rgba(37, 193, 249, 0.66);
+    border-radius: 50%;
+    padding: 4px;
+}
+
 .event-row {
     background-color: #d8e4e4;
     border-radius: 3px;
