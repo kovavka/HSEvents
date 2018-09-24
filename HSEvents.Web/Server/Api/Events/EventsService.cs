@@ -16,11 +16,15 @@ namespace HSEvents.Server.Api.Events
 
     public class EventsService : IEventsService
     {
+        private readonly CultureInfo cultureInfo;
+        private readonly DateTimeFormatInfo format;
         private readonly IEventsStorage eventsStorage;
 
         public EventsService(IEventsStorage eventsStorage)
         {
             this.eventsStorage = eventsStorage;
+            cultureInfo = new CultureInfo("ru-RU");
+            format = cultureInfo.DateTimeFormat;
         }
 
         public SimpleEvent Get(int id)
@@ -62,11 +66,7 @@ namespace HSEvents.Server.Api.Events
 
                 weeks.Add(new Week() {Days = days});
             }
-
-
-            var cultureInfo = new CultureInfo("ru-RU");
-            var format = cultureInfo.DateTimeFormat;
-
+            
             return new Month()
             {
                 Name = format.MonthNames[month - 1],
@@ -113,7 +113,7 @@ namespace HSEvents.Server.Api.Events
                         .SelectMany(xx => xx.Dates)
                         .Where(xx => xx.Date.Date >= fromDate && xx.Date.Date <= toDate)
                 })
-                .SelectMany(x => x.Dates.Select(xx => new {x.Event, xx.Date}));
+                .SelectMany(x => x.Dates.Select(xx => new {x.Event, Date = xx}));
 
 
 
@@ -121,9 +121,32 @@ namespace HSEvents.Server.Api.Events
             {
                 Id = x.Event.Id,
                 Name = x.Event.Name,
+                Type = x.Event.Type,
+                Info = x.Event.Info,
                 Color = GetColor(x.Event.Departments),
-                Date = x.Date
+                Date = x.Date.Date,
+                DateAndTime = GetDateAndTime(x.Date),
             }).ToList();
+        }
+
+        private string GetDateAndTime(EventDate date)
+        {
+            var dayfWeek = cultureInfo.DateTimeFormat.GetDayName(date.Date.DayOfWeek);
+            var month = format.MonthGenitiveNames[date.Date.Month - 1];
+            var time = string.Empty;
+
+            var start = date.StartTime?.ToString(@"hh\:mm");
+            var end = date.EndTime?.ToString(@"hh\:mm");
+
+            if (start != null && end != null)
+                time = $", {start} — {end}";
+            else if (start != null)
+                time = $", с {start}";
+            else if (end != null)
+                time = $", до {end}";
+
+            return $"{dayfWeek}, {date.Date.Day} {month}{time}";
+
         }
 
         private string GetColor(ICollection<Department> departments)

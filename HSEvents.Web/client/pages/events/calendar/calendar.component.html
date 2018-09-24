@@ -37,6 +37,6 @@
     </ng-container>
 </div>
 
-<event-card #eventCard></event-card>
+<event-card #eventCard (editClick)="onEditClick($event)" (deleteClick)="onDeleteClick($event)"></event-card>
 
 <ng-container windowResizeEventHandler (resize)="onResize($event)"></ng-container>

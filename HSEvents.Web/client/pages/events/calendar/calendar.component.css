@@ -3,7 +3,6 @@
 
 .week {
     width: 100%;
-    /*display: inline-block;*/
 }
 
 .week-6 {
@@ -79,4 +78,57 @@
 
 .current-month {
     font-size: 23px;
+}
+
+.event-card {
+    width: 475px;
+    z-index: 1000;
+    position: fixed;
+    background-color: #ffffff;
+    box-shadow: 0 24px 38px 3px rgba(0,0,0,0.14), 0 9px 46px 8px rgba(0,0,0,0.12), 0 11px 15px -7px rgba(0,0,0,0.2);
+    border-radius: 3px;
+}
+
+.event-title {
+    background-color: #d8e4e4;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    height: 75px;
+    padding: 8px 0px 0px 10px;
+}
+
+.event-content {
+    height: 125px;
+    padding: 8px 0px 0px 10px;
+}
+
+.event-card-glyphicons {
+    position: absolute;
+    padding-right: 20px;
+    font-size: 20px;
+}
+
+.icon-text {
+    padding-bottom: 5px;
+}
+
+.icon-text span {
+    position: absolute;
+    font-size: 17px;
+    margin-right: 7px;
+    margin: 2px 7px 0px 0px;
+}
+
+.icon-text div {
+    text-indent: 25px;
+}
+
+.event-card-name {
+    font-size: 21px;
+    font-weight: 700;
+}
+
+.event-card-type {
+    opacity: 0.85;
+    width: 50%;
 }

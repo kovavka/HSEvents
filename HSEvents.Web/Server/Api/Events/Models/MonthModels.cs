@@ -1,6 +1,7 @@
 ﻿
 using System;
 using System.Collections.Generic;
+using Domain.Events;
 using Newtonsoft.Json;
 
 namespace HSEvents.Server.Api.Events.Models
@@ -21,9 +22,12 @@ namespace HSEvents.Server.Api.Events.Models
     {
         public long Id { get; set; }
         public string Name { get; set; }
+        public EventType Type { get; set; }
+        public string Info { get; set; }
         public string Color { get; set; }
         [JsonIgnore]
         public DateTime Date { get; set; }
+        public string DateAndTime { get; set; }
     }
 
     public class Month

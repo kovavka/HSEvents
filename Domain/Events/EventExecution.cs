@@ -7,8 +7,8 @@ namespace Domain.Events
     public class EventDate : Entity
     {
         public virtual DateTime Date { get; set; }
-        public virtual TimeSpan StartTime { get; set; }
-        public virtual TimeSpan EndTime { get; set; }
+        public virtual TimeSpan? StartTime { get; set; }
+        public virtual TimeSpan? EndTime { get; set; }
     }
 
     public class EventExecution : Entity

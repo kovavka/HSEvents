@@ -40,3 +40,16 @@ body {
 .fa {
     font-size: 25px;
 }
+
+.inline {
+    display: inline-block;
+    width: 100%;
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}

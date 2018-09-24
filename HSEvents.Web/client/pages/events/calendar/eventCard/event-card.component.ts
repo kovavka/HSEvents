@@ -1,6 +1,5 @@
-﻿import { Component, Input, ChangeDetectorRef } from '@angular/core';
-import { Month, Week } from '../../models/calendar.models';
-import { EventsService } from '../../events.service';
+﻿import { Component, Output, ChangeDetectorRef, EventEmitter } from '@angular/core';
+import { EventRow, RowEventArgs, GetTypeDescription } from '../../models/calendar.models';
 
 declare var jQuery;
 
@@ -8,21 +7,56 @@ declare var jQuery;
 	moduleId: module.id.toString(),
 	selector: 'event-card',
 	templateUrl: 'event-card.component.html',
-	styleUrls: ['../calendar.component.css'],
-	providers: [EventsService]
+	styleUrls: ['../calendar.component.css']
 })
 export class EventCardComponent {
 
-	event: Event;
+	event: EventRow;
+	target: any;
 
-	constructor(private eventsService: EventsService,
-		private changeDetector: ChangeDetectorRef) {
+	top: number =300;
+	left: number = 100;
+	visible: boolean;
+	
+	@Output()
+	editClick: EventEmitter<number> = new EventEmitter();
+
+	@Output()
+	deleteClick: EventEmitter<number> = new EventEmitter();
+	
+	constructor(private changeDetector: ChangeDetectorRef) {
 		
 	}
 
-	show(event: any) {
-		this.event = event; 
-		console.log('show');
-		console.log(event);
+
+	initPosition() {
+		if (!this.target)
+			return;
+
+		var anchorBox = this.target.getBoundingClientRect();
+
+		this.top = (anchorBox.y || anchorBox.top) + anchorBox.height + 20;
+		this.left = anchorBox.x || anchorBox.left;
+	}
+
+	show(args: RowEventArgs) {
+		this.event = args.row;
+		this.target = args.target;
+
+		this.visible = true;
+		this.initPosition();
+		console.log(args);
+	}
+
+	get type(): string {
+		return GetTypeDescription.event(this.event.type);
+	}
+
+	onEdit($event) {
+		this.editClick.emit(this.event.id);
+	}
+
+	onDelete($event) {
+		this.deleteClick.emit(this.event.id);
 	}
 }

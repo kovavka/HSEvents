@@ -1,5 +1,5 @@
 ﻿import { Component, ViewChild, ElementRef, AfterViewInit, ChangeDetectorRef } from '@angular/core';
-import { Month, Week } from '../models/calendar.models';
+import { Month, RowEventArgs } from '../models/calendar.models';
 import { EventsService } from '../events.service';
 import { EventCardComponent } from './eventCard/event-card.component';
 
@@ -88,11 +88,15 @@ export class CalendarComponent implements AfterViewInit{
 		return className;
 	}
 
-	onEventClick(id: number) {
-		this.eventsService.get(id)
-			.subscribe(event => {
-				this.eventCard.show(event);
-			});
-		
+	onEventClick(args: RowEventArgs) {
+		this.eventCard.show(args);
+	}
+
+	onEditClick(id: number) {
+		console.log('edit ' + id);
+	}
+
+	onDeleteClick(id: number) {
+		console.log('delete ' + id);
 	}
 }

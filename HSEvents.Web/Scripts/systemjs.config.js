@@ -53,9 +53,9 @@
       '@angular/cdk/table': 'npm:@angular/cdk/bundles/cdk-table.umd.js',
       '@angular/cdk/stepper': 'npm:@angular/cdk/bundles/cdk-stepper.umd.js',
       '@angular/cdk/layout': 'npm:@angular/cdk/bundles/cdk-layout.umd.js',
-
-       'murmurhash': 'npm:murmur-hash/lib/v3/murmur.js',
-
+	  
+      'moment': 'npm:moment/moment.js',
+	  
       // other libraries
       'rxjs': 'npm:rxjs',
       'tslib':'npm:tslib',
