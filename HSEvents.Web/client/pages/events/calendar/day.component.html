@@ -1,5 +1,5 @@
 ﻿<div class="calendar-day border-right"
-     [ngClass]="isMon?'border-left':''">
+     [ngClass]="dayOfWeek==1?'border-left':''">
     <div [ngClass]="!item.currentMonth?'prev-next-month-day':''">
         <div class="day-caption">{{item.day}}</div>
         <div *ngFor="let row of item.events"

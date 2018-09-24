@@ -11,16 +11,27 @@ export class DayComponent {
 
 	@Input()
 	item: EventDay;
-	
-	@Input()
-	isMon: boolean = false;
 
+	@Input()
+	week: number;
+
+	@Input()
+	dayOfWeek: number;
+
+	@Input()
+	weekCount: number;
+	
 	@Output()
 	eventClick: EventEmitter<RowEventArgs> = new EventEmitter();
 
 	onEventClick(e: any, row: EventRow) {
-		var args = <RowEventArgs>{ row: row, target: e.target };
+		var args = <RowEventArgs>{
+			row: row,
+			target: e.target,
+			week: this.week,
+			dayOfWeek: this.dayOfWeek,
+			weekCount: this.weekCount,
+		};
 		this.eventClick.emit(args);
-		
 	}
 }

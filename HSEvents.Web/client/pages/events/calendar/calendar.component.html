@@ -24,11 +24,13 @@
         <div class="week-title">Пт</div>
         <div class="week-title">Сб</div>
         <div class="week-title">Вс</div>
-        <div *ngFor="let week of currentMonth.weeks"
+        <div *ngFor="let week of currentMonth.weeks; index as i"
              class="week"
              [ngClass]="weekClass">
-            <day *ngFor="let eventDay of week.days; index as i"
-                 [isMon]="i==0"
+            <day *ngFor="let eventDay of week.days; index as j"
+                 [week]="i+1"
+                 [dayOfWeek]="j+1"
+                 [weekCount]="currentMonth.weeks.length"
                  [item]="eventDay"
                  (eventClick)="onEventClick($event)">
                 <div>{{i}}</div>

@@ -241,6 +241,7 @@
     <Content Include="Data\index.html" />
     <Content Include="Global.asax" />
     <Content Include="package.json" />
+    <TypeScriptCompile Include="client\controls\directives\document-click-event-handler.directive.ts" />
     <TypeScriptCompile Include="client\controls\directives\window-resize-event-handler.directive.ts" />
     <Compile Include="Server\Api\Events\EventsStorage.cs" />
     <Compile Include="Server\Api\Events\EventsService.cs" />

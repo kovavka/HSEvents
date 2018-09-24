@@ -25,6 +25,9 @@ export class Month {
 export class RowEventArgs {
 	row: EventRow;
 	target: any;
+	week: number;
+	dayOfWeek: number;
+	weekCount: number;
 }
 
 export class Event {

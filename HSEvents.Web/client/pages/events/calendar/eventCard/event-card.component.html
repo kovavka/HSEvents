@@ -1,4 +1,5 @@
 ﻿<div class="event-card"
+     (click)="onClick($events)"
      [style.top]="top +'px'"
      [style.left]="left+'px'"
      [style.display]="visible?'block':'none'"
@@ -7,22 +8,24 @@
     <div class="event-title" [style.backgroundColor]="event.color">
         <div class="inline event-card-glyphicons">
             <div class="right">
-                    <span class="pointer glyphicon glyphicon-pencil" (click)="onEdit($event)"></span>
-                    <span class="pointer glyphicon glyphicon-trash" (click)="onDelete($event)"></span>
+                <span class="pointer glyphicon glyphicon-pencil" (click)="onEdit($event)"></span>
+                <span class="pointer glyphicon glyphicon-trash" (click)="onDelete($event)"></span>
             </div>
         </div>
         <div class="event-card-type">{{type}}</div>
         <div class="event-card-name">{{event.name}}</div>
     </div>
     <div class="event-content">
-        
-        <div class="icon-text">
-            <span class="fa fa-newspaper-o"></span>
-            <div>{{event.info}}</div>
-        </div>
         <div class="icon-text">
             <span class="fa fa-clock-o"></span>
             <div>{{event.dateAndTime}}</div>
         </div>
+        <div class="icon-text">
+            <span class="fa fa-newspaper-o"></span>
+            <div>{{event.info}}</div>
+        </div>
     </div>
 </div>
+
+<ng-container windowResizeEventHandler (resize)="onResize($event)"></ng-container>
+<ng-container documentClickEventHandler (click)="onDocumentClick($event)"></ng-container>

@@ -89,7 +89,7 @@ export class CalendarComponent implements AfterViewInit{
 	}
 
 	onEventClick(args: RowEventArgs) {
-		this.eventCard.show(args);
+		this.eventCard.toggle(args);
 	}
 
 	onEditClick(id: number) {

@@ -2,6 +2,7 @@
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { WindowResizeEventHandlerDirective } from './directives/window-resize-event-handler.directive';
+import { DocumentClickEventHandlerDirective } from './directives/document-click-event-handler.directive';
 
 @NgModule({
     imports: [
@@ -9,11 +10,13 @@ import { WindowResizeEventHandlerDirective } from './directives/window-resize-ev
         FormsModule
     ],
 	exports: [
-		WindowResizeEventHandlerDirective
+		WindowResizeEventHandlerDirective,
+		DocumentClickEventHandlerDirective
        
     ],
 	declarations: [
-		WindowResizeEventHandlerDirective
+		WindowResizeEventHandlerDirective,
+		DocumentClickEventHandlerDirective
     ],
     providers: [
     ]
