@@ -1,8 +1,8 @@
 ﻿<div class="calendar-day border-right"
      [ngClass]="dayOfWeek==1?'border-left':''">
-    <div [ngClass]="!item.currentMonth?'prev-next-month-day':''">
+    <div [ngClass]="!isCurrentMonth(item)?'prev-next-month-day':''">
         <div class="day-caption">
-            <span [ngClass]="isToday(item.day)?'today':''">{{item.day}}</span>
+            <span [ngClass]="isToday(item.date)?'today':''">{{getDay(item)}}</span>
         </div>
         <div *ngFor="let row of item.events"
              class="event-row"
@@ -10,7 +10,7 @@
              onmousedown="return false"
              onselectstart="return false"
              (click)="onEventClick($event, row)"
-             [ngClass]="!item.currentMonth?'prev-next-month-day':''"
+             [ngClass]="!isCurrentMonth(item)?'prev-next-month-day':''"
              [style.background-color]="row.color">{{row.name}}</div>
     </div>
 </div>

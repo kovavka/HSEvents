@@ -23,6 +23,16 @@ export class HseHttpClient {
 			);
 	}
 
+	put<T>(url: string, body: any | null): Observable<T> {
+		return this.http
+			.put<T>(url, body)
+			.pipe(
+				catchError((err: any) => {
+					return this.handleError(err);
+				})
+			);
+	}
+
 	post<T>(url: string, body: any | null): Observable<T> {
 		return this.http
 			.post<T>(url, body)

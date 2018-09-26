@@ -31,8 +31,10 @@
                  [week]="i+1"
                  [dayOfWeek]="j+1"
                  [weekCount]="currentMonth.weeks.length"
+                 [currentDate]="currentDate"
                  [item]="eventDay"
-                 (eventClick)="onEventClick($event)">
+                 (eventClick)="onEventClick($event)"
+                 (click)="onDayClick(eventDay.date)">
                 <div>{{i}}</div>
             </day>
         </div>

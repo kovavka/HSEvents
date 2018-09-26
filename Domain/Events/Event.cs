@@ -13,7 +13,6 @@ namespace Domain.Events
         public virtual EventType Type { get; set; }
         public virtual string Comment { get; set; }
         public virtual string Info { get; set; }
-        
         public virtual ICollection<Volunteer> Volunteers { get; set; }
         public virtual ICollection<Purchase> Purchases { get; set; }
         public virtual ICollection<Employee> Organizers { get; set; }

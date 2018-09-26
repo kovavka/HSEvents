@@ -17,4 +17,17 @@ export class EventsService {
 		return this.client
 			.get<Event>('/api/events/get?id=' + id);
 	}
+
+	add(event: Event): Observable<Event> {
+		return this.client
+			.put<Event>('/api/events/add', event);
+	}
+
+	update(event: Event) {
+		this.client.put('/api/events/update', event);
+	}
+
+	delete(id: number) {
+		this.client.post('/api/events/delete', event);
+	}
 }

@@ -20,9 +20,27 @@ namespace HSEvents.Server.Api.Events
         }
 
         [HttpGet]
-        public SimpleEvent Get(int id)
+        public EventDto Get(int id)
         {
             return eventsService.Get(id);
+        }
+
+        [HttpPut]
+        public Event Add(Event entity)
+        {
+            return eventsService.Add(entity);
+        }
+
+        [HttpPut]
+        public void Update(Event entity)
+        {
+            eventsService.Update(entity);
+        }
+
+        [HttpPost]
+        public void Delete(int id)
+        {
+            eventsService.Delete(id);
         }
     }
 }

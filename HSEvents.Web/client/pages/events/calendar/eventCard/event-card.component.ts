@@ -1,4 +1,4 @@
-﻿import { Component, Output, ChangeDetectorRef, EventEmitter, OnDestroy, ViewChild, ElementRef } from '@angular/core';
+﻿import { Component, Output, ChangeDetectorRef, EventEmitter, OnDestroy } from '@angular/core';
 import { EventRow, RowEventArgs, GetTypeDescription } from '../../models/calendar.models';
 
 declare var jQuery;
@@ -110,10 +110,12 @@ export class EventCardComponent implements OnDestroy{
 
 	onEdit($event) {
 		this.editClick.emit(this.event.id);
+		this.hide();
 	}
 
 	onDelete($event) {
 		this.deleteClick.emit(this.event.id);
+		this.hide();
 	}
 
 	onDocumentClick($event) {

@@ -1,3 +1,10 @@
 ﻿<div>
-    <calendar></calendar>
+    <calendar *ngIf="showCalendar"
+              (editClick)="onEditClick($event)"
+              (deleteClick)="onDeleteClick($event)"
+              (dayClick)="onDayClick($event)"></calendar>
+
+    <event-editor *ngIf="!showCalendar"
+                  [event]="event"
+                  [date]="date"></event-editor>
 </div>

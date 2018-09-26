@@ -11,7 +11,10 @@ namespace HSEvents.Server.Api.Events
     public interface IEventsService
     {
         Month GetMonth(int year, int month);
-        SimpleEvent Get(int id);
+        EventDto Get(int id);
+        Event Add(Event entity);
+        void Update(Event entity);
+        void Delete(int id);
     }
 
     public class EventsService : IEventsService
@@ -26,16 +29,36 @@ namespace HSEvents.Server.Api.Events
             cultureInfo = new CultureInfo("ru-RU");
             format = cultureInfo.DateTimeFormat;
         }
-
-        public SimpleEvent Get(int id)
+        
+        public EventDto Get(int id)
         {
-            var @event = eventsStorage.Get(id);
-            return new SimpleEvent()
+            var entity = eventsStorage.Get(id);
+            return ConvertToDto(entity);
+        }
+
+        private EventDto ConvertToDto(Event entity)
+        {
+           return new EventDto()
             {
-                Name = @event.Name,
-                Info = @event.Info,
-                Type = @event.Type
+                Info = entity.Info,
+                Name = entity.Name,
+                Type = entity.Type
             };
+        }
+
+        public Event Add(Event entity)
+        {
+            return eventsStorage.Add(entity);
+        }
+
+        public void Update(Event entity)
+        {
+            eventsStorage.Update(entity);
+        }
+
+        public void Delete(int id)
+        {
+            eventsStorage.Delete(id);
         }
 
         public Month GetMonth(int year, int month)
@@ -56,9 +79,8 @@ namespace HSEvents.Server.Api.Events
                 {
                     days.Add(new EventDay()
                     {
-                        Day = currentDate.Day,
                         Events = events.Where(x => x.Date.Date == currentDate).ToList(),
-                        CurrentMonth = currentDate.Month == month
+                        Date = currentDate
                     });
 
                     currentDate = currentDate.AddDays(1);

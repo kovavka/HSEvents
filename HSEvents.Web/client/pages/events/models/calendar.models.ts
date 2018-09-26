@@ -4,8 +4,7 @@
 
 export class EventDay {
 	events: EventRow[];
-	day: number;
-	currentMonth: boolean;
+	date: Date;
 }
 
 export class EventRow {

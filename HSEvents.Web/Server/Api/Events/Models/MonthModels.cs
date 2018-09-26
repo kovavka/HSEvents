@@ -16,6 +16,7 @@ namespace HSEvents.Server.Api.Events.Models
         public List<EventItem> Events { get; set; }
         public int Day { get; set; }
         public bool CurrentMonth { get; set; }
+        public DateTime Date { get; set; }
     }
 
     public class EventItem

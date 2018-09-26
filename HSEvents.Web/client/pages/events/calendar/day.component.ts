@@ -13,6 +13,9 @@ export class DayComponent {
 	item: EventDay;
 
 	@Input()
+	currentDate: Date;
+
+	@Input()
 	week: number;
 
 	@Input()
@@ -25,6 +28,7 @@ export class DayComponent {
 	eventClick: EventEmitter<RowEventArgs> = new EventEmitter();
 
 	onEventClick(e: any, row: EventRow) {
+		e.stopPropagation();
 		var args = <RowEventArgs>{
 			row: row,
 			target: e.target,
@@ -35,7 +39,24 @@ export class DayComponent {
 		this.eventClick.emit(args);
 	}
 
-	isToday(day: number): boolean {
-		return day == new Date().getDate();
+	isToday(date: Date): boolean {
+		var today = new Date();
+		date = this.getDate(date);
+
+		return date.getDate() == new Date().getDate() &&
+			date.getMonth() == today.getMonth() &&
+			date.getFullYear() == today.getFullYear();
+	}
+
+	isCurrentMonth(item: EventDay): boolean {
+		return this.getDate(item.date).getMonth() == this.currentDate.getMonth();
+	}
+
+	getDate(date: Date): Date {
+		return new Date(date);
+	}
+
+	getDay(item: EventDay) {
+		return this.getDate(item.date).getDate();
 	}
 }

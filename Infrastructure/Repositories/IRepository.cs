@@ -11,7 +11,7 @@ namespace Infrastructure.Repositories
         T Get(int id);
         void Delete(int id);
         void Update(T entity);
-        object Add(T entity);
+        T Add(T entity);
         void Delete(T entity);
     }
 
@@ -51,16 +51,16 @@ namespace Infrastructure.Repositories
             }
         }
 
-        public object Add(T entity)
+        public T Add(T entity)
         {
-            object result;
+            int id;
             using (var tx = session.BeginTransaction())
             {
-                result = session.Save(entity);
+                id = (int) session.Save(entity);
                 tx.Commit();
             }
 
-            return result;
+            return Get(id);
         }
 
         public void Dispose()

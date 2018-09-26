@@ -1,4 +1,4 @@
-﻿import { Component, ViewChild, ElementRef, AfterViewInit, ChangeDetectorRef } from '@angular/core';
+﻿import { Component, ViewChild, ElementRef, AfterViewInit, Output, EventEmitter, ChangeDetectorRef } from '@angular/core';
 import { Month, RowEventArgs } from '../models/calendar.models';
 import { EventsService } from '../events.service';
 import { EventCardComponent } from './eventCard/event-card.component';
@@ -22,6 +22,15 @@ export class CalendarComponent implements AfterViewInit{
 
 	@ViewChild('eventCard')
 	private eventCard: EventCardComponent; 
+
+	@Output()
+	editClick: EventEmitter<number> = new EventEmitter();
+
+	@Output()
+	deleteClick: EventEmitter<number> = new EventEmitter();
+
+	@Output()
+	dayClick: EventEmitter<Date> = new EventEmitter();
 
 	constructor(private eventsService: EventsService,
 		private changeDetector: ChangeDetectorRef) {
@@ -93,10 +102,15 @@ export class CalendarComponent implements AfterViewInit{
 	}
 
 	onEditClick(id: number) {
-		console.log('edit ' + id);
+		this.editClick.emit(id);
 	}
 
 	onDeleteClick(id: number) {
-		console.log('delete ' + id);
+		this.deleteClick.emit(id);
 	}
+
+	onDayClick(date: Date) {
+		this.dayClick.emit(new Date(date));
+	}
+
 }
