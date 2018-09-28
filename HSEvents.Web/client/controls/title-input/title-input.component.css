@@ -1,0 +1,18 @@
+﻿#inputTitle {
+    max-width: 860px;
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    border-bottom: 2px dotted lightgray;
+    font-size: 32px;
+    color: gray;
+    position: relative;
+    margin-right: 16px;
+}
+
+#inputValue {
+    max-width: 860px;
+    font-size: 25px;
+    padding-left: 10px;
+}

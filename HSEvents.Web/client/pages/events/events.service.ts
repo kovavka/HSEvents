@@ -18,16 +18,16 @@ export class EventsService {
 			.get<EventModel>('/api/events/get?id=' + id);
 	}
 
-	add(event: Event): Observable<EventModel> {
+	add(event: EventModel): Observable<EventModel> {
 		return this.client
 			.put<EventModel>('/api/events/add', event);
 	}
 
-	update(event: EventModel) {
-		this.client.put('/api/events/update', event);
+	update(event: EventModel): Observable<any> {
+		return this.client.put('/api/events/update', event);
 	}
 
-	delete(id: number) {
-		this.client.post('/api/events/delete', event);
+	delete(id: number): Observable<any> {
+		return this.client.post('/api/events/delete', event);
 	}
 }

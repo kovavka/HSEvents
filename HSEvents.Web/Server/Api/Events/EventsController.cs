@@ -26,15 +26,16 @@ namespace HSEvents.Server.Api.Events
         }
 
         [HttpPut]
-        public Event Add(Event entity)
+        public EventDto Add(EventDto entity)
         {
-            return eventsService.Add(entity);
+            return entity;
+            //return eventsService.Add(entity);
         }
 
         [HttpPut]
-        public void Update(Event entity)
+        public void Update(EventDto entity)
         {
-            eventsService.Update(entity);
+            //eventsService.Update(entity);
         }
 
         [HttpPost]

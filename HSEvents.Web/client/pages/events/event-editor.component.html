@@ -1,3 +1,29 @@
 ﻿
-<div *ngIf="event">{{event.name}}</div>
-<div>{{date}}</div>
+<div class="content-wrapper content-with-margins">
+    <div class="event-name">
+        <title-input [(value)]="name" [defaultText]="'Название мероприятия'"></title-input>
+    </div>
+    
+    <div class="property">
+        <div>Тип</div>
+        <select (change)="model.type = $event.target.value">
+            <option *ngFor="let item of types;" value="{{item.value}}" [selected]="item.value==model.type">
+                {{item.caption}}
+            </option>
+        </select>
+    </div>
+
+    <div class="property">
+        <div>Информация</div>
+        <textarea [(ngModel)]="model.info"></textarea>
+    </div>
+    
+    <div class="buttons">
+        <a class="ui-btn ui-btn-primary btn-left" (click)="onSaveClick($event)">
+            <div class="ui-btn-caption">Сохранить</div>
+        </a>
+        <a class="ui-btn ui-btn-primary" (click)="onCancelClick($event)">
+            <div class="ui-btn-caption">Отмена</div>
+        </a>
+    </div>
+</div>

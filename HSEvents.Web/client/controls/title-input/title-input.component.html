@@ -1,0 +1,20 @@
+﻿<span #inputTitle
+      id="inputTitle"
+      [style.display]="edit?'none':''"
+      [style.color]="valueIsDefault?'lightgray':'#555'"
+      class="pointer"
+      (click)="startEdit()">
+    {{displayValue}}
+</span>
+
+<input #inputValue
+       id="inputValue"
+       [style.display]="edit?'':'none'"
+       [size]="inputSize"
+       type="text"
+       (input)="value = $event.target.value"
+       [value]="value"
+       (keydown.enter)="applyChanges()"
+       (keydown.escape)="dismissChanges()" />
+
+<ng-container documentClickEventHandler (click)="onDocumentClick($event)"></ng-container>

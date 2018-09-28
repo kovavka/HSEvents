@@ -40,6 +40,7 @@ namespace HSEvents.Server.Api.Events
         {
            return new EventDto()
             {
+                Id = entity.Id,
                 Info = entity.Info,
                 Name = entity.Name,
                 Type = entity.Type

@@ -1,1 +1,31 @@
-﻿
+﻿.event-name {
+    margin: 15px 0px;
+    min-height: 52px;
+}
+
+select {
+    font-size: 16px;
+}
+
+textarea {
+    width: 450px;
+    height: 100px;
+    resize: none;
+}
+
+.property > div {
+    margin-top: 1px;
+    font-size: 20px;
+    margin-right: 20px;
+    float: left;
+    min-width: 140px;
+}
+
+.buttons {
+    margin-top: 100px;
+}
+
+.btn-left {
+    float: left;
+    margin-right: 10px;
+}

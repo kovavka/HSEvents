@@ -1,7 +1,7 @@
-﻿
-import { EventsComponent } from './events.component';
+﻿import { EventsComponent } from './events.component';
 import { EventEditorComponent } from './event-editor.component';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { CalendarComponent } from './calendar/calendar.component';
@@ -13,7 +13,8 @@ import { EventCardComponent } from './calendar/eventCard/event-card.component';
 	imports: [
 		CommonModule,
 		RouterModule,
-		ControlsModule
+		ControlsModule,
+		FormsModule
 	],
 	declarations: [
 		EventsComponent,

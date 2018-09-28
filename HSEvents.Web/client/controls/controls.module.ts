@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { WindowResizeEventHandlerDirective } from './directives/window-resize-event-handler.directive';
 import { DocumentClickEventHandlerDirective } from './directives/document-click-event-handler.directive';
+import { TitleInput } from './title-input/title-input.component';
 
 @NgModule({
     imports: [
@@ -11,12 +12,14 @@ import { DocumentClickEventHandlerDirective } from './directives/document-click-
     ],
 	exports: [
 		WindowResizeEventHandlerDirective,
-		DocumentClickEventHandlerDirective
+		DocumentClickEventHandlerDirective,
+		TitleInput
        
     ],
 	declarations: [
 		WindowResizeEventHandlerDirective,
-		DocumentClickEventHandlerDirective
+		DocumentClickEventHandlerDirective,
+		TitleInput
     ],
     providers: [
     ]

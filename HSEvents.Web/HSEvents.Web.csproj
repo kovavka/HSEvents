@@ -225,6 +225,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="client\controls\title-input\title-input.component.css" />
+    <Content Include="client\controls\title-input\title-input.component.html" />
     <Content Include="client\pages\events\calendar\day.component.html" />
     <Content Include="client\pages\events\calendar\calendar.component.html" />
     <Content Include="client\pages\events\calendar\calendar.component.css" />
@@ -280,6 +282,7 @@
     <Compile Include="AppSettings.cs" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="client\controls\title-input\title-input.component.ts" />
     <TypeScriptCompile Include="client\pages\events\calendar\eventCard\event-card.component.ts" />
     <TypeScriptCompile Include="client\pages\events\event-editor.component.ts" />
     <TypeScriptCompile Include="client\pages\events\models\calendar.models.ts" />

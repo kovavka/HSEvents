@@ -6,5 +6,6 @@
 
     <event-editor *ngIf="!showCalendar"
                   [event]="event"
-                  [date]="date"></event-editor>
+                  [date]="date"
+                  (finished)="onEditFinished()"></event-editor>
 </div>

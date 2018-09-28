@@ -5,6 +5,7 @@ namespace HSEvents.Server.Api.Events.Models
 {
     public class EventDto
     {
+        public int Id { get; set; }
         public string Name { get; set; }
         public EventType Type { get; set; }
         public string Info { get; set; }

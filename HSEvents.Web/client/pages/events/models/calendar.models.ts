@@ -30,6 +30,7 @@ export class RowEventArgs {
 }
 
 export class EventModel {
+	id: number;
 	name: string;
 	type: EventType;
 	info: string;

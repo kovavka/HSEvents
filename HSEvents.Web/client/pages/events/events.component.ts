@@ -38,4 +38,9 @@ export class EventsComponent {
 		this.showCalendar = false;
 	}
 
+	onEditFinished() {
+		this.event = null;
+		this.showCalendar = true;
+	}
+
 }
