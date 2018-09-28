@@ -234,6 +234,7 @@
     <Content Include="client\pages\events\events.component.html" />
     <Content Include="client\pages\home\home.component.html" />
     <Content Include="client\menus\top-menu.component.html" />
+    <Content Include="css\elements.css" />
     <Content Include="dist\**" />
     <Content Include="client\app\app.component.css" />
     <Content Include="client\app\app.component.html" />

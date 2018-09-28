@@ -32,10 +32,10 @@ export class GetTypeList {
 
 		for (let item in EventType) {
 			if (Number(item)) {
-				var value = Number(item) as any;
+				var value = Number(item) as any as T;
 				var listItem = <ListItem>{
-					value: item,
-					caption: getDescription(value as T)
+					value: value,
+					caption: getDescription(value)
 				}
 				list.push(listItem);
 			}

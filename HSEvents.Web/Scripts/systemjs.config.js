@@ -69,15 +69,15 @@
     packages: {
       app: {
         main: './main',
-        defaultExtension: 'js' + '?v='  + appVersion
+        defaultExtension: 'js'
       },
       rxjs: {
           main: './Rx',
-          defaultExtension: 'js' + '?v=' + appVersion
+          defaultExtension: 'js'
       },
       tslib: {
           main: './tslib',
-          defaultExtension: 'js' + '?v=' + appVersion
+          defaultExtension: 'js'
         }
     }
   });

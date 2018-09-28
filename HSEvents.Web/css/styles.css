@@ -1,11 +1,3 @@
-body {
-    padding-top: 50px;
-    padding-bottom: 20px;
-
-    color: #545c6a;
-    font-family: OpenSans-Semibold, "Helvetica Neue", Arial, Helvetica, sans-serif;
-}
-
 .navbar-blue {
     background-color: #003380;
     border-color: #080808;
@@ -54,25 +46,6 @@ body {
     float: right;
 }
 
-input {
-    padding: 5px 10px;
-    font-size: 14px;
-    line-height: 1.428571429;
-    border: 1px solid #cccccc;
-    border-radius: 4px;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-    -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
-    transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
-}
-
-input:focus {
-    border-color: #66afe9;
-    outline: 0;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
-}
-
 .invalid-input {
     border: 1px solid #a94442;
 }
@@ -82,21 +55,36 @@ input:focus {
     margin-top: 20px;
 }
 
-select {
-    display: block;
+.ui-btn {
+    position: relative;
+    background-color: #868d95;
+    color: #fff;
+    text-align: center;
+    text-transform: uppercase;
+    cursor: pointer;
+    display: flex;
+    border-radius: 4px;
+    font: 600 12px/39px "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    width: 180px;
+}
+
+.ui-btn:hover,
+.ui-btn:focus { 
+    text-decoration: none;
+}
+
+.ui-btn-save {
+    background-color: #3bc8f5;
+    color: #fff;
+}
+
+.ui-btn-save:hover {
+    background-color: #3eddff;
+}
+.ui-btn-save:active {
+    background-color: #12b1e3;
+}
+
+.ui-btn-caption {
     width: 100%;
-    font-size: 14px;
-    line-height: 1.42857;
-    color: rgb(85, 85, 85);
-    background-color: rgb(255, 255, 255);
-    background-image: none;
-    height: 39px;
-    padding: 6px 12px;
-    border-width: 1px;
-    border-style: solid;
-    border-color: rgb(204, 204, 204);
-    border-image: initial;
-    border-radius: 2px;
-    transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
-    outline: none;
 }
