@@ -1,7 +1,7 @@
 ﻿import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { HseHttpClient } from '../../services/hse-httpclient';
-import { Month, Event } from './models/calendar.models';
+import { Month, EventModel } from './models/calendar.models';
 
 @Injectable()
 export class EventsService {
@@ -13,17 +13,17 @@ export class EventsService {
 			.get<Month>('/api/events/getMonth?month=' + month + '&year=' + year);
 	}
 
-	get(id: number): Observable<Event> {
+	get(id: number): Observable<EventModel> {
 		return this.client
-			.get<Event>('/api/events/get?id=' + id);
+			.get<EventModel>('/api/events/get?id=' + id);
 	}
 
-	add(event: Event): Observable<Event> {
+	add(event: Event): Observable<EventModel> {
 		return this.client
-			.put<Event>('/api/events/add', event);
+			.put<EventModel>('/api/events/add', event);
 	}
 
-	update(event: Event) {
+	update(event: EventModel) {
 		this.client.put('/api/events/update', event);
 	}
 

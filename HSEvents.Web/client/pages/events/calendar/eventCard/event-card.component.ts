@@ -1,5 +1,6 @@
 ﻿import { Component, Output, ChangeDetectorRef, EventEmitter, OnDestroy } from '@angular/core';
-import { EventRow, RowEventArgs, GetTypeDescription } from '../../models/calendar.models';
+import { EventRow, RowEventArgs } from '../../models/calendar.models';
+import { GetTypeDescription } from '../../../../utilities/enum-helper';
 
 declare var jQuery;
 

@@ -282,6 +282,7 @@
     <TypeScriptCompile Include="client\pages\events\calendar\eventCard\event-card.component.ts" />
     <TypeScriptCompile Include="client\pages\events\event-editor.component.ts" />
     <TypeScriptCompile Include="client\pages\events\models\calendar.models.ts" />
+    <TypeScriptCompile Include="client\utilities\enum-helper.ts" />
     <TypeScriptCompile Include="client\services\hse-httpclient.ts" />
     <TypeScriptCompile Include="client\pages\events\calendar\day.component.ts" />
     <TypeScriptCompile Include="client\pages\events\calendar\calendar.component.ts" />

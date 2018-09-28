@@ -1,5 +1,5 @@
 ﻿import { Component } from '@angular/core';
-import { Event } from './models/calendar.models';
+import { EventModel } from './models/calendar.models';
 import { EventsService } from './events.service';
 
 @Component({
@@ -11,7 +11,7 @@ import { EventsService } from './events.service';
 export class EventsComponent {
 
 	showCalendar: boolean = true;
-	event: Event = null;
+	event: EventModel = null;
 	date: Date = null;
 
 
