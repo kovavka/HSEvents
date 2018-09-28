@@ -12,8 +12,8 @@ namespace HSEvents.Server.Api.Events
     {
         Month GetMonth(int year, int month);
         EventDto Get(int id);
-        Event Add(Event entity);
-        void Update(Event entity);
+        EventDto Add(EventDto entity);
+        void Update(EventDto entity);
         void Delete(int id);
     }
 
@@ -47,14 +47,43 @@ namespace HSEvents.Server.Api.Events
             };
         }
 
-        public Event Add(Event entity)
+        private Event ConvertToEntity(EventDto dto)
         {
-            return eventsStorage.Add(entity);
+            Event entity;
+            switch (dto.Type)
+            {
+                case EventType.Course:
+                    entity = new Course();
+                    break;
+                case EventType.AcademicCompetition:
+                    entity = new AcademicCompetition();
+                    break;
+                case EventType.SchoolWork:
+                    entity = new SchoolWork();
+                    break;
+                default:
+                    entity = new Course();
+                    break;
+            }
+
+            entity.Id = dto.Id;
+            entity.Info = dto.Info;
+            entity.Name = dto.Name;
+            entity.Type = dto.Type;
+
+           return entity;
         }
 
-        public void Update(Event entity)
+        public EventDto Add(EventDto dto)
         {
-            eventsStorage.Update(entity);
+            var entity = ConvertToEntity(dto);
+            return ConvertToDto(eventsStorage.Add(entity));
+        }
+
+        public void Update(EventDto dto)
+        {
+            var entity = ConvertToEntity(dto);
+            eventsStorage.Add(entity);
         }
 
         public void Delete(int id)
