@@ -14,8 +14,7 @@
         <span onmousedown="return false" onselectstart="return false" role="button" class="current-month" *ngIf="currentMonth"> {{currentMonth.name}} {{currentDate.getFullYear()}}</span>
     </span>
 </div>
-<div [style.height.px]="calendarHeight"
-     class="month">
+<div [style.height.px]="calendarHeight">
     <ng-container *ngIf="currentMonth">
         <div class="week-title border-left">Пн</div>
         <div class="week-title">Вт</div>

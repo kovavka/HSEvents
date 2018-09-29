@@ -1,7 +1,7 @@
 ﻿<table *ngIf="items">
     <tbody>
-        <tr *ngFor="let item of items">
-            <td>{{item.caption}}</td>
+        <tr *ngFor="let item of items" class="pointer">
+            <td class="row-caption">{{item.caption}}</td>
             <td>
                 <span class="pointer glyphicon glyphicon-pencil" (click)="onEdit(item)"></span>
             </td>

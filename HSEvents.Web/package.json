@@ -29,7 +29,8 @@
     "systemjs-plugin-babel": "0.0.25",
     "xlsx": "^0.12.8",
     "zone": "^0.3.4",
-    "zone.js": "^0.8.10"
+    "zone.js": "^0.8.10",
+    "ng2-bs3-modal": "^0.13.0"
   },
   "devDependencies": {
     "@types/node": "^8.0.51",

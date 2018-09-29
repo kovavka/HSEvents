@@ -8,7 +8,7 @@ declare var jQuery;
 	templateUrl: 'title-input.component.html',
 	styleUrls: ['title-input.component.css'],
 })
-export class TitleInput {
+export class TitleInputComponent {
 	inputMinSize: number = 2;
 	sourceValue = "";
 	edit: boolean;

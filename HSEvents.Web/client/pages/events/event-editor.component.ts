@@ -1,9 +1,10 @@
-﻿import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+﻿import { Component, Input, Output, EventEmitter, OnInit, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { EventModel } from './models/event.models';
 import { GetTypeList, ListItem } from '../../utilities/enum-helper';
 import { EventsService } from './events.service';
 import { ListRowItem } from '../../controls/list-row/list-row.component';
+import { ExecutionEditorComponent } from './event-modals/execution-editor.component';
 
 @Component({
 	moduleId: module.id.toString(),
@@ -16,7 +17,9 @@ export class EventEditorComponent implements OnInit{
 
 	model: EventModel = new EventModel();
 	types: ListItem[];
-
+	
+	@ViewChild('executionEditor')
+	private executionEditor: ExecutionEditorComponent;
 
 	constructor(private eventsService: EventsService) {
 	}
@@ -56,7 +59,7 @@ export class EventEditorComponent implements OnInit{
 
 		return this.model.executions.map(x => <ListRowItem>{
 			value: 1,
-			caption: x.address.toString()
+			caption: x.address.caption
 		});
 	}
 
@@ -76,5 +79,21 @@ export class EventEditorComponent implements OnInit{
 
 	onCancelClick($event) {
 		this.finished.emit($event);
+	}
+
+	onAddExecution() {
+		this.executionEditor.openModal();
+	}
+
+	onEditExecution($event) {
+
+	}
+
+	onDeleteExecution($event) {
+
+	}
+
+	onExecutionApply($event) {
+		console.log($event)
 	}
 }

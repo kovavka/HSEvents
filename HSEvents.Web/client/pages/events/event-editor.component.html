@@ -21,9 +21,11 @@
     <div>
         <div class="property">
             <div>Проведение</div>
-            <div><span class="pointer glyphicon glyphicon-plus"></span></div>
+            <div>
+                <span class="pointer glyphicon glyphicon-plus" (click)="onAddExecution()"></span>
+            </div>
         </div>
-        <list-row [items]="executions"></list-row>
+        <list-row [items]="executions" (editClick)="onEditExecution($event)" (deleteClick)="onDeleteExecution($event)"></list-row>
     </div>
     
     <div class="buttons">
@@ -35,3 +37,5 @@
         </a>
     </div>
 </div>
+
+<execution-editor #executionEditor (apply)="onExecutionApply($event)"></execution-editor>

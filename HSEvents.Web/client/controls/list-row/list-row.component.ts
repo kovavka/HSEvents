@@ -6,7 +6,7 @@
 	templateUrl: 'list-row.component.html',
 	styleUrls: ['list-row.component.css'],
 })
-export class ListRow {
+export class ListRowComponent {
 
 	@Input()
 	items: ListRowItem[];

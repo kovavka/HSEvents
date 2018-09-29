@@ -20,6 +20,10 @@
             <span class="fa fa-clock-o"></span>
             <div>{{event.dateAndTime}}</div>
         </div>
+        <div *ngIf="event.address" class="icon-text">
+            <span class="fa fa-location-arrow"></span>
+            <div>{{event.address}}</div>
+        </div>
         <div class="icon-text">
             <span class="fa fa-newspaper-o"></span>
             <div>{{event.info}}</div>

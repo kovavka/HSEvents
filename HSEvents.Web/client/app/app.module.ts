@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BsModalModule } from 'ng2-bs3-modal';
 
 import { AppRoutingModule } from '../app-routing/app-routing.module';
 
@@ -29,7 +30,8 @@ registerLocaleData(localeRu);
         FormsModule,
         ReactiveFormsModule,
         AppRoutingModule,
-        RouterModule,
+		RouterModule,
+	    BsModalModule,
 		HomeModule,
 		EventsModule,
 	    ControlsModule

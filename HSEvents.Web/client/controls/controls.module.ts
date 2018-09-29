@@ -1,28 +1,30 @@
 ﻿import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { BsModalModule } from 'ng2-bs3-modal';
 import { WindowResizeEventHandlerDirective } from './directives/window-resize-event-handler.directive';
 import { DocumentClickEventHandlerDirective } from './directives/document-click-event-handler.directive';
-import { TitleInput } from './title-input/title-input.component';
-import { ListRow } from './list-row/list-row.component';
+import { TitleInputComponent } from './title-input/title-input.component';
+import { ListRowComponent } from './list-row/list-row.component';
 
 @NgModule({
     imports: [
         CommonModule,
-        FormsModule
+		FormsModule,
+	    BsModalModule
     ],
 	exports: [
 		WindowResizeEventHandlerDirective,
 		DocumentClickEventHandlerDirective,
-		TitleInput,
-		ListRow
+		TitleInputComponent,
+		ListRowComponent
        
     ],
 	declarations: [
 		WindowResizeEventHandlerDirective,
 		DocumentClickEventHandlerDirective,
-		TitleInput,
-		ListRow
+		TitleInputComponent,
+		ListRowComponent
     ],
     providers: [
     ]

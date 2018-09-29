@@ -4,31 +4,36 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { BsModalModule } from 'ng2-bs3-modal';
 import { CalendarComponent } from './calendar/calendar.component';
 import { DayComponent } from './calendar/day.component';
 import { ControlsModule } from '../../controls/controls.module';
-import { EventCardComponent } from './calendar/eventCard/event-card.component';
+import { EventCardComponent } from './calendar/event-card/event-card.component';
+import { ExecutionEditorComponent } from './event-modals/execution-editor.component';
 
 @NgModule({
 	imports: [
 		CommonModule,
 		RouterModule,
 		ControlsModule,
-		FormsModule
+		FormsModule,
+		BsModalModule
 	],
 	declarations: [
 		EventsComponent,
 		CalendarComponent,
 		DayComponent,
 		EventCardComponent,
-		EventEditorComponent
+		EventEditorComponent,
+		ExecutionEditorComponent
 	],
 	exports: [
 		EventsComponent,
 		CalendarComponent,
 		DayComponent,
 		EventCardComponent,
-		EventEditorComponent
+		EventEditorComponent,
+		ExecutionEditorComponent
 	]
 })
 export class EventsModule { }

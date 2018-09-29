@@ -60,7 +60,8 @@
       'rxjs': 'npm:rxjs',
       'tslib':'npm:tslib',
       'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js',
-       
+
+	  'ng2-bs3-modal': 'npm:ng2-bs3-modal/bundles/ng2-bs3-modal.umd.js',
       'plugin-babel': 'npm:systemjs-plugin-babel/plugin-babel.js',
       'systemjs-babel-build': 'npm:/systemjs-plugin-babel/systemjs-babel-browser.js'
     },

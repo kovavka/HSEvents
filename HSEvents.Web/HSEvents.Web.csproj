@@ -232,8 +232,9 @@
     <Content Include="client\pages\events\calendar\day.component.html" />
     <Content Include="client\pages\events\calendar\calendar.component.html" />
     <Content Include="client\pages\events\calendar\calendar.component.css" />
-    <Content Include="client\pages\events\calendar\eventCard\event-card.component.html" />
+    <Content Include="client\pages\events\calendar\event-card\event-card.component.html" />
     <Content Include="client\pages\events\event-editor.component.html" />
+    <Content Include="client\pages\events\event-modals\execution-editor.component.html" />
     <Content Include="client\pages\events\events.component.css" />
     <Content Include="client\pages\events\events.component.html" />
     <Content Include="client\pages\home\home.component.html" />
@@ -285,8 +286,9 @@
   <ItemGroup>
     <TypeScriptCompile Include="client\controls\list-row\list-row.component.ts" />
     <TypeScriptCompile Include="client\controls\title-input\title-input.component.ts" />
-    <TypeScriptCompile Include="client\pages\events\calendar\eventCard\event-card.component.ts" />
+    <TypeScriptCompile Include="client\pages\events\calendar\event-card\event-card.component.ts" />
     <TypeScriptCompile Include="client\pages\events\event-editor.component.ts" />
+    <TypeScriptCompile Include="client\pages\events\event-modals\execution-editor.component.ts" />
     <TypeScriptCompile Include="client\pages\events\models\event.models.ts" />
     <TypeScriptCompile Include="client\utilities\enum-helper.ts" />
     <TypeScriptCompile Include="client\services\hse-httpclient.ts" />

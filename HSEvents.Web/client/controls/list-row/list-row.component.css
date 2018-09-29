@@ -1,3 +1,20 @@
-﻿tr {
-    background-color: darkgray;
+﻿table {
+    margin: 5px 10px;
+}
+
+tr {
+    background-color: #c8c8c8;
+    min-width: 300px;
+}
+
+td {
+    padding: 6px;
+}
+
+tr:nth-child(odd) {
+    background-color: #ededed;
+}
+
+.row-caption {
+    min-width: 250px;
 }

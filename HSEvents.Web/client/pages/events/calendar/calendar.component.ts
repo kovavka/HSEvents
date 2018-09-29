@@ -1,7 +1,7 @@
 ﻿import { Component, ViewChild, ElementRef, AfterViewInit, Output, EventEmitter, ChangeDetectorRef } from '@angular/core';
 import { Month, RowEventArgs } from '../models/event.models';
 import { EventsService } from '../events.service';
-import { EventCardComponent } from './eventCard/event-card.component';
+import { EventCardComponent } from './event-card/event-card.component';
 
 declare var jQuery;
 

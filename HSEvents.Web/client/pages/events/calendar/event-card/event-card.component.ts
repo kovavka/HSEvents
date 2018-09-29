@@ -20,7 +20,7 @@ export class EventCardComponent implements OnDestroy{
 
 	top: number = 300;
 	left: number = 100;
-	visible: boolean = false
+	visible: boolean = false;
 	timer: any;
 	
 	@Output()
