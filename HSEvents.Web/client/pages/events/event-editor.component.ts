@@ -1,6 +1,6 @@
 ﻿import { Component, Input, Output, EventEmitter, OnInit, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { EventModel } from './models/event.models';
+import { EventModel, EventExecution } from './models/event.models';
 import { GetTypeList, ListItem } from '../../utilities/enum-helper';
 import { EventsService } from './events.service';
 import { ListRowItem } from '../../controls/list-row/list-row.component';
@@ -58,7 +58,7 @@ export class EventEditorComponent implements OnInit{
 			return null;
 
 		return this.model.executions.map(x => <ListRowItem>{
-			value: 1,
+			value: x,
 			caption: x.address.caption
 		});
 	}
@@ -82,11 +82,11 @@ export class EventEditorComponent implements OnInit{
 	}
 
 	onAddExecution() {
-		this.executionEditor.openModal();
+		this.executionEditor.add();
 	}
 
-	onEditExecution($event) {
-
+	onEditExecution(execution: EventExecution) {
+		this.executionEditor.edit(execution);
 	}
 
 	onDeleteExecution($event) {

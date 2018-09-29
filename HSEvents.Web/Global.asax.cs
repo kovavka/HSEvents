@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
+using HSEvents.Server.Api.Addresses;
 using HSEvents.Server.Api.Events;
 using Infrastructure;
 using Microsoft.Practices.Unity;
@@ -50,6 +51,8 @@ namespace HSEvents
         {
             container.RegisterType<IEventsService, EventsService>();
             container.RegisterType<IEventsStorage, EventsStorage>();
+            container.RegisterType<IAddressService, AddressService>();
+            container.RegisterType<IAddressStorage, AddressStorage>();
             
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
         }

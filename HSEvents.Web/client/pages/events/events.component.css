@@ -26,6 +26,36 @@ textarea {
     min-width: 140px;
 }
 
+.modal-property {
+    width: 90%;
+    display: inline-block;
+    margin: 5px 15px;
+}
+
+.modal-property > div {
+    margin-top: 1px;
+    font-size: 16px;
+    margin-right: 20px;
+    float: left;
+    min-width: 140px;
+}
+
+.edit-table {
+    margin-left: 25px;
+}
+
+.edit-table > tbody > tr > td {
+    padding: 5px 10px 5px 0px;
+}
+
+.modal-property > select {
+    font-size: 14px;
+}
+
+.modal-property > div > span {
+    font-size: 16px;
+}
+
 .buttons {
     margin-top: 100px;
 }
