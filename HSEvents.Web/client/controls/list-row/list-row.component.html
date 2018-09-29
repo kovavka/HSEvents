@@ -1,0 +1,14 @@
+﻿<table *ngIf="items">
+    <tbody>
+        <tr *ngFor="let item of items">
+            <td>{{item.caption}}</td>
+            <td>
+                <span class="pointer glyphicon glyphicon-pencil" (click)="onEdit(item)"></span>
+            </td>
+            <td>
+                <span class="pointer glyphicon glyphicon-trash" (click)="onDelete(item)"></span>
+            </td>
+
+        </tr>
+    </tbody>
+</table>

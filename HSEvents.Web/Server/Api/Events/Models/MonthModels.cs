@@ -29,6 +29,7 @@ namespace HSEvents.Server.Api.Events.Models
         [JsonIgnore]
         public DateTime Date { get; set; }
         public string DateAndTime { get; set; }
+        public string Address { get; set; }
     }
 
     public class Month

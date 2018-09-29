@@ -1,6 +1,7 @@
 ﻿using System.Web.Http;
 using Domain.Events;
 using HSEvents.Server.Api.Events.Models;
+using Infrastructure.Repositories.Dto;
 
 namespace HSEvents.Server.Api.Events
 {

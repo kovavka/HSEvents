@@ -14,6 +14,7 @@ export class EventRow {
 	type: EventType;
 	info: string;
 	dateAndTime: string;
+	address: string;
 }
 
 export class Month {
@@ -34,6 +35,25 @@ export class EventModel {
 	name: string;
 	type: EventType;
 	info: string;
+	executions: EventExecution[];
+}
+
+export class EventExecution {
+	id: number;
+	dates: EventDate[];
+	address: Address;
+}
+
+export class EventDate {
+	id: number;
+	date: Date;
+	startTime: string;
+	endTime: string;
+}
+
+export class Address {
+	id: number;
+	caption: string;
 }
 
 export enum EventType {

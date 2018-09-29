@@ -5,6 +5,7 @@ using System.Linq;
 using Domain.Events;
 using HSEvents.Server.Api.Events.Models;
 using Infrastructure.Repositories;
+using Infrastructure.Repositories.Dto;
 
 namespace HSEvents.Server.Api.Events
 {
@@ -32,58 +33,17 @@ namespace HSEvents.Server.Api.Events
         
         public EventDto Get(int id)
         {
-            var entity = eventsStorage.Get(id);
-            return ConvertToDto(entity);
+           return eventsStorage.Get(id);
         }
-
-        private EventDto ConvertToDto(Event entity)
-        {
-           return new EventDto()
-            {
-                Id = entity.Id,
-                Info = entity.Info,
-                Name = entity.Name,
-                Type = entity.Type
-            };
-        }
-
-        private Event ConvertToEntity(EventDto dto)
-        {
-            Event entity;
-            switch (dto.Type)
-            {
-                case EventType.Course:
-                    entity = new Course();
-                    break;
-                case EventType.AcademicCompetition:
-                    entity = new AcademicCompetition();
-                    break;
-                case EventType.SchoolWork:
-                    entity = new SchoolWork();
-                    break;
-                default:
-                    entity = new Course();
-                    break;
-            }
-
-            entity.Id = dto.Id;
-            entity.Info = dto.Info;
-            entity.Name = dto.Name;
-            entity.Type = dto.Type;
-
-           return entity;
-        }
-
+        
         public EventDto Add(EventDto dto)
         {
-            var entity = ConvertToEntity(dto);
-            return ConvertToDto(eventsStorage.Add(entity));
+            return eventsStorage.Add(dto);
         }
 
         public void Update(EventDto dto)
         {
-            var entity = ConvertToEntity(dto);
-            eventsStorage.Add(entity);
+            eventsStorage.Update(dto);
         }
 
         public void Delete(int id)
@@ -161,11 +121,16 @@ namespace HSEvents.Server.Api.Events
                 .Select(x => new
                 {
                     Event = x,
-                    Dates = x.EventExecutions
-                        .SelectMany(xx => xx.Dates)
-                        .Where(xx => xx.Date.Date >= fromDate && xx.Date.Date <= toDate)
+                    Executions = x.EventExecutions
+                        .Select(execution => new
+                        {
+                            Dates = execution.Dates.Where(xx => xx.Date.Date >= fromDate && xx.Date.Date <= toDate),
+                            Address = execution.Address.FullAddress
+                        })
+                        .Where(execution => execution.Dates.Any())
+                        .SelectMany(execution => execution.Dates.Select(xx => new {execution.Address, Date = xx}))
                 })
-                .SelectMany(x => x.Dates.Select(xx => new {x.Event, Date = xx}));
+                .SelectMany(x => x.Executions.Select(execution => new {x.Event, execution.Date, execution.Address}));
 
 
 
@@ -177,6 +142,7 @@ namespace HSEvents.Server.Api.Events
                 Info = x.Event.Info,
                 Color = GetColor(x.Event.Departments),
                 Date = x.Date.Date,
+                Address = x.Address,
                 DateAndTime = GetDateAndTime(x.Date),
             }).ToList();
         }

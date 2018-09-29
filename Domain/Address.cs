@@ -8,39 +8,19 @@ namespace Domain
 
         public virtual Street Street { get; set; }
 
-        public virtual Country Country
-        {
-            get { return Region.Country; }
-        }
+        public virtual Country Country => Region.Country;
 
-        public virtual Region Region
-        {
-            get { return City.Region; }
-        }
+        public virtual Region Region => City.Region;
 
-        public virtual CityType CityType
-        {
-            get { return City.CityType; }
-        }
+        public virtual CityType CityType => City.CityType;
 
-        public virtual City City
-        {
-            get { return Street.City; }
-        }
+        public virtual City City => Street.City;
 
-        
-        public virtual string FullAddress
+        public virtual string FullAddress => $"{Country.Name}, {Region.Name}, {CityType.Name} {City.Name}, {Street.Name}, {House}";
+
+        public override string ToString()
         {
-            get
-            {
-                return string.Format("{0}, {1}, {2} {3}, {4}, {5}",
-                    Country.Name,
-                    Region.Name,
-                    CityType.Name,
-                    City.Name,
-                    Street.Name,
-                    House);
-            }
+           return $"{CityType.ShortName}. {City.Name}, {Street.Name}, {House}";
         }
     }
 
@@ -56,6 +36,7 @@ namespace Domain
 
     public class CityType : NamedEntity
     {
+        public virtual string ShortName { get; set; }
     }
 
     public class City : NamedEntity

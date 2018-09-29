@@ -18,6 +18,14 @@
         <textarea [(ngModel)]="model.info"></textarea>
     </div>
     
+    <div>
+        <div class="property">
+            <div>Проведение</div>
+            <div><span class="pointer glyphicon glyphicon-plus"></span></div>
+        </div>
+        <list-row [items]="executions"></list-row>
+    </div>
+    
     <div class="buttons">
         <a class="ui-btn ui-btn-primary btn-left" (click)="onSaveClick($event)">
             <div class="ui-btn-caption">Сохранить</div>

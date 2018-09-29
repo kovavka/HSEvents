@@ -43,7 +43,7 @@ namespace HSEvents
 
             });
 
-            Task.Factory.StartNew(NHibernateHelper.Configure);
+            NHibernateHelper.Configure();
         }
 
         private void RegisterUnityComponents(UnityContainer container)

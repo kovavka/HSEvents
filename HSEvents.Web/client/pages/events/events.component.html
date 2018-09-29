@@ -1,5 +1,6 @@
 ﻿<div>
-    <calendar *ngIf="showCalendar"
+    <calendar #calendar
+              [style.display]="showCalendar?'block':'none'"
               (editClick)="onEditClick($event)"
               (deleteClick)="onDeleteClick($event)"
               (dayClick)="onDayClick($event)"></calendar>

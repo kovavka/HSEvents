@@ -1,12 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Net.Mime;
-using System.Reflection;
 using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using NHibernate;
@@ -86,8 +81,7 @@ namespace DBCreator
         
         private static SortedDictionary<int, ScriptItem> GetScripts()
         {
-            //временное решение
-            var dir = @"C:\Users\gikap\Documents\4 курс\!Диплом\HSEvents\Infrastructure\DBCreator\Sql";
+            var dir = @".\Sql";
             var result = new SortedDictionary<int, ScriptItem>();
             
 

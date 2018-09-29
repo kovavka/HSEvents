@@ -1,5 +1,5 @@
 ﻿import { Component, Output, ChangeDetectorRef, EventEmitter, OnDestroy } from '@angular/core';
-import { EventRow, RowEventArgs } from '../../models/calendar.models';
+import { EventRow, RowEventArgs } from '../../models/event.models';
 import { GetTypeDescription } from '../../../../utilities/enum-helper';
 
 declare var jQuery;
@@ -20,9 +20,12 @@ export class EventCardComponent implements OnDestroy{
 
 	top: number = 300;
 	left: number = 100;
-	visible: boolean;
+	visible: boolean = false
 	timer: any;
 	
+	@Output()
+	visibleChange: EventEmitter<boolean> = new EventEmitter();
+
 	@Output()
 	editClick: EventEmitter<number> = new EventEmitter();
 
@@ -92,6 +95,7 @@ export class EventCardComponent implements OnDestroy{
 	show() {
 		clearTimeout(this.timer);
 		this.visible = true;
+		this.visibleChange.emit(true);
 		this.changeDetector.detectChanges();
 	}
 
@@ -102,6 +106,7 @@ export class EventCardComponent implements OnDestroy{
 		this.weekCount = null;
 		this.week = null;
 		this.visible = false;
+		this.visibleChange.emit(false);
 		this.changeDetector.detectChanges();
 	}
 
@@ -121,7 +126,9 @@ export class EventCardComponent implements OnDestroy{
 
 	onDocumentClick($event) {
 		if (this.visible && this.target != $event.target)
-			this.timer = setTimeout(() => { this.hide(); }, 100);
+			this.timer = setTimeout(() => {
+				this.hide();
+			}, 100);
 	}
 
 	onResize($event) {

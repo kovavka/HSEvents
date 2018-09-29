@@ -1,5 +1,5 @@
 ﻿import { Component, ViewChild, ElementRef, AfterViewInit, Output, EventEmitter, ChangeDetectorRef } from '@angular/core';
-import { Month, RowEventArgs } from '../models/calendar.models';
+import { Month, RowEventArgs } from '../models/event.models';
 import { EventsService } from '../events.service';
 import { EventCardComponent } from './eventCard/event-card.component';
 
@@ -109,8 +109,15 @@ export class CalendarComponent implements AfterViewInit{
 		this.deleteClick.emit(id);
 	}
 
+	eventCardVisible:boolean;
+
 	onDayClick(date: Date) {
-		this.dayClick.emit(new Date(date));
+		if (!this.eventCardVisible)
+			this.dayClick.emit(new Date(date));
+	}
+
+	onEventCardVisibleChange(visible: false) {
+		this.eventCardVisible = visible;
 	}
 
 }

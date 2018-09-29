@@ -16,6 +16,7 @@ constraint FK_Region_Country foreign key (Country_Id) references Country(Id)
 Create table CityType(
 Id int identity(1,1) not null,
 Name nvarchar(255) not null,
+ShortName nvarchar(255) not null,
 primary key (Id)
 );
 

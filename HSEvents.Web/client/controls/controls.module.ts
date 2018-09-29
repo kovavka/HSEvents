@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { WindowResizeEventHandlerDirective } from './directives/window-resize-event-handler.directive';
 import { DocumentClickEventHandlerDirective } from './directives/document-click-event-handler.directive';
 import { TitleInput } from './title-input/title-input.component';
+import { ListRow } from './list-row/list-row.component';
 
 @NgModule({
     imports: [
@@ -13,13 +14,15 @@ import { TitleInput } from './title-input/title-input.component';
 	exports: [
 		WindowResizeEventHandlerDirective,
 		DocumentClickEventHandlerDirective,
-		TitleInput
+		TitleInput,
+		ListRow
        
     ],
 	declarations: [
 		WindowResizeEventHandlerDirective,
 		DocumentClickEventHandlerDirective,
-		TitleInput
+		TitleInput,
+		ListRow
     ],
     providers: [
     ]

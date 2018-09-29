@@ -19,7 +19,7 @@ export class TitleInput {
 	}
 
 	@Output()
-	valueChange: EventEmitter<Date> = new EventEmitter();
+	valueChange: EventEmitter<string> = new EventEmitter();
 
 	@Input()
 	defaultText: string;

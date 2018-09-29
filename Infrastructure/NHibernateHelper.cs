@@ -1,20 +1,11 @@
 ﻿using System;
-using System.Linq;
 using System.Reflection;
-using System.Threading;
-using DBCreator;
-using Domain;
-using Domain.Events;
-using Domain.IEntity;
-using FluentNHibernate;
-using FluentNHibernate.Automapping;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using FluentNHibernate.Conventions;
 using FluentNHibernate.Conventions.AcceptanceCriteria;
 using FluentNHibernate.Conventions.Inspections;
 using FluentNHibernate.Conventions.Instances;
-using FluentNHibernate.Mapping;
 using NHibernate;
 using NHibernate.Tool.hbm2ddl;
 
@@ -40,9 +31,6 @@ namespace Infrastructure
 
         public static ISession OpenSession()
         {
-            while (sessionFactory==null)
-                Thread.Sleep(100);
-
             return sessionFactory.OpenSession();
         }
     }

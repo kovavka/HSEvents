@@ -1,4 +1,4 @@
-﻿import { EventType } from '../pages/events/models/calendar.models';
+﻿import { EventType } from '../pages/events/models/event.models';
 
 export class GetTypeDescription {
 	static event(type: EventType): string {
@@ -13,31 +13,26 @@ export class GetTypeDescription {
 				return '';
 		}
 	}
-
-	static getList() {
-		var keys = Object.keys(EventType).filter(x => typeof EventType[x as any] === "number");
-		var values = keys.map(x => EventType[x as any]);
-		console.log(keys);
-		console.log(values);
-	}
 }
 
 export class GetTypeList {
 	static event(): ListItem[] {
-		return this.getList<EventType>(x => GetTypeDescription.event(x));
+		return this.getList<EventType>(typeof (EventType), x => GetTypeDescription.event(x));
 	}
 
-	private static getList<T>(getDescription: (x: T) => string): ListItem[]  {
+	private static getList<T>(type: any, getDescription: (x: T) => string): ListItem[] {
 		var list: ListItem[] = [];
-
-		for (let item in EventType) {
+		for (let item in type) {
 			if (Number(item)) {
 				var value = Number(item) as any as T;
-				var listItem = <ListItem>{
-					value: value,
-					caption: getDescription(value)
+				var caption = getDescription(value);
+				if (caption) {
+					var listItem = <ListItem>{
+						value: value,
+						caption: caption
+					}
+					list.push(listItem);
 				}
-				list.push(listItem);
 			}
 		}
 		return list;

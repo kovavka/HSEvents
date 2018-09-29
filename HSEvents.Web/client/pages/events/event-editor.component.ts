@@ -1,8 +1,9 @@
 ﻿import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { EventModel } from './models/calendar.models';
+import { EventModel } from './models/event.models';
 import { GetTypeList, ListItem } from '../../utilities/enum-helper';
 import { EventsService } from './events.service';
+import { ListRowItem } from '../../controls/list-row/list-row.component';
 
 @Component({
 	moduleId: module.id.toString(),
@@ -49,8 +50,17 @@ export class EventEditorComponent implements OnInit{
 		return this.model.name;
 	}
 
-	onSaveClick($event) {
+	get executions(): ListRowItem[] {
+		if (!this.model.executions)
+			return null;
 
+		return this.model.executions.map(x => <ListRowItem>{
+			value: 1,
+			caption: x.address.toString()
+		});
+	}
+
+	onSaveClick($event) {
 		this.saveOrUpdate(this.model).subscribe(x => {
 			console.log(x);
 			this.finished.emit($event);

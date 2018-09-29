@@ -33,7 +33,7 @@ export class HseHttpClient {
 			);
 	}
 
-	post<T>(url: string, body: any | null): Observable<T> {
+	post<T>(url: string, body?: any | null): Observable<T> {
 		return this.http
 			.post<T>(url, body)
 			.pipe(

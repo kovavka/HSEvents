@@ -28,6 +28,7 @@ export class DayComponent {
 	eventClick: EventEmitter<RowEventArgs> = new EventEmitter();
 
 	onEventClick(e: any, row: EventRow) {
+
 		e.stopPropagation();
 		var args = <RowEventArgs>{
 			row: row,

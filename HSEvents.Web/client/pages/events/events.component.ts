@@ -1,6 +1,7 @@
-﻿import { Component } from '@angular/core';
-import { EventModel } from './models/calendar.models';
+﻿import { Component, ViewChild } from '@angular/core';
+import { EventModel } from './models/event.models';
 import { EventsService } from './events.service';
+import { CalendarComponent } from './calendar/calendar.component';
 
 @Component({
     moduleId: module.id.toString(),
@@ -14,12 +15,13 @@ export class EventsComponent {
 	event: EventModel = null;
 	date: Date = null;
 
+	@ViewChild('calendar')
+	private calendar: CalendarComponent;
 
 	constructor(private eventsService: EventsService) {
 	}
 
 	onEditClick(id: number) {
-		console.log('edit ' + id);
 		this.eventsService.get(id)
 			.subscribe(event => {
 					this.event = event;
@@ -29,7 +31,9 @@ export class EventsComponent {
 	}
 
 	onDeleteClick(id: number) {
-		console.log('delete ' + id);
+		this.eventsService.delete(id).subscribe(x => {
+			this.calendar.getMonth();
+		});
 	}
 
 	onDayClick($event) {
@@ -40,6 +44,7 @@ export class EventsComponent {
 
 	onEditFinished() {
 		this.event = null;
+		this.calendar.getMonth();
 		this.showCalendar = true;
 	}
 
