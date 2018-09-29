@@ -96,16 +96,43 @@ export class ExecutionEditorComponent {
 		return date;
 	}
 
-	onDateChange(value: string) {
+	onDateChange(value: string, item: EventDate) {
 		console.log(value);
+		var regex = new RegExp("^\\d{2}.\\d{2}.\\d{4}$");
+		if (regex.test(value))
+		{
+			item.date = new Date(value.replace(/(\d{2}).(\d{2}).(\d{4})/, "$2/$1/$3"));
+			
+		}
 	}
 
-	onStartTimeChange(value: string) {
-		console.log(value);
+	onStartTimeChange(value: string, item: EventDate) {
+		
+		item.startTime = value;
 	}
 
-	onEndTimeChange(value: string) {
-		console.log(value);
+	onEndTimeChange(value: string, item: EventDate) {
+		item.endTime = value;
+	}
+
+	keyPressHandler($event: any) {
+		return true;
+
+		console.log($event);
+
+		var key = $event.key;
+		var isNumber = Number(key);
+
+		if (key.length == 1 && !isNumber && !$event.ctrlKey)
+			return false;
+		
+		if (!isNumber)
+			return true;
+
+		if (Number(key)) {
+			return true;
+		}
+		return true;
 	}
 
 }

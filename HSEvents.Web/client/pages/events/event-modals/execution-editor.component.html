@@ -23,13 +23,13 @@
                 <tbody>
                 <tr *ngFor="let item of dates" class="pointer">
                     <td>
-                        <input [value]="getDate(item.date) | date:'shortDate'" (input)="onDateChange($event.target.value)"/>
+                        <input [value]="getDate(item.date) | date:'shortDate'" (input)="onDateChange($event.target.value, item)" (keydown)="keyPressHandler($event)"/>
                     </td>
                     <td>
-                        <input [value]="item.startTime" (input)="onStartTimeChange($event.target.value)"/>
+                        <input [value]="item.startTime" (input)="onStartTimeChange($event.target.value, item)"/>
                     </td>
                     <td>
-                         <input [value]="item.endTime" (input)="onEndTimeChange($event.target.value)"/>
+                         <input [value]="item.endTime" (input)="onEndTimeChange($event.target.value, item)"/>
                     </td>
                     <td>
                         <span class="pointer glyphicon glyphicon-trash" (click)="onDelete(item)"></span>
