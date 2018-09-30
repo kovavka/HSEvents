@@ -247,9 +247,18 @@
     <Content Include="css\styles.css" />
     <Content Include="Data\index.html" />
     <Content Include="Global.asax" />
+    <Content Include="js-libs\bootstrap-datepicker\css\bootstrap-datepicker3.css" />
+    <Content Include="js-libs\bootstrap-datepicker\css\bootstrap-datepicker3.min.css" />
+    <Content Include="js-libs\bootstrap-datepicker\css\bootstrap-datepicker3.standalone.css" />
+    <Content Include="js-libs\bootstrap-datepicker\css\bootstrap-datepicker3.standalone.min.css" />
+    <Content Include="js-libs\bootstrap-datepicker\js\bootstrap-datepicker.js" />
+    <Content Include="js-libs\bootstrap-datepicker\js\bootstrap-datepicker.min.js" />
+    <Content Include="js-libs\bootstrap-datepicker\locales\bootstrap-datepicker.ru.min.js" />
     <Content Include="package.json" />
     <TypeScriptCompile Include="client\controls\directives\document-click-event-handler.directive.ts" />
     <TypeScriptCompile Include="client\controls\directives\window-resize-event-handler.directive.ts" />
+    <TypeScriptCompile Include="client\controls\timepicker\timepicker.component.ts" />
+    <TypeScriptCompile Include="client\controls\editable-datapicker\editable-datapicker.component.ts" />
     <Compile Include="Server\Api\Addresses\AddressController.cs" />
     <Compile Include="Server\Api\Addresses\AddressService.cs" />
     <Compile Include="Server\Api\Addresses\AddressStorage.cs" />
@@ -265,6 +274,10 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="tsconfig-ngc.json" />
+    <Content Include="js-libs\bootstrap-datepicker\css\bootstrap-datepicker3.css.map" />
+    <Content Include="js-libs\bootstrap-datepicker\css\bootstrap-datepicker3.min.css.map" />
+    <Content Include="js-libs\bootstrap-datepicker\css\bootstrap-datepicker3.standalone.css.map" />
+    <Content Include="js-libs\bootstrap-datepicker\css\bootstrap-datepicker3.standalone.min.css.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

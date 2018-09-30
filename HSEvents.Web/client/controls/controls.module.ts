@@ -6,6 +6,8 @@ import { WindowResizeEventHandlerDirective } from './directives/window-resize-ev
 import { DocumentClickEventHandlerDirective } from './directives/document-click-event-handler.directive';
 import { TitleInputComponent } from './title-input/title-input.component';
 import { ListRowComponent } from './list-row/list-row.component';
+import { EditableDatepickerComponent } from './editable-datapicker/editable-datapicker.component';
+import { TimepickerComponent } from './timepicker/timepicker.component';
 
 @NgModule({
     imports: [
@@ -17,14 +19,18 @@ import { ListRowComponent } from './list-row/list-row.component';
 		WindowResizeEventHandlerDirective,
 		DocumentClickEventHandlerDirective,
 		TitleInputComponent,
-		ListRowComponent
+		ListRowComponent,
+		EditableDatepickerComponent,
+		TimepickerComponent
        
     ],
 	declarations: [
 		WindowResizeEventHandlerDirective,
 		DocumentClickEventHandlerDirective,
 		TitleInputComponent,
-		ListRowComponent
+		ListRowComponent,
+		EditableDatepickerComponent,
+		TimepickerComponent
     ],
     providers: [
     ]

@@ -82,18 +82,19 @@ export class EventEditorComponent implements OnInit{
 	}
 
 	onAddExecution() {
-		this.executionEditor.add();
+		this.executionEditor.add(this.date);
 	}
 
 	onEditExecution(execution: EventExecution) {
 		this.executionEditor.edit(execution);
 	}
 
-	onDeleteExecution($event) {
-
+	onDeleteExecution(execution: EventExecution) {
+		this.model.executions.splice(this.model.executions.indexOf(execution), 1);
 	}
 
-	onExecutionApply($event) {
-		console.log($event)
+	onExecutionApply(execution: EventExecution) {
+		console.log(execution);
+		this.model.executions.push(execution);
 	}
 }

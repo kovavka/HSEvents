@@ -35,8 +35,14 @@ export class ExecutionEditorComponent {
 		});
 	}
 
-	add() {
+	add(date: Date) {
 		this.clear();
+		if (date) {
+			var item = <EventDate>{
+				date: date
+			};
+			this.dates.push(item);
+		}
 		this.openModal();
 	}
 
@@ -96,16 +102,10 @@ export class ExecutionEditorComponent {
 		return date;
 	}
 
-	onDateChange(value: string, item: EventDate) {
-		console.log(value);
-		var regex = new RegExp("^\\d{2}.\\d{2}.\\d{4}$");
-		if (regex.test(value))
-		{
-			item.date = new Date(value.replace(/(\d{2}).(\d{2}).(\d{4})/, "$2/$1/$3"));
-			
-		}
+	onDateChange(date: Date, item: EventDate) {
+		item.date = date;
 	}
-
+	
 	onStartTimeChange(value: string, item: EventDate) {
 		
 		item.startTime = value;
@@ -115,24 +115,7 @@ export class ExecutionEditorComponent {
 		item.endTime = value;
 	}
 
-	keyPressHandler($event: any) {
-		return true;
-
-		console.log($event);
-
-		var key = $event.key;
-		var isNumber = Number(key);
-
-		if (key.length == 1 && !isNumber && !$event.ctrlKey)
-			return false;
-		
-		if (!isNumber)
-			return true;
-
-		if (Number(key)) {
-			return true;
-		}
-		return true;
+	onAddressChange(id: number) {
+		this.address = this.addresses.filter(x => x.id == id)[0];
 	}
-
 }

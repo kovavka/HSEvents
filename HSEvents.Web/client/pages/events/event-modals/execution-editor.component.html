@@ -5,8 +5,8 @@
     <bs-modal-body>
         <div class="modal-property">
             <div>Адрес</div>
-            <select (change)="address = $event.target.value">
-                <option *ngFor="let item of addresses;" value="{{item}}" [selected]="this.address && item.id == this.address.id">
+            <select (change)="onAddressChange($event.target.value)">
+                <option *ngFor="let item of addresses;" value="{{item.id}}" [selected]="this.address && item.id == this.address.id">
                     {{item.caption}}
                 </option>
             </select>
@@ -18,29 +18,29 @@
                     <span class="pointer glyphicon glyphicon-plus" (click)="onAddExecution()"></span>
                 </div>
             </div>
-            
+
             <table *ngIf="dates" class="edit-table">
                 <tbody>
-                <tr *ngFor="let item of dates" class="pointer">
-                    <td>
-                        <input [value]="getDate(item.date) | date:'shortDate'" (input)="onDateChange($event.target.value, item)" (keydown)="keyPressHandler($event)"/>
-                    </td>
-                    <td>
-                        <input [value]="item.startTime" (input)="onStartTimeChange($event.target.value, item)"/>
-                    </td>
-                    <td>
-                         <input [value]="item.endTime" (input)="onEndTimeChange($event.target.value, item)"/>
-                    </td>
-                    <td>
-                        <span class="pointer glyphicon glyphicon-trash" (click)="onDelete(item)"></span>
-                    </td>
-
-                </tr>
+                    <tr *ngFor="let item of dates" class="pointer">
+                        <td>
+                            <editable-datepicker [value]="item.date"
+                                                 (valueChange)="onDateChange($event, item)"></editable-datepicker>
+                        </td>
+                        <td>
+                            <timepicker [value]="item.startTime"
+                                        (valueChange)="onStartTimeChange($event, item)"></timepicker>
+                        </td>
+                        <td>
+                            <timepicker [value]="item.endTime"
+                                        (valueChange)="onEndTimeChange($event, item)"></timepicker>
+                        </td>
+                        <td>
+                            <span class="pointer glyphicon glyphicon-trash" (click)="onDelete(item)"></span>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
         </div>
-        
-
     </bs-modal-body>
     <bs-modal-footer>
         <a class="ui-btn ui-btn-primary btn-left ui-btn-small" (click)="onApplyClick()">
