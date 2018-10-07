@@ -2,7 +2,8 @@
      [ngClass]="dayOfWeek==1?'border-left':''">
     <div [ngClass]="!isCurrentMonth(item)?'prev-next-month-day':''">
         <div class="day-caption">
-            <span [ngClass]="isToday(item.date)?'today':''">{{getDay(item)}}</span>
+            <span [ngClass]="isToday(item.date)?'today':''"
+                  [style.padding]="isMinDate(item.date)?'4px 8px':''">{{getDay(item)}}</span>
         </div>
         <div *ngFor="let row of item.events"
              class="event-row"

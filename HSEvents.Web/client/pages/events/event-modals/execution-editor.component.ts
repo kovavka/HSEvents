@@ -12,6 +12,8 @@ import { EventsService } from '../events.service';
 })
 export class ExecutionEditorComponent {
 
+	editMode: boolean;
+	index: number;
 	executionId: number;
 	address: Address;
 	dates: EventDate[];
@@ -22,13 +24,17 @@ export class ExecutionEditorComponent {
 	private modal: BsModalComponent;
 
 	@Output()
-	apply: EventEmitter<EventExecution> = new EventEmitter<EventExecution>();
+	apply: EventEmitter<EventExecutionArgs> = new EventEmitter<EventExecutionArgs>();
 
 	constructor(private eventsService: EventsService) {
 	}
 
 	private openModal() {
-		this.eventsService.getAddresses().subscribe(x => this.addresses = x);
+		this.eventsService.getAddresses().subscribe(x => {
+			this.addresses = x;
+			if (!this.editMode)
+				this.address = this.addresses[0];
+		});
 
 		this.openWindow().then(() => {
 			
@@ -37,6 +43,7 @@ export class ExecutionEditorComponent {
 
 	add(date: Date) {
 		this.clear();
+		this.editMode = false;
 		if (date) {
 			var item = <EventDate>{
 				date: date
@@ -46,7 +53,9 @@ export class ExecutionEditorComponent {
 		this.openModal();
 	}
 
-	edit(execution: EventExecution) {
+	edit(execution: EventExecution, index: number) {
+		this.editMode = true;
+		this.index = index;
 		this.executionId = execution.id;
 		this.address = execution.address;
 		this.dates = execution.dates
@@ -80,7 +89,14 @@ export class ExecutionEditorComponent {
 			dates: this.dates
 		};
 		this.clear();
-		this.apply.emit(execution);
+		var args = new EventExecutionArgs();
+		args.execution = execution;
+		if (this.editMode) {
+			args.index = this.index;
+			args.editMode = true;
+		}
+
+		this.apply.emit(args);
 		this.modal.close();
 	}
 
@@ -118,4 +134,10 @@ export class ExecutionEditorComponent {
 	onAddressChange(id: number) {
 		this.address = this.addresses.filter(x => x.id == id)[0];
 	}
+}
+
+export class EventExecutionArgs {
+	execution: EventExecution;
+	index: number;
+	editMode: boolean;
 }

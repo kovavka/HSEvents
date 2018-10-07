@@ -22,6 +22,7 @@ namespace HSEvents.Server.Api.Addresses
                     .Select(x => new AddressDto
                     {
                         Id = x.Id,
+                        ShortName = x.ToString(),
                         Caption = x.FullAddress
                     });
             }

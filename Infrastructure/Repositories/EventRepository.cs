@@ -55,7 +55,8 @@ namespace Infrastructure.Repositories
                             Address = new AddressDto
                             {
                                 Id = x.Address.Id,
-                                Caption = x.Address.ToString()
+                                ShortName = x.Address.ToString(),
+                                Caption = x.Address.FullAddress
                             }
                         }).ToList()
             };

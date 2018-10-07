@@ -49,6 +49,12 @@ export class DayComponent {
 			date.getFullYear() == today.getFullYear();
 	}
 
+	isMinDate(date: Date): boolean {
+		date = this.getDate(date);
+
+		return date.getDate() < 10;
+	}
+
 	isCurrentMonth(item: EventDay): boolean {
 		return this.getDate(item.date).getMonth() == this.currentDate.getMonth();
 	}

@@ -4,7 +4,7 @@ import { EventModel, EventExecution } from './models/event.models';
 import { GetTypeList, ListItem } from '../../utilities/enum-helper';
 import { EventsService } from './events.service';
 import { ListRowItem } from '../../controls/list-row/list-row.component';
-import { ExecutionEditorComponent } from './event-modals/execution-editor.component';
+import { ExecutionEditorComponent, EventExecutionArgs } from './event-modals/execution-editor.component';
 
 @Component({
 	moduleId: module.id.toString(),
@@ -59,7 +59,7 @@ export class EventEditorComponent implements OnInit{
 
 		return this.model.executions.map(x => <ListRowItem>{
 			value: x,
-			caption: x.address.caption
+			caption: x.address.shortName
 		});
 	}
 
@@ -86,15 +86,21 @@ export class EventEditorComponent implements OnInit{
 	}
 
 	onEditExecution(execution: EventExecution) {
-		this.executionEditor.edit(execution);
+		var index = this.model.executions.indexOf(execution);
+		this.executionEditor.edit(execution, index);
 	}
 
 	onDeleteExecution(execution: EventExecution) {
 		this.model.executions.splice(this.model.executions.indexOf(execution), 1);
 	}
 
-	onExecutionApply(execution: EventExecution) {
-		console.log(execution);
-		this.model.executions.push(execution);
+	onExecutionApply(args: EventExecutionArgs) {
+		console.log(args.execution);
+		if (args.editMode) {
+			this.model.executions[args.index] = args.execution;
+		}
+		else {
+			this.model.executions.push(args.execution);
+		}
 	}
 }

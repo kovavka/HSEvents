@@ -54,6 +54,7 @@ export class EventDate {
 export class Address {
 	id: number;
 	caption: string;
+	shortName: string;
 }
 
 export enum EventType {

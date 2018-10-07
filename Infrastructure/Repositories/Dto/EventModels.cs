@@ -25,6 +25,7 @@ namespace Infrastructure.Repositories.Dto
     {
         public int Id { get; set; }
         public string Caption { get; set; }
+        public string ShortName { get; set; }
 
     }
 

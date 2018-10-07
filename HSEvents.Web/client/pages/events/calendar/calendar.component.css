@@ -50,6 +50,10 @@
     padding: 4px;
 }
 
+today-min {
+    padding: 4px 8px;
+}
+
 .event-row {
     background-color: #d8e4e4;
     border-radius: 3px;
