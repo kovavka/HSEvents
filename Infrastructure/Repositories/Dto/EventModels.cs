@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Domain.Events;
 
 namespace Infrastructure.Repositories.Dto
@@ -16,7 +17,7 @@ namespace Infrastructure.Repositories.Dto
      public class EventExecutionDto
     {
         public int Id { get; set; }
-        public List<EventDate> Dates { get; set; }
+        public List<EventDateDto> Dates { get; set; }
         public AddressDto Address { get; set; }
 
     }
@@ -27,6 +28,12 @@ namespace Infrastructure.Repositories.Dto
         public string Caption { get; set; }
         public string ShortName { get; set; }
 
+    }
+    public class EventDateDto
+    {
+        public DateTime Date { get; set; }
+        public string StartTime { get; set; }
+        public string EndTime { get; set; }
     }
 
 

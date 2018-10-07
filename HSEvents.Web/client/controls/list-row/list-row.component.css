@@ -3,7 +3,6 @@
 }
 
 tr {
-    background-color: #c8c8c8;
     min-width: 300px;
 }
 
@@ -11,10 +10,19 @@ td {
     padding: 6px;
 }
 
-tr:nth-child(odd) {
+.item-row:nth-child(even) {
+    background-color: #f7f7f7;
+}
+
+.item-row:nth-child(odd) {
     background-color: #ededed;
 }
 
 .row-caption {
-    min-width: 250px;
+    min-width: 545px;
+}
+
+.info-row > td {
+    padding: 0px 6px;
+    min-width: 150px;
 }

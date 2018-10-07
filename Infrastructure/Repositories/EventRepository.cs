@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Domain.Events;
 using FluentNHibernate.Utils;
@@ -13,6 +14,7 @@ namespace Infrastructure.Repositories
 {
     public class EventRepository: NHGetAllRepository<Event>
     {
+        private Regex TimeRegex=new Regex(@"\d\d:\d\d");
         public IEnumerable<Event> GetForMonth(DateTime fromDate, DateTime toDate)
         {
             return GetAll()
@@ -51,15 +53,30 @@ namespace Infrastructure.Repositories
                         new EventExecutionDto
                         {
                             Id = x.Id,
-                            Dates = x.Dates.ToList(),
+                            Dates = x.Dates.Select(xx => new EventDateDto
+                                {
+                                    Date = xx.Date,
+                                    StartTime = GetTimeString(xx.StartTime),
+                                    EndTime = GetTimeString(xx.EndTime)
+                                })
+                                .ToList(),
                             Address = new AddressDto
                             {
                                 Id = x.Address.Id,
                                 ShortName = x.Address.ToString(),
                                 Caption = x.Address.FullAddress
                             }
-                        }).ToList()
+                        })
+                    .ToList()
             };
+        }
+
+        private string GetTimeString(TimeSpan? time)
+        {
+            if (!time.HasValue || !TimeRegex.IsMatch(time.ToString()))
+                return string.Empty;
+
+            return TimeRegex.Match(time.ToString()).Groups[0].Value;
         }
 
         private Event ConvertToEntity(EventDto dto)

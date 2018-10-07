@@ -306,6 +306,7 @@
     <TypeScriptCompile Include="client\pages\events\event-editor.component.ts" />
     <TypeScriptCompile Include="client\pages\events\event-modals\execution-editor.component.ts" />
     <TypeScriptCompile Include="client\pages\events\models\event.models.ts" />
+    <TypeScriptCompile Include="client\utilities\object-helper.ts" />
     <TypeScriptCompile Include="client\utilities\enum-helper.ts" />
     <TypeScriptCompile Include="client\services\hse-httpclient.ts" />
     <TypeScriptCompile Include="client\pages\events\calendar\day.component.ts" />

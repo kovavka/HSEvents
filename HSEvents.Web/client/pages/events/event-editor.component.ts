@@ -1,9 +1,10 @@
-﻿import { Component, Input, Output, EventEmitter, OnInit, ViewChild } from '@angular/core';
+﻿import { DatePipe } from '@angular/common';
+import { Component, Input, Output, EventEmitter, OnInit, ViewChild, Pipe, PipeTransform } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { EventModel, EventExecution } from './models/event.models';
+import { EventModel, EventExecution, EventDate } from './models/event.models';
 import { GetTypeList, ListItem } from '../../utilities/enum-helper';
 import { EventsService } from './events.service';
-import { ListRowItem } from '../../controls/list-row/list-row.component';
+import { ListRowItem, ListInfo } from '../../controls/list-row/list-row.component';
 import { ExecutionEditorComponent, EventExecutionArgs } from './event-modals/execution-editor.component';
 
 @Component({
@@ -23,11 +24,13 @@ export class EventEditorComponent implements OnInit{
 
 	constructor(private eventsService: EventsService) {
 	}
+
 	
 	@Input()
 	set event(value: EventModel) {
 		if (!value) {
 			this.model = new EventModel();
+			this.model.executions = [];
 			this.model.type = 1;
 		}
 		else
@@ -56,11 +59,52 @@ export class EventEditorComponent implements OnInit{
 	get executions(): ListRowItem[] {
 		if (!this.model.executions)
 			return null;
-
+		
 		return this.model.executions.map(x => <ListRowItem>{
 			value: x,
-			caption: x.address.shortName
+			caption: x.address.shortName,
+			info: this.generateExecutionInfo(x)
 		});
+	}
+
+	generateExecutionInfo(execution: EventExecution): ListInfo[] {
+		var address = [<ListInfo>{
+			columns: [
+				'Адрес',
+				execution.address.caption
+			]
+		}];
+
+		var datesCaption = <ListInfo>{ columns: ['Даты проведения'] };
+
+		var dates = execution.dates.map(x => <ListInfo>{
+			columns: [
+				'',
+				this.generateDate(x)
+			]
+		});
+
+		return address.concat(datesCaption).concat(dates);
+	}
+
+	generateDate(eventDate: EventDate): string {
+		const datePipe: DatePipe = new DatePipe('ru-Ru');
+		var date = datePipe.transform(new Date(eventDate.date), 'shortDate');
+
+		if (eventDate.startTime && eventDate.endTime)
+			return `${date}, с ${eventDate.startTime} до ${eventDate.endTime}`;
+
+		if (!eventDate.startTime && !eventDate.endTime)
+			return date;
+
+		var str = `${date}, `;
+		if (eventDate.startTime)
+			str += `с ${eventDate.startTime}`;
+		if (eventDate.endTime)
+			str += `до ${eventDate.endTime}`;
+
+		return str;
+
 	}
 
 	onSaveClick($event) {
