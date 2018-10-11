@@ -123,7 +123,6 @@ namespace Infrastructure.Repositories
             entity.Type = dto.Type;
             entity.Type = dto.Type;
             entity.Type = dto.Type;
-            var t = new Class1();
 
             return entity;
         }
