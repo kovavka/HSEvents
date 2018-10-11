@@ -4,6 +4,7 @@ using System.Web;
 using System.Web.Http;
 using HSEvents.Server.Api.Addresses;
 using HSEvents.Server.Api.Events;
+using HSEvents.Server.Api.Subjects;
 using Infrastructure;
 using Microsoft.Practices.Unity;
 using Newtonsoft.Json.Serialization;
@@ -53,7 +54,9 @@ namespace HSEvents
             container.RegisterType<IEventsStorage, EventsStorage>();
             container.RegisterType<IAddressService, AddressService>();
             container.RegisterType<IAddressStorage, AddressStorage>();
-            
+            container.RegisterType<ISubjectStorage, SubjectStorage>();
+            container.RegisterType<ISubjectService, SubjectService>();
+
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
         }
 

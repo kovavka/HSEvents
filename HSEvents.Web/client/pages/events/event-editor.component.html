@@ -12,10 +12,29 @@
             </option>
         </select>
     </div>
+    
+    <div class="property" *ngIf="model.type==1 || model.type==2">
+        <div>Предмет</div>
+        <select (change)="onSubjectChange($event.target.value)">
+            <option *ngFor="let item of subjects;" value="{{item.id}}" [selected]="item==model.subject">
+                {{item.name}}
+            </option>
+        </select>
+    </div>
+
+    <div class="property" *ngIf="model.type==1">
+        <div>Длительность (ч.)</div>
+        <input class="number" type="number" [(ngModel)]="model.duration" />
+    </div> 
 
     <div class="property">
         <div>Информация</div>
-        <textarea [(ngModel)]="model.info"></textarea>
+        <textarea class="info" [(ngModel)]="model.info"></textarea>
+    </div> 
+    
+    <div class="property">
+        <div>Комментарий</div>
+        <textarea class="comment" [(ngModel)]="model.comment"></textarea>
     </div>
     
     <div>

@@ -40,7 +40,7 @@ namespace Infrastructure.Mappings.Events
         {
             Map(x => x.Price).Nullable();
             Map(x => x.Duration).Nullable();
-            References(x => x.Subject).Cascade.SaveUpdate().ForeignKey("FK_Course_Subject");
+            References(x => x.Subject).Cascade.SaveUpdate().ForeignKey("FK_Course_Subject").Fetch.Join();
         }
     }
 
@@ -48,7 +48,7 @@ namespace Infrastructure.Mappings.Events
     {
         public AcademicCompetitionMap()
         {
-            References(x => x.Subject).Cascade.SaveUpdate().ForeignKey("FK_AcademicCompetition_Subject");
+            References(x => x.Subject).Cascade.SaveUpdate().ForeignKey("FK_AcademicCompetition_Subject").Fetch.Join();
         }
     }
 

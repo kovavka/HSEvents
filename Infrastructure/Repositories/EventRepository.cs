@@ -6,6 +6,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Domain.Events;
 using FluentNHibernate.Utils;
+using Helpers;
 using Infrastructure.Repositories.Dto;
 using NHibernate;
 using NHibernate.Linq;
@@ -42,12 +43,17 @@ namespace Infrastructure.Repositories
 
         private EventDto ConvertToDto(Event entity)
         {
+            var comp = entity as AcademicCompetition;
+            var work = entity as SchoolWork;
+            var course = entity as Course;
+
             return new EventDto()
             {
                 Id = entity.Id,
-                Info = entity.Info,
                 Name = entity.Name,
                 Type = entity.Type,
+                Info = entity.Info,
+                Comment = entity.Comment,
                 Executions = entity.EventExecutions
                     .Select(x =>
                         new EventExecutionDto
@@ -65,9 +71,13 @@ namespace Infrastructure.Repositories
                                 Id = x.Address.Id,
                                 ShortName = x.Address.ToString(),
                                 Caption = x.Address.FullAddress
-                            }
+                            },
                         })
-                    .ToList()
+                    .ToList(),
+                Subject = course?.Subject ?? comp?.Subject,
+                Duration = course?.Duration,
+                Price = course?.Price,
+                Program = work?.Program,
             };
         }
 
@@ -99,9 +109,21 @@ namespace Infrastructure.Repositories
             }
 
             entity.Id = dto.Id;
-            entity.Info = dto.Info;
             entity.Name = dto.Name;
             entity.Type = dto.Type;
+            entity.Info = dto.Info;
+            entity.Comment = dto.Comment;
+
+            entity.EventExecutions = dto.Executions.Select(x => new EventExecution()
+                {
+
+                }
+            ).ToSet();
+            entity.Type = dto.Type;
+            entity.Type = dto.Type;
+            entity.Type = dto.Type;
+            entity.Type = dto.Type;
+            var t = new Class1();
 
             return entity;
         }

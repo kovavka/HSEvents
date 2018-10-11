@@ -1,7 +1,7 @@
 ﻿import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { HseHttpClient } from '../../services/hse-httpclient';
-import { Month, EventModel, Address } from './models/event.models';
+import { Month, EventModel, Address, Subject } from './models/event.models';
 
 @Injectable()
 export class EventsService {
@@ -31,9 +31,14 @@ export class EventsService {
 		return this.client.post('/api/events/delete?id='+ id);
 	}
 
+
 	//todo убрать отсюда
 	getAddresses(): Observable<Address[]> {
 		return this.client
 			.get<Address[]>('/api/address/getAll');
+	}
+    getSubjects(): Observable<Subject[]> {
+		return this.client
+            .get<Subject[]>('/api/subject/getAll');
 	}
 }

@@ -34,8 +34,17 @@ export class EventModel {
 	id: number;
 	name: string;
 	type: EventType;
+    subject: Subject;
 	info: string;
+	comment: string;
+    duration: number;
 	executions: EventExecution[];
+}
+
+export enum EventType {
+    Course = 1,
+    AcademicCompetition = 2,
+    SchoolWork = 3
 }
 
 export class EventExecution {
@@ -51,14 +60,16 @@ export class EventDate {
 	endTime: string;
 }
 
+
+
+//Todo: перенести в соответствующие файлы
 export class Address {
 	id: number;
 	caption: string;
 	shortName: string;
 }
 
-export enum EventType {
-	Course = 1,
-	AcademicCompetition = 2,
-	SchoolWork = 3
+export class Subject {
+	id: number;
+	caption: string;
 }

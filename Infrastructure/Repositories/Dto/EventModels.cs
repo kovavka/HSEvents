@@ -10,6 +10,20 @@ namespace Infrastructure.Repositories.Dto
         public string Name { get; set; }
         public EventType Type { get; set; }
         public string Info { get; set; }
+        public string Comment { get; set; }
+
+        #region Course or AcademicCompetition
+        public Subject Subject { get; set; }
+        #endregion
+
+        #region Course
+        public decimal? Price { get; set; }
+        public int? Duration { get; set; }
+        #endregion
+
+        #region SchoolWork
+        public string Program { get; set; }
+        #endregion
 
         public List<EventExecutionDto> Executions { get; set; }
     }

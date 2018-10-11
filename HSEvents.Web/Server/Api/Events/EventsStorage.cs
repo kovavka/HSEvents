@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
 using Domain.Events;
-using HSEvents.Server.Api.Events.Models;
 using Infrastructure.Repositories;
 using Infrastructure.Repositories.Dto;
 

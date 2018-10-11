@@ -6,11 +6,15 @@ using System.Text.RegularExpressions;
 
 namespace Helpers
 {
-    public static class Helper
+    public static class Extensions
     {
         public static IEnumerable<T> AsEnumerable<T>(this T self)
         {
             yield return self;
+        }
+        public static HashSet<T> ToSet<T>(this IEnumerable<T> source, IEqualityComparer<T> comparer = null)
+        {
+            return new HashSet<T>(source, comparer);
         }
 
         public static string GetDescription(this Enum source)

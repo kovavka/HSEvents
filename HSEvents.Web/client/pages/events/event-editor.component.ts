@@ -1,7 +1,7 @@
 ﻿import { DatePipe } from '@angular/common';
 import { Component, Input, Output, EventEmitter, OnInit, ViewChild, Pipe, PipeTransform } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { EventModel, EventExecution, EventDate } from './models/event.models';
+import { EventModel, EventExecution, EventDate, Subject } from './models/event.models';
 import { GetTypeList, ListItem } from '../../utilities/enum-helper';
 import { EventsService } from './events.service';
 import { ListRowItem, ListInfo } from '../../controls/list-row/list-row.component';
@@ -18,6 +18,7 @@ export class EventEditorComponent implements OnInit{
 
 	model: EventModel = new EventModel();
 	types: ListItem[];
+	subjects: Subject[];
 	
 	@ViewChild('executionEditor')
 	private executionEditor: ExecutionEditorComponent;
@@ -34,7 +35,7 @@ export class EventEditorComponent implements OnInit{
 			this.model.type = 1;
 		}
 		else
-			this.model = value;
+            this.model = value;
 	}
 	
 	@Input()
@@ -46,6 +47,12 @@ export class EventEditorComponent implements OnInit{
 
 	ngOnInit() {
 		this.types = GetTypeList.event();
+        this.eventsService.getSubjects()
+            .subscribe((subjects: Subject[]) => {
+                this.subjects = subjects;
+                this.model.subject = subjects[0];
+                }
+	    );
 	}
 	
 	set name(value: string) {
@@ -105,9 +112,14 @@ export class EventEditorComponent implements OnInit{
 
 		return str;
 
-	}
+    }
 
-	onSaveClick($event) {
+    onSubjectChange(id: number) {
+        this.model.subject = this.subjects.filter(x => x.id == id)[0];
+    }
+
+    onSaveClick($event) {
+        console.log(this.model);
 		this.saveOrUpdate(this.model).subscribe(x => {
 			console.log(x);
 			this.finished.emit($event);
