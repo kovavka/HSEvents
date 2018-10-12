@@ -11,6 +11,7 @@ namespace Infrastructure.Repositories.Dto
         public EventType Type { get; set; }
         public string Info { get; set; }
         public string Comment { get; set; }
+        public List<Department> Departments { get; set; }
 
         #region Course or AcademicCompetition
         public Subject Subject { get; set; }

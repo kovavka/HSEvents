@@ -8,12 +8,11 @@ namespace Helpers
 {
     public static class Extensions
     {
-        public static IEnumerable<T> AsEnumerable<T>(this T self)
-        {
-            yield return self;
-        }
         public static HashSet<T> ToSet<T>(this IEnumerable<T> source, IEqualityComparer<T> comparer = null)
         {
+            if (source == null)
+                return null;
+
             return new HashSet<T>(source, comparer);
         }
 

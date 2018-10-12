@@ -64,10 +64,10 @@ namespace Infrastructure.Repositories
 
         public T Add(T entity)
         {
-            int id;
+            long id;
             using (var tx = session.BeginTransaction())
             {
-                id = (int) session.Save(entity);
+                id = (long) session.Save(entity);
                 tx.Commit();
             }
 
