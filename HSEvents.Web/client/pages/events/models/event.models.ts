@@ -39,6 +39,7 @@ export class EventModel {
 	comment: string;
     duration: number;
 	executions: EventExecution[];
+    departments: Department[];
 }
 
 export enum EventType {
@@ -67,6 +68,12 @@ export class Address {
 	id: number;
 	caption: string;
 	shortName: string;
+}
+
+export class Department {
+	id: number;
+	name: string;
+	color: string;
 }
 
 export class Subject {

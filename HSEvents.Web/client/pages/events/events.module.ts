@@ -10,6 +10,7 @@ import { DayComponent } from './calendar/day.component';
 import { ControlsModule } from '../../controls/controls.module';
 import { EventCardComponent } from './calendar/event-card/event-card.component';
 import { ExecutionEditorComponent } from './event-modals/execution-editor.component';
+import { DepartmentsSelectorComponent } from './event-modals/departments-selector.component';
 
 @NgModule({
 	imports: [
@@ -25,7 +26,8 @@ import { ExecutionEditorComponent } from './event-modals/execution-editor.compon
 		DayComponent,
 		EventCardComponent,
 		EventEditorComponent,
-		ExecutionEditorComponent
+        ExecutionEditorComponent,
+	    DepartmentsSelectorComponent
 	],
 	exports: [
 		EventsComponent,
@@ -33,7 +35,8 @@ import { ExecutionEditorComponent } from './event-modals/execution-editor.compon
 		DayComponent,
 		EventCardComponent,
 		EventEditorComponent,
-		ExecutionEditorComponent
+        ExecutionEditorComponent,
+	    DepartmentsSelectorComponent
 	]
 })
 export class EventsModule { }
