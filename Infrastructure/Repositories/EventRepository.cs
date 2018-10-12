@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Domain;
 using Domain.Events;
+using Domain.IEntity;
 using FluentNHibernate.Utils;
 using Helpers;
 using Infrastructure.Repositories.Dto;
@@ -15,7 +17,6 @@ namespace Infrastructure.Repositories
 {
     public class EventRepository: NHGetAllRepository<Event>
     {
-        private Regex TimeRegex=new Regex(@"\d\d:\d\d");
         public IEnumerable<Event> GetForMonth(DateTime fromDate, DateTime toDate)
         {
             return GetAll()
@@ -39,6 +40,15 @@ namespace Infrastructure.Repositories
         {
             var entity = ConvertToEntity(dto);
             Update(entity);
+            DropExecutions(dto.Id);
+        }
+
+        private void DropExecutions(int eventId)
+        {
+            using (var repo = new NHGetAllRepository<EventExecution>())
+            {
+                repo.Delete(x => x.Event == null);
+            }
         }
 
         private EventDto ConvertToDto(Event entity)
@@ -81,30 +91,30 @@ namespace Infrastructure.Repositories
             };
         }
 
-        private string GetTimeString(TimeSpan? time)
-        {
-            if (!time.HasValue || !TimeRegex.IsMatch(time.ToString()))
-                return string.Empty;
-
-            return TimeRegex.Match(time.ToString()).Groups[0].Value;
-        }
-
         private Event ConvertToEntity(EventDto dto)
         {
             Event entity;
             switch (dto.Type)
             {
                 case EventType.Course:
-                    entity = new Course();
+                    entity = new Course()
+                    {
+                        Subject = GetAnotherEntity<Subject>(dto.Subject.Id),
+                        Duration = dto.Duration,
+                        Price = dto.Price
+                    };
                     break;
                 case EventType.AcademicCompetition:
-                    entity = new AcademicCompetition();
-                    break;
-                case EventType.SchoolWork:
-                    entity = new SchoolWork();
+                    entity = new AcademicCompetition()
+                    {
+                        Subject = GetAnotherEntity<Subject>(dto.Subject.Id)
+                    };
                     break;
                 default:
-                    entity = new Course();
+                    entity = new SchoolWork()
+                    {
+                        Program = dto.Program
+                    };
                     break;
             }
 
@@ -116,16 +126,47 @@ namespace Infrastructure.Repositories
 
             entity.EventExecutions = dto.Executions.Select(x => new EventExecution()
                 {
-
-                }
+                    Dates = x.Dates.Select(xx => new EventDate()
+                    {
+                        Date = xx.Date,
+                        StartTime = GetTimeSpan(xx.StartTime),
+                        EndTime = GetTimeSpan(xx.EndTime)
+                    }).ToList(),
+                Address = GetAnotherEntity<Address>(x.Address.Id)
+            }
             ).ToSet();
-            entity.Type = dto.Type;
-            entity.Type = dto.Type;
-            entity.Type = dto.Type;
-            entity.Type = dto.Type;
 
             return entity;
         }
+
+        private T GetAnotherEntity<T>(int id) where T : IEntity
+        {
+            using (var repo = new NHGetAllRepository<T>())
+            {
+                return repo.Get(id);
+            }
+        }
+
+        private string GetTimeString(TimeSpan? time)
+        {
+            if (!time.HasValue)
+                return string.Empty;
+
+            return time.Value.ToString(@"hh\:mm");
+        }
+        private TimeSpan? GetTimeSpan(string time)
+        {
+            var regex = new Regex(@"^\d\d:\d\d$");
+
+            if (time.IsNullOrEmpty() || !regex.IsMatch(time))
+                return null;
+
+            var hours = int.Parse(time.Split(':')[0]);
+            var minutes = int.Parse(time.Split(':')[1]);
+
+            return new TimeSpan(hours, minutes, 0);
+        }
+
     }
 
     public class CourseRepository : NHRepository<Course>

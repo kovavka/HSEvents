@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Linq.Expressions;
 using Domain.IEntity;
 using NHibernate;
 using NHibernate.Linq;
@@ -29,6 +30,16 @@ namespace Infrastructure.Repositories
             using (var tx = session.BeginTransaction())
             {
                 session.Delete(entity);
+                tx.Commit();
+            }
+        }
+        public void Delete(Expression<Func<T, bool>> predicate)
+        {
+            using (var tx = session.BeginTransaction())
+            {
+                var list = session.Query<T>().Where(predicate).ToList();
+                foreach (var entity in list)
+                    session.Delete(entity);
                 tx.Commit();
             }
         }

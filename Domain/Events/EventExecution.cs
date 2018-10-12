@@ -15,5 +15,6 @@ namespace Domain.Events
     {
         public virtual ICollection<EventDate> Dates { get; set; }
         public virtual Address Address { get; set; }
+        public virtual Event Event { get; set; }
     }
 }

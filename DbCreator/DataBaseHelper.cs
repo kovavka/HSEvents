@@ -43,7 +43,7 @@ namespace DBCreator
         {
             var factory = reBiuldConfiguration.BuildSessionFactory();
 
-            Run("Drop database HSEvents;", factory);
+            //Run("Drop database HSEvents;", factory);
             Run("Create database HSEvents;", factory);
             factory.Close();
 
@@ -102,7 +102,6 @@ namespace DBCreator
 
             return result;
         }
-
     }
     
     public class ScriptItem
