@@ -6,7 +6,7 @@ namespace Infrastructure.Repositories.Dto
 {
     public class EventDto
     {
-        public int Id { get; set; }
+        public long Id { get; set; }
         public string Name { get; set; }
         public EventType Type { get; set; }
         public string Info { get; set; }
@@ -30,7 +30,7 @@ namespace Infrastructure.Repositories.Dto
 
      public class EventExecutionDto
     {
-        public int Id { get; set; }
+        public long Id { get; set; }
         public List<EventDateDto> Dates { get; set; }
         public AddressDto Address { get; set; }
 
@@ -38,7 +38,7 @@ namespace Infrastructure.Repositories.Dto
 
     public class AddressDto
     {
-        public int Id { get; set; }
+        public long Id { get; set; }
         public string Caption { get; set; }
         public string ShortName { get; set; }
 

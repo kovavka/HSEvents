@@ -9,8 +9,8 @@ namespace Infrastructure.Repositories
 {
     public interface IRepository<T>:IDisposable where T:IEntity
     {
-        T Get(int id);
-        void Delete(int id);
+        T Get(long id);
+        void Delete(long id);
         void Update(T entity);
         T Add(T entity);
         void Delete(T entity);
@@ -20,7 +20,7 @@ namespace Infrastructure.Repositories
     {
         private ISession session = NHibernateHelper.OpenSession();
         
-        public T Get(int id)
+        public T Get(long id)
         {
             return session.Get<T>(id);
         }
@@ -44,7 +44,7 @@ namespace Infrastructure.Repositories
             }
         }
 
-        public void Delete(int id)
+        public void Delete(long id)
         {
             using (var tx = session.BeginTransaction())
             {

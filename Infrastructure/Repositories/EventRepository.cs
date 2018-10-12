@@ -43,7 +43,7 @@ namespace Infrastructure.Repositories
             DropExecutions(dto.Id);
         }
 
-        private void DropExecutions(int eventId)
+        private void DropExecutions(long eventId)
         {
             using (var repo = new NHGetAllRepository<EventExecution>())
             {
@@ -139,7 +139,7 @@ namespace Infrastructure.Repositories
             return entity;
         }
 
-        private T GetAnotherEntity<T>(int id) where T : IEntity
+        private T GetAnotherEntity<T>(long id) where T : IEntity
         {
             using (var repo = new NHGetAllRepository<T>())
             {
