@@ -260,6 +260,9 @@
     <TypeScriptCompile Include="client\controls\directives\window-resize-event-handler.directive.ts" />
     <TypeScriptCompile Include="client\controls\timepicker\timepicker.component.ts" />
     <TypeScriptCompile Include="client\controls\editable-datapicker\editable-datapicker.component.ts" />
+    <Compile Include="Server\Api\Departments\DepartmentController.cs" />
+    <Compile Include="Server\Api\Departments\DepartmentService.cs" />
+    <Compile Include="Server\Api\Departments\DepartmentStorage.cs" />
     <Compile Include="Server\Api\Subjects\SubjectController.cs" />
     <Compile Include="Server\Api\Subjects\SubjectService.cs" />
     <Compile Include="Server\Api\Subjects\SubjectStorage.cs" />

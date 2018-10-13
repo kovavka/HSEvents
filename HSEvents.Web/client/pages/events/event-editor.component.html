@@ -45,6 +45,27 @@
             </div>
         </div>
         <list-row [items]="executions" (editClick)="onEditExecution($event)" (deleteClick)="onDeleteExecution($event)"></list-row>
+    </div>  
+    
+
+    <div>
+        <div class="property">
+            <div>Подразделения</div>
+            <div>
+                <span class="pointer glyphicon glyphicon-pencil" (click)="onEditDepartments()"></span>
+            </div>
+        </div>
+        
+        <table class="margin-5-10" *ngIf="model.departments && model.departments.length > 0">
+            <tbody>
+                <tr class="item-row" *ngFor="let item of model.departments">
+                    <td class="department-name">{{item.name}}</td>
+                    <td>
+                        <span class="color" [style.backgroundColor]="item.color"></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
     
     <div class="buttons">
@@ -58,3 +79,4 @@
 </div>
 
 <execution-editor #executionEditor (apply)="onExecutionApply($event)"></execution-editor>
+<departments-selector #departmentsSelector (apply)="onDepartmentsApply($event)"></departments-selector>

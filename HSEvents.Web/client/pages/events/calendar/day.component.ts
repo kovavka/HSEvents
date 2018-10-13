@@ -1,5 +1,5 @@
 ﻿import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { EventDay, EventRow, RowEventArgs }from '../models/calendar.models';
+import { EventDay, EventRow, RowEventArgs }from '../models/event.models';
 
 @Component({
     moduleId: module.id.toString(),
@@ -25,10 +25,12 @@ export class DayComponent {
 	weekCount: number;
 	
 	@Output()
-	eventClick: EventEmitter<RowEventArgs> = new EventEmitter();
+    eventClick: EventEmitter<RowEventArgs> = new EventEmitter();
+
+	@Output()
+	eventDblclick: EventEmitter<number> = new EventEmitter();
 
 	onEventClick(e: any, row: EventRow) {
-
 		e.stopPropagation();
 		var args = <RowEventArgs>{
 			row: row,
@@ -38,7 +40,11 @@ export class DayComponent {
 			weekCount: this.weekCount,
 		};
 		this.eventClick.emit(args);
-	}
+    }
+    onEventDblclick(e: any, row: EventRow) {
+        e.stopPropagation();
+        this.eventDblclick.emit(row.id);
+    }
 
 	isToday(date: Date): boolean {
 		var today = new Date();

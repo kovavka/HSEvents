@@ -11,6 +11,7 @@
              onmousedown="return false"
              onselectstart="return false"
              (click)="onEventClick($event, row)"
+             (dblclick)="onEventDblclick($event, row)"
              [ngClass]="!isCurrentMonth(item)?'prev-next-month-day':''"
              [style.background-color]="row.color">{{row.name}}</div>
     </div>

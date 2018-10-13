@@ -118,6 +118,9 @@ export class CalendarComponent implements AfterViewInit{
 
 	onEventCardVisibleChange(visible: false) {
 		this.eventCardVisible = visible;
-	}
+    }
 
+    onEventDblclick(id: number) {
+        this.editClick.emit(id);
+    }
 }

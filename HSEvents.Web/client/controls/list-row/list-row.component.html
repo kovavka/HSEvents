@@ -1,23 +1,23 @@
-﻿<table *ngIf="items">
+﻿<table *ngIf="items && items.length > 0">
     <tbody>
-        <ng-container *ngFor="let item of items">
-            <tr class="pointer item-row" (click)="itemClick(item)">
-                <td class="row-caption" colspan="2">{{item.caption}}</td>
-                <td>
-                    <span class="pointer glyphicon glyphicon-pencil" (click)="onEdit(item)"></span>
-                </td>
-                <td>
-                    <span class="pointer glyphicon glyphicon-trash" (click)="onDelete(item)"></span>
-                </td>
+    <ng-container *ngFor="let item of items">
+        <tr class="pointer item-row with-hover" (click)="itemClick(item)">
+            <td class="row-caption" colspan="2">{{item.caption}}</td>
+            <td>
+                <span class="pointer glyphicon glyphicon-pencil" (click)="onEdit(item)"></span>
+            </td>
+            <td>
+                <span class="pointer glyphicon glyphicon-trash" (click)="onDelete(item)"></span>
+            </td>
 
-            </tr>
-            <ng-container *ngIf="dropDown && item.value===dropDown.value">
-                <ng-container *ngFor="let info of item.info">
-                    <tr class="info-row">
-                        <td *ngFor="let column of info.columns">{{column}}</td>
-                    </tr>
-                </ng-container>
+        </tr>
+        <ng-container *ngIf="dropDown && item.value===dropDown.value">
+            <ng-container *ngFor="let info of item.info">
+                <tr class="info-row">
+                    <td *ngFor="let column of info.columns">{{column}}</td>
+                </tr>
             </ng-container>
         </ng-container>
+    </ng-container>
     </tbody>
 </table>

@@ -1,6 +1,8 @@
 ﻿import { Component, Input, Output, EventEmitter, ViewChild } from '@angular/core';
+import { Subject, Subscription } from 'rxjs';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { BsModalComponent } from 'ng2-bs3-modal';
-import {  } from '../models/event.models';
+import { Department } from '../models/event.models';
 import { EventsService } from '../events.service';
 
 @Component({
@@ -12,20 +14,34 @@ import { EventsService } from '../events.service';
 })
 export class DepartmentsSelectorComponent {
 
+    departments: CheckedListItem[];
+   
 	@ViewChild('modal')
 	private modal: BsModalComponent;
 
 	@Output()
-	apply = new EventEmitter();
+    apply: EventEmitter<Department[]> = new EventEmitter();
 
-	constructor(private eventsService: EventsService) {
-	}
+    constructor(private eventsService: EventsService)
+    { }
+    
+    open(selectedDepartments: Department[]) {
+        this.clear();
+        this.eventsService.getDepartments().subscribe(departments => {
+            if (!selectedDepartments)
+                selectedDepartments = [];
 
-	private openModal() {
-		
-		this.openWindow().then(() => {
-			
-		});
+            this.departments = departments
+                .map(x => <CheckedListItem>{
+                    checked: Boolean(selectedDepartments.find(xx => xx.id == x.id)),
+                    department: x
+                });
+        });
+        this.openModal();
+    }
+
+    private openModal() {
+		this.openWindow().then(() => { });
 	}
     
 	hideModal() {
@@ -33,20 +49,31 @@ export class DepartmentsSelectorComponent {
 	}
 
 	private openWindow(): Promise<void> {
-		return this.modal.open('lg');
+		return this.modal.open();
 	}
 
-	onApplyClick() {
-		this.apply.emit();
+    onApplyClick() {
+
+        var selected = this.departments.filter(x => x.checked).map(x => x.department);
+        this.apply.emit(selected);
 		this.modal.close();
 	}
 
 	onCancelClick() {
-		this.clear();
+        this.clear();
 		this.hideModal();
 	}
 
     clear() {
-        
+        this.departments = [];
     }
+
+    rowClick(item: CheckedListItem) {
+        item.checked = !item.checked;
+    }
+}
+
+export class CheckedListItem {
+    department: Department;
+    checked: boolean;
 }

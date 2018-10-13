@@ -4,6 +4,24 @@
     </bs-modal-header>
     <bs-modal-body>
         
+        <!--<input class="search-row" [(ngModel)]="searchText" placeholder="Поиск"/>-->
+        
+        <table class="departments-select">
+            <tbody>
+            <tr *ngFor="let item of departments" class="pointer item-row with-hover" (click)="rowClick(item)">
+                <td class="td-10">
+                    <input [(ngModel)]="item.checked" type="checkbox"/>
+                </td>
+                <td>{{item.department.name}}</td>
+                <td class="td-10">
+                    <span class="color" [style.backgroundColor]="item.department.color"></span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+
+
     </bs-modal-body>
     <bs-modal-footer>
         <a class="ui-btn ui-btn-primary btn-left ui-btn-small" (click)="onApplyClick()">

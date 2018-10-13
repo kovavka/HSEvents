@@ -33,7 +33,8 @@
                  [currentDate]="currentDate"
                  [item]="eventDay"
                  (eventClick)="onEventClick($event)"
-                 (click)="onDayClick(eventDay.date)">
+                 (click)="onDayClick(eventDay.date)"
+                 (eventDblclick)="onEventDblclick($event)">
                 <div>{{i}}</div>
             </day>
         </div>

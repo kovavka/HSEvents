@@ -1,11 +1,12 @@
 ﻿import { DatePipe } from '@angular/common';
 import { Component, Input, Output, EventEmitter, OnInit, ViewChild, Pipe, PipeTransform } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { EventModel, EventExecution, EventDate, Subject } from './models/event.models';
+import { EventModel, EventExecution, EventDate, Subject, Department } from './models/event.models';
 import { GetTypeList, ListItem } from '../../utilities/enum-helper';
 import { EventsService } from './events.service';
 import { ListRowItem, ListInfo } from '../../controls/list-row/list-row.component';
 import { ExecutionEditorComponent, EventExecutionArgs } from './event-modals/execution-editor.component';
+import { DepartmentsSelectorComponent } from './event-modals/departments-selector.component';
 
 @Component({
 	moduleId: module.id.toString(),
@@ -21,7 +22,10 @@ export class EventEditorComponent implements OnInit{
 	subjects: Subject[];
 	
 	@ViewChild('executionEditor')
-	private executionEditor: ExecutionEditorComponent;
+    private executionEditor: ExecutionEditorComponent;
+
+    @ViewChild('departmentsSelector')
+    private departmentsSelector: DepartmentsSelectorComponent;
 
 	constructor(private eventsService: EventsService) {
 	}
@@ -32,7 +36,8 @@ export class EventEditorComponent implements OnInit{
 		if (!value) {
 			this.model = new EventModel();
 			this.model.executions = [];
-			this.model.type = 1;
+            this.model.type = 1;
+		    this.model.departments = [];
 		}
 		else
             this.model = value;
@@ -151,12 +156,21 @@ export class EventEditorComponent implements OnInit{
 	}
 
 	onExecutionApply(args: EventExecutionArgs) {
-		console.log(args.execution);
 		if (args.editMode) {
 			this.model.executions[args.index] = args.execution;
 		}
 		else {
 			this.model.executions.push(args.execution);
 		}
-	}
+    }
+
+    onEditDepartments() {
+        this.departmentsSelector.open(this.model.departments);
+    }
+
+    onDepartmentsApply(selected: Department[]) {
+        console.log(selected);
+        this.model.departments = selected;
+    }
+
 }
