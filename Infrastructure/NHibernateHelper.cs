@@ -33,6 +33,11 @@ namespace Infrastructure
         {
             return sessionFactory.OpenSession();
         }
+
+        public static Type GetProxyType()
+        {
+            return typeof(NHibernate.Proxy.INHibernateProxy);
+        }
     }
 
     public class EnumConvention : IUserTypeConvention

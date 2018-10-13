@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Domain.Events;
+﻿using Domain.Events;
 
 namespace Infrastructure.Mappings
 {
@@ -12,7 +7,9 @@ namespace Infrastructure.Mappings
         public VolunteerMap()
         {
             Map(x => x.FullName);
-            References(x => x.Group).Cascade.SaveUpdate().Cascade.Delete().ForeignKey("FK_Volunteer_Group");
+            References(x => x.Group)
+                .Cascade.SaveUpdate()
+                .Cascade.Delete().ForeignKey("FK_Volunteer_Group");
         }
     }
     class GroupMap : NamedEntityMap<Group>

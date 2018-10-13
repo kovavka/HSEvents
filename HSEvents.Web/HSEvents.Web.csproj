@@ -234,6 +234,7 @@
     <Content Include="client\pages\events\calendar\calendar.component.css" />
     <Content Include="client\pages\events\calendar\event-card\event-card.component.html" />
     <Content Include="client\pages\events\event-editor.component.html" />
+    <Content Include="client\pages\events\event-modals\volunteer-selector.component.html" />
     <Content Include="client\pages\events\event-modals\departments-selector.component.html" />
     <Content Include="client\pages\events\event-modals\execution-editor.component.html" />
     <Content Include="client\pages\events\events.component.css" />
@@ -263,9 +264,15 @@
     <Compile Include="Server\Api\Departments\DepartmentController.cs" />
     <Compile Include="Server\Api\Departments\DepartmentService.cs" />
     <Compile Include="Server\Api\Departments\DepartmentStorage.cs" />
-    <Compile Include="Server\Api\Subjects - Copy\SubjectController.cs" />
-    <Compile Include="Server\Api\Subjects - Copy\SubjectService.cs" />
-    <Compile Include="Server\Api\Subjects - Copy\SubjectStorage.cs" />
+    <Compile Include="Server\Api\Volunteers\VolunteerController.cs" />
+    <Compile Include="Server\Api\Volunteers\VolunteerService.cs" />
+    <Compile Include="Server\Api\Volunteers\VolunteerStorage.cs" />
+    <Compile Include="Server\Api\Employees\EmployeeController.cs" />
+    <Compile Include="Server\Api\Employees\EmployeeService.cs" />
+    <Compile Include="Server\Api\Employees\EmployeeStorage.cs" />
+    <Compile Include="Server\Api\Subjects\SubjectController.cs" />
+    <Compile Include="Server\Api\Subjects\SubjectService.cs" />
+    <Compile Include="Server\Api\Subjects\SubjectStorage.cs" />
     <Compile Include="Server\Api\Empty\Controller.cs" />
     <Compile Include="Server\Api\Empty\Service.cs" />
     <Compile Include="Server\Api\Empty\Storage.cs" />
@@ -314,6 +321,7 @@
     <TypeScriptCompile Include="client\controls\title-input\title-input.component.ts" />
     <TypeScriptCompile Include="client\pages\events\calendar\event-card\event-card.component.ts" />
     <TypeScriptCompile Include="client\pages\events\event-editor.component.ts" />
+    <TypeScriptCompile Include="client\pages\events\event-modals\volunteer-selector.component.ts" />
     <TypeScriptCompile Include="client\pages\events\event-modals\departments-selector.component.ts" />
     <TypeScriptCompile Include="client\pages\events\event-modals\execution-editor.component.ts" />
     <TypeScriptCompile Include="client\pages\events\models\event.models.ts" />

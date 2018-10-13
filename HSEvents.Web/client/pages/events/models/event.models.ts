@@ -76,6 +76,16 @@ export class Department {
 	color: string;
 }
 
+export class Volunteer {
+	id: number;
+	fullName: string;
+    group: Group;
+}
+
+export class Group {
+	name: string;
+}
+
 export class Subject {
 	id: number;
 	caption: string;

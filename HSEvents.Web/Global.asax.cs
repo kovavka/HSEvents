@@ -3,9 +3,11 @@ using System.Web;
 using System.Web.Http;
 using HSEvents.Server.Api.Addresses;
 using HSEvents.Server.Api.Departments;
+using HSEvents.Server.Api.Employees;
 using HSEvents.Server.Api.Empty;
 using HSEvents.Server.Api.Events;
 using HSEvents.Server.Api.Subjects;
+using HSEvents.Server.Api.Volunteers;
 using Infrastructure;
 using Microsoft.Practices.Unity;
 using Newtonsoft.Json.Serialization;
@@ -41,7 +43,7 @@ namespace HSEvents
                 );
 
                 var jsonFormatter = config.Formatters.JsonFormatter;
-                jsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+                jsonFormatter.SerializerSettings.ContractResolver = new NHibernateContractResolver();
                 jsonFormatter.UseDataContractJsonSerializer = false;
 
             });
@@ -59,11 +61,25 @@ namespace HSEvents
             container.RegisterType<ISubjectService, SubjectService>();
             container.RegisterType<IDepartmentStorage, DepartmentStorage>();
             container.RegisterType<IDepartmentService, DepartmentService>();
+            container.RegisterType<IEmployeeStorage, EmployeeStorage>();
+            container.RegisterType<IEmployeeService, EmployeeService>();
+            container.RegisterType<IVolunteerStorage, VolunteerStorage>();
+            container.RegisterType<IVolunteerService, VolunteerService>();
 
             container.RegisterType<IStorage, Storage>();
             container.RegisterType<IService, Service>();
 
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
+        }
+        private class NHibernateContractResolver : CamelCasePropertyNamesContractResolver
+        {
+            protected override JsonContract CreateContract(Type objectType)
+            {
+                if (NHibernateHelper.GetProxyType().IsAssignableFrom(objectType))
+                    return base.CreateContract(objectType.BaseType);
+
+                return base.CreateContract(objectType);
+            }
         }
 
         protected void Application_End(object sender, EventArgs e)

@@ -141,7 +141,7 @@ namespace Infrastructure.Repositories
             return entity;
         }
 
-        private T GetAnotherEntity<T>(long id) where T : IEntity
+        private T GetAnotherEntity<T>(long id) where T : Entity
         {
             using (var repo = new NHGetAllRepository<T>())
             {
