@@ -88,8 +88,9 @@ namespace Infrastructure.Repositories
                 Duration = course?.Duration,
                 Price = course?.Price,
                 Program = work?.Program,
-                Departments = entity.Departments?.ToList()
-        };
+                Departments = entity.Departments.ToList(),
+                Volunteers = entity.Volunteers.ToList()
+            };
         }
 
         private Event ConvertToEntity(EventDto dto)
@@ -125,6 +126,7 @@ namespace Infrastructure.Repositories
             entity.Info = dto.Info;
             entity.Comment = dto.Comment;
             entity.Departments = dto.Departments.ToSet();
+            entity.Volunteers = dto.Volunteers;
 
             entity.EventExecutions = dto.Executions.Select(x => new EventExecution()
                 {

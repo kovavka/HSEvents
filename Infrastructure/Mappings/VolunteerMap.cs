@@ -8,6 +8,7 @@ namespace Infrastructure.Mappings
         {
             Map(x => x.FullName);
             References(x => x.Group)
+                .Fetch.Join()
                 .Cascade.SaveUpdate()
                 .Cascade.Delete().ForeignKey("FK_Volunteer_Group");
         }

@@ -12,6 +12,7 @@ namespace Infrastructure.Repositories.Dto
         public string Info { get; set; }
         public string Comment { get; set; }
         public List<Department> Departments { get; set; }
+        public List<Volunteer> Volunteers { get; set; }
 
         #region Course or AcademicCompetition
         public Subject Subject { get; set; }

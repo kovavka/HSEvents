@@ -40,6 +40,7 @@ export class EventModel {
     duration: number;
 	executions: EventExecution[];
     departments: Department[];
+    volunteers: Volunteer[];
 }
 
 export enum EventType {

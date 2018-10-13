@@ -90,6 +90,10 @@ textarea {
     min-width: 300px;
 }
 
+.volunteer-name {
+    min-width: 350px;
+}
+
 .color {
     border-radius: 50%;
     padding: 4px 12px;
@@ -99,4 +103,8 @@ textarea {
 .departments-select {
     width: 90%;
     margin: 10px 10px;
+}
+
+.show-selected {
+    margin: 10px 0px 0px 20px;
 }

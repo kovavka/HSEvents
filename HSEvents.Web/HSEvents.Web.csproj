@@ -234,7 +234,7 @@
     <Content Include="client\pages\events\calendar\calendar.component.css" />
     <Content Include="client\pages\events\calendar\event-card\event-card.component.html" />
     <Content Include="client\pages\events\event-editor.component.html" />
-    <Content Include="client\pages\events\event-modals\volunteer-selector.component.html" />
+    <Content Include="client\pages\events\event-modals\volunteers-selector.component.html" />
     <Content Include="client\pages\events\event-modals\departments-selector.component.html" />
     <Content Include="client\pages\events\event-modals\execution-editor.component.html" />
     <Content Include="client\pages\events\events.component.css" />
@@ -321,7 +321,7 @@
     <TypeScriptCompile Include="client\controls\title-input\title-input.component.ts" />
     <TypeScriptCompile Include="client\pages\events\calendar\event-card\event-card.component.ts" />
     <TypeScriptCompile Include="client\pages\events\event-editor.component.ts" />
-    <TypeScriptCompile Include="client\pages\events\event-modals\volunteer-selector.component.ts" />
+    <TypeScriptCompile Include="client\pages\events\event-modals\volunteers-selector.component.ts" />
     <TypeScriptCompile Include="client\pages\events\event-modals\departments-selector.component.ts" />
     <TypeScriptCompile Include="client\pages\events\event-modals\execution-editor.component.ts" />
     <TypeScriptCompile Include="client\pages\events\models\event.models.ts" />

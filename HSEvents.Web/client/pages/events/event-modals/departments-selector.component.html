@@ -5,15 +5,15 @@
     <bs-modal-body>
         <table class="departments-select">
             <tbody>
-            <tr *ngFor="let item of departments" class="pointer item-row with-hover" (click)="rowClick(item)">
-                <td class="td-10">
-                    <input [(ngModel)]="item.checked" type="checkbox"/>
-                </td>
-                <td>{{item.department.name}}</td>
-                <td class="td-10">
-                    <span class="color" [style.backgroundColor]="item.department.color"></span>
-                </td>
-            </tr>
+                <tr *ngFor="let item of departments" class="pointer item-row with-hover" (click)="rowClick(item)">
+                    <td class="td-10">
+                        <input [(ngModel)]="item.checked" type="checkbox" />
+                    </td>
+                    <td>{{item.department.name}}</td>
+                    <td class="td-10">
+                        <span class="color" [style.backgroundColor]="item.department.color"></span>
+                    </td>
+                </tr>
             </tbody>
         </table>
     </bs-modal-body>

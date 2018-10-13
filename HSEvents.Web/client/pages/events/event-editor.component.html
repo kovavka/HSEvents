@@ -2,7 +2,6 @@
     <div class="event-name">
         <title-input [(value)]="name" [defaultText]="'Название мероприятия'"></title-input>
     </div>
-    
     <div class="property">
         <div>Тип</div>
         <select (change)="model.type = $event.target.value">
@@ -11,7 +10,6 @@
             </option>
         </select>
     </div>
-    
     <div class="property" *ngIf="model.type==1 || model.type==2">
         <div>Предмет</div>
         <select (change)="onSubjectChange($event.target.value)">
@@ -20,22 +18,18 @@
             </option>
         </select>
     </div>
-
     <div class="property" *ngIf="model.type==1">
         <div>Длительность (ч.)</div>
         <input class="number" type="number" [(ngModel)]="model.duration" />
-    </div> 
-
+    </div>
     <div class="property">
         <div>Информация</div>
         <textarea class="info" [(ngModel)]="model.info"></textarea>
-    </div> 
-    
+    </div>
     <div class="property">
         <div>Комментарий</div>
         <textarea class="comment" [(ngModel)]="model.comment"></textarea>
     </div>
-    
     <div>
         <div class="property">
             <div>Проведение</div>
@@ -45,7 +39,6 @@
         </div>
         <list-row [items]="executions" (editClick)="onEditExecution($event)" (deleteClick)="onDeleteExecution($event)"></list-row>
     </div>
-    
     <div>
         <div class="property">
             <div>Подразделения</div>
@@ -56,15 +49,30 @@
         <table class="margin-5-10" *ngIf="model.departments && model.departments.length > 0">
             <tbody>
                 <tr class="item-row" *ngFor="let item of model.departments">
-                    <td class="department-name">{{item.name}}</td>
                     <td>
                         <span class="color" [style.backgroundColor]="item.color"></span>
                     </td>
+                    <td class="department-name">{{item.name}}</td>
                 </tr>
             </tbody>
         </table>
     </div>
-    
+    <div>
+        <div class="property">
+            <div>Волонтеры</div>
+            <div>
+                <span class="pointer glyphicon glyphicon-pencil" (click)="onEditVolunteers()"></span>
+            </div>
+        </div>
+        <table class="margin-5-10" *ngIf="model.volunteers && model.volunteers.length > 0">
+            <tbody>
+                <tr class="item-row" *ngFor="let item of model.volunteers">
+                    <td class="volunteer-name">{{item.fullName}}</td>
+                    <td>{{item.group.name}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
     <div class="buttons">
         <a class="ui-btn ui-btn-primary btn-left" (click)="onSaveClick($event)">
             <div class="ui-btn-caption">Сохранить</div>
@@ -77,3 +85,4 @@
 
 <execution-editor #executionEditor (apply)="onExecutionApply($event)"></execution-editor>
 <departments-selector #departmentsSelector (apply)="onDepartmentsApply($event)"></departments-selector>
+<volunteers-selector #volunteersSelector (apply)="onVolunteersApply($event)"></volunteers-selector>

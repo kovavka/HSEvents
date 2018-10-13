@@ -1,4 +1,4 @@
-﻿import { Component, Input, Output, EventEmitter, ViewChild, OnDestroy } from '@angular/core';
+﻿import { Component, Input, Output, EventEmitter, ViewChild, OnDestroy, ElementRef } from '@angular/core';
 import { Subject, Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { BsModalComponent } from 'ng2-bs3-modal';
@@ -7,8 +7,8 @@ import { EventsService } from '../events.service';
 
 @Component({
 	moduleId: module.id.toString(),
-    selector: 'departments-selector',
-    templateUrl: 'departments-selector.component.html',
+    selector: 'volunteers-selector',
+    templateUrl: 'volunteers-selector.component.html',
 	styleUrls: ['../events.component.css'],
 	providers: [EventsService]
 })
@@ -16,11 +16,15 @@ export class VolunteerSelectorComponent implements OnDestroy {
 
     volunteers: CheckedListItem[];
     find: CheckedListItem[];
+    showSelected: boolean = false;
     private searchTextSubject = new Subject<string>();
     private searchTextSubscribtion: Subscription;
 
 	@ViewChild('modal')
-	private modal: BsModalComponent;
+    private modal: BsModalComponent;
+
+    @ViewChild('searchInput')
+    private searchInput: ElementRef;
 
 	@Output()
     apply: EventEmitter<Volunteer[]> = new EventEmitter();
@@ -29,6 +33,7 @@ export class VolunteerSelectorComponent implements OnDestroy {
         this.searchTextSubscribtion = this.searchTextSubject.pipe(debounceTime(400),
                 distinctUntilChanged())
             .subscribe(text => {
+                this.showSelected = false;
                 this.search(text);
             });
     }
@@ -38,10 +43,27 @@ export class VolunteerSelectorComponent implements OnDestroy {
     }
 
     get items(): CheckedListItem[] {
+        if (this.showSelected)
+            return this.selected;
+
         if (this.find)
             return this.find;
 
         return this.volunteers;
+    }
+
+    get selected(): CheckedListItem[] {
+        return this.volunteers.filter(x => x.checked);
+    }
+
+    get showCaption(): string {
+        if (!this.showSelected)
+            return 'Показать выбранные';
+
+        if (this.find)
+            return 'Показать результаты поиска';
+
+        return 'Показать все результаты';
     }
 
     set searchText(value: string) {
@@ -62,11 +84,11 @@ export class VolunteerSelectorComponent implements OnDestroy {
     
     open(selectedVolunteers: Volunteer[]) {
         this.clear();
-        this.eventsService.getVolunteers().subscribe(departments => {
+        this.eventsService.getVolunteers().subscribe(volunteers => {
             if (!selectedVolunteers)
                 selectedVolunteers = [];
 
-            this.volunteers = departments
+            this.volunteers = volunteers
                 .map(x => <CheckedListItem>{
                     checked: Boolean(selectedVolunteers.find(xx => xx.id == x.id)),
                     volunteer: x
@@ -88,8 +110,7 @@ export class VolunteerSelectorComponent implements OnDestroy {
 	}
 
     onApplyClick() {
-        var selected = this.volunteers.filter(x => x.checked).map(x => x.volunteer);
-        this.apply.emit(selected);
+        this.apply.emit(this.selected.map(x => x.volunteer));
 		this.modal.close();
 	}
 
@@ -100,19 +121,32 @@ export class VolunteerSelectorComponent implements OnDestroy {
 
     clear() {
         this.volunteers = [];
+        this.find = null;
+        this.clearSearchText();
+        this.showSelected = false;
     }
 
     rowClick(item: CheckedListItem) {
         this.changeChecked(item);
     }
 
-    onChecked(item: CheckedListItem) {
+    onChecked(e: any, item: CheckedListItem) {
+        e.stopPropagation();
         this.changeChecked(item);
     }
 
     changeChecked(item: CheckedListItem) {
         var volunteer = this.volunteers.find(x => x.volunteer.id == item.volunteer.id);
         volunteer.checked = !item.checked;
+    }
+
+    onShowClick() {
+        this.showSelected = !this.showSelected;
+    }
+
+    clearSearchText() {
+        this.searchInput.nativeElement.value = null;
+        this.searchText = null;
     }
 }
 

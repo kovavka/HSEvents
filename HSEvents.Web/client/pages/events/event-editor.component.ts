@@ -1,12 +1,13 @@
 ﻿import { DatePipe } from '@angular/common';
-import { Component, Input, Output, EventEmitter, OnInit, ViewChild, Pipe, PipeTransform } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit, ViewChild} from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { EventModel, EventExecution, EventDate, Subject, Department } from './models/event.models';
+import { EventModel, EventExecution, EventDate, Subject, Department, Volunteer } from './models/event.models';
 import { GetTypeList, ListItem } from '../../utilities/enum-helper';
 import { EventsService } from './events.service';
 import { ListRowItem, ListInfo } from '../../controls/list-row/list-row.component';
 import { ExecutionEditorComponent, EventExecutionArgs } from './event-modals/execution-editor.component';
 import { DepartmentsSelectorComponent } from './event-modals/departments-selector.component';
+import { VolunteerSelectorComponent } from './event-modals/volunteers-selector.component';
 
 @Component({
 	moduleId: module.id.toString(),
@@ -27,6 +28,9 @@ export class EventEditorComponent implements OnInit{
     @ViewChild('departmentsSelector')
     private departmentsSelector: DepartmentsSelectorComponent;
 
+    @ViewChild('volunteersSelector')
+    private volunteersSelector: VolunteerSelectorComponent;
+
 	constructor(private eventsService: EventsService) {
 	}
 
@@ -38,6 +42,7 @@ export class EventEditorComponent implements OnInit{
 			this.model.executions = [];
             this.model.type = 1;
 		    this.model.departments = [];
+		    this.model.volunteers = [];
 		}
 		else
             this.model = value;
@@ -169,8 +174,15 @@ export class EventEditorComponent implements OnInit{
     }
 
     onDepartmentsApply(selected: Department[]) {
-        console.log(selected);
         this.model.departments = selected;
+    }
+
+    onEditVolunteers() {
+        this.volunteersSelector.open(this.model.volunteers);
+    }
+
+    onVolunteersApply(selected: Volunteer[]) {
+        this.model.volunteers = selected;
     }
 
 }
