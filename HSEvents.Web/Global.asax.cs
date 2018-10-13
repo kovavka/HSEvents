@@ -1,9 +1,9 @@
 ﻿using System;
-using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 using HSEvents.Server.Api.Addresses;
 using HSEvents.Server.Api.Departments;
+using HSEvents.Server.Api.Empty;
 using HSEvents.Server.Api.Events;
 using HSEvents.Server.Api.Subjects;
 using Infrastructure;
@@ -59,6 +59,9 @@ namespace HSEvents
             container.RegisterType<ISubjectService, SubjectService>();
             container.RegisterType<IDepartmentStorage, DepartmentStorage>();
             container.RegisterType<IDepartmentService, DepartmentService>();
+
+            container.RegisterType<IStorage, Storage>();
+            container.RegisterType<IService, Service>();
 
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
         }

@@ -263,9 +263,12 @@
     <Compile Include="Server\Api\Departments\DepartmentController.cs" />
     <Compile Include="Server\Api\Departments\DepartmentService.cs" />
     <Compile Include="Server\Api\Departments\DepartmentStorage.cs" />
-    <Compile Include="Server\Api\Subjects\SubjectController.cs" />
-    <Compile Include="Server\Api\Subjects\SubjectService.cs" />
-    <Compile Include="Server\Api\Subjects\SubjectStorage.cs" />
+    <Compile Include="Server\Api\Subjects - Copy\SubjectController.cs" />
+    <Compile Include="Server\Api\Subjects - Copy\SubjectService.cs" />
+    <Compile Include="Server\Api\Subjects - Copy\SubjectStorage.cs" />
+    <Compile Include="Server\Api\Empty\Controller.cs" />
+    <Compile Include="Server\Api\Empty\Service.cs" />
+    <Compile Include="Server\Api\Empty\Storage.cs" />
     <Compile Include="Server\Api\Addresses\AddressController.cs" />
     <Compile Include="Server\Api\Addresses\AddressService.cs" />
     <Compile Include="Server\Api\Addresses\AddressStorage.cs" />

@@ -11,7 +11,7 @@ namespace Infrastructure.Repositories
         IQueryable<T> GetAll();
     }
 
-    public class NHGetAllRepository<T> : NHRepository<T>, IGetAllRepository<T> where T : IEntity
+    public class NHGetAllRepository<T> : NHRepository<T>, IGetAllRepository<T> where T : class, IEntity
     {
         protected ISession session = NHibernateHelper.OpenSession();
         
