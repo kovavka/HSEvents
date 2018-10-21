@@ -41,6 +41,15 @@
     </div>
     <div>
         <div class="property">
+            <div>Затраты</div>
+            <div>
+                <span class="pointer glyphicon glyphicon-plus" (click)="onAddPurchase()"></span>
+            </div>
+        </div>
+        <list-row [items]="purchases" (editClick)="onEditPurchase($event)" (deleteClick)="onDeletePurchase($event)"></list-row>
+    </div>
+    <div>
+        <div class="property">
             <div>Подразделения</div>
             <div>
                 <span class="pointer glyphicon glyphicon-pencil" (click)="onEditDepartments()"></span>
@@ -67,7 +76,7 @@
         <table class="margin-5-10" *ngIf="model.organizers && model.organizers.length > 0">
             <tbody>
                 <tr class="item-row" *ngFor="let item of model.organizers">
-                    <td class="person-name">{{item.contactInfo.fullName}}</td>
+                    <td>{{item.contactInfo.fullName}}</td>
                     <td class="appointment">{{item.appointment}}</td>
                     <td>{{item.contactInfo.phoneNumber}}</td>
                     <td>{{item.contactInfo.email}}</td>
@@ -85,7 +94,7 @@
         <table class="margin-5-10" *ngIf="model.lecturers && model.lecturers.length > 0">
             <tbody>
                 <tr class="item-row" *ngFor="let item of model.lecturers">
-                    <td class="person-name">{{item.contactInfo.fullName}}</td>
+                    <td>{{item.contactInfo.fullName}}</td>
                     <td>{{item.appointment}}</td>
                     <td>{{item.contactInfo.phoneNumber}}</td>
                     <td>{{item.contactInfo.email}}</td>
@@ -124,3 +133,4 @@
 <volunteers-selector #volunteersSelector (apply)="onVolunteersApply($event)"></volunteers-selector>
 <employees-selector #lecturersSelector title="Лекторы" (apply)="onLecturersApply($event)"></employees-selector>
 <employees-selector #organizersSelector title="Организаторы" (apply)="onOrganizersApply($event)"></employees-selector>
+<purchase-editor #purchaseEditor (apply)="onPurchaseApply($event)"></purchase-editor>

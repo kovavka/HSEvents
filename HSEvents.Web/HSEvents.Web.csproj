@@ -235,6 +235,7 @@
     <Content Include="client\pages\events\calendar\event-card\event-card.component.html" />
     <Content Include="client\pages\events\event-editor.component.html" />
     <Content Include="client\pages\events\event-modals\employees-selector.component.html" />
+    <Content Include="client\pages\events\event-modals\purchase-editor.component.html" />
     <Content Include="client\pages\events\event-modals\volunteers-selector.component.html" />
     <Content Include="client\pages\events\event-modals\departments-selector.component.html" />
     <Content Include="client\pages\events\event-modals\execution-editor.component.html" />
@@ -323,6 +324,7 @@
     <TypeScriptCompile Include="client\pages\events\calendar\event-card\event-card.component.ts" />
     <TypeScriptCompile Include="client\pages\events\event-editor.component.ts" />
     <TypeScriptCompile Include="client\pages\events\event-modals\employees-selector.component.ts" />
+    <TypeScriptCompile Include="client\pages\events\event-modals\purchase-editor.component.ts" />
     <TypeScriptCompile Include="client\pages\events\event-modals\volunteers-selector.component.ts" />
     <TypeScriptCompile Include="client\pages\events\event-modals\departments-selector.component.ts" />
     <TypeScriptCompile Include="client\pages\events\event-modals\execution-editor.component.ts" />

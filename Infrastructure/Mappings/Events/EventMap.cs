@@ -109,7 +109,7 @@ namespace Infrastructure.Mappings.Events
             Map(x => x.EndTime).CustomType("TimeAsTimeSpan");
         }
     }
-    class PurchaseMap : EntityMap<Purchase>
+    class PurchaseMap : NamedEntityMap<Purchase>
     {
         public PurchaseMap()
         {

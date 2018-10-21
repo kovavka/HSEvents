@@ -95,7 +95,6 @@ export class ExecutionEditorComponent {
 			args.index = this.index;
 			args.editMode = true;
 		}
-		console.log(args);
 		this.apply.emit(args);
 		this.modal.close();
 	}

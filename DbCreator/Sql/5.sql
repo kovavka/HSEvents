@@ -66,8 +66,9 @@ constraint FK_EventDate_EventExecution foreign key (EventExecution_Id) reference
 
 Create table Purchase(
 Id bigint identity(1,1) not null,
+Name nvarchar(255) not null,
 Price money not null,
-Description nvarchar(255) not null,
+Description text,
 Event_Id bigint,
 
 primary key (Id),

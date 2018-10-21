@@ -43,6 +43,7 @@ export class EventModel {
     volunteers: Volunteer[];
     lecturers: Employee[];
     organizers: Employee[];
+    purchases: Purchase[];
 }
 
 export enum EventType {
@@ -64,13 +65,18 @@ export class EventDate {
 	endTime: string;
 }
 
-
-
 //Todo: перенести в соответствующие файлы
 export class Address {
 	id: number;
 	caption: string;
 	shortName: string;
+}
+
+export class Purchase {
+    id: number;
+    name: string;
+    price: number;
+    description: string;
 }
 
 export class Department {

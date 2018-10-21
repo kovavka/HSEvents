@@ -13,6 +13,7 @@ import { ExecutionEditorComponent } from './event-modals/execution-editor.compon
 import { DepartmentsSelectorComponent } from './event-modals/departments-selector.component';
 import { VolunteersSelectorComponent } from './event-modals/volunteers-selector.component';
 import { EmployeesSelectorComponent } from './event-modals/employees-selector.component';
+import { PurchaseEditorComponent } from './event-modals/purchase-editor.component';
 
 @NgModule({
 	imports: [
@@ -31,7 +32,8 @@ import { EmployeesSelectorComponent } from './event-modals/employees-selector.co
         ExecutionEditorComponent,
         DepartmentsSelectorComponent,
         VolunteersSelectorComponent,
-	    EmployeesSelectorComponent
+        EmployeesSelectorComponent,
+	    PurchaseEditorComponent
 	],
 	exports: [
 		EventsComponent,
@@ -42,7 +44,8 @@ import { EmployeesSelectorComponent } from './event-modals/employees-selector.co
         ExecutionEditorComponent,
         DepartmentsSelectorComponent,
         VolunteersSelectorComponent,
-	    EmployeesSelectorComponent
+        EmployeesSelectorComponent,
+	    PurchaseEditorComponent
 	]
 })
 export class EventsModule { }

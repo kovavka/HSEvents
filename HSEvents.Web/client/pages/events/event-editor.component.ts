@@ -1,7 +1,7 @@
 ﻿import { DatePipe } from '@angular/common';
 import { Component, Input, Output, EventEmitter, OnInit, ViewChild} from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { EventModel, EventExecution, EventDate, Subject, Department, Volunteer, Employee } from './models/event.models';
+import { EventModel, EventExecution, EventDate, Subject, Department, Volunteer, Employee, Purchase } from './models/event.models';
 import { GetTypeList, ListItem } from '../../utilities/enum-helper';
 import { EventsService } from './events.service';
 import { ListRowItem, ListInfo } from '../../controls/list-row/list-row.component';
@@ -9,6 +9,7 @@ import { ExecutionEditorComponent, EventExecutionArgs } from './event-modals/exe
 import { DepartmentsSelectorComponent } from './event-modals/departments-selector.component';
 import { VolunteersSelectorComponent } from './event-modals/volunteers-selector.component';
 import { EmployeesSelectorComponent } from './event-modals/employees-selector.component';
+import { PurchaseEditorComponent, PurchaseArgs } from './event-modals/purchase-editor.component';
 
 @Component({
 	moduleId: module.id.toString(),
@@ -37,6 +38,9 @@ export class EventEditorComponent implements OnInit{
 
     @ViewChild('organizersSelector')
     private organizersSelector: EmployeesSelectorComponent;
+
+    @ViewChild('purchaseEditor')
+    private purchaseEditor: PurchaseEditorComponent;
 
 	constructor(private eventsService: EventsService) {
 	}
@@ -89,7 +93,7 @@ export class EventEditorComponent implements OnInit{
 			caption: x.address.shortName,
 			info: this.generateExecutionInfo(x)
 		});
-	}
+    }
 
 	generateExecutionInfo(execution: EventExecution): ListInfo[] {
 		var address = [<ListInfo>{
@@ -131,6 +135,25 @@ export class EventEditorComponent implements OnInit{
 
     }
 
+    get purchases(): ListRowItem[] {
+        if (!this.model.purchases)
+            return null;
+
+        return this.model.purchases.map(x => <ListRowItem>{
+            value: x,
+            caption: `${x.name}, ${x.price} р.`,
+            info: this.generatePurchasesInfo(x)
+        });
+    }
+
+    generatePurchasesInfo(purchase: Purchase): ListInfo[] {
+        return [
+            <ListInfo>{
+                columns: [purchase.description]
+            }
+        ];
+    }
+
     onSubjectChange(id: number) {
         this.model.subject = this.subjects.filter(x => x.id == id)[0];
     }
@@ -158,14 +181,14 @@ export class EventEditorComponent implements OnInit{
 		this.executionEditor.add(this.date);
 	}
 
-	onEditExecution(execution: EventExecution) {
-		var index = this.model.executions.indexOf(execution);
-		this.executionEditor.edit(execution, index);
-	}
+    onEditExecution(execution: EventExecution) {
+        var index = this.model.executions.indexOf(execution);
+        this.executionEditor.edit(execution, index);
+    }
 
-	onDeleteExecution(execution: EventExecution) {
-		this.model.executions.splice(this.model.executions.indexOf(execution), 1);
-	}
+    onDeleteExecution(execution: EventExecution) {
+        this.model.executions.splice(this.model.executions.indexOf(execution), 1);
+    }
 
 	onExecutionApply(args: EventExecutionArgs) {
 		if (args.editMode) {
@@ -206,6 +229,28 @@ export class EventEditorComponent implements OnInit{
 
     onOrganizersApply(selected: Employee[]) {
         this.model.organizers = selected;
+    }
+
+    onAddPurchase() {
+        this.purchaseEditor.add();
+    }
+
+    onEditPurchase(purchase: Purchase) {
+        var index = this.model.purchases.indexOf(purchase);
+        this.purchaseEditor.edit(purchase, index);
+    }
+
+    onDeletePurchase(purchase: Purchase) {
+        this.model.purchases.splice(this.model.purchases.indexOf(purchase), 1);
+    }
+
+    onPurchaseApply(args: PurchaseArgs) {
+        if (args.editMode) {
+            this.model.purchases[args.index] = args.purchase;
+        }
+        else {
+            this.model.purchases.push(args.purchase);
+        }
     }
 
 }
