@@ -41,6 +41,8 @@ export class EventModel {
 	executions: EventExecution[];
     departments: Department[];
     volunteers: Volunteer[];
+    lecturers: Employee[];
+    organizers: Employee[];
 }
 
 export enum EventType {
@@ -81,6 +83,19 @@ export class Volunteer {
 	id: number;
 	fullName: string;
     group: Group;
+}
+
+export class Employee {
+	id: number;
+    appointment: string;
+    contactInfo: ContactInfo;
+}
+
+export class ContactInfo {
+	id: number;
+	fullName: string;
+    phoneNumber: string;
+    email: string;
 }
 
 export class Group {

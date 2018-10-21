@@ -90,8 +90,12 @@ textarea {
     min-width: 300px;
 }
 
-.volunteer-name {
-    min-width: 350px;
+.person-name {
+    min-width: 275px;
+}
+
+.appointment {
+    max-width: 350px;
 }
 
 .color {

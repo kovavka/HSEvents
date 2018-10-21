@@ -59,6 +59,42 @@
     </div>
     <div>
         <div class="property">
+            <div>Организаторы</div>
+            <div>
+                <span class="pointer glyphicon glyphicon-pencil" (click)="onEditOrganizers()"></span>
+            </div>
+        </div>
+        <table class="margin-5-10" *ngIf="model.organizers && model.organizers.length > 0">
+            <tbody>
+                <tr class="item-row" *ngFor="let item of model.organizers">
+                    <td class="person-name">{{item.contactInfo.fullName}}</td>
+                    <td class="appointment">{{item.appointment}}</td>
+                    <td>{{item.contactInfo.phoneNumber}}</td>
+                    <td>{{item.contactInfo.email}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <div class="property">
+            <div>Лекторы</div>
+            <div>
+                <span class="pointer glyphicon glyphicon-pencil" (click)="onEditLecturers()"></span>
+            </div>
+        </div>
+        <table class="margin-5-10" *ngIf="model.lecturers && model.lecturers.length > 0">
+            <tbody>
+                <tr class="item-row" *ngFor="let item of model.lecturers">
+                    <td class="person-name">{{item.contactInfo.fullName}}</td>
+                    <td>{{item.appointment}}</td>
+                    <td>{{item.contactInfo.phoneNumber}}</td>
+                    <td>{{item.contactInfo.email}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <div class="property">
             <div>Волонтеры</div>
             <div>
                 <span class="pointer glyphicon glyphicon-pencil" (click)="onEditVolunteers()"></span>
@@ -67,7 +103,7 @@
         <table class="margin-5-10" *ngIf="model.volunteers && model.volunteers.length > 0">
             <tbody>
                 <tr class="item-row" *ngFor="let item of model.volunteers">
-                    <td class="volunteer-name">{{item.fullName}}</td>
+                    <td class="person-name">{{item.fullName}}</td>
                     <td>{{item.group.name}}</td>
                 </tr>
             </tbody>
@@ -86,3 +122,5 @@
 <execution-editor #executionEditor (apply)="onExecutionApply($event)"></execution-editor>
 <departments-selector #departmentsSelector (apply)="onDepartmentsApply($event)"></departments-selector>
 <volunteers-selector #volunteersSelector (apply)="onVolunteersApply($event)"></volunteers-selector>
+<employees-selector #lecturersSelector title="Лекторы" (apply)="onLecturersApply($event)"></employees-selector>
+<employees-selector #organizersSelector title="Организаторы" (apply)="onOrganizersApply($event)"></employees-selector>

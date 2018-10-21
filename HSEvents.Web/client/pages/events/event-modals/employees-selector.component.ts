@@ -2,23 +2,26 @@
 import { Subject, Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { BsModalComponent } from 'ng2-bs3-modal';
-import { Volunteer } from '../models/event.models';
+import { Employee } from '../models/event.models';
 import { EventsService } from '../events.service';
 
 @Component({
 	moduleId: module.id.toString(),
-    selector: 'volunteers-selector',
-    templateUrl: 'volunteers-selector.component.html',
+    selector: 'employees-selector',
+    templateUrl: 'employees-selector.component.html',
 	styleUrls: ['../events.component.css'],
 	providers: [EventsService]
 })
-export class VolunteersSelectorComponent implements OnDestroy {
+export class EmployeesSelectorComponent implements OnDestroy {
 
-    volunteers: CheckedListItem[];
+    employees: CheckedListItem[];
     find: CheckedListItem[];
     showSelected: boolean = false;
     private searchTextSubject = new Subject<string>();
     private searchTextSubscribtion: Subscription;
+
+    @Input()
+    title: string;
 
 	@ViewChild('modal')
     private modal: BsModalComponent;
@@ -27,7 +30,7 @@ export class VolunteersSelectorComponent implements OnDestroy {
     private searchInput: ElementRef;
 
 	@Output()
-    apply: EventEmitter<Volunteer[]> = new EventEmitter();
+    apply: EventEmitter<Employee[]> = new EventEmitter();
 
     constructor(private eventsService: EventsService) {
         this.searchTextSubscribtion = this.searchTextSubject.pipe(debounceTime(400),
@@ -49,11 +52,11 @@ export class VolunteersSelectorComponent implements OnDestroy {
         if (this.find)
             return this.find;
 
-        return this.volunteers;
+        return this.employees;
     }
 
     get selected(): CheckedListItem[] {
-        return this.volunteers.filter(x => x.checked);
+        return this.employees.filter(x => x.checked);
     }
 
     get showCaption(): string {
@@ -74,24 +77,25 @@ export class VolunteersSelectorComponent implements OnDestroy {
     }
 
     search(text: any) {
-        this.find = this.volunteers.filter(x => this.containsPhrase(x.volunteer.fullName, text) ||
-            this.containsPhrase(x.volunteer.group.name, text));
+        this.find = this.employees.filter(x => this.containsPhrase(x.employee.appointment, text) ||
+            this.containsPhrase(x.employee.contactInfo.fullName, text) ||
+            this.containsPhrase(x.employee.contactInfo.email, text));
     }
 
     containsPhrase(text: string, phrase: string): boolean {
         return text.toLowerCase().includes(phrase.toLowerCase());
     }
     
-    open(selectedVolunteers: Volunteer[]) {
+    open(selectedEmployees: Employee[]) {
         this.clear();
-        this.eventsService.getVolunteers().subscribe(volunteers => {
-            if (!selectedVolunteers)
-                selectedVolunteers = [];
+        this.eventsService.getEmployees().subscribe(employees => {
+            if (!selectedEmployees)
+                selectedEmployees = [];
 
-            this.volunteers = volunteers
+            this.employees = employees
                 .map(x => <CheckedListItem>{
-                    checked: Boolean(selectedVolunteers.find(xx => xx.id == x.id)),
-                    volunteer: x
+                    checked: Boolean(selectedEmployees.find(xx => xx.id == x.id)),
+                    employee: x
                 });
         });
         this.openModal();
@@ -106,11 +110,11 @@ export class VolunteersSelectorComponent implements OnDestroy {
 	}
 
 	private openWindow(): Promise<void> {
-		return this.modal.open();
+        return this.modal.open('lg');
 	}
 
     onApplyClick() {
-        this.apply.emit(this.selected.map(x => x.volunteer));
+        this.apply.emit(this.selected.map(x => x.employee));
 		this.modal.close();
 	}
 
@@ -120,7 +124,7 @@ export class VolunteersSelectorComponent implements OnDestroy {
 	}
 
     clear() {
-        this.volunteers = [];
+        this.employees = [];
         this.find = null;
         this.clearSearchText();
         this.showSelected = false;
@@ -136,7 +140,7 @@ export class VolunteersSelectorComponent implements OnDestroy {
     }
 
     changeChecked(item: CheckedListItem) {
-        var volunteer = this.volunteers.find(x => x.volunteer.id == item.volunteer.id);
+        var volunteer = this.employees.find(x => x.employee.id == item.employee.id);
         volunteer.checked = !item.checked;
     }
 
@@ -151,6 +155,6 @@ export class VolunteersSelectorComponent implements OnDestroy {
 }
 
 class CheckedListItem {
-    volunteer: Volunteer;
+    employee: Employee;
     checked: boolean;
 }

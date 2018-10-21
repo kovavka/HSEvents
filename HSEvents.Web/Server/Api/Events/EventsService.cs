@@ -115,7 +115,7 @@ namespace HSEvents.Server.Api.Events
 
         private List<EventItem> GetEvents(DateTime fromDate, DateTime toDate)
         {
-            var events = eventsStorage.GetForMonth(fromDate, toDate);
+            var events = eventsStorage.GetForMonth(fromDate, toDate).ToList();
 
             var dates = events
                 .Select(x => new

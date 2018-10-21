@@ -115,6 +115,7 @@ namespace Infrastructure.Mappings.Events
         {
             Map(x => x.Price);
             Map(x => x.Description);
+            References(x => x.Event).ForeignKey("FK_Purchase_Event");
         }
     }
     class AttendanceInfoMap : EntityMap<AttendanceInfo>

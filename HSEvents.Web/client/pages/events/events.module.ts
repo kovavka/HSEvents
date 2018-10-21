@@ -11,7 +11,8 @@ import { ControlsModule } from '../../controls/controls.module';
 import { EventCardComponent } from './calendar/event-card/event-card.component';
 import { ExecutionEditorComponent } from './event-modals/execution-editor.component';
 import { DepartmentsSelectorComponent } from './event-modals/departments-selector.component';
-import { VolunteerSelectorComponent } from './event-modals/volunteers-selector.component';
+import { VolunteersSelectorComponent } from './event-modals/volunteers-selector.component';
+import { EmployeesSelectorComponent } from './event-modals/employees-selector.component';
 
 @NgModule({
 	imports: [
@@ -29,7 +30,8 @@ import { VolunteerSelectorComponent } from './event-modals/volunteers-selector.c
 		EventEditorComponent,
         ExecutionEditorComponent,
         DepartmentsSelectorComponent,
-	    VolunteerSelectorComponent
+        VolunteersSelectorComponent,
+	    EmployeesSelectorComponent
 	],
 	exports: [
 		EventsComponent,
@@ -39,7 +41,8 @@ import { VolunteerSelectorComponent } from './event-modals/volunteers-selector.c
 		EventEditorComponent,
         ExecutionEditorComponent,
         DepartmentsSelectorComponent,
-	    VolunteerSelectorComponent
+        VolunteersSelectorComponent,
+	    EmployeesSelectorComponent
 	]
 })
 export class EventsModule { }

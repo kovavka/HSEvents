@@ -1,13 +1,14 @@
 ﻿import { DatePipe } from '@angular/common';
 import { Component, Input, Output, EventEmitter, OnInit, ViewChild} from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { EventModel, EventExecution, EventDate, Subject, Department, Volunteer } from './models/event.models';
+import { EventModel, EventExecution, EventDate, Subject, Department, Volunteer, Employee } from './models/event.models';
 import { GetTypeList, ListItem } from '../../utilities/enum-helper';
 import { EventsService } from './events.service';
 import { ListRowItem, ListInfo } from '../../controls/list-row/list-row.component';
 import { ExecutionEditorComponent, EventExecutionArgs } from './event-modals/execution-editor.component';
 import { DepartmentsSelectorComponent } from './event-modals/departments-selector.component';
-import { VolunteerSelectorComponent } from './event-modals/volunteers-selector.component';
+import { VolunteersSelectorComponent } from './event-modals/volunteers-selector.component';
+import { EmployeesSelectorComponent } from './event-modals/employees-selector.component';
 
 @Component({
 	moduleId: module.id.toString(),
@@ -29,7 +30,13 @@ export class EventEditorComponent implements OnInit{
     private departmentsSelector: DepartmentsSelectorComponent;
 
     @ViewChild('volunteersSelector')
-    private volunteersSelector: VolunteerSelectorComponent;
+    private volunteersSelector: VolunteersSelectorComponent;
+
+    @ViewChild('lecturersSelector')
+    private lecturersSelector: EmployeesSelectorComponent;
+
+    @ViewChild('organizersSelector')
+    private organizersSelector: EmployeesSelectorComponent;
 
 	constructor(private eventsService: EventsService) {
 	}
@@ -181,8 +188,24 @@ export class EventEditorComponent implements OnInit{
         this.volunteersSelector.open(this.model.volunteers);
     }
 
+    onEditLecturers() {
+        this.lecturersSelector.open(this.model.lecturers);
+    }
+
+    onEditOrganizers() {
+        this.organizersSelector.open(this.model.organizers);
+    }
+
     onVolunteersApply(selected: Volunteer[]) {
         this.model.volunteers = selected;
+    }
+
+    onLecturersApply(selected: Employee[]) {
+        this.model.lecturers = selected;
+    }
+
+    onOrganizersApply(selected: Employee[]) {
+        this.model.organizers = selected;
     }
 
 }

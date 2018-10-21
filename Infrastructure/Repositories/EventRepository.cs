@@ -40,12 +40,20 @@ namespace Infrastructure.Repositories
         {
             var entity = ConvertToEntity(dto);
             Update(entity);
-            DropExecutions(dto.Id);
+            DropExecutions();
+            DropPurchases();
         }
 
-        private void DropExecutions(long eventId)
+        private void DropExecutions()
         {
             using (var repo = new NHGetAllRepository<EventExecution>())
+            {
+                repo.Delete(x => x.Event == null);
+            }
+        }
+        private void DropPurchases()
+        {
+            using (var repo = new NHGetAllRepository<Purchase>())
             {
                 repo.Delete(x => x.Event == null);
             }
@@ -89,7 +97,10 @@ namespace Infrastructure.Repositories
                 Price = course?.Price,
                 Program = work?.Program,
                 Departments = entity.Departments.ToList(),
-                Volunteers = entity.Volunteers.ToList()
+                Volunteers = entity.Volunteers.ToList(),
+                Lecturers = entity.Lecturers.ToList(),
+                Organizers = entity.Organizers.ToList(),
+                Purchases = entity.Purchases.ToList()
             };
         }
 
@@ -125,8 +136,11 @@ namespace Infrastructure.Repositories
             entity.Type = dto.Type;
             entity.Info = dto.Info;
             entity.Comment = dto.Comment;
-            entity.Departments = dto.Departments.ToSet();
-            entity.Volunteers = dto.Volunteers;
+            entity.Departments = GetAnotherEntity<Department>(dto.Departments.Select(x=>x.Id)).ToSet();
+            entity.Volunteers = GetAnotherEntity<Volunteer>(dto.Volunteers.Select(x=>x.Id)).ToList();
+            entity.Lecturers = GetAnotherEntity<Employee>(dto.Lecturers.Select(x=>x.Id)).ToList();
+            entity.Organizers = GetAnotherEntity<Employee>(dto.Organizers.Select(x=>x.Id)).ToList();
+            entity.Purchases = dto.Purchases;
 
             entity.EventExecutions = dto.Executions.Select(x => new EventExecution()
                 {
@@ -148,6 +162,14 @@ namespace Infrastructure.Repositories
             using (var repo = new NHGetAllRepository<T>())
             {
                 return repo.Get(id);
+            }
+        }
+
+        private IEnumerable<T> GetAnotherEntity<T>(IEnumerable<long> ids) where T : Entity
+        {
+            using (var repo = new NHGetAllRepository<T>())
+            {
+                return repo.GetAll(ids);
             }
         }
 
