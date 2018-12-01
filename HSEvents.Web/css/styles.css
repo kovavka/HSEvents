@@ -147,3 +147,26 @@
     margin-top: 8px;
     color: #929292;
 }
+
+
+
+.list-row {
+    margin: 5px 10px;
+}
+
+.list-row > tr {
+    min-width: 300px;
+}
+
+.list-row > tr > td {
+    padding: 6px;
+}
+
+.row-caption {
+    min-width: 545px;
+}
+
+.info-row > td {
+    padding: 0px 6px;
+    min-width: 150px;
+}

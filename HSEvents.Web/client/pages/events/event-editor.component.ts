@@ -22,7 +22,9 @@ export class EventEditorComponent implements OnInit{
 
 	model: EventModel = new EventModel();
 	types: ListItem[];
-	subjects: Subject[];
+    subjects: Subject[];
+    dropDownExecution: EventExecution;
+    dropDownPurchase: Purchase;
 	
 	@ViewChild('executionEditor')
     private executionEditor: ExecutionEditorComponent;
@@ -84,36 +86,16 @@ export class EventEditorComponent implements OnInit{
 		return this.model.name;
 	}
 
-	get executions(): ListRowItem[] {
+    get executions(): EventExecution[] {
 		if (!this.model.executions)
 			return null;
-		
-		return this.model.executions.map(x => <ListRowItem>{
-			value: x,
-			caption: x.address.shortName,
-			info: this.generateExecutionInfo(x)
-		});
+
+	    return this.model.executions;
     }
 
-	generateExecutionInfo(execution: EventExecution): ListInfo[] {
-		var address = [<ListInfo>{
-			columns: [
-				'Адрес',
-				execution.address.caption
-			]
-		}];
-
-		var datesCaption = <ListInfo>{ columns: ['Даты проведения'] };
-
-		var dates = execution.dates.map(x => <ListInfo>{
-			columns: [
-				'',
-				this.generateDate(x)
-			]
-		});
-
-		return address.concat(datesCaption).concat(dates);
-	}
+    executionClick(execution: EventExecution) {
+        this.dropDownExecution = execution;
+    }
 
 	generateDate(eventDate: EventDate): string {
 		const datePipe: DatePipe = new DatePipe('ru-Ru');
@@ -135,17 +117,17 @@ export class EventEditorComponent implements OnInit{
 
     }
 
-    get purchases(): ListRowItem[] {
+    get purchases(): Purchase[] {
         if (!this.model.purchases)
             return null;
 
-        return this.model.purchases.map(x => <ListRowItem>{
-            value: x,
-            caption: `${x.name}, ${x.price} р.`,
-            info: this.generatePurchasesInfo(x)
-        });
+        return this.model.purchases;
     }
 
+    purchaseClick(purchase: Purchase) {
+        this.dropDownPurchase = purchase;
+    }
+    
     generatePurchasesInfo(purchase: Purchase): ListInfo[] {
         return [
             <ListInfo>{
@@ -189,7 +171,7 @@ export class EventEditorComponent implements OnInit{
     onDeleteExecution(execution: EventExecution) {
         this.model.executions.splice(this.model.executions.indexOf(execution), 1);
     }
-
+    
 	onExecutionApply(args: EventExecutionArgs) {
 		if (args.editMode) {
 			this.model.executions[args.index] = args.execution;

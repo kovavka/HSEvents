@@ -352,6 +352,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Start\" />
+    <Folder Include="client\pages\settings\" />
     <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>

@@ -37,7 +37,37 @@
                 <span class="pointer glyphicon glyphicon-plus" (click)="onAddExecution()"></span>
             </div>
         </div>
-        <list-row [items]="executions" (editClick)="onEditExecution($event)" (deleteClick)="onDeleteExecution($event)"></list-row>
+        <table *ngIf="executions && executions.length > 0">
+            <tbody>
+            <ng-container *ngFor="let item of executions">
+                <tr class="pointer item-row with-hover" (click)="executionClick(item)">
+                    <td class="row-caption" colspan="2">{{item.address.caption}}</td>
+                    <td>
+                        <span class="pointer glyphicon glyphicon-pencil" (click)="onEditExecution(item)"></span>
+                    </td>
+                    <td>
+                        <span class="pointer glyphicon glyphicon-trash" (click)="onDeleteExecution(item)"></span>
+                    </td>
+
+                </tr>
+                <ng-container *ngIf="dropDownExecution && item===dropDownExecution">
+                    <tr class="info-row">
+                        <td>Адрес</td>
+                        <td>{{item.address.caption}}</td>
+                    </tr>
+                    <tr class="info-row">
+                        <td>Даты проведения</td>
+                    </tr>
+                    <ng-container *ngFor="let date of item.dates">
+                        <tr class="info-row">
+                            <td></td>
+                            <td>{{generateDate(date)}}</td>
+                        </tr>
+                    </ng-container>
+                </ng-container>
+            </ng-container>
+            </tbody>
+        </table>
     </div>
     <div>
         <div class="property">
@@ -46,7 +76,28 @@
                 <span class="pointer glyphicon glyphicon-plus" (click)="onAddPurchase()"></span>
             </div>
         </div>
-        <list-row [items]="purchases" (editClick)="onEditPurchase($event)" (deleteClick)="onDeletePurchase($event)"></list-row>
+        
+        <table *ngIf="purchases && purchases.length > 0">
+            <tbody>
+            <ng-container *ngFor="let item of purchases">
+                <tr class="pointer item-row with-hover" (click)="purchaseClick(item)">
+                    <td class="row-caption">{{item.name}}, {{item.price}} р.</td>
+                    <td>
+                        <span class="pointer glyphicon glyphicon-pencil" (click)="onEditPurchase(item)"></span>
+                    </td>
+                    <td>
+                        <span class="pointer glyphicon glyphicon-trash" (click)="onDeletePurchase(item)"></span>
+                    </td>
+
+                </tr>
+                <ng-container *ngIf="dropDownPurchase && item===dropDownPurchase">
+                    <tr class="info-row">
+                        <td>{{item.description}}</td>
+                    </tr>
+                </ng-container>
+            </ng-container>
+            </tbody>
+        </table>
     </div>
     <div>
         <div class="property">
