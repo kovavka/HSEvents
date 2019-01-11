@@ -2,54 +2,61 @@
     <div class="management-container__list">
         <div class="management-container__list-group">
             <div class="management-container__list-item">
-                <a [routerLink]="['/subjects']">Предметы</a>
+                <a [routerLink]="['subjects']">Предметы</a>
             </div>
             <div class="management-container__list-item">
-                <a [routerLink]="['/departments']">Подразделения</a>
+                <a [routerLink]="['departments']">Подразделения</a>
             </div>
             <div class="management-container__list-item">
-                <a [routerLink]="['/volunteers']">Волонтеры</a>
+                <a [routerLink]="['volunteers']">Волонтеры</a>
             </div>
             <div class="management-container__list-item">
-                <a [routerLink]="['/groups']">Группы</a>
-            </div>
-        </div>
-        <div class="management-container__list-group">
-            <div class="management-container__list-item">
-                <a [routerLink]="['/academicPrograms']">Академические программы</a>
-            </div>
-            <div class="management-container__list-item">
-                <a [routerLink]="['/schools']">Школы</a>
-            </div>
-            <div class="management-container__list-item">
-                <a [routerLink]="['/schoolTypes']">Типы школ</a>
-            </div>
-            <div class="management-container__list-item">
-                <a [routerLink]="['/contactPersons']">Контактные лица</a>
+                <a [routerLink]="['groups']">Группы</a>
             </div>
         </div>
         <div class="management-container__list-group">
             <div class="management-container__list-item">
-                <a [routerLink]="['/address']">Адреса</a>
+                <a [routerLink]="['academicPrograms']">Академические программы</a>
             </div>
             <div class="management-container__list-item">
-                <a [routerLink]="['/streets']">Улицы</a>
+                <a [routerLink]="['schools']">Школы</a>
             </div>
             <div class="management-container__list-item">
-                <a [routerLink]="['/cities']">Населенные пункты</a>
+                <a [routerLink]="['schoolTypes']">Типы школ</a>
             </div>
             <div class="management-container__list-item">
-                <a [routerLink]="['/cityTypes']">Типы населенных пунктов</a>
+                <a [routerLink]="['contactPersons']">Контактные лица</a>
+            </div>
+        </div>
+        <div class="management-container__list-group">
+            <div class="management-container__list-item">
+                <a [routerLink]="['address']">Адреса</a>
             </div>
             <div class="management-container__list-item">
-                <a [routerLink]="['/regions']">Регионы</a>
+                <a [routerLink]="['streets']">Улицы</a>
             </div>
             <div class="management-container__list-item">
-                <a [routerLink]="['/countries']">Страны</a>
+                <a [routerLink]="['cities']">Населенные пункты</a>
+            </div>
+            <div class="management-container__list-item">
+                <a [routerLink]="['cityTypes']">Типы населенных пунктов</a>
+            </div>
+            <div class="management-container__list-item">
+                <a [routerLink]="['regions']">Регионы</a>
+            </div>
+            <div class="management-container__list-item">
+                <a [routerLink]="['countries']">Страны</a>
             </div>
         </div>
     </div>
     <div class="management-container__content">
-        <div>sdsd</div>
+        <div class="page-header">
+            <div class="page-header__title-container">
+                <div class="page-header__title-flex-container">
+                    <div class="page-header__title">ллл</div>
+                    <router-outlet></router-outlet>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

@@ -1,3 +1,60 @@
+.page-header {
+    padding: 0;
+    margin: 0;
+    border-bottom: none;
+}
+
+.page-header__title-container:after {
+    content: '';
+    display: block;
+    height: 1px;
+    background: #dce2e6;
+}
+
+.page-header__title-container {
+    position: relative;
+    min-height: 60px;
+    box-sizing: border-box;
+}
+
+.page-header__title-flex-container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    min-height: 60px;
+}
+
+.page-header__title {
+    display: inline-block;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-flex: 0;
+    -ms-flex: 0 1 auto;
+    flex: 0 1 auto;
+    margin: 0 30px 0 0;
+    height: 40px;
+    max-width: 100%;
+    padding: 0 10px 7px 13px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    box-sizing: border-box;
+    font: 34px/34px "OpenSans-Light",Helvetica,Arial,sans-serif;
+}
+
+
+
+
+
+
+/*todo по возможности переписать под бэм все, что лежит ниже*/ 
 .navbar-blue {
     background-color: #003380;
     border-color: #080808;
