@@ -1,0 +1,33 @@
+﻿.management-container {
+    padding: 8px 32px;
+}
+
+.management-container__list {
+    float: left;
+    width: 220px;
+    padding: 16px 8px;
+}
+
+.management-container__content {
+    padding: 16px 8px;
+    min-height: 400px;
+    margin-left: 220px;
+}
+
+.management-container__list-group {
+    padding-bottom: 8px;
+}
+
+.management-container__list-group:after {
+    content: '';
+    display: block;
+    height: 1px;
+    background: #dce2e6;
+}
+.management-container__list-group:last-child:after {
+    content: none;
+}
+
+.management-container__list-item {
+    padding: 4px;
+}

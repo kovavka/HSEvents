@@ -2,8 +2,8 @@
 import { RouterModule, Routes } from '@angular/router';
 import { TopMenuComponent } from '../menus/top-menu.component';
 import { HomeComponent } from '../pages/home/home.component';
-import { EventsComponent } from "../pages/events/events.component";
-
+import { EventsComponent } from '../pages/events/events.component';
+import { ManagementComponent } from '../pages/management/management.component';
 
 const routes: Routes = [
     {
@@ -11,7 +11,8 @@ const routes: Routes = [
 		component: TopMenuComponent,
         children: [
             { path: '', component: HomeComponent },
-            { path: 'events', component: EventsComponent }
+            { path: 'events', component: EventsComponent },
+            { path: 'management', component: ManagementComponent }
         ]
     }
 ];

@@ -243,6 +243,7 @@
     <Content Include="client\pages\events\events.component.html" />
     <Content Include="client\pages\home\home.component.html" />
     <Content Include="client\menus\top-menu.component.html" />
+    <Content Include="client\pages\management\management.component.css" />
     <Content Include="css\elements.css" />
     <Content Include="dist\**" />
     <Content Include="client\app\app.component.css" />
@@ -329,6 +330,10 @@
     <TypeScriptCompile Include="client\pages\events\event-modals\departments-selector.component.ts" />
     <TypeScriptCompile Include="client\pages\events\event-modals\execution-editor.component.ts" />
     <TypeScriptCompile Include="client\pages\events\models\event.models.ts" />
+    <Content Include="client\pages\management\management.component.html" />
+    <TypeScriptCompile Include="client\pages\management\management.component.ts" />
+    <TypeScriptCompile Include="client\pages\management\management.module.ts" />
+    <TypeScriptCompile Include="client\pages\management\management.service.ts" />
     <TypeScriptCompile Include="client\utilities\object-helper.ts" />
     <TypeScriptCompile Include="client\utilities\enum-helper.ts" />
     <TypeScriptCompile Include="client\services\hse-httpclient.ts" />
@@ -352,7 +357,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Start\" />
-    <Folder Include="client\pages\settings\" />
     <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>

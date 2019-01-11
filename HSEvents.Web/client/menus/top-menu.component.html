@@ -11,8 +11,8 @@
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav top-menu-items">
                 <li><a [routerLink]="['/events']" title="">Мероприятия</a></li>
-                <li><a href="/settings" title="">Управление</a></li>
-                <li><a href="/analytics" title="">Аналитика</a></li>
+                <li><a [routerLink]="['/management']" title="">Управление</a></li>
+                <li><a [routerLink]="['/analytics']" title="">Аналитика</a></li>
             </ul>
             <ul class="nav navbar-nav pull-right top-menu-items">
                 <ng-container *ngIf="isAuthenticated">
@@ -20,8 +20,8 @@
                     <li><a class="pointer" (click)="exit()" title="">Выход</a></li>
                 </ng-container>
                 <ng-container *ngIf="!isAuthenticated">
-                    <li><a href="/authentication" title="">Вход</a></li>
-                    <li><a href="/registration" title="">Регистрация</a></li>
+                    <li><a [routerLink]="['/authentication']" title="">Вход</a></li>
+                    <li><a [routerLink]="['/registration']" title="">Регистрация</a></li>
                 </ng-container>
                 
             </ul>

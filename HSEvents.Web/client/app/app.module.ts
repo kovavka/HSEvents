@@ -19,6 +19,7 @@ import { TopMenuComponent } from "../menus/top-menu.component";
 import { EventsModule } from "../pages/events/events.module";
 import { HseHttpClient } from '../services/hse-httpclient';
 import { ControlsModule } from '../controls/controls.module';
+import { ManagementModule } from '../pages/management/management.module';
 registerLocaleData(localeRu);
 
 @NgModule({
@@ -33,7 +34,8 @@ registerLocaleData(localeRu);
 		RouterModule,
 	    BsModalModule,
 		HomeModule,
-		EventsModule,
+        EventsModule,
+        ManagementModule,
 	    ControlsModule
     ],
     declarations: [
