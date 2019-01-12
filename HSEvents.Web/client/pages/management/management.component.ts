@@ -1,4 +1,4 @@
-﻿import { Component, ViewChild } from '@angular/core';
+﻿import { Component } from '@angular/core';
 import { ManagementService } from './management.service';
 
 @Component({
@@ -7,7 +7,7 @@ import { ManagementService } from './management.service';
     styleUrls: ['management.component.css'],
     providers: [ManagementService]
 })
-export class ManagementComponent {
+export class ManagementComponent{
 
     constructor(private managementService: ManagementService) {
 	}

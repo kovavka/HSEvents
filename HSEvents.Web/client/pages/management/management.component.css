@@ -31,3 +31,22 @@
 .management-container__list-item {
     padding: 4px;
 }
+
+.management-container__list-item:hover {
+    background-color: #f3f3f3;
+}
+
+.management-container__list-item-link {
+    display: block;
+}
+
+.management-container__list-item-link_selected {
+    color: #3479b3;
+    font-weight: bolder;
+}
+
+.management-container__list-item-link:focus,
+.management-container__list-item-link:active,
+.management-container__list-item-link:hover {
+    text-decoration: none
+}

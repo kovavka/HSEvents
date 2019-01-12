@@ -2,61 +2,82 @@
     <div class="management-container__list">
         <div class="management-container__list-group">
             <div class="management-container__list-item">
-                <a [routerLink]="['subjects']">Предметы</a>
+                <a class="management-container__list-item-link"
+                   [routerLink]="['subjects']"
+                   routerLinkActive="management-container__list-item-link_selected">Предметы</a>
             </div>
             <div class="management-container__list-item">
-                <a [routerLink]="['departments']">Подразделения</a>
+                <a class="management-container__list-item-link"
+                   [routerLink]="['departments']"
+                   routerLinkActive="management-container__list-item-link_selected">Подразделения</a>
             </div>
             <div class="management-container__list-item">
-                <a [routerLink]="['volunteers']">Волонтеры</a>
+                <a class="management-container__list-item-link"
+                   [routerLink]="['volunteers']"
+                   routerLinkActive="management-container__list-item-link_selected">Волонтеры</a>
             </div>
             <div class="management-container__list-item">
-                <a [routerLink]="['groups']">Группы</a>
-            </div>
-        </div>
-        <div class="management-container__list-group">
-            <div class="management-container__list-item">
-                <a [routerLink]="['academicPrograms']">Академические программы</a>
-            </div>
-            <div class="management-container__list-item">
-                <a [routerLink]="['schools']">Школы</a>
-            </div>
-            <div class="management-container__list-item">
-                <a [routerLink]="['schoolTypes']">Типы школ</a>
-            </div>
-            <div class="management-container__list-item">
-                <a [routerLink]="['contactPersons']">Контактные лица</a>
+                <a class="management-container__list-item-link"
+                   [routerLink]="['groups']"
+                   routerLinkActive="management-container__list-item-link_selected">Группы</a>
             </div>
         </div>
         <div class="management-container__list-group">
             <div class="management-container__list-item">
-                <a [routerLink]="['address']">Адреса</a>
+                <a class="management-container__list-item-link"
+                   [routerLink]="['academicPrograms']"
+                   routerLinkActive="management-container__list-item-link_selected">Академические программы</a>
             </div>
             <div class="management-container__list-item">
-                <a [routerLink]="['streets']">Улицы</a>
+                <a class="management-container__list-item-link"
+                   [routerLink]="['schools']"
+                   routerLinkActive="management-container__list-item-link_selected">Образовательные учреждения</a>
             </div>
             <div class="management-container__list-item">
-                <a [routerLink]="['cities']">Населенные пункты</a>
+                <a class="management-container__list-item-link"
+                   [routerLink]="['schoolTypes']"
+                   routerLinkActive="management-container__list-item-link_selected">Типы образовательных учреждений</a>
             </div>
             <div class="management-container__list-item">
-                <a [routerLink]="['cityTypes']">Типы населенных пунктов</a>
+                <a class="management-container__list-item-link"
+                   [routerLink]="['contactPersons']"
+                   routerLinkActive="management-container__list-item-link_selected">Контактные лица</a>
+            </div>
+        </div>
+        <div class="management-container__list-group">
+            <div class="management-container__list-item">
+                <a class="management-container__list-item-link"
+                   [routerLink]="['addresses']"
+                   routerLinkActive="management-container__list-item-link_selected">Адреса</a>
             </div>
             <div class="management-container__list-item">
-                <a [routerLink]="['regions']">Регионы</a>
+                <a class="management-container__list-item-link"
+                   [routerLink]="['streets']"
+                   routerLinkActive="management-container__list-item-link_selected">Улицы</a>
             </div>
             <div class="management-container__list-item">
-                <a [routerLink]="['countries']">Страны</a>
+                <a class="management-container__list-item-link"
+                   [routerLink]="['cities']"
+                   routerLinkActive="management-container__list-item-link_selected">Населенные пункты</a>
+            </div>
+            <div class="management-container__list-item">
+                <a class="management-container__list-item-link"
+                   [routerLink]="['cityTypes']"
+                   routerLinkActive="management-container__list-item-link_selected">Типы населенных пунктов</a>
+            </div>
+            <div class="management-container__list-item">
+                <a class="management-container__list-item-link"
+                   [routerLink]="['regions']"
+                   routerLinkActive="management-container__list-item-link_selected">Регионы</a>
+            </div>
+            <div class="management-container__list-item">
+                <a class="management-container__list-item-link"
+                   [routerLink]="['countries']"
+                   routerLinkActive="management-container__list-item-link_selected">Страны</a>
             </div>
         </div>
     </div>
     <div class="management-container__content">
-        <div class="page-header">
-            <div class="page-header__title-container">
-                <div class="page-header__title-flex-container">
-                    <div class="page-header__title">ллл</div>
-                    <router-outlet></router-outlet>
-                </div>
-            </div>
-        </div>
+        <router-outlet></router-outlet>
     </div>
 </div>
