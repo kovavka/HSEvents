@@ -39,6 +39,21 @@ namespace Infrastructure.Repositories
             return result;
         }
 
+        protected Y GetAnotherEntity<Y>(long id) where Y : Entity
+        {
+            using (var repo = new NHGetAllRepository<Y>())
+            {
+                return repo.Get(id);
+            }
+        }
+
+        protected IEnumerable<Y> GetAnotherEntity<Y>(IEnumerable<long> ids) where Y : Entity
+        {
+            using (var repo = new NHGetAllRepository<Y>())
+            {
+                return repo.GetAll(ids);
+            }
+        }
     }
 
 }

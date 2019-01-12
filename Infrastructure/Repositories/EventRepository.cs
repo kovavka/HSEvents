@@ -1,16 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using Domain;
 using Domain.Events;
-using Domain.IEntity;
-using FluentNHibernate.Utils;
 using Helpers;
 using Infrastructure.Repositories.Dto;
-using NHibernate;
 using NHibernate.Linq;
 
 namespace Infrastructure.Repositories
@@ -156,23 +151,7 @@ namespace Infrastructure.Repositories
 
             return entity;
         }
-
-        private T GetAnotherEntity<T>(long id) where T : Entity
-        {
-            using (var repo = new NHGetAllRepository<T>())
-            {
-                return repo.Get(id);
-            }
-        }
-
-        private IEnumerable<T> GetAnotherEntity<T>(IEnumerable<long> ids) where T : Entity
-        {
-            using (var repo = new NHGetAllRepository<T>())
-            {
-                return repo.GetAll(ids);
-            }
-        }
-
+        
         private string GetTimeString(TimeSpan? time)
         {
             if (!time.HasValue)

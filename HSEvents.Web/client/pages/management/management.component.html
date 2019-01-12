@@ -13,6 +13,11 @@
             </div>
             <div class="management-container__list-item">
                 <a class="management-container__list-item-link"
+                   [routerLink]="['academicPrograms']"
+                   routerLinkActive="management-container__list-item-link_selected">Академические программы</a>
+            </div>
+            <div class="management-container__list-item">
+                <a class="management-container__list-item-link"
                    [routerLink]="['volunteers']"
                    routerLinkActive="management-container__list-item-link_selected">Волонтеры</a>
             </div>
@@ -25,11 +30,6 @@
         <div class="management-container__list-group">
             <div class="management-container__list-item">
                 <a class="management-container__list-item-link"
-                   [routerLink]="['academicPrograms']"
-                   routerLinkActive="management-container__list-item-link_selected">Академические программы</a>
-            </div>
-            <div class="management-container__list-item">
-                <a class="management-container__list-item-link"
                    [routerLink]="['schools']"
                    routerLinkActive="management-container__list-item-link_selected">Образовательные учреждения</a>
             </div>
@@ -37,11 +37,6 @@
                 <a class="management-container__list-item-link"
                    [routerLink]="['schoolTypes']"
                    routerLinkActive="management-container__list-item-link_selected">Типы образовательных учреждений</a>
-            </div>
-            <div class="management-container__list-item">
-                <a class="management-container__list-item-link"
-                   [routerLink]="['contactPersons']"
-                   routerLinkActive="management-container__list-item-link_selected">Контактные лица</a>
             </div>
         </div>
         <div class="management-container__list-group">

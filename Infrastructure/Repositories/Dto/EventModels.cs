@@ -41,13 +41,6 @@ namespace Infrastructure.Repositories.Dto
 
     }
 
-    public class AddressDto
-    {
-        public long Id { get; set; }
-        public string Caption { get; set; }
-        public string ShortName { get; set; }
-
-    }
     public class EventDateDto
     {
         public DateTime Date { get; set; }

@@ -1,17 +1,27 @@
 ﻿using System;
 using System.Web;
 using System.Web.Http;
+using HSEvents.Server.Api.AcademicPrograms;
 using HSEvents.Server.Api.Addresses;
+using HSEvents.Server.Api.Cities;
+using HSEvents.Server.Api.CityTypes;
+using HSEvents.Server.Api.Countries;
 using HSEvents.Server.Api.Departments;
 using HSEvents.Server.Api.Employees;
 using HSEvents.Server.Api.Empty;
 using HSEvents.Server.Api.Events;
+using HSEvents.Server.Api.Groups;
+using HSEvents.Server.Api.Regions;
+using HSEvents.Server.Api.Schools;
+using HSEvents.Server.Api.SchoolTypes;
+using HSEvents.Server.Api.Streets;
 using HSEvents.Server.Api.Subjects;
 using HSEvents.Server.Api.Volunteers;
 using Infrastructure;
 using Microsoft.Practices.Unity;
 using Newtonsoft.Json.Serialization;
 using Unity.WebApi;
+using IStorage = HSEvents.Server.Api.Empty.IStorage;
 
 namespace HSEvents
 {
@@ -65,6 +75,24 @@ namespace HSEvents
             container.RegisterType<IEmployeeService, EmployeeService>();
             container.RegisterType<IVolunteerStorage, VolunteerStorage>();
             container.RegisterType<IVolunteerService, VolunteerService>();
+            container.RegisterType<IGroupService, GroupService>();
+            container.RegisterType<IGroupStorage, GroupStorage>();
+            container.RegisterType<IAcademicProgramStorage, AcademicProgramStorage>();
+            container.RegisterType<IAcademicProgramService, AcademicProgramService>();
+            container.RegisterType<ISchoolStorage, SchoolStorage>();
+            container.RegisterType<ISchoolService, SchoolService>();
+            container.RegisterType<ISchoolTypeStorage, SchoolTypeStorage>();
+            container.RegisterType<ISchoolTypeService, SchoolTypeService>();
+            container.RegisterType<IStreetStorage, StreetStorage>();
+            container.RegisterType<IStreetService, StreetService>();
+            container.RegisterType<ICityStorage, CityStorage>();
+            container.RegisterType<ICityService, CityService>();
+            container.RegisterType<ICityTypeStorage, CityTypeStorage>();
+            container.RegisterType<ICityTypeService, CityTypeService>();
+            container.RegisterType<IRegionStorage, RegionStorage>();
+            container.RegisterType<IRegionService, RegionService>();
+            container.RegisterType<ICountryStorage, CountryStorage>();
+            container.RegisterType<ICountryService, CountryService>();
 
             container.RegisterType<IStorage, Storage>();
             container.RegisterType<IService, Service>();

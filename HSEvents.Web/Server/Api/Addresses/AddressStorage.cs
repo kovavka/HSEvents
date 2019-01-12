@@ -23,7 +23,9 @@ namespace HSEvents.Server.Api.Addresses
                     {
                         Id = x.Id,
                         ShortName = x.ToString(),
-                        Caption = x.FullAddress
+                        Caption = x.FullAddress,
+                        House = x.House,
+                        StreetId = x.Street.Id,
                     });
             }
         }

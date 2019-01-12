@@ -3,7 +3,7 @@ using Domain.IEntity;
 
 namespace Domain
 {
-    public class School:NamedEntity
+    public class School: NamedEntity
     {
         public virtual SchoolType Type { get; set; }
         public virtual int? Number { get; set; }

@@ -12,7 +12,6 @@ import { GroupsComponent } from './groups/groups.component';
 import { AcademicProgramsComponent } from './academic-programs/academic-programs.component';
 import { SchoolsComponent } from './schools/schools.component';
 import { SchoolTypesComponent } from './school-types/school-types.component';
-import { ContactPersonsComponent } from './contact-persons/contact-persons.component';
 import { AddressesComponent } from './addresses/addresses.component';
 import { StreetsComponent } from './streets/streets.component';
 import { CitiesComponent } from './cities/cities.component';
@@ -37,7 +36,6 @@ import { CountriesComponent } from './countries/countries.component';
         AcademicProgramsComponent,
         SchoolsComponent,
         SchoolTypesComponent,
-        ContactPersonsComponent,
         AddressesComponent,
         StreetsComponent,
         CitiesComponent,

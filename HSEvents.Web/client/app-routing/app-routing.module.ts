@@ -11,7 +11,6 @@ import { GroupsComponent } from '../pages/management/groups/groups.component';
 import { AcademicProgramsComponent } from '../pages/management/academic-programs/academic-programs.component';
 import { SchoolsComponent } from '../pages/management/schools/schools.component';
 import { SchoolTypesComponent } from '../pages/management/school-types/school-types.component';
-import { ContactPersonsComponent } from '../pages/management/contact-persons/contact-persons.component';
 import { AddressesComponent } from '../pages/management/addresses/addresses.component';
 import { StreetsComponent } from '../pages/management/streets/streets.component';
 import { CitiesComponent } from '../pages/management/cities/cities.component';
@@ -38,7 +37,6 @@ const routes: Routes = [
                     { path: 'academicPrograms', component: AcademicProgramsComponent },
                     { path: 'schools', component: SchoolsComponent },
                     { path: 'schoolTypes', component: SchoolTypesComponent },
-                    { path: 'contactPersons', component: ContactPersonsComponent },
                     { path: 'addresses', component: AddressesComponent },
                     { path: 'streets', component: StreetsComponent },
                     { path: 'cities', component: CitiesComponent },
