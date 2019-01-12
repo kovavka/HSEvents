@@ -2,8 +2,8 @@
 import { Subject, Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { BsModalComponent } from 'ng2-bs3-modal';
-import { Department } from '../models/event.models';
 import { EventsService } from '../events.service';
+import { Department } from '../../../models/dictionaries.models';
 
 @Component({
 	moduleId: module.id.toString(),

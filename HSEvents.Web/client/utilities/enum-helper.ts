@@ -1,4 +1,4 @@
-﻿import { EventType } from '../pages/events/models/event.models';
+﻿import { EventType } from '../models/event.models';
 
 export class GetTypeDescription {
 	static event(type: EventType): string {

@@ -1,5 +1,5 @@
 ﻿import { Component, ViewChild } from '@angular/core';
-import { EventModel } from './models/event.models';
+import { EventModel } from '../../models/event.models';
 import { EventsService } from './events.service';
 import { CalendarComponent } from './calendar/calendar.component';
 

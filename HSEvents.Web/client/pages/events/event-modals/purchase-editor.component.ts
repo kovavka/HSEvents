@@ -1,7 +1,6 @@
 ﻿import { Component, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 import { BsModalComponent } from 'ng2-bs3-modal';
-import { Purchase } from '../models/event.models';
-import { EventsService } from '../events.service';
+import { Purchase } from '../../../models/event.models';
 
 @Component({
 	moduleId: module.id.toString(),

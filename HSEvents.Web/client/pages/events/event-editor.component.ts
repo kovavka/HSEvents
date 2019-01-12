@@ -1,10 +1,12 @@
 ﻿import { DatePipe } from '@angular/common';
 import { Component, Input, Output, EventEmitter, OnInit, ViewChild} from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { EventModel, EventExecution, EventDate, Subject, Department, Volunteer, Employee, Purchase } from './models/event.models';
+import { EventModel, EventExecution, EventDate, Purchase } from '../../models/event.models';
+import { Subject, Department, Volunteer } from '../../models/dictionaries.models';
+import { Employee } from '../../models/user.models';
 import { GetTypeList, ListItem } from '../../utilities/enum-helper';
 import { EventsService } from './events.service';
-import { ListRowItem, ListInfo } from '../../controls/list-row/list-row.component';
+import { ListInfo } from '../../controls/list-row/list-row.component';
 import { ExecutionEditorComponent, EventExecutionArgs } from './event-modals/execution-editor.component';
 import { DepartmentsSelectorComponent } from './event-modals/departments-selector.component';
 import { VolunteersSelectorComponent } from './event-modals/volunteers-selector.component';

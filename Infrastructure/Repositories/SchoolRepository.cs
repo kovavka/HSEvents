@@ -36,7 +36,7 @@ namespace Infrastructure.Repositories
                 Number = entity.Number,
                 BelongToUniversityDistrict = entity.BelongToUniversityDistrict,
                 HasPriority = entity.HasPriority,
-                Address = entity.Addresses.Select(a => new AddressDto
+                Addresses = entity.Addresses.Select(a => new AddressDto
                 {
                     Id = a.Id,
                     ShortName = a.ToString(),

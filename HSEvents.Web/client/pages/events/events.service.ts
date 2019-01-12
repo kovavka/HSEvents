@@ -1,7 +1,11 @@
 ﻿import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { HseHttpClient } from '../../services/hse-httpclient';
-import { Month, EventModel, Address, Subject, Department, Volunteer, Employee } from './models/event.models';
+import { Month } from './models/event.models';
+import { EventModel } from '../../models/event.models';
+import { Subject, Department, Volunteer } from '../../models/dictionaries.models';
+import { Address } from '../../models/address.models';
+import { Employee } from '../../models/user.models';
 
 @Injectable()
 export class EventsService {

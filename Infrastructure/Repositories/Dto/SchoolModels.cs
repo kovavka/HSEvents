@@ -12,7 +12,7 @@ namespace Infrastructure.Repositories.Dto
         public  int? Number { get; set; }
         public bool BelongToUniversityDistrict { get; set; }
         public bool HasPriority { get; set; }
-        public List<AddressDto> Address { get; set; }
+        public List<AddressDto> Addresses { get; set; }
         public List<ContactPerson> Contacts { get; set; }
     }
 
