@@ -20,6 +20,12 @@
                     <input type="checkbox" />
                 </div>
                 <div class="dictionary-block__main-info-item">{{subject.name}}</div>
+                <div class="dictionary-block__main-info-item dictionary-block__main-info-item_right">
+                    <span class="pointer glyphicon glyphicon-pencil" (click)="onEditClick(subject)"></span>
+                </div>
+                <div class="dictionary-block__main-info-item">
+                    <span class="pointer glyphicon glyphicon-trash" (click)="onDeleteClick(subject)"></span>
+                </div>
             </div>
             <div class="dictionary-block__details"></div>
         </div>

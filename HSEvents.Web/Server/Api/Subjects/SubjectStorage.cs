@@ -1,18 +1,20 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Domain;
 using Domain.Events;
 using Infrastructure.Repositories;
-using Infrastructure.Repositories.Dto;
 
 namespace HSEvents.Server.Api.Subjects
 {
     public interface ISubjectStorage
     {
         IEnumerable<Subject> GetAll();
+        Subject Get(long id);
+        Subject Add(Subject subject);
+        void Update(Subject subject);
+        void Delete(long id);
     }
 
-    public class SubjectStorage : ISubjectStorage
+    public class SubjectStorage : SimpleEntityStorage<Subject>, ISubjectStorage
     {
         public IEnumerable<Subject> GetAll()
         {

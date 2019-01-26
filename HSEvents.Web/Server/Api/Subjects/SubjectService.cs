@@ -7,6 +7,10 @@ namespace HSEvents.Server.Api.Subjects
     public interface ISubjectService
     {
         IEnumerable<Subject> GetAll();
+        Subject Get(long id);
+        Subject Add(Subject entity);
+        void Update(Subject entity);
+        void Delete(long id);
     }
 
     public class SubjectService : ISubjectService
@@ -21,6 +25,26 @@ namespace HSEvents.Server.Api.Subjects
         public IEnumerable<Subject> GetAll()
         {
            return subjectStorage.GetAll();
+        }
+
+        public Subject Get(long id)
+        {
+            return subjectStorage.Get(id);
+        }
+
+        public Subject Add(Subject subject)
+        {
+            return subjectStorage.Add(subject);
+        }
+
+        public void Update(Subject subject)
+        {
+            subjectStorage.Update(subject);
+        }
+
+        public void Delete(long id)
+        {
+            subjectStorage.Delete(id);
         }
     }
 }

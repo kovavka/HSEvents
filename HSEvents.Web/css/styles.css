@@ -83,6 +83,10 @@
     margin-top: 16px;
 }
 
+.work-area-modal {
+    padding: 0px 8px;
+}
+
 .dictionary-block {
     width: 500px;
 }
@@ -97,13 +101,18 @@
     -webkit-box-align: start;
     -ms-flex-align: start;
     align-items: start;
+    border-top: 1px solid #dcdcdc;
 }
-.dictionary-block__main-info:nth-child(odd) {
+.dictionary-block:nth-child(odd) > .dictionary-block__main-info {
     background-color: #f2f2f2;
 }
 
 .dictionary-block__main-info-item {
     padding: 4px 4px;
+}
+
+.dictionary-block__main-info-item_right {
+    margin-left: auto;
 }
 
 

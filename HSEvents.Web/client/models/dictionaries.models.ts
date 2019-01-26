@@ -18,7 +18,7 @@ export class Group {
 
 export class SubjectModel {
     id: number;
-    caption: string;
+    name: string;
 }
 
 export class AcademicProgram {

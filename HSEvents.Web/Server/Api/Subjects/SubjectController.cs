@@ -18,5 +18,29 @@ namespace HSEvents.Server.Api.Subjects
         {
             return subjectService.GetAll();
         }
+
+        [HttpGet]
+        public Subject Get(long id)
+        {
+            return subjectService.Get(id);
+        }
+
+        [HttpPut]
+        public Subject Add(Subject subject)
+        {
+            return subjectService.Add(subject);
+        }
+
+        [HttpPut]
+        public void Update(Subject subject)
+        {
+            subjectService.Update(subject);
+        }
+
+        [HttpPost]
+        public void Delete([FromBody] long id)
+        {
+            subjectService.Delete(id);
+        }
     }
 }

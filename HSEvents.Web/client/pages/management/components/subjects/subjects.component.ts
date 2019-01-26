@@ -57,12 +57,42 @@ export class SubjectsComponent extends SearchComponent implements OnInit {
 
             });
     }
-
+    
     onAddClick() {
         this.modal.open(new SubjectModel());
     }
 
+    onEditClick(subject: SubjectModel) {
+        this.modal.open(subject);
+    }
+
+    onDeleteClick(subject: SubjectModel) {
+        this.loading = true;
+        this.subjectService.delete(subject.id)
+            .subscribe(x => {
+                this.getAll(this.searchArgs);
+            });
+    }
+
     onModalApply(subject: SubjectModel) {
-        console.log(subject);
+        if (subject.id)
+            this.update(subject);
+        else
+            this.add(subject);
+    }
+
+    private add(subject: SubjectModel) {
+        this.subjectService.add(subject)
+            .subscribe(x => {
+                this.getAll(this.searchArgs);
+            });
+    }
+
+    private update(subject: SubjectModel) {
+        this.subjectService.update(subject)
+            .subscribe(x => {
+                this.getAll(this.searchArgs);
+            });
+
     }
 }

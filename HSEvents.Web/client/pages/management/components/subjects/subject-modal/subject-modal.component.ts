@@ -10,7 +10,8 @@ import { SubjectModel } from '../../../../../models/dictionaries.models';
 })
 export class SubjectModalComponent implements OnInit{
 
-    subject: SubjectModel;
+    name: string;
+    id: number;
     
     @ViewChild('modal')
     private modal: BsModalComponent;
@@ -23,7 +24,7 @@ export class SubjectModalComponent implements OnInit{
     }
 
     get title(): string {
-        if (this.subject.id)
+        if (this.id)
             return 'Редактирование предмета';
 
         return 'Добавление предмета';
@@ -31,11 +32,15 @@ export class SubjectModalComponent implements OnInit{
     
     open(subject: SubjectModel) {
         this.modal.open();
-        this.subject = subject;
+        this.name = subject.name;
+        this.id = subject.id;
     }
 
     onApplyClick() {
-        this.apply.emit(this.subject);
+        this.apply.emit(<SubjectModel>{
+            name: this.name,
+            id: this.id
+        });
         this.modal.close();
     }
 
@@ -45,6 +50,7 @@ export class SubjectModalComponent implements OnInit{
     }
 
     clear() {
-        this.subject = new SubjectModel();
+        this.name = null;
+        this.id = null;
     }
 }
