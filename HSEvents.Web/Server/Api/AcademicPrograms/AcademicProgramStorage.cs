@@ -8,9 +8,13 @@ namespace HSEvents.Server.Api.AcademicPrograms
     public interface IAcademicProgramStorage
     {
         IEnumerable<AcademicProgram> GetAll();
+        AcademicProgram Get(long id);
+        AcademicProgram Add(AcademicProgram subject);
+        void Update(AcademicProgram subject);
+        void Delete(long id);
     }
 
-    public class AcademicProgramStorage : IAcademicProgramStorage
+    public class AcademicProgramStorage : SimpleEntityStorage<AcademicProgram>, IAcademicProgramStorage
     {
         public IEnumerable<AcademicProgram> GetAll()
         {

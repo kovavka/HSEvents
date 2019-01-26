@@ -243,6 +243,8 @@
     <Content Include="client\pages\events\events.component.html" />
     <Content Include="client\pages\home\home.component.html" />
     <Content Include="client\menus\top-menu.component.html" />
+    <Content Include="client\pages\management\components\academic-programs\academic-program-modal\academic-program-modal.component.css" />
+    <Content Include="client\pages\management\components\academic-programs\academic-program-modal\academic-program-modal.component.html" />
     <Content Include="client\pages\management\components\subjects\subject-modal\subject-modal.component.css" />
     <Content Include="client\pages\management\components\subjects\subject-modal\subject-modal.component.html" />
     <Content Include="client\pages\management\management.component.css" />
@@ -392,6 +394,7 @@
     <TypeScriptCompile Include="client\pages\events\event-modals\execution-editor.component.ts" />
     <TypeScriptCompile Include="client\pages\events\models\event.models.ts" />
     <Content Include="client\pages\management\management.component.html" />
+    <TypeScriptCompile Include="client\pages\management\components\academic-programs\academic-program-modal\academic-program-modal.component.ts" />
     <TypeScriptCompile Include="client\pages\management\components\search.component.ts" />
     <TypeScriptCompile Include="client\pages\management\components\academic-programs\academic-programs.service.ts" />
     <TypeScriptCompile Include="client\pages\management\components\addresses\addresses.service.ts" />

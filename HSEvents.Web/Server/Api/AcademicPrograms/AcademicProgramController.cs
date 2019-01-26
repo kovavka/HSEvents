@@ -18,5 +18,29 @@ namespace HSEvents.Server.Api.AcademicPrograms
         {
             return academicProgramService.GetAll();
         }
+
+        [HttpGet]
+        public AcademicProgram Get(long id)
+        {
+            return academicProgramService.Get(id);
+        }
+
+        [HttpPut]
+        public AcademicProgram Add(AcademicProgram subject)
+        {
+            return academicProgramService.Add(subject);
+        }
+
+        [HttpPut]
+        public void Update(AcademicProgram subject)
+        {
+            academicProgramService.Update(subject);
+        }
+
+        [HttpPost]
+        public void Delete([FromBody] long id)
+        {
+            academicProgramService.Delete(id);
+        }
     }
 }

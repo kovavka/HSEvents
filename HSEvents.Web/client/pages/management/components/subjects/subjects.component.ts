@@ -51,7 +51,6 @@ export class SubjectsComponent extends SearchComponent implements OnInit {
             .takeUntil(this.ngUnsubscribe)
             .subscribe(data => {
                 this.subjects = data;
-                console.log(this.subjects);
                 this.refreshView();
             }, error => {
 

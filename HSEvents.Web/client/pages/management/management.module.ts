@@ -19,6 +19,7 @@ import { CityTypesComponent } from './components/city-types/city-types.component
 import { RegionsComponent } from './components/regions/regions.component';
 import { CountriesComponent } from './components/countries/countries.component';
 import { SubjectModalComponent } from './components/subjects/subject-modal/subject-modal.component';
+import { AcademicProgramModalComponent } from './components/academic-programs/academic-program-modal/academic-program-modal.component';
 
 @NgModule({
 	imports: [
@@ -43,10 +44,12 @@ import { SubjectModalComponent } from './components/subjects/subject-modal/subje
         CityTypesComponent,
         RegionsComponent,
         CountriesComponent,
-        SubjectModalComponent
+        SubjectModalComponent,
+        AcademicProgramModalComponent
 	],
     exports: [
-        SubjectModalComponent
+        SubjectModalComponent,
+        AcademicProgramModalComponent
 	]
 })
 export class ManagementModule { }
