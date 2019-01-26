@@ -19,5 +19,29 @@ namespace HSEvents.Server.Api.Groups
         {
             return groupService.GetAll();
         }
+
+        [HttpGet]
+        public Group Get(long id)
+        {
+            return groupService.Get(id);
+        }
+
+        [HttpPut]
+        public Group Add(Group group)
+        {
+            return groupService.Add(group);
+        }
+
+        [HttpPut]
+        public void Update(Group group)
+        {
+            groupService.Update(group);
+        }
+
+        [HttpPost]
+        public void Delete([FromBody] long id)
+        {
+            groupService.Delete(id);
+        }
     }
 }

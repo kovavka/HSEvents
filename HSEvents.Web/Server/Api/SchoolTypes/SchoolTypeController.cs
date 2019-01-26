@@ -18,5 +18,29 @@ namespace HSEvents.Server.Api.SchoolTypes
         {
             return schoolTypeService.GetAll();
         }
+
+        [HttpGet]
+        public SchoolType Get(long id)
+        {
+            return schoolTypeService.Get(id);
+        }
+
+        [HttpPut]
+        public SchoolType Add(SchoolType type)
+        {
+            return schoolTypeService.Add(type);
+        }
+
+        [HttpPut]
+        public void Update(SchoolType type)
+        {
+            schoolTypeService.Update(type);
+        }
+
+        [HttpPost]
+        public void Delete([FromBody] long id)
+        {
+            schoolTypeService.Delete(id);
+        }
     }
 }

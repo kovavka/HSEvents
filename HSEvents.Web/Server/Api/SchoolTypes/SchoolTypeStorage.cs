@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Domain;
-using Domain.IEntity;
 using Infrastructure.Repositories;
 
 namespace HSEvents.Server.Api.SchoolTypes
@@ -9,9 +8,13 @@ namespace HSEvents.Server.Api.SchoolTypes
     public interface ISchoolTypeStorage
     {
         IEnumerable<SchoolType> GetAll();
+        SchoolType Get(long id);
+        SchoolType Add(SchoolType type);
+        void Update(SchoolType type);
+        void Delete(long id);
     }
 
-    public class SchoolTypeStorage : ISchoolTypeStorage
+    public class SchoolTypeStorage : SimpleEntityStorage<SchoolType>, ISchoolTypeStorage
     {
         public IEnumerable<SchoolType> GetAll()
         {

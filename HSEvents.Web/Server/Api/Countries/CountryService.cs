@@ -6,6 +6,10 @@ namespace HSEvents.Server.Api.Countries
     public interface ICountryService
     {
         IEnumerable<Country> GetAll();
+        Country Get(long id);
+        Country Add(Country country);
+        void Update(Country country);
+        void Delete(long id);
     }
 
     public class CountryService : ICountryService
@@ -20,6 +24,25 @@ namespace HSEvents.Server.Api.Countries
         public IEnumerable<Country> GetAll()
         {
            return countryStorage.GetAll();
+        }
+        public Country Get(long id)
+        {
+            return countryStorage.Get(id);
+        }
+
+        public Country Add(Country country)
+        {
+            return countryStorage.Add(country);
+        }
+
+        public void Update(Country country)
+        {
+            countryStorage.Update(country);
+        }
+
+        public void Delete(long id)
+        {
+            countryStorage.Delete(id);
         }
     }
 }

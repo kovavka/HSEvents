@@ -8,9 +8,13 @@ namespace HSEvents.Server.Api.Groups
     public interface IGroupStorage
     {
         IEnumerable<Group> GetAll();
+        Group Get(long id);
+        Group Add(Group group);
+        void Update(Group group);
+        void Delete(long id);
     }
 
-    public class GroupStorage : IGroupStorage
+    public class GroupStorage : SimpleEntityStorage<Group>, IGroupStorage
     {
         public IEnumerable<Group> GetAll()
         {

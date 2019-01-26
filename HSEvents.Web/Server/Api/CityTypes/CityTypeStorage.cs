@@ -9,9 +9,13 @@ namespace HSEvents.Server.Api.CityTypes
     public interface ICityTypeStorage
     {
         IEnumerable<CityType> GetAll();
+        CityType Get(long id);
+        CityType Add(CityType type);
+        void Update(CityType type);
+        void Delete(long id);
     }
 
-    public class CityTypeStorage : ICityTypeStorage
+    public class CityTypeStorage : SimpleEntityStorage<CityType>, ICityTypeStorage
     {
         public IEnumerable<CityType> GetAll()
         {

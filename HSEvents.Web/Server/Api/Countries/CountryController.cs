@@ -18,5 +18,29 @@ namespace HSEvents.Server.Api.Countries
         {
             return countryService.GetAll();
         }
+
+        [HttpGet]
+        public Country Get(long id)
+        {
+            return countryService.Get(id);
+        }
+
+        [HttpPut]
+        public Country Add(Country country)
+        {
+            return countryService.Add(country);
+        }
+
+        [HttpPut]
+        public void Update(Country country)
+        {
+            countryService.Update(country);
+        }
+
+        [HttpPost]
+        public void Delete([FromBody]long id)
+        {
+            countryService.Delete(id);
+        }
     }
 }

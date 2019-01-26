@@ -87,6 +87,10 @@
     padding: 0px 8px;
 }
 
+.work-area-modal__item {
+    margin-bottom: 8px;
+}
+
 .dictionary-block {
     width: 500px;
 }

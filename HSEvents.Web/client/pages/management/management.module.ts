@@ -20,6 +20,10 @@ import { RegionsComponent } from './components/regions/regions.component';
 import { CountriesComponent } from './components/countries/countries.component';
 import { SubjectModalComponent } from './components/subjects/subject-modal/subject-modal.component';
 import { AcademicProgramModalComponent } from './components/academic-programs/academic-program-modal/academic-program-modal.component';
+import { CityTypeModalComponent } from './components/city-types/city-type-modal/city-type-modal.component';
+import { CountryModalComponent } from './components/countries/country-modal/country-modal.component';
+import { GroupModalComponent } from './components/groups/group-modal/group-modal.component';
+import { SchoolTypeModalComponent } from './components/school-types/school-type-modal/school-type-modal.component';
 
 @NgModule({
 	imports: [
@@ -45,11 +49,13 @@ import { AcademicProgramModalComponent } from './components/academic-programs/ac
         RegionsComponent,
         CountriesComponent,
         SubjectModalComponent,
-        AcademicProgramModalComponent
+        AcademicProgramModalComponent,
+	    CityTypeModalComponent,
+	    CountryModalComponent,
+	    GroupModalComponent,
+	    SchoolTypeModalComponent
 	],
     exports: [
-        SubjectModalComponent,
-        AcademicProgramModalComponent
 	]
 })
 export class ManagementModule { }

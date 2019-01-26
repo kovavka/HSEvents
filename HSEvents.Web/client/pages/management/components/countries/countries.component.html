@@ -5,3 +5,30 @@
         </div>
     </div>
 </div>
+<div class="work-area">
+    <div class="work-area__header">
+        <input #searchInput class="work-area__header-search search-row" [(ngModel)]="searchText" placeholder="Поиск" />
+        <div class="work-area__header-button flat-button flat-button__green" (click)="onAddClick()">
+            <a class="flat-button__caption">Добавить</a>
+        </div>
+    </div>
+    <div class="work-area__content">
+        <div *ngFor="let country of countries" class="dictionary-block">
+            <div class="dictionary-block__main-info">
+                <div class="dictionary-block__main-info-item">
+                    <input type="checkbox" />
+                </div>
+                <div class="dictionary-block__main-info-item">{{country.name}}</div>
+                <div class="dictionary-block__main-info-item dictionary-block__main-info-item_right">
+                    <span class="pointer glyphicon glyphicon-pencil" (click)="onEditClick(country)"></span>
+                </div>
+                <div class="dictionary-block__main-info-item">
+                    <span class="pointer glyphicon glyphicon-trash" (click)="onDeleteClick(country)"></span>
+                </div>
+            </div>
+            <div class="dictionary-block__details"></div>
+        </div>
+    </div>
+</div>
+
+<country-modal #modal (apply)="onModalApply($event)"></country-modal>

@@ -8,9 +8,13 @@ namespace HSEvents.Server.Api.Countries
     public interface ICountryStorage
     {
         IEnumerable<Country> GetAll();
+        Country Get(long id);
+        Country Add(Country country);
+        void Update(Country country);
+        void Delete(long id);
     }
 
-    public class CountryStorage : ICountryStorage
+    public class CountryStorage : SimpleEntityStorage<Country>, ICountryStorage
     {
         public IEnumerable<Country> GetAll()
         {

@@ -9,8 +9,8 @@ namespace HSEvents.Server.Api.AcademicPrograms
     {
         IEnumerable<AcademicProgram> GetAll();
         AcademicProgram Get(long id);
-        AcademicProgram Add(AcademicProgram subject);
-        void Update(AcademicProgram subject);
+        AcademicProgram Add(AcademicProgram program);
+        void Update(AcademicProgram program);
         void Delete(long id);
     }
 

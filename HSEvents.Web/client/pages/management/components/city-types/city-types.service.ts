@@ -14,4 +14,24 @@ export class CityTypeService {
         return this.client
             .get<CityType[]>(this.apiBase + 'getAll');
     }
+
+    get(id: number): Observable<CityType> {
+        return this.client
+            .get<CityType>(this.apiBase + 'get', id);
+    }
+
+    add(type: CityType): Observable<CityType> {
+        return this.client
+            .put<CityType>(this.apiBase + 'add', type);
+    }
+
+    update(type: CityType): Observable<any> {
+        return this.client
+            .put<any>(this.apiBase + 'update', type);
+    }
+
+    delete(id: number): Observable<any> {
+        return this.client
+            .post<any>(this.apiBase + 'delete', id);
+    }
 }

@@ -7,8 +7,8 @@ namespace HSEvents.Server.Api.AcademicPrograms
     {
         IEnumerable<AcademicProgram> GetAll();
         AcademicProgram Get(long id);
-        AcademicProgram Add(AcademicProgram subject);
-        void Update(AcademicProgram subject);
+        AcademicProgram Add(AcademicProgram program);
+        void Update(AcademicProgram program);
         void Delete(long id);
     }
 
@@ -31,14 +31,14 @@ namespace HSEvents.Server.Api.AcademicPrograms
             return academicProgramStorage.Get(id);
         }
 
-        public AcademicProgram Add(AcademicProgram subject)
+        public AcademicProgram Add(AcademicProgram program)
         {
-            return academicProgramStorage.Add(subject);
+            return academicProgramStorage.Add(program);
         }
 
-        public void Update(AcademicProgram subject)
+        public void Update(AcademicProgram program)
         {
-            academicProgramStorage.Update(subject);
+            academicProgramStorage.Update(program);
         }
 
         public void Delete(long id)

@@ -14,4 +14,24 @@ export class SchoolTypeService {
         return this.client
             .get<SchoolType[]>(this.apiBase + 'getAll');
     }
+
+    get(id: number): Observable<SchoolType> {
+        return this.client
+            .get<SchoolType>(this.apiBase + 'get', id);
+    }
+
+    add(type: SchoolType): Observable<SchoolType> {
+        return this.client
+            .put<SchoolType>(this.apiBase + 'add', type);
+    }
+
+    update(type: SchoolType): Observable<any> {
+        return this.client
+            .put<any>(this.apiBase + 'update', type);
+    }
+
+    delete(id: number): Observable<any> {
+        return this.client
+            .post<any>(this.apiBase + 'delete', id);
+    }
 }

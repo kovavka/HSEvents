@@ -26,15 +26,15 @@ namespace HSEvents.Server.Api.AcademicPrograms
         }
 
         [HttpPut]
-        public AcademicProgram Add(AcademicProgram subject)
+        public AcademicProgram Add(AcademicProgram program)
         {
-            return academicProgramService.Add(subject);
+            return academicProgramService.Add(program);
         }
 
         [HttpPut]
-        public void Update(AcademicProgram subject)
+        public void Update(AcademicProgram program)
         {
-            academicProgramService.Update(subject);
+            academicProgramService.Update(program);
         }
 
         [HttpPost]

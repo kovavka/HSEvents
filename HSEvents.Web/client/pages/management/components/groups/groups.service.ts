@@ -14,4 +14,24 @@ export class GroupService {
         return this.client
             .get<Group[]>(this.apiBase + 'getAll');
     }
+
+    get(id: number): Observable<Group> {
+        return this.client
+            .get<Group>(this.apiBase + 'get', id);
+    }
+
+    add(group: Group): Observable<Group> {
+        return this.client
+            .put<Group>(this.apiBase + 'add', group);
+    }
+
+    update(group: Group): Observable<any> {
+        return this.client
+            .put<any>(this.apiBase + 'update', group);
+    }
+
+    delete(id: number): Observable<any> {
+        return this.client
+            .post<any>(this.apiBase + 'delete', id);
+    }
 }
