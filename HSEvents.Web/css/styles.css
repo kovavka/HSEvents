@@ -49,6 +49,130 @@
     font: 34px/34px "OpenSans-Light",Helvetica,Arial,sans-serif;
 }
 
+.work-area {
+    width: 100%;
+    padding: 16px 8px;
+}
+
+.work-area__header {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: start;
+}
+
+.work-area__header-search {
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    max-width: 500px;
+}
+
+.work-area__header-button {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 1 auto;
+    flex: 0 1 auto;
+    margin-left: 16px;
+}
+
+.work-area__content {
+    margin-top: 16px;
+}
+
+.dictionary-block {
+    width: 500px;
+}
+
+.dictionary-block__main-info {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: start;
+}
+.dictionary-block__main-info:nth-child(odd) {
+    background-color: #f2f2f2;
+}
+
+.dictionary-block__main-info-item {
+    padding: 4px 4px;
+}
+
+
+.dictionary-block__details {
+}
+
+.search-row {
+}
+
+.search-row__small {
+    width: 300px;
+}
+
+.flat-button {
+    width: 150px;
+    line-height: 30px;
+    position: relative;
+    border-radius: 4px;
+}
+
+.flat-button__small {
+    width: 90px;
+    font-size: 12px;
+}
+
+.flat-button__green {
+    background-color: #5bc438;
+}
+    .flat-button__green:hover {
+        background-color: #75da53;
+    }
+
+.flat-button__blue {
+    background-color: #3bc8f5;
+}
+    .flat-button__blue:hover {
+        background-color: #3eddff;
+    }
+
+.flat-button__caption {
+    text-align: center;
+    vertical-align: middle;
+    display: block;
+    color: white;
+    cursor: pointer;
+}
+    .flat-button__caption:hover {
+        text-decoration: none;
+        color: #000000;
+
+    }
+
+
+.flex-container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: start;
+}
+
+.flex-container__item {
+    margin-right: 8px;
+}
+
 
 
 
@@ -161,10 +285,6 @@
     margin: 10px 0px;
 }
 
-.search-row {
-    padding-right: 23px;
-    width: 300px;
-}
 
 .margin-5-10 {
     margin: 5px 10px;

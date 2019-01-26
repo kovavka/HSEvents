@@ -243,6 +243,8 @@
     <Content Include="client\pages\events\events.component.html" />
     <Content Include="client\pages\home\home.component.html" />
     <Content Include="client\menus\top-menu.component.html" />
+    <Content Include="client\pages\management\components\subjects\subject-modal\subject-modal.component.css" />
+    <Content Include="client\pages\management\components\subjects\subject-modal\subject-modal.component.html" />
     <Content Include="client\pages\management\management.component.css" />
     <Content Include="client\pages\management\components\departments\departments.component.css" />
     <Content Include="client\pages\management\components\departments\departments.component.html" />
@@ -401,6 +403,7 @@
     <TypeScriptCompile Include="client\pages\management\components\school-types\school-types.service.ts" />
     <TypeScriptCompile Include="client\pages\management\components\schools\schools.service.ts" />
     <TypeScriptCompile Include="client\pages\management\components\streets\streets.service.ts" />
+    <TypeScriptCompile Include="client\pages\management\components\subjects\subject-modal\subject-modal.component.ts" />
     <TypeScriptCompile Include="client\pages\management\components\subjects\subjects.service.ts" />
     <TypeScriptCompile Include="client\pages\management\components\volunteers\volunteers.service.ts" />
     <TypeScriptCompile Include="client\pages\management\management.component.ts" />

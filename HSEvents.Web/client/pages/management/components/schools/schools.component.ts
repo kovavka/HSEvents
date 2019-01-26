@@ -1,4 +1,4 @@
-﻿import { Component, OnInit } from '@angular/core';
+﻿import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { SchoolService } from './schools.service';
 import { SearchArgs } from '../../../../models/other.models';
 import { SearchComponent } from '../search.component';
@@ -11,8 +11,9 @@ import { SearchComponent } from '../search.component';
 })
 export class SchoolsComponent extends SearchComponent implements OnInit {
 
-    constructor(private schoolService: SchoolService) {
-        super();
+    constructor(private schoolService: SchoolService,
+        protected changeDetectorRef: ChangeDetectorRef) {
+        super(changeDetectorRef);
     }
 
     ngOnInit() {
@@ -29,6 +30,7 @@ export class SchoolsComponent extends SearchComponent implements OnInit {
         this.loading = true;
         this.schoolService.getAll()
             .finally(() => this.loading = false)
+            .takeUntil(this.ngUnsubscribe)
             .subscribe(data => {
                 console.log(data);
             }, error => {

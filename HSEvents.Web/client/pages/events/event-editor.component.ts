@@ -2,7 +2,7 @@
 import { Component, Input, Output, EventEmitter, OnInit, ViewChild} from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { EventModel, EventExecution, EventDate, Purchase } from '../../models/event.models';
-import { Subject, Department, Volunteer } from '../../models/dictionaries.models';
+import { SubjectModel, Department, Volunteer } from '../../models/dictionaries.models';
 import { Employee } from '../../models/user.models';
 import { GetTypeList, ListItem } from '../../utilities/enum-helper';
 import { EventsService } from './events.service';
@@ -24,7 +24,7 @@ export class EventEditorComponent implements OnInit{
 
 	model: EventModel = new EventModel();
 	types: ListItem[];
-    subjects: Subject[];
+    subjects: SubjectModel[];
     dropDownExecution: EventExecution;
     dropDownPurchase: Purchase;
 	
@@ -73,7 +73,7 @@ export class EventEditorComponent implements OnInit{
 	ngOnInit() {
 		this.types = GetTypeList.event();
         this.eventsService.getSubjects()
-            .subscribe((subjects: Subject[]) => {
+            .subscribe((subjects: SubjectModel[]) => {
                 this.subjects = subjects;
                 this.model.subject = subjects[0];
                 }

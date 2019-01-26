@@ -1,4 +1,4 @@
-﻿import { Component, OnInit } from '@angular/core';
+﻿import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { StreetService } from './streets.service';
 import { SearchArgs } from '../../../../models/other.models';
 import { SearchComponent } from '../search.component';
@@ -11,8 +11,9 @@ import { SearchComponent } from '../search.component';
 })
 export class StreetsComponent extends SearchComponent implements OnInit {
 
-    constructor(private streetService: StreetService) {
-        super();
+    constructor(private streetService: StreetService,
+        protected changeDetectorRef: ChangeDetectorRef) {
+        super(changeDetectorRef);
     }
 
     ngOnInit() {
@@ -28,9 +29,11 @@ export class StreetsComponent extends SearchComponent implements OnInit {
     private getAll(args: SearchArgs) {
         this.loading = true;
         this.streetService.getAll()
+            .takeUntil(this.ngUnsubscribe)
             .finally(() => this.loading = false)
             .subscribe(data => {
                 console.log(data);
+                this.changeDetectorRef.detectChanges();
             }, error => {
 
             });

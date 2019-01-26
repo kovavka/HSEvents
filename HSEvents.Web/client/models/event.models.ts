@@ -1,4 +1,4 @@
-﻿import { Subject, Department, Volunteer } from './dictionaries.models';
+﻿import { SubjectModel, Department, Volunteer } from './dictionaries.models';
 import { Employee } from './user.models';
 import { Address } from './address.models';
 
@@ -6,7 +6,7 @@ export class EventModel {
 	id: number;
 	name: string;
 	type: EventType;
-    subject: Subject;
+    subject: SubjectModel;
 	info: string;
 	comment: string;
     duration: number;

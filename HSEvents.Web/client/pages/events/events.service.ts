@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import { HseHttpClient } from '../../services/hse-httpclient';
 import { Month } from './models/event.models';
 import { EventModel } from '../../models/event.models';
-import { Subject, Department, Volunteer } from '../../models/dictionaries.models';
+import { SubjectModel, Department, Volunteer } from '../../models/dictionaries.models';
 import { Address } from '../../models/address.models';
 import { Employee } from '../../models/user.models';
 
@@ -53,8 +53,8 @@ export class EventsService {
 		return this.client
             .get<Employee[]>('/api/employee/getAll');
 	}
-    getSubjects(): Observable<Subject[]> {
+    getSubjects(): Observable<SubjectModel[]> {
 		return this.client
-            .get<Subject[]>('/api/subject/getAll');
+            .get<SubjectModel[]>('/api/subject/getAll');
 	}
 }

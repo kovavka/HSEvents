@@ -1,7 +1,7 @@
 ﻿import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { HseHttpClient } from '../../services/hse-httpclient';
-import { Subject, Department, Volunteer } from '../../models/dictionaries.models';
+import { SubjectModel, Department, Volunteer } from '../../models/dictionaries.models';
 import { Address } from '../../models/address.models';
 
 
@@ -22,8 +22,8 @@ export class ManagementService {
         return this.client
             .get<Volunteer[]>('/api/volunteer/getAll');
     }
-    getSubjects(): Observable<Subject[]> {
+    getSubjects(): Observable<SubjectModel[]> {
         return this.client
-            .get<Subject[]>('/api/subject/getAll');
+            .get<SubjectModel[]>('/api/subject/getAll');
     }
 }

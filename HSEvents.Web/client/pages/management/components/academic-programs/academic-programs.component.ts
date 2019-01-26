@@ -1,4 +1,4 @@
-﻿import { Component, OnInit } from '@angular/core';
+﻿import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Subject } from 'rxjs'
 import { AcademicProgramService } from './academic-programs.service';
 import { AbstractComponent } from '../../../../utilities/abstract.component';
@@ -14,8 +14,9 @@ import { SearchComponent } from '../search.component';
 })
 export class AcademicProgramsComponent extends SearchComponent implements OnInit {
     
-    constructor(private academicProgramService: AcademicProgramService) {
-        super();
+    constructor(private academicProgramService: AcademicProgramService,
+        protected changeDetectorRef: ChangeDetectorRef) {
+        super(changeDetectorRef);
     }
 
     ngOnInit() {
@@ -32,6 +33,7 @@ export class AcademicProgramsComponent extends SearchComponent implements OnInit
         this.loading = true;
         this.academicProgramService.getAll()
             .finally(() => this.loading = false)
+            .takeUntil(this.ngUnsubscribe)
             .subscribe(data => {
                 console.log(data);
             }, error => {

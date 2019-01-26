@@ -1,7 +1,7 @@
 ﻿import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { HseHttpClient } from '../../../../services/hse-httpclient';
-import { Subject } from '../../../../models/dictionaries.models';
+import { SubjectModel } from '../../../../models/dictionaries.models';
 
 @Injectable()
 export class SubjectService {
@@ -10,8 +10,8 @@ export class SubjectService {
 
     constructor(private client: HseHttpClient) { }
 
-    getAll(): Observable<Subject[]> {
+    getAll(): Observable<SubjectModel[]> {
         return this.client
-            .get<Subject[]>(this.apiBase + 'getAll');
+            .get<SubjectModel[]>(this.apiBase + 'getAll');
     }
 }

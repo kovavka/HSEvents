@@ -1,4 +1,4 @@
-﻿import { Component, OnInit } from '@angular/core';
+﻿import { ChangeDetectorRef, OnInit } from '@angular/core';
 import { Subject } from 'rxjs'
 import { AbstractComponent } from '../../../utilities/abstract.component';
 import { SearchArgs } from '../../../models/other.models';
@@ -9,8 +9,8 @@ export class SearchComponent extends AbstractComponent implements OnInit {
     protected  getAllSubject: Subject<SearchArgs> = new Subject();
     protected searchArgs: SearchArgs;
 
-    constructor() {
-        super();
+    constructor(protected changeDetectorRef: ChangeDetectorRef) {
+        super(changeDetectorRef);
 
         this.searchArgs = <SearchArgs>{
             limit: 100,

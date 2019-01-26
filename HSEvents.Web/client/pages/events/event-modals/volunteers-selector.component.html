@@ -1,10 +1,10 @@
 ﻿<bs-modal #modal class="">
     <bs-modal-header>
-        <h4 class="modal-title">Подразделения</h4>
+        <h4 class="modal-title">Волонтеры</h4>
     </bs-modal-header>
     <bs-modal-body>
         <div class="inline">
-            <input #searchInput class="search-row left" [(ngModel)]="searchText" placeholder="Поиск"/>
+            <input #searchInput class="search-row search-row__small left" [(ngModel)]="searchText" placeholder="Поиск"/>
             <span class="pointer fa fa-close crear-btn" (click)="clearSearchText()"></span>
             <div class="action show-selected left" (click)="onShowClick()">{{showCaption}}</div>
         </div>

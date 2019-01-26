@@ -16,7 +16,7 @@ export class Group {
     name: string;
 }
 
-export class Subject {
+export class SubjectModel {
     id: number;
     caption: string;
 }

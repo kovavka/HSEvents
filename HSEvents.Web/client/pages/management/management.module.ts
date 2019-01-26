@@ -18,6 +18,7 @@ import { CitiesComponent } from './components/cities/cities.component';
 import { CityTypesComponent } from './components/city-types/city-types.component';
 import { RegionsComponent } from './components/regions/regions.component';
 import { CountriesComponent } from './components/countries/countries.component';
+import { SubjectModalComponent } from './components/subjects/subject-modal/subject-modal.component';
 
 @NgModule({
 	imports: [
@@ -41,9 +42,11 @@ import { CountriesComponent } from './components/countries/countries.component';
         CitiesComponent,
         CityTypesComponent,
         RegionsComponent,
-        CountriesComponent
+        CountriesComponent,
+        SubjectModalComponent
 	],
     exports: [
+        SubjectModalComponent
 	]
 })
 export class ManagementModule { }
