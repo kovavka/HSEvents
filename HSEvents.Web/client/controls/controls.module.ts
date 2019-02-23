@@ -5,9 +5,9 @@ import { BsModalModule } from 'ng2-bs3-modal';
 import { WindowResizeEventHandlerDirective } from './directives/window-resize-event-handler.directive';
 import { DocumentClickEventHandlerDirective } from './directives/document-click-event-handler.directive';
 import { TitleInputComponent } from './title-input/title-input.component';
-import { ListRowComponent } from './list-row/list-row.component';
 import { EditableDatepickerComponent } from './editable-datapicker/editable-datapicker.component';
 import { TimepickerComponent } from './timepicker/timepicker.component';
+import { ColorPickerComponent } from './color-picker/color-picker.component';
 
 @NgModule({
     imports: [
@@ -19,18 +19,18 @@ import { TimepickerComponent } from './timepicker/timepicker.component';
 		WindowResizeEventHandlerDirective,
 		DocumentClickEventHandlerDirective,
 		TitleInputComponent,
-		ListRowComponent,
 		EditableDatepickerComponent,
-		TimepickerComponent
+        TimepickerComponent,
+	    ColorPickerComponent
        
     ],
 	declarations: [
 		WindowResizeEventHandlerDirective,
 		DocumentClickEventHandlerDirective,
 		TitleInputComponent,
-		ListRowComponent,
 		EditableDatepickerComponent,
-		TimepickerComponent
+        TimepickerComponent,
+	    ColorPickerComponent
     ],
     providers: [
     ]

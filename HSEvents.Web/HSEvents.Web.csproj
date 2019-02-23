@@ -225,8 +225,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="client\controls\list-row\list-row.component.css" />
-    <Content Include="client\controls\list-row\list-row.component.html" />
+    <Content Include="client\controls\color-picker\color-picker.component.css" />
+    <Content Include="client\controls\color-picker\color-picker.component.html" />
     <Content Include="client\controls\title-input\title-input.component.css" />
     <Content Include="client\controls\title-input\title-input.component.html" />
     <Content Include="client\pages\events\calendar\day.component.html" />
@@ -388,7 +388,7 @@
     <Compile Include="AppSettings.cs" />
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="client\controls\list-row\list-row.component.ts" />
+    <TypeScriptCompile Include="client\controls\color-picker\color-picker.component.ts" />
     <TypeScriptCompile Include="client\controls\title-input\title-input.component.ts" />
     <TypeScriptCompile Include="client\models\other.models.ts" />
     <TypeScriptCompile Include="client\models\user.models.ts" />
