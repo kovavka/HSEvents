@@ -24,6 +24,7 @@ import { CityTypeModalComponent } from './components/city-types/city-type-modal/
 import { CountryModalComponent } from './components/countries/country-modal/country-modal.component';
 import { GroupModalComponent } from './components/groups/group-modal/group-modal.component';
 import { SchoolTypeModalComponent } from './components/school-types/school-type-modal/school-type-modal.component';
+import { DepartmentModalComponent } from './components/departments/department-modal/department-modal.component';
 
 @NgModule({
 	imports: [
@@ -53,7 +54,8 @@ import { SchoolTypeModalComponent } from './components/school-types/school-type-
 	    CityTypeModalComponent,
 	    CountryModalComponent,
 	    GroupModalComponent,
-	    SchoolTypeModalComponent
+        SchoolTypeModalComponent,
+        DepartmentModalComponent,
 	],
     exports: [
 	]

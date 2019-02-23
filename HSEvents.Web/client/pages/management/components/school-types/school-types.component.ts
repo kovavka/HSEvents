@@ -25,7 +25,7 @@ export class SchoolTypesComponent extends SearchComponent implements OnInit {
 
     ngOnInit() {
         this.getAllSubject
-            .takeUntil(this.ngUnsubscribe)
+            .takeUntil<SearchArgs>(this.ngUnsubscribe)
             .subscribe(args => {
                 this.getAll(args);
             });
@@ -37,7 +37,7 @@ export class SchoolTypesComponent extends SearchComponent implements OnInit {
         this.loading = true;
         this.schoolTypeService.getAll()
             .finally(() => this.loading = false)
-            .takeUntil(this.ngUnsubscribe)
+            .takeUntil<SchoolType[]>(this.ngUnsubscribe)
             .subscribe(data => {
                 this.types = data;
             }, error => {

@@ -18,5 +18,29 @@ namespace HSEvents.Server.Api.Departments
         {
             return departmentService.GetAll();
         }
+
+        [HttpGet]
+        public Department Get(long id)
+        {
+            return departmentService.Get(id);
+        }
+
+        [HttpPut]
+        public Department Add(Department subject)
+        {
+            return departmentService.Add(subject);
+        }
+
+        [HttpPut]
+        public void Update(Department subject)
+        {
+            departmentService.Update(subject);
+        }
+
+        [HttpPost]
+        public void Delete([FromBody] long id)
+        {
+            departmentService.Delete(id);
+        }
     }
 }

@@ -8,9 +8,13 @@ namespace HSEvents.Server.Api.Departments
     public interface IDepartmentStorage
     {
         IEnumerable<Department> GetAll();
+        Department Get(long id);
+        Department Add(Department subject);
+        void Update(Department subject);
+        void Delete(long id);
     }
 
-    public class DepartmentStorage : IDepartmentStorage
+    public class DepartmentStorage : SimpleEntityStorage<Department>, IDepartmentStorage
     {
         public IEnumerable<Department> GetAll()
         {

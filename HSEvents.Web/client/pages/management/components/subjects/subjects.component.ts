@@ -36,7 +36,7 @@ export class SubjectsComponent extends SearchComponent implements OnInit {
             });
 
         this.getAllSubject
-            .takeUntil(this.ngUnsubscribe)
+            .takeUntil<SearchArgs>(this.ngUnsubscribe)
             .subscribe(args => {
                 this.getAll(args);
             });
@@ -48,7 +48,7 @@ export class SubjectsComponent extends SearchComponent implements OnInit {
         this.loading = true;
         this.subjectService.getAll()
             .finally(() => this.loading = false)
-            .takeUntil(this.ngUnsubscribe)
+            .takeUntil<SubjectModel[]>(this.ngUnsubscribe)
             .subscribe(data => {
                 this.subjects = data;
                 this.refreshView();

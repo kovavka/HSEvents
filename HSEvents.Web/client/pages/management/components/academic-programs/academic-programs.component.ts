@@ -26,7 +26,7 @@ export class AcademicProgramsComponent extends SearchComponent implements OnInit
 
     ngOnInit() {
         this.getAllSubject
-            .takeUntil(this.ngUnsubscribe)
+            .takeUntil<SearchArgs>(this.ngUnsubscribe)
             .subscribe(args => {
                 this.getAll(args);
             });
@@ -38,7 +38,7 @@ export class AcademicProgramsComponent extends SearchComponent implements OnInit
         this.loading = true;
         this.academicProgramService.getAll()
             .finally(() => this.loading = false)
-            .takeUntil(this.ngUnsubscribe)
+            .takeUntil<AcademicProgram[]>(this.ngUnsubscribe)
             .subscribe(data => {
                 this.programs = data;
             }, error => {

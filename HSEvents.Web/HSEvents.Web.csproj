@@ -249,6 +249,8 @@
     <Content Include="client\pages\management\components\city-types\city-type-modal\city-type-modal.component.html" />
     <Content Include="client\pages\management\components\countries\country-modal\country-modal.component.css" />
     <Content Include="client\pages\management\components\countries\country-modal\country-modal.component.html" />
+    <Content Include="client\pages\management\components\departments\department-modal\department-modal.component.css" />
+    <Content Include="client\pages\management\components\departments\department-modal\department-modal.component.html" />
     <Content Include="client\pages\management\components\groups\group-modal\group-modal.component.css" />
     <Content Include="client\pages\management\components\groups\group-modal\group-modal.component.html" />
     <Content Include="client\pages\management\components\school-types\school-type-modal\school-type-modal.component.css" />
@@ -405,6 +407,7 @@
     <TypeScriptCompile Include="client\pages\management\components\academic-programs\academic-program-modal\academic-program-modal.component.ts" />
     <TypeScriptCompile Include="client\pages\management\components\city-types\city-type-modal\city-type-modal.component.ts" />
     <TypeScriptCompile Include="client\pages\management\components\countries\country-modal\country-modal.component.ts" />
+    <TypeScriptCompile Include="client\pages\management\components\departments\department-modal\department-modal.component.ts" />
     <TypeScriptCompile Include="client\pages\management\components\groups\group-modal\group-modal.component.ts" />
     <TypeScriptCompile Include="client\pages\management\components\school-types\school-type-modal\school-type-modal.component.ts" />
     <TypeScriptCompile Include="client\pages\management\components\search.component.ts" />

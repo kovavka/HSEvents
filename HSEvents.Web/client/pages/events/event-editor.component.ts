@@ -6,7 +6,6 @@ import { SubjectModel, Department, Volunteer } from '../../models/dictionaries.m
 import { Employee } from '../../models/user.models';
 import { GetTypeList, ListItem } from '../../utilities/enum-helper';
 import { EventsService } from './events.service';
-import { ListInfo } from '../../controls/list-row/list-row.component';
 import { ExecutionEditorComponent, EventExecutionArgs } from './event-modals/execution-editor.component';
 import { DepartmentsSelectorComponent } from './event-modals/departments-selector.component';
 import { VolunteersSelectorComponent } from './event-modals/volunteers-selector.component';
@@ -128,14 +127,6 @@ export class EventEditorComponent implements OnInit{
 
     purchaseClick(purchase: Purchase) {
         this.dropDownPurchase = purchase;
-    }
-    
-    generatePurchasesInfo(purchase: Purchase): ListInfo[] {
-        return [
-            <ListInfo>{
-                columns: [purchase.description]
-            }
-        ];
     }
 
     onSubjectChange(id: number) {

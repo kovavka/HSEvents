@@ -22,7 +22,7 @@ export class GroupsComponent extends SearchComponent implements OnInit {
 
     ngOnInit() {
         this.getAllSubject
-            .takeUntil(this.ngUnsubscribe)
+            .takeUntil<SearchArgs>(this.ngUnsubscribe)
             .subscribe(args => {
                 this.getAll(args);
             });
@@ -37,7 +37,7 @@ export class GroupsComponent extends SearchComponent implements OnInit {
         this.loading = true;
         this.groupService.getAll()
             .finally(() => this.loading = false)
-            .takeUntil(this.ngUnsubscribe)
+            .takeUntil<Group[]>(this.ngUnsubscribe)
             .subscribe(data => {
                 this.groups = data;
             }, error => {

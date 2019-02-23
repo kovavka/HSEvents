@@ -2,6 +2,7 @@
 import { CityService } from './cities.service';
 import { SearchArgs } from '../../../../models/other.models';
 import { SearchComponent } from '../search.component';
+import { City } from '../../../../models/address.models';
 
 @Component({
     moduleId: module.id.toString(),
@@ -18,7 +19,7 @@ export class CitiesComponent extends SearchComponent implements OnInit {
 
     ngOnInit() {
         this.getAllSubject
-            .takeUntil(this.ngUnsubscribe)
+            .takeUntil<SearchArgs>(this.ngUnsubscribe)
             .subscribe(args => {
                 this.getAll(args);
             });
@@ -30,7 +31,7 @@ export class CitiesComponent extends SearchComponent implements OnInit {
         this.loading = true;
         this.cityService.getAll()
             .finally(() => this.loading = false)
-            .takeUntil(this.ngUnsubscribe)
+            .takeUntil<City[]>(this.ngUnsubscribe)
             .subscribe(data => {
                 console.log(data);
             }, error => {

@@ -14,4 +14,24 @@ export class DepartmentService {
         return this.client
             .get<Department[]>(this.apiBase + 'getAll');
     }
+
+    get(id: number): Observable<Department> {
+        return this.client
+            .get<Department>(this.apiBase + 'get', id);
+    }
+
+    add(subject: Department): Observable<Department> {
+        return this.client
+            .put<Department>(this.apiBase + 'add', subject);
+    }
+
+    update(subject: Department): Observable<any> {
+        return this.client
+            .put<any>(this.apiBase + 'update', subject);
+    }
+
+    delete(id: number): Observable<any> {
+        return this.client
+            .post<any>(this.apiBase + 'delete', id);
+    }
 }
