@@ -1,30 +1,59 @@
 ﻿<div class="color-picker-container">
     <div class="color-picker-container__content">
-        <div class="tone-selector">
-            <div class="tone-selector__gradient tone-selector__gradient_white"></div>
-            <div class="tone-selector__gradient tone-selector__gradient_black"></div>
+        <div #slSelector
+             class="sl-selector"
+             (mousedown)="onSlSelectorMouseDown($event)">
+            <div class="sl-selector__gradient sl-selector__gradient_white"></div>
+            <div class="sl-selector__gradient sl-selector__gradient_black"></div>
+            <div class="sl-selector__picker"
+                 [style.left.px]="slSelectorPositionX"
+                 [style.top.px]="slSelectorPositionY"></div>
         </div>
     </div>
     
     <div class="color-picker-container__content color-picker-container__content_right">
-        <div class="color-selector">
-            <div class="color-selector__slider"></div>
-            <div class="color-selector__gradient"></div>
+        <div class="hue-selector">
+            <div class="hue-selector__slider" [style.left.px]="hueSelectorPosition"></div>
+            <div #hueSelector
+                 class="hue-selector__gradient"
+                 (mousedown)="onHueSelectorMouseDown($event)"></div>
         </div>
-        <div class="">
-            <div class="">
-                <span></span>
-                <input value="23" />
+        <div class="color-model">
+            <div class="color-model__value">H</div>
+            <div class="color-model__value">
+                <input class="color-model__value-input" [value]="hue" />
             </div>
-            <div class="">
-                <span></span>
-                <input value="23" />
+            <div class="color-model__value">S</div>
+            <div class="color-model__value">
+                <input class="color-model__value-input" value="23" />
             </div>
-            <div class="">
-                <span></span>
-                <input value="23" />
+            <div class="color-model__value">L</div>
+            <div class="color-model__value">
+                <input class="color-model__value-input" value="23" />
             </div>
         </div>
-        <div class=""></div>
+        <div class="color-model">
+            <div class="color-model__value">R</div>
+            <div class="color-model__value">
+                <input class="color-model__value-input" value="23" />
+            </div>
+            <div class="color-model__value">G</div>
+            <div class="color-model__value">
+                <input class="color-model__value-input" value="23" />
+            </div>
+            <div class="color-model__value">B</div>
+            <div class="color-model__value">
+                <input class="color-model__value-input" value="23" />
+            </div>
+        </div>
+        <div class="hex-container">
+            <div class="hex-container__current-color"></div>
+            <input class="hex-container__input" value="#ffffff" />
+        </div>
     </div>
 </div>
+
+<ng-container WindowMouseEventHandler
+              (mousemove)="onTheadMouseMove($event)"
+              (mouseleave)="onTheadMouseLeave($event)"
+              (mouseup)="onTheadMouseUp($event)"></ng-container>

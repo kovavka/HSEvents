@@ -1,4 +1,16 @@
-﻿.color-picker-container {
+﻿input {
+    height: 20px;
+    font-size: 13px;
+    padding: 0px;
+    text-align: center;
+    border-radius: unset;
+}
+
+div, input {
+    user-select: none;
+}
+
+.color-picker-container {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -8,26 +20,33 @@
     -webkit-box-align: start;
     -ms-flex-align: start;
     align-items: flex-start;
+    height: 200px;
+}
+
+.color-picker-container__content {
+    height: 100%;
 }
 
 .color-picker-container__content_right {
     margin-left: 10px;
-}
-
-.tone-selector {
-    background: rgb(255, 0, 0);
     width: 200px;
-    height: 200px;
     position: relative;
 }
 
-.tone-selector__gradient {
+.sl-selector {
+    background: rgb(255, 0, 0);
+    width: 200px;
+    height: 100%;
+    position: relative;
+}
+
+.sl-selector__gradient {
     position: absolute;
     width: 100%;
     height: 100%;
 }
 
-.tone-selector__gradient_white {
+.sl-selector__gradient_white {
     z-index: 0;
     background: -moz-linear-gradient(left, #fff 0%, rgba(255,255,255,0) 100%);
     background: -webkit-gradient(linear, left top, right top, color-stop(0%, #fff), color-stop(100%, rgba(255,255,255,0)));
@@ -36,7 +55,7 @@
     background: linear-gradient(to right, #fff 0%, rgba(255,255,255,0) 100%);
 }
 
-.tone-selector__gradient_black {    
+.sl-selector__gradient_black {    
     z-index: 1;
     background: -moz-linear-gradient(top, transparent 0%, #000 100%);
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, transparent), color-stop(100%, #000));
@@ -45,25 +64,119 @@
     background: linear-gradient(to bottom, transparent 0%, #000 100%);
 }
 
-.color-selector {
+.sl-selector__picker {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 1px solid #fff;
+    position: absolute;
+    z-index: 1;
+    user-select: none;
+}
+
+.sl-selector__picker:before {
+    width: 8px;
+    height: 8px;
+    content: "";
+    position: absolute;
+    border: 1px solid #999;
+    border-radius: 50%;
+    user-select: none;
+}
+
+.hue-selector {
     position: relative;
 }
 
-.color-selector__slider {
+.hue-selector__slider {
     width: 4px;
     height: 32px;
     border: 1px solid #777;
     background-color: #FFF;
     position: absolute;
     top: -1px;
-    left: 7px;
+    user-select: none;
 }
 
-.color-selector__gradient {
+.hue-selector__gradient {
     height: 30px;
     width: 200px;
     background: -moz-linear-gradient(left, #F00 0%, #FF0 16.66%, #0F0 33.33%, #0FF 50%, #00F 66.66%, #F0F 83.33%, #F00 100%);
     background: -webkit-linear-gradient(left, #F00 0%, #FF0 16.66%, #0F0 33.33%, #0FF 50%, #00F 66.66%, #F0F 83.33%, #F00 100%);
     background: -ms-linear-gradient(left, #F00 0%, #FF0 16.66%, #0F0 33.33%, #0FF 50%, #00F 66.66%, #F0F 83.33%, #F00 100%);
     background: -o-linear-gradient(left, #F00 0%, #FF0 16.66%, #0F0 33.33%, #0FF 50%, #00F 66.66%, #F0F 83.33%, #F00 100%);
+}
+
+.color-model {
+    display: -webkit-box;
+    display: -moz-box;
+    display: box;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-flow: row nowrap;
+    -moz-flex-flow: row nowrap;
+    flex-flow: row nowrap;
+    padding: 10px 0px 5px 0px;
+}
+
+.color-model__value {
+    display: -webkit-box;
+    display: -moz-box;
+    display: box;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-flow: row nowrap;
+    -moz-flex-flow: row nowrap;
+    flex-flow: row nowrap;
+    -webkit-flex-grow: 1;
+    -moz-flex-grow: 1;
+    flex-grow: 1;
+    -ms-flex-positive: 1;
+    -webkit-flex-basis: 0;
+    -moz-flex-basis: 0;
+    flex-basis: 0;
+    -ms-flex-preferred-size: 0;
+    align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    justify-content: center;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-all;
+    word-break: break-word;
+}
+
+.color-model__value-input {
+    width: 40px;
+}
+
+.hex-container {
+    height: 80px;
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    position: absolute;
+    bottom: 0;
+}
+
+.hex-container__current-color {
+    width: 80px;
+    height: 100%;
+    background-color: antiquewhite;
+}
+
+.hex-container__input {
+    width: 90px;
+    margin-left: auto;
 }

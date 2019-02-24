@@ -8,6 +8,7 @@ import { TitleInputComponent } from './title-input/title-input.component';
 import { EditableDatepickerComponent } from './editable-datapicker/editable-datapicker.component';
 import { TimepickerComponent } from './timepicker/timepicker.component';
 import { ColorPickerComponent } from './color-picker/color-picker.component';
+import { WindowMouseEventHandlerDirective } from './directives/window-mouse-event-handler.directive';
 
 @NgModule({
     imports: [
@@ -16,7 +17,8 @@ import { ColorPickerComponent } from './color-picker/color-picker.component';
 	    BsModalModule
     ],
 	exports: [
-		WindowResizeEventHandlerDirective,
+        WindowResizeEventHandlerDirective,
+        WindowMouseEventHandlerDirective,
 		DocumentClickEventHandlerDirective,
 		TitleInputComponent,
 		EditableDatepickerComponent,
@@ -25,7 +27,8 @@ import { ColorPickerComponent } from './color-picker/color-picker.component';
        
     ],
 	declarations: [
-		WindowResizeEventHandlerDirective,
+        WindowResizeEventHandlerDirective,
+        WindowMouseEventHandlerDirective,
 		DocumentClickEventHandlerDirective,
 		TitleInputComponent,
 		EditableDatepickerComponent,
