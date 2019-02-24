@@ -1,13 +1,14 @@
 ﻿<div class="color-picker-container">
     <div class="color-picker-container__content">
-        <div #slSelector
-             class="sl-selector"
-             (mousedown)="onSlSelectorMouseDown($event)">
-            <div class="sl-selector__gradient sl-selector__gradient_white"></div>
-            <div class="sl-selector__gradient sl-selector__gradient_black"></div>
-            <div class="sl-selector__picker"
-                 [style.left.px]="slSelectorPositionX"
-                 [style.top.px]="slSelectorPositionY"></div>
+        <div #sbSelector
+             class="sb-selector"
+             [style.background-color]="sbBackground"
+             (mousedown)="onSbSelectorMouseDown($event)">
+            <div class="sb-selector__gradient sb-selector__gradient_white"></div>
+            <div class="sb-selector__gradient sb-selector__gradient_black"></div>
+            <div class="sb-selector__picker"
+                 [style.left.px]="sbSelectorPositionX"
+                 [style.top.px]="sbSelectorPositionY"></div>
         </div>
     </div>
     
@@ -21,34 +22,42 @@
         <div class="color-model">
             <div class="color-model__value">H</div>
             <div class="color-model__value">
-                <input class="color-model__value-input" [value]="hue" />
+                <input class="color-model__value-input"
+                       [value]="hue"
+                       
+                       (blur)="onblur($event)"
+                       (keydown)="onkeydown($event)"/>
             </div>
             <div class="color-model__value">S</div>
             <div class="color-model__value">
-                <input class="color-model__value-input" value="23" />
+                <input class="color-model__value-input" [value]="saturation"/>
             </div>
             <div class="color-model__value">L</div>
             <div class="color-model__value">
-                <input class="color-model__value-input" value="23" />
+                <input class="color-model__value-input" [value]="lightness" />
             </div>
         </div>
         <div class="color-model">
             <div class="color-model__value">R</div>
             <div class="color-model__value">
-                <input class="color-model__value-input" value="23" />
+                <input class="color-model__value-input" [value]="red" />
             </div>
             <div class="color-model__value">G</div>
             <div class="color-model__value">
-                <input class="color-model__value-input" value="23" />
+                <input class="color-model__value-input" [value]="green" />
             </div>
             <div class="color-model__value">B</div>
             <div class="color-model__value">
-                <input class="color-model__value-input" value="23" />
+                <input class="color-model__value-input" [value]="blue" />
             </div>
         </div>
         <div class="hex-container">
-            <div class="hex-container__current-color"></div>
-            <input class="hex-container__input" value="#ffffff" />
+            <div class="hex-container__current-color"
+                 [style.background-color]="hex"></div>
+            <input class="hex-container__input"
+                   [value]="hex"
+                   (blur)="onblur($event)"
+                   (onkeydown)="onkeydown($event)" />
         </div>
     </div>
 </div>
