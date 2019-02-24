@@ -99,6 +99,8 @@ export class NumberDirective implements ControlValueAccessor {
             return;
         }
 
+        console.log(value);
+
         var regex: RegExp;
         switch (this.format) {
             case 'int':
