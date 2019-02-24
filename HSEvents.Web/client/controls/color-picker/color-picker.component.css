@@ -34,10 +34,16 @@ div, input {
 }
 
 .sb-selector {
-    background: rgb(255, 0, 0);
     width: 200px;
     height: 100%;
     position: relative;
+}
+
+.sb-selector__shadow {
+    z-index: 2;
+    position: absolute;
+    width: 100%;
+    height: 100%;
 }
 
 .sb-selector__gradient {

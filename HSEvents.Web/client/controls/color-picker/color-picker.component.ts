@@ -137,10 +137,68 @@ export class ColorPickerComponent implements AfterViewInit {
         var rgb = this.getRgb(this.hex);
         this.red = rgb.red;
         this.green = rgb.green;
-        this.blue = rgb.blue
+        this.blue = rgb.blue;
 
         this.updateLightness(); 
         this.updateHsb();
+
+        this.changeDetectorRef.detectChanges();
+    }
+
+    updateFromHsl() {
+        var rgb = this.calculateRgbFromHsl();
+        this.red = rgb.red;
+        this.green = rgb.green;
+        this.blue = rgb.blue;
+
+        this.brightness = Math.max(...this.rgbArray);
+        this.innerHex = this.getHex(rgb);
+        this.updateHsbPositions();
+        this.sbBackground = this.getHex(this.calculateRgb(this.hue, 100, 100));
+
+        this.changeDetectorRef.detectChanges();
+    }
+
+    //дикий алгоритм с википедии
+    calculateRgbFromHsl(): Rgb {
+        var h = this.hue / 360;
+        var s = this.saturation / 100;
+        var l = this.lightness / 100;
+
+        var q = (l < 0.5)
+            ? l * (1 + s)
+            : l + s - (l * s);
+        var p = 2 * l - q;
+        var tr = h + 1 / 3;
+        var tg = h;
+        var tb = h - 1 / 3;
+
+        var t = (tc) => {
+            if (tc < 0)
+                return tc + 1;
+            if (tc > 1)
+                return tc - 1;
+            return tc;
+        }
+        var color = (tc) => {
+            if (tc < 1 / 6)
+                return p + ((q - p) * 6 * tc);
+            if (tc >= 1 / 6 && tc < 1 / 2)
+                return q;
+            if (tc >= 1 / 2 && tc < 2 / 3)
+                return p + ((q - p) * (2 / 3 - tc) * 6);
+            return p;
+        }
+
+        var red = color(t(tr));
+        var green = color(t(tg));
+        var blue = color(t(tb));
+        
+        return <Rgb>{
+            red: RoundFunction.toWhole(red * 255),
+            green: RoundFunction.toWhole(green * 255),
+            blue: RoundFunction.toWhole(blue * 255)
+        };
     }
 
      //дикий алгоритм с википедии
@@ -166,33 +224,40 @@ export class ColorPickerComponent implements AfterViewInit {
         else if (max == blue)
             hue = 60 * (red - green) / (max - min) + 240;
 
-        this.hue = RoundFunction.toWhole(hue);
+        hue = RoundFunction.toWhole(hue);
+        this.hue = hue >= 360 ? 0 : hue;
         this.saturation = max == 0 ? 0 : RoundFunction.toWhole((1 - min / max) * 100);
         this.brightness = max;
 
+        this.updateHsbPositions();
+        this.sbBackground = this.getHex(this.calculateRgb(this.hue, 100, 100));
+    }
+
+    updateHsbPositions() {
         this.hueSelectorPosition = this.getPositionFromColor(this.hue, 359, this.hueSelectorMax);
         this.sbSelectorPositionX = this.getPositionFromColor(this.saturation, 100, this.sbSelectorMax + 5) - 5;
         this.sbSelectorPositionY = this.getPositionFromColor(100 - this.brightness, 100, this.sbSelectorMax + 5);
-        this.sbBackground = this.getHex(this.calculateRgb(this.hue, 100, 100));
-    }   
-
-    onblur($event: any) {
-        this.hex = $event.target.value;
     }
 
-    onkeydown($event){
-        this.hex = $event.target.value;
+    onblur($event: any) {
+        this.hue = $event.target.value;
+        this.updateFromHsl()
+    }
+
+    onkeydown($event) {
+        if ($event.key == 'Enter')
+            this.brightness = $event.target.value;
 }
 
     updateLightness() {
         var rgbPercent = this.rgbArray;
-        var lightnessPart = (Math.max(...rgbPercent) + Math.min(...rgbPercent)) / 2
+        var lightnessPart = (Math.max(...rgbPercent) + Math.min(...rgbPercent)) / 2;
         this.lightness = RoundFunction.toWhole(lightnessPart);
     }
 
     decToHex(value: number) {
         if (value > 15)
-            return value.toString(16)
+            return value.toString(16);
 
         return "0" + value.toString(16);
     }
@@ -218,7 +283,7 @@ export class ColorPickerComponent implements AfterViewInit {
         return [red, green, blue];
     }
 
-    //дикий алгоритм с википедии, каким-то образом работает
+    //дикий алгоритм с википедии
     calculateRgb(hue: number , saturation: number , brightness: number): Rgb {
         var h = Math.floor(hue / 60);
         var vMin = (100 - saturation) * brightness / 100;
