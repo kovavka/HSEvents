@@ -18,11 +18,12 @@
                 <div class="dictionary-block__main-info-item">
                     <input type="checkbox" />
                 </div>
-                <div class="dictionary-block__main-info-item">{{department.name}}</div>
-                <div class="dictionary-block__main-info-item dictionary-block__main-info-item_right">
+                <div class="dictionary-block__main-info-item dictionary-block__main-info-item_bigger">{{department.name}}</div>
+                <div class="dictionary-block__main-info-item dictionary-block__main-info-item_bigger dictionary-block__main-info-item_color" [style.background-color]="department.color"></div>
+                <div class="dictionary-block__main-info-item dictionary-block__main-info-item_bigger dictionary-block__main-info-item_right">
                     <span class="pointer glyphicon glyphicon-pencil" (click)="onEditClick(department)"></span>
                 </div>
-                <div class="dictionary-block__main-info-item">
+                <div class="dictionary-block__main-info-item dictionary-block__main-info-item_bigger">
                     <span class="pointer glyphicon glyphicon-trash" (click)="onDeleteClick(department)"></span>
                 </div>
             </div>

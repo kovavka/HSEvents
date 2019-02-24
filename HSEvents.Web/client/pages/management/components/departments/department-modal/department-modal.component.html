@@ -4,10 +4,15 @@
     </bs-modal-header>
     <bs-modal-body>
         <div class="work-area-modal">
-            <div>Наименование</div>
-            <input [(ngModel)]="name" />
+            <div class="work-area-modal__item">
+                <div>Наименование</div>
+                <input [(ngModel)]="name" />
+            </div>
+            <div class="work-area-modal__item">
+                <div>Цвет отображения</div>
+                <color-picker [hex]="color" (change)="onColorChange($event)"></color-picker>
+            </div>
         </div>
-        <color-picker [hex]="color"></color-picker>
     </bs-modal-body>
     <bs-modal-footer>
         <div class="flex-container">

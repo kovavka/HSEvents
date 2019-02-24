@@ -13,7 +13,7 @@ import { Department } from '../../../../models/dictionaries.models';
 })
 export class DepartmentsComponent extends SearchComponent implements OnInit {
 
-    department: Department[];
+    departments: Department[];
 
     constructor(private departmentService: DepartmentService,
         protected changeDetectorRef: ChangeDetectorRef) {
@@ -39,14 +39,14 @@ export class DepartmentsComponent extends SearchComponent implements OnInit {
             .finally(() => this.loading = false)
             .takeUntil<Department[]>(this.ngUnsubscribe)
             .subscribe(data => {
-                this.department = data;
+                this.departments = data;
             }, error => {
 
             });
     }
 
     onAddClick() {
-        this.modal.open(new Department());
+        this.modal.open(<Department>{color: '#ffffff'});
     }
 
     onEditClick(department: Department) {

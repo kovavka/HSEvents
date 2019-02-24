@@ -35,11 +35,6 @@ export class NumberDirective implements ControlValueAccessor {
     }
 
     writeValue(value: any) {
-        console.log(value);
-        if (typeof value === "undefined" || value === "null")
-            this.inputElement.value = null;
-        else
-            this.inputElement.value = value;
     }
 
     registerOnChange(fn: any) {
@@ -98,9 +93,7 @@ export class NumberDirective implements ControlValueAccessor {
             this.lastCorrectValue = null;
             return;
         }
-
-        console.log(value);
-
+        
         var regex: RegExp;
         switch (this.format) {
             case 'int':

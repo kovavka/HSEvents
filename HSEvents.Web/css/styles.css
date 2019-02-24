@@ -115,10 +115,22 @@
     padding: 4px 4px;
 }
 
+.dictionary-block__main-info-item_bigger {
+    padding: 8px 4px;
+}
+
 .dictionary-block__main-info-item_right {
     margin-left: auto;
 }
 
+.dictionary-block__main-info-item_color {
+    margin-top: 8px;
+    width: 20px;
+    height: 20px;
+    margin-left: 10px;
+    border-radius: 50%;
+    border: 2px solid #a3a3a5;
+}
 
 .dictionary-block__details {
 }

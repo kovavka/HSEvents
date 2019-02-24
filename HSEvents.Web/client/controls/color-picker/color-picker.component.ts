@@ -46,7 +46,7 @@ export class ColorPickerComponent implements AfterViewInit {
     }
 
     @Output()
-    colorChange: EventEmitter<string> = new EventEmitter();
+    change: EventEmitter<string> = new EventEmitter();
 
     constructor(protected changeDetectorRef: ChangeDetectorRef) {
     }
@@ -134,6 +134,7 @@ export class ColorPickerComponent implements AfterViewInit {
 
     onHexChange(value: string) {
         this.hex = this.normalizeHex(value);
+        this.change.emit(this.hex);
     }
     
     onRgbChange(value: string, type: RgbValue) {
@@ -184,6 +185,7 @@ export class ColorPickerComponent implements AfterViewInit {
         this.updateLightness();
 
         this.innerHex = this.getHex(rgb);
+        this.change.emit(this.hex);
         this.sbBackground = this.getHex(this.calculateRgb(this.hue, 100, 100));
     }
 
@@ -209,6 +211,7 @@ export class ColorPickerComponent implements AfterViewInit {
             blue: this.blue,
         }
         this.innerHex = this.getHex(rgb);
+        this.change.emit(this.hex);
 
         this.changeDetectorRef.detectChanges();
     }
@@ -221,6 +224,7 @@ export class ColorPickerComponent implements AfterViewInit {
 
         this.brightness = Math.max(...this.rgbArray);
         this.innerHex = this.getHex(rgb);
+        this.change.emit(this.hex);
         this.updateHsbPositions();
         this.sbBackground = this.getHex(this.calculateRgb(this.hue, 100, 100));
 
@@ -259,8 +263,6 @@ export class ColorPickerComponent implements AfterViewInit {
         var g = this.decToHex(rgb.green);
         var b = this.decToHex(rgb.blue);
 
-        console.log(r)
-        console.log(`#${r}${g}${b}`)
         return `#${r}${g}${b}`;
     }
     

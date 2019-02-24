@@ -34,14 +34,18 @@ export class DepartmentModalComponent implements OnInit {
     open(group: Department) {
         this.modal.open();
         this.name = group.name;
-        //this.color = group.color;
-        this.color = '#e66465';
+        this.color = group.color;
         this.id = group.id;
+    }
+
+    onColorChange(hex: string) {
+        this.color = hex;
     }
 
     onApplyClick() {
         this.apply.emit(<Department>{
             name: this.name,
+            color: this.color,
             id: this.id
         });
         this.modal.close();
