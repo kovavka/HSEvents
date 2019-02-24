@@ -9,6 +9,7 @@ import { EditableDatepickerComponent } from './editable-datapicker/editable-data
 import { TimepickerComponent } from './timepicker/timepicker.component';
 import { ColorPickerComponent } from './color-picker/color-picker.component';
 import { WindowMouseEventHandlerDirective } from './directives/window-mouse-event-handler.directive';
+import { NumberDirective } from './directives/number.directive';
 
 @NgModule({
     imports: [
@@ -19,7 +20,8 @@ import { WindowMouseEventHandlerDirective } from './directives/window-mouse-even
 	exports: [
         WindowResizeEventHandlerDirective,
         WindowMouseEventHandlerDirective,
-		DocumentClickEventHandlerDirective,
+        DocumentClickEventHandlerDirective,
+	    NumberDirective,
 		TitleInputComponent,
 		EditableDatepickerComponent,
         TimepickerComponent,
@@ -29,7 +31,8 @@ import { WindowMouseEventHandlerDirective } from './directives/window-mouse-even
 	declarations: [
         WindowResizeEventHandlerDirective,
         WindowMouseEventHandlerDirective,
-		DocumentClickEventHandlerDirective,
+        DocumentClickEventHandlerDirective,
+	    NumberDirective,
 		TitleInputComponent,
 		EditableDatepickerComponent,
         TimepickerComponent,

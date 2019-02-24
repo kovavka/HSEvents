@@ -301,6 +301,7 @@
     <Content Include="js-libs\bootstrap-datepicker\locales\bootstrap-datepicker.ru.min.js" />
     <Content Include="package.json" />
     <TypeScriptCompile Include="client\controls\directives\document-click-event-handler.directive.ts" />
+    <TypeScriptCompile Include="client\controls\directives\number.directive.ts" />
     <TypeScriptCompile Include="client\controls\directives\window-resize-event-handler.directive.ts" />
     <TypeScriptCompile Include="client\controls\timepicker\timepicker.component.ts" />
     <TypeScriptCompile Include="client\controls\editable-datapicker\editable-datapicker.component.ts" />
