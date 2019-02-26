@@ -13,8 +13,9 @@ export class ColorPickerComponent implements AfterViewInit {
 
     currentSelector: Selector = 'none';
     hue: number;
-    saturation: number;
-    brightness : number;
+    saturationHsb: number;
+    saturationHsl: number;
+    brightness: number;
     lightness : number;
     red: number;
     green: number;
@@ -161,7 +162,7 @@ export class ColorPickerComponent implements AfterViewInit {
             this.hue = normalized == 360 ? 0 : normalized;
             break;
         case 'saturation':
-            this.saturation = this.normalizeNumber(value, 255);
+            this.saturationHsl = this.normalizeNumber(value, 255);
             break;
         case 'lightness':
             this.lightness = this.normalizeNumber(value, 255);
@@ -174,10 +175,10 @@ export class ColorPickerComponent implements AfterViewInit {
     recalculateColors() {
         //в html цветовая схема фактичести в HSB (HSV), надо переконвертировать его в HSL, RGB и HEX
         this.hue = this.getColorValue(this.hueSelectorPosition, this.hueSelectorMax, 359);
-        this.saturation = this.getColorValue(this.sbSelectorPositionX + 5, this.sbSelectorMax + 5, 100);
+        this.saturationHsb = this.getColorValue(this.sbSelectorPositionX + 5, this.sbSelectorMax + 5, 100);
         this.brightness = 100 - this.getColorValue(this.sbSelectorPositionY + 5, this.sbSelectorMax + 5, 100);
 
-        var rgb = this.calculateRgb(this.hue, this.saturation, this.brightness);
+        var rgb = this.calculateRgb(this.hue, this.saturationHsb, this.brightness);
         this.red = rgb.red;
         this.green = rgb.green;
         this.blue = rgb.blue;
@@ -233,14 +234,17 @@ export class ColorPickerComponent implements AfterViewInit {
 
     updateHsbPositions() {
         this.hueSelectorPosition = this.getPositionFromColor(this.hue, 359, this.hueSelectorMax);
-        this.sbSelectorPositionX = this.getPositionFromColor(this.saturation, 100, this.sbSelectorMax + 5) - 5;
+        this.sbSelectorPositionX = this.getPositionFromColor(this.saturationHsb, 100, this.sbSelectorMax + 5) - 5;
         this.sbSelectorPositionY = this.getPositionFromColor(100 - this.brightness, 100, this.sbSelectorMax + 5);
     }
     
     updateLightness() {
         var rgbPercent = this.rgbArray;
-        var lightnessPart = (Math.max(...rgbPercent) + Math.min(...rgbPercent)) / 2;
+        var max = Math.max(...rgbPercent);
+        var min = Math.min(...rgbPercent);
+        var lightnessPart = (max + min) / 2;
         this.lightness = RoundFunction.toWhole(lightnessPart);
+        this.saturationHsl = RoundFunction.toWhole((max - min) / (100 - Math.abs(100 - (max + min))) * 100);
     }
 
     decToHex(value: number) {
@@ -326,7 +330,7 @@ export class ColorPickerComponent implements AfterViewInit {
     //дикий алгоритм с википедии
     calculateRgbFromHsl(): Rgb {
         var h = this.hue / 360;
-        var s = this.saturation / 100;
+        var s = this.saturationHsl / 100;
         var l = this.lightness / 100;
 
         var q = (l < 0.5)
@@ -390,7 +394,7 @@ export class ColorPickerComponent implements AfterViewInit {
 
         hue = RoundFunction.toWhole(hue);
         this.hue = hue >= 360 ? 0 : hue;
-        this.saturation = max == 0 ? 0 : RoundFunction.toWhole((1 - min / max) * 100);
+        this.saturationHsb = max == 0 ? 0 : RoundFunction.toWhole((1 - min / max) * 100);
         this.brightness = max;
 
         this.updateHsbPositions();
