@@ -63,6 +63,7 @@
     <Compile Include="Repositories\Dto\SchoolModels.cs" />
     <Compile Include="Repositories\Dto\AddressModels.cs" />
     <Compile Include="Repositories\Dto\EventModels.cs" />
+    <Compile Include="Repositories\IDtoRepository.cs" />
     <Compile Include="Repositories\SchoolRepository.cs" />
     <Compile Include="Repositories\EventRepository.cs" />
     <Compile Include="Repositories\IGetAllRepository.cs" />

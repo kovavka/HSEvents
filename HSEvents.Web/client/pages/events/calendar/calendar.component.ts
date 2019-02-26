@@ -33,8 +33,9 @@ export class CalendarComponent implements AfterViewInit{
 	dayClick: EventEmitter<Date> = new EventEmitter();
 
 	constructor(private eventsService: EventsService,
-		private changeDetector: ChangeDetectorRef) {
-		this.currentDate = new Date(2018, new Date().getMonth(), 1);
+        private changeDetector: ChangeDetectorRef) {
+	    var today = new Date();
+        this.currentDate = new Date(today.getFullYear(), today.getMonth(), 1);
 		this.getMonth();
 	}
 

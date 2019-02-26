@@ -18,5 +18,29 @@ namespace HSEvents.Server.Api.Volunteers
         {
             return volunteerService.GetAll();
         }
+
+        [HttpGet]
+        public Volunteer Get(long id)
+        {
+            return volunteerService.Get(id);
+        }
+
+        [HttpPut]
+        public Volunteer Add(Volunteer subject)
+        {
+            return volunteerService.Add(subject);
+        }
+
+        [HttpPut]
+        public void Update(Volunteer subject)
+        {
+            volunteerService.Update(subject);
+        }
+
+        [HttpPost]
+        public void Delete([FromBody] long id)
+        {
+            volunteerService.Delete(id);
+        }
     }
 }

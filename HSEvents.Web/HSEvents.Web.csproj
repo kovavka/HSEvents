@@ -319,6 +319,7 @@
     <Compile Include="Server\Api\Regions\RegionController.cs" />
     <Compile Include="Server\Api\Regions\RegionService.cs" />
     <Compile Include="Server\Api\Regions\RegionStorage.cs" />
+    <Compile Include="Server\Api\DtoStorage.cs" />
     <Compile Include="Server\Api\SimpleEntityStorage.cs" />
     <Compile Include="Server\Api\Streets\StreetController.cs" />
     <Compile Include="Server\Api\Streets\StreetService.cs" />

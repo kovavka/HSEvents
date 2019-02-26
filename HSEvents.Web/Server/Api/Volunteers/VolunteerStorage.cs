@@ -8,9 +8,13 @@ namespace HSEvents.Server.Api.Volunteers
     public interface IVolunteerStorage
     {
         IEnumerable<Volunteer> GetAll();
+        Volunteer Get(long id);
+        Volunteer Add(Volunteer subject);
+        void Update(Volunteer subject);
+        void Delete(long id);
     }
 
-    public class VolunteerStorage : IVolunteerStorage
+    public class VolunteerStorage : SimpleEntityStorage<Volunteer>, IVolunteerStorage
     {
         public IEnumerable<Volunteer> GetAll()
         {
