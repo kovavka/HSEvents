@@ -27,19 +27,19 @@ constraint FK_Pupil_Attendee foreign key (Attendee_Id) references Attendee(Id),
 constraint AK_AttendeeId unique(Attendee_Id)
 );
 
-Create table IntrestingProgram(
+Create table InterestingProgram(
 AcademicProgram_Id bigint not null,
 Pupil_Id bigint not null,
 
-constraint FK_IntrestingProgram_AcademicProgram foreign key (AcademicProgram_Id) references AcademicProgram(Id),
-constraint FK_IntrestingProgram_Pupil foreign key (Pupil_Id) references Pupil(Attendee_Id)
+constraint FK_InterestingProgram_AcademicProgram foreign key (AcademicProgram_Id) references AcademicProgram(Id),
+constraint FK_InterestingProgram_Pupil foreign key (Pupil_Id) references Pupil(Attendee_Id)
 
 );	
 
-Create table RegistrarionProgram(
+Create table RegistrationProgram(
 AcademicProgram_Id bigint not null,
 Pupil_Id bigint not null,
 
-constraint FK_RegistrarionProgram_AcademicProgram foreign key (AcademicProgram_Id) references AcademicProgram(Id),
-constraint FK_RegistrarionProgram_Pupil foreign key (Pupil_Id) references Pupil(Attendee_Id)
+constraint FK_RegistrationProgram_AcademicProgram foreign key (AcademicProgram_Id) references AcademicProgram(Id),
+constraint FK_RegistrationProgram_Pupil foreign key (Pupil_Id) references Pupil(Attendee_Id)
 );

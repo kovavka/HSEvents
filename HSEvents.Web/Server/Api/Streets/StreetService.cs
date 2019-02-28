@@ -19,7 +19,7 @@ namespace HSEvents.Server.Api.Streets
         
         public IEnumerable<StreetDto> GetAll()
         {
-           return streetStorage.GetAll();
+           return streetStorage.GetAllDtos();
         }
     }
 }

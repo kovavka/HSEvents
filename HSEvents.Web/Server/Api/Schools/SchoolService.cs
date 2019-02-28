@@ -23,7 +23,7 @@ namespace HSEvents.Server.Api.Schools
         
         public IEnumerable<SchoolDto> GetAll()
         {
-           return schoolStorage.GetAll();
+           return schoolStorage.GetAllDtos();
         }
 
         public SchoolDto Get(long id)

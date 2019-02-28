@@ -11,28 +11,31 @@ namespace Infrastructure.Repositories
 {
     public interface IDtoRepository<T, TDto> : IDisposable where T : IEntity
     {
-        IEnumerable<TDto> GetAll();
+        IQueryable<T> GetAll();
         TDto Get(long id);
         void Delete(long id);
         void Update(TDto dto);
         TDto Add(TDto dto);
+        IEnumerable<TDto> GetAllDtos();
     }
 
     public abstract class NHDtoRepository<T, TDto> : IDtoRepository<T, TDto> where T : Entity
     {
         private ISession session = NHibernateHelper.OpenSession();
-        public IEnumerable<TDto> GetAll()
+        public IQueryable<T> GetAll()
         {
-            IEnumerable<T> entities;
+            IQueryable<T> entities;
             using (var tx = session.BeginTransaction(IsolationLevel.ReadCommitted))
             {
-                entities = session.Query<T>().AsEnumerable();
+                entities = session.Query<T>();
                 tx.Commit();
             }
 
-            return entities.Select(ConvertToDto);
+            return entities;
         }
-        
+
+        public abstract IEnumerable<TDto> GetAllDtos();
+
         public TDto Get(long id)
         {
             var entity = session.Get<T>(id);

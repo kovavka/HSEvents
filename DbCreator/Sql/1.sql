@@ -13,7 +13,7 @@ HasPriority bit not null,
 Type_Id bigint not null,
 
 primary key (Id),
-constraint FK_Schoole_SchoolType foreign key (Type_Id) references SchoolType(Id)
+constraint FK_School_SchoolType foreign key (Type_Id) references SchoolType(Id)
 );
 
 Create table ContactPerson(

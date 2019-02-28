@@ -8,7 +8,7 @@ namespace HSEvents.Server.Api.Streets
 {
     public interface IStreetStorage
     {
-        IEnumerable<StreetDto> GetAll();
+        IEnumerable<StreetDto> GetAllDtos();
         StreetDto Get(long id);
         StreetDto Add(StreetDto subject);
         void Update(StreetDto subject);

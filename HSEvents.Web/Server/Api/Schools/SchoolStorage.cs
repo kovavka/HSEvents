@@ -8,7 +8,7 @@ namespace HSEvents.Server.Api.Schools
 {
     public interface ISchoolStorage
     {
-        IEnumerable<SchoolDto> GetAll();
+        IEnumerable<SchoolDto> GetAllDtos();
         SchoolDto Get(long id);
         SchoolDto Add(SchoolDto subject);
         void Update(SchoolDto subject);

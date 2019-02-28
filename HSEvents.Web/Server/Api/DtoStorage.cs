@@ -7,13 +7,22 @@ namespace HSEvents.Server.Api
 {
     public class DtoStorage<T, TDto, Repo> where T : Entity where Repo : IDtoRepository<T, TDto>, new()
     {
-        public IEnumerable<TDto> GetAll()
+        public IEnumerable<T> GetAll()
         {
             using (var repo = new Repo())
             {
                 return repo.GetAll().ToList();
             }
         }
+
+        public IEnumerable<TDto> GetAllDtos()
+        {
+            using (var repo = new Repo())
+            {
+                return repo.GetAllDtos().ToList();
+            }
+        }
+
         public TDto Get(long id)
         {
             using (var repo = new Repo())

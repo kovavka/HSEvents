@@ -12,7 +12,7 @@ namespace Infrastructure.Repositories
     {
         private ISession session = NHibernateHelper.OpenSession();
 
-        public void Save(Pupil pupil, int school, IEnumerable<int> intrestingPrograms, IEnumerable<int> registrarionPrograms, int enterProgram)
+        public void Save(Pupil pupil, int school, IEnumerable<int> interestingPrograms, IEnumerable<int> registrationPrograms, int enterProgram)
         {
 
                 pupil.School = session.Get<School>(school);
@@ -25,15 +25,15 @@ namespace Infrastructure.Repositories
             }
             
 
-            pupil.IntrestingPrograms = GetPrograms(intrestingPrograms).ToList();
+            pupil.InterestingPrograms = GetPrograms(interestingPrograms).ToList();
 
-            pupil.RegistrarionPrograms = GetPrograms(registrarionPrograms).ToList();
+            pupil.RegistrationPrograms = GetPrograms(registrationPrograms).ToList();
 
             session.Save(pupil);
             session.Flush();
         }
 
-        public void Update(Pupil pupil, int school, IEnumerable<int> intrestingPrograms, IEnumerable<int> registrarionPrograms, int enterProgram)
+        public void Update(Pupil pupil, int school, IEnumerable<int> interestingPrograms, IEnumerable<int> registrationPrograms, int enterProgram)
         {
             pupil.School = session.Get<School>(school);
 
@@ -44,8 +44,8 @@ namespace Infrastructure.Repositories
                 pupil.EnterProgram = session.Get<AcademicProgram>(enterProgram);
             }
 
-            pupil.IntrestingPrograms = GetPrograms(intrestingPrograms).ToList();
-            pupil.RegistrarionPrograms = GetPrograms(registrarionPrograms).ToList();
+            pupil.InterestingPrograms = GetPrograms(interestingPrograms).ToList();
+            pupil.RegistrationPrograms = GetPrograms(registrationPrograms).ToList();
 
             pupil.Type = AttendeeType.Pupil;
 

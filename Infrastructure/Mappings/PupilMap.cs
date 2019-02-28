@@ -17,8 +17,8 @@ namespace Infrastructure.Mappings
             Map(x => x.YearOfGraduation);
             References(x => x.School).Cascade.SaveUpdate().ForeignKey("FK_Pupil_School");
             References(x => x.EnterProgram).Cascade.SaveUpdate().ForeignKey("FK_Pupil_EnterProgram");
-            HasManyToMany(x => x.IntrestingPrograms).AsBag().Cascade.SaveUpdate().Table("IntrestingProgram");
-            HasManyToMany(x => x.RegistrarionPrograms).AsBag().Cascade.SaveUpdate().Table("RegistrarionProgram");
+            HasManyToMany(x => x.InterestingPrograms).AsBag().Cascade.SaveUpdate().Table("InterestingProgram");
+            HasManyToMany(x => x.RegistrationPrograms).AsBag().Cascade.SaveUpdate().Table("RegistrationProgram");
         }
     }
 
@@ -47,7 +47,7 @@ namespace Infrastructure.Mappings
     {
         public SchoolMap()
         {
-            References(x => x.Type).Cascade.SaveUpdate().Cascade.Delete().ForeignKey("FK_Schoole_SchoolType");
+            References(x => x.Type).Cascade.SaveUpdate().Cascade.Delete().ForeignKey("FK_School_SchoolType");
             Map(x => x.Number).Nullable(); 
 
             Map(x => x.BelongToUniversityDistrict);

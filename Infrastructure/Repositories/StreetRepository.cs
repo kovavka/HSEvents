@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Domain;
 using Infrastructure.Repositories.Dto;
 
@@ -6,6 +7,11 @@ namespace Infrastructure.Repositories
 {
     public class StreetRepository : NHDtoRepository<Street, StreetDto>
     {
+        public override IEnumerable<StreetDto> GetAllDtos()
+        {
+            return GetAll().AsEnumerable().Select(ConvertToDto);
+        }
+
         protected override StreetDto ConvertToDto(Street entity)
         {
             return new StreetDto()

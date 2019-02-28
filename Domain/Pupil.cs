@@ -11,8 +11,8 @@ namespace Domain
         public virtual School School { get; set; }
 
         public virtual AcademicProgram EnterProgram { get; set; }
-        public virtual ICollection<AcademicProgram> IntrestingPrograms { get; set; }
-        public virtual ICollection<AcademicProgram> RegistrarionPrograms { get; set; }
+        public virtual ICollection<AcademicProgram> InterestingPrograms { get; set; }
+        public virtual ICollection<AcademicProgram> RegistrationPrograms { get; set; }
     }
 
     public enum Sex
