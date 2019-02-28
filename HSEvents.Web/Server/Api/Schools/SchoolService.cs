@@ -6,6 +6,10 @@ namespace HSEvents.Server.Api.Schools
     public interface ISchoolService
     {
         IEnumerable<SchoolDto> GetAll();
+        SchoolDto Get(long id);
+        SchoolDto Add(SchoolDto subject);
+        void Update(SchoolDto subject);
+        void Delete(long id);
     }
 
     public class SchoolService : ISchoolService
@@ -20,6 +24,26 @@ namespace HSEvents.Server.Api.Schools
         public IEnumerable<SchoolDto> GetAll()
         {
            return schoolStorage.GetAll();
+        }
+
+        public SchoolDto Get(long id)
+        {
+            return schoolStorage.Get(id);
+        }
+
+        public SchoolDto Add(SchoolDto subject)
+        {
+            return schoolStorage.Add(subject);
+        }
+
+        public void Update(SchoolDto subject)
+        {
+            schoolStorage.Update(subject);
+        }
+
+        public void Delete(long id)
+        {
+            schoolStorage.Delete(id);
         }
     }
 }

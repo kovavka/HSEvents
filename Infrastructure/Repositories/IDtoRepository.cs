@@ -9,14 +9,13 @@ using NHibernate.Linq;
 
 namespace Infrastructure.Repositories
 {
-    public interface IDtoRepository<T, TDto> : IRepository<T>, IDisposable where T : IEntity
+    public interface IDtoRepository<T, TDto> : IDisposable where T : IEntity
     {
         IEnumerable<TDto> GetAll();
         TDto Get(long id);
         void Delete(long id);
         void Update(TDto dto);
         TDto Add(TDto dto);
-        void Delete(TDto dto);
     }
 
     public abstract class NHDtoRepository<T, TDto> : IDtoRepository<T, TDto> where T : Entity
@@ -24,23 +23,21 @@ namespace Infrastructure.Repositories
         private ISession session = NHibernateHelper.OpenSession();
         public IEnumerable<TDto> GetAll()
         {
-            IQueryable<T> result;
+            IEnumerable<T> entities;
             using (var tx = session.BeginTransaction(IsolationLevel.ReadCommitted))
             {
-                result = session.Query<T>();
+                entities = session.Query<T>().AsEnumerable();
                 tx.Commit();
             }
 
-            return result;
+            return entities.Select(ConvertToDto);
         }
-
-
+        
         public TDto Get(long id)
         {
             var entity = session.Get<T>(id);
             return ConvertToDto(entity);
         }
-
 
         public void Delete(long id)
         {

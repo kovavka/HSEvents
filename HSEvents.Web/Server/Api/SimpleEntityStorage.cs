@@ -3,19 +3,19 @@ using Infrastructure.Repositories;
 
 namespace HSEvents.Server.Api
 {
-    public class DtoStorage<T, TDto, Repo> where T : Entity where Repo : IGetAllRepository<T>, new()
+    public class SimpleEntityStorage<T> where T : Entity
     {
-        public TDto Get(long id)
+        public T Get(long id)
         {
-            using (var repo = new Repo())
+            using (var repo = new NHGetAllRepository<T>())
             {
                 return repo.Get(id);
             }
         }
 
-        public TDto Add(T entity)
+        public T Add(T entity)
         {
-            using (var repo = new Repo())
+            using (var repo = new NHGetAllRepository<T>())
             {
                 return repo.Add(entity);
             }
@@ -23,7 +23,7 @@ namespace HSEvents.Server.Api
 
         public void Update(T entity)
         {
-            using (var repo = new Repo())
+            using (var repo = new NHGetAllRepository<T>())
             {
                 repo.Update(entity);
             }
@@ -31,7 +31,7 @@ namespace HSEvents.Server.Api
 
         public void Delete(long id)
         {
-            using (var repo = new Repo())
+            using (var repo = new NHGetAllRepository<T>())
             {
                 repo.Delete(id);
             }

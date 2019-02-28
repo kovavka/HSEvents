@@ -15,45 +15,7 @@ namespace HSEvents.Server.Api.Schools
         void Delete(long id);
     }
 
-    public class SchoolStorage : SimpleEntityStorage<SchoolDto>, ISchoolStorage
+    public class SchoolStorage : DtoStorage<School, SchoolDto, SchoolRepository>, ISchoolStorage
     {
-        public IEnumerable<SchoolDto> GetAll()
-        {
-            using (var repo = new SchoolRepository())
-            {
-                return repo.GetAllDtos();
-            }
-        }
-        public SchoolDto Get(long id)
-        {
-            using (var repo = new NHGetAllRepository<SchoolDto>())
-            {
-                return repo.Get(id);
-            }
-        }
-
-        public SchoolDto Add(SchoolDto entity)
-        {
-            using (var repo = new NHGetAllRepository<SchoolDto>())
-            {
-                return repo.Add(entity);
-            }
-        }
-
-        public void Update(SchoolDto entity)
-        {
-            using (var repo = new NHGetAllRepository<SchoolDto>())
-            {
-                repo.Update(entity);
-            }
-        }
-
-        public void Delete(long id)
-        {
-            using (var repo = new NHGetAllRepository<SchoolDto>())
-            {
-                repo.Delete(id);
-            }
-        }
     }
 }
