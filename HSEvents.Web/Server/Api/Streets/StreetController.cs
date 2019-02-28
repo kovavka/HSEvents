@@ -18,5 +18,29 @@ namespace HSEvents.Server.Api.Streets
         {
             return streetService.GetAll();
         }
+
+        [HttpGet]
+        public StreetDto Get(long id)
+        {
+            return streetService.Get(id);
+        }
+
+        [HttpPut]
+        public StreetDto Add(StreetDto subject)
+        {
+            return streetService.Add(subject);
+        }
+
+        [HttpPut]
+        public void Update(StreetDto subject)
+        {
+            streetService.Update(subject);
+        }
+
+        [HttpPost]
+        public void Delete([FromBody] long id)
+        {
+            streetService.Delete(id);
+        }
     }
 }

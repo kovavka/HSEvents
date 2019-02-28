@@ -107,7 +107,7 @@ namespace Infrastructure.Repositories
                 case EventType.Course:
                     entity = new Course()
                     {
-                        Subject = GetAnotherEntity<Subject>(dto.Subject.Id),
+                        Subject = RepositoryHelper.GetAnotherEntity<Subject>(dto.Subject.Id),
                         Duration = dto.Duration,
                         Price = dto.Price
                     };
@@ -115,7 +115,7 @@ namespace Infrastructure.Repositories
                 case EventType.AcademicCompetition:
                     entity = new AcademicCompetition()
                     {
-                        Subject = GetAnotherEntity<Subject>(dto.Subject.Id)
+                        Subject = RepositoryHelper.GetAnotherEntity<Subject>(dto.Subject.Id)
                     };
                     break;
                 default:
@@ -131,10 +131,10 @@ namespace Infrastructure.Repositories
             entity.Type = dto.Type;
             entity.Info = dto.Info;
             entity.Comment = dto.Comment;
-            entity.Departments = GetAnotherEntity<Department>(dto.Departments.Select(x=>x.Id)).ToSet();
-            entity.Volunteers = GetAnotherEntity<Volunteer>(dto.Volunteers.Select(x=>x.Id)).ToList();
-            entity.Lecturers = GetAnotherEntity<Employee>(dto.Lecturers.Select(x=>x.Id)).ToList();
-            entity.Organizers = GetAnotherEntity<Employee>(dto.Organizers.Select(x=>x.Id)).ToList();
+            entity.Departments = RepositoryHelper.GetAnotherEntity<Department>(dto.Departments.Select(x=>x.Id)).ToSet();
+            entity.Volunteers = RepositoryHelper.GetAnotherEntity<Volunteer>(dto.Volunteers.Select(x=>x.Id)).ToList();
+            entity.Lecturers = RepositoryHelper.GetAnotherEntity<Employee>(dto.Lecturers.Select(x=>x.Id)).ToList();
+            entity.Organizers = RepositoryHelper.GetAnotherEntity<Employee>(dto.Organizers.Select(x=>x.Id)).ToList();
             entity.Purchases = dto.Purchases;
 
             entity.EventExecutions = dto.Executions.Select(x => new EventExecution()
@@ -145,7 +145,7 @@ namespace Infrastructure.Repositories
                         StartTime = GetTimeSpan(xx.StartTime),
                         EndTime = GetTimeSpan(xx.EndTime)
                     }).ToList(),
-                Address = GetAnotherEntity<Address>(x.Address.Id)
+                Address = RepositoryHelper.GetAnotherEntity<Address>(x.Address.Id)
             }
             ).ToSet();
 

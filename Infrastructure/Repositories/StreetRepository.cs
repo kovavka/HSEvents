@@ -24,8 +24,12 @@ namespace Infrastructure.Repositories
 
         protected override Street ConvertToEntity(StreetDto dto)
         {
-            //todo
-            return new Street();
+            return new Street()
+            {
+                Id = dto.Id,
+                Name = dto.Name,
+                City = RepositoryHelper.GetAnotherEntity<City>(dto.CityId)
+            };
         }
     }
 

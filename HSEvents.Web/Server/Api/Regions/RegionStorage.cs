@@ -8,9 +8,13 @@ namespace HSEvents.Server.Api.Regions
     public interface IRegionStorage
     {
         IEnumerable<Region> GetAll();
+        Region Get(long id);
+        Region Add(Region subject);
+        void Update(Region subject);
+        void Delete(long id);
     }
 
-    public class RegionStorage : IRegionStorage
+    public class RegionStorage : SimpleEntityStorage<Region>, IRegionStorage
     {
         public IEnumerable<Region> GetAll()
         {

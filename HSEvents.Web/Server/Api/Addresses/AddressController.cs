@@ -18,5 +18,29 @@ namespace HSEvents.Server.Api.Addresses
         {
             return addressService.GetAll();
         }
+
+        [HttpGet]
+        public AddressDto Get(long id)
+        {
+            return addressService.Get(id);
+        }
+
+        [HttpPut]
+        public AddressDto Add(AddressDto subject)
+        {
+            return addressService.Add(subject);
+        }
+
+        [HttpPut]
+        public void Update(AddressDto subject)
+        {
+            addressService.Update(subject);
+        }
+
+        [HttpPost]
+        public void Delete([FromBody] long id)
+        {
+            addressService.Delete(id);
+        }
     }
 }

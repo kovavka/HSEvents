@@ -35,8 +35,17 @@ namespace Infrastructure.Repositories
 
         protected override School ConvertToEntity(SchoolDto dto)
         {
-            //todo
-            return new School();
+            return new School()
+            {
+                Id = dto.Id,
+                Name = dto.Name,
+                Type = RepositoryHelper.GetAnotherEntity(dto.Type),
+                Number = dto.Number,
+                BelongToUniversityDistrict = dto.BelongToUniversityDistrict,
+                HasPriority = dto.HasPriority,
+                Addresses = RepositoryHelper.GetAnotherEntity<Address>(dto.Addresses.Select(x => x.Id)).ToList(),
+                Contacts = RepositoryHelper.GetAnotherEntity<ContactPerson>(dto.Contacts.Select(x => x.Id)).ToList()
+            };
         }
     }
 

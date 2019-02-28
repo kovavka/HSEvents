@@ -18,5 +18,29 @@ namespace HSEvents.Server.Api.Cities
         {
             return cityService.GetAll();
         }
+
+        [HttpGet]
+        public CityDto Get(long id)
+        {
+            return cityService.Get(id);
+        }
+
+        [HttpPut]
+        public CityDto Add(CityDto subject)
+        {
+            return cityService.Add(subject);
+        }
+
+        [HttpPut]
+        public void Update(CityDto subject)
+        {
+            cityService.Update(subject);
+        }
+
+        [HttpPost]
+        public void Delete([FromBody] long id)
+        {
+            cityService.Delete(id);
+        }
     }
 }

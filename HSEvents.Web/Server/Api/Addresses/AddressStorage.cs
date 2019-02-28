@@ -8,26 +8,14 @@ namespace HSEvents.Server.Api.Addresses
 {
     public interface IAddressStorage
     {
-        IEnumerable<AddressDto> GetAll();
+        IEnumerable<AddressDto> GetAllDtos();
+        AddressDto Get(long id);
+        AddressDto Add(AddressDto subject);
+        void Update(AddressDto subject);
+        void Delete(long id);
     }
 
-    public class AddressStorage : IAddressStorage
+    public class AddressStorage : DtoStorage<Address, AddressDto, AddressRepository>, IAddressStorage
     {
-        public IEnumerable<AddressDto> GetAll()
-        {
-            using (var repo = new NHGetAllRepository<Address>())
-            {
-                return repo.GetAll()
-                    .AsEnumerable()
-                    .Select(x => new AddressDto
-                    {
-                        Id = x.Id,
-                        ShortName = x.ToString(),
-                        Caption = x.FullAddress,
-                        House = x.House,
-                        StreetId = x.Street.Id,
-                    });
-            }
-        }
     }
 }

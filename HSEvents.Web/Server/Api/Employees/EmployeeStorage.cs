@@ -8,9 +8,13 @@ namespace HSEvents.Server.Api.Employees
     public interface IEmployeeStorage
     {
         IEnumerable<Employee> GetAll();
+        Employee Get(long id);
+        Employee Add(Employee subject);
+        void Update(Employee subject);
+        void Delete(long id);
     }
 
-    public class EmployeeStorage : IEmployeeStorage
+    public class EmployeeStorage : SimpleEntityStorage<Employee>, IEmployeeStorage
     {
         public IEnumerable<Employee> GetAll()
         {

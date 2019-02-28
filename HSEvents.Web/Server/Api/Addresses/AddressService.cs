@@ -6,6 +6,10 @@ namespace HSEvents.Server.Api.Addresses
     public interface IAddressService
     {
         IEnumerable<AddressDto> GetAll();
+        AddressDto Get(long id);
+        AddressDto Add(AddressDto subject);
+        void Update(AddressDto subject);
+        void Delete(long id);
     }
 
     public class AddressService : IAddressService
@@ -19,7 +23,27 @@ namespace HSEvents.Server.Api.Addresses
         
         public IEnumerable<AddressDto> GetAll()
         {
-           return addressStorage.GetAll();
+           return addressStorage.GetAllDtos();
+        }
+
+        public AddressDto Get(long id)
+        {
+            return addressStorage.Get(id);
+        }
+
+        public AddressDto Add(AddressDto subject)
+        {
+            return addressStorage.Add(subject);
+        }
+
+        public void Update(AddressDto subject)
+        {
+            addressStorage.Update(subject);
+        }
+
+        public void Delete(long id)
+        {
+            addressStorage.Delete(id);
         }
     }
 }

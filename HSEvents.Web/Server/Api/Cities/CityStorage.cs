@@ -8,25 +8,14 @@ namespace HSEvents.Server.Api.Cities
 {
     public interface ICityStorage
     {
-        IEnumerable<CityDto> GetAll();
+        IEnumerable<CityDto> GetAllDtos();
+        CityDto Get(long id);
+        CityDto Add(CityDto subject);
+        void Update(CityDto subject);
+        void Delete(long id);
     }
 
-    public class CityStorage : ICityStorage
+    public class CityStorage : DtoStorage<City, CityDto, CityRepository>, ICityStorage
     {
-        public IEnumerable<CityDto> GetAll()
-        {
-            using (var repo = new NHGetAllRepository<City>())
-            {
-                return repo.GetAll()
-                    .AsEnumerable()
-                    .Select(x => new CityDto()
-                    {
-                        Id = x.Id,
-                        Name = x.Name,
-                        CityTypeId = x.CityType.Id,
-                        RegionId = x.Region.Id
-                    });
-            }
-        }
     }
 }
