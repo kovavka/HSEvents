@@ -26,9 +26,9 @@ export class AddressModalComponent implements OnInit{
 
     get title(): string {
         if (this.id)
-            return 'Редактирование предмета';
+            return 'Редактирование адреса';
 
-        return 'Добавление предмета';
+        return 'Добавление адреса';
     }
     
     open(subject: Address) {

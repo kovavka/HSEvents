@@ -49,8 +49,8 @@ export class GroupsComponent extends SearchComponent implements OnInit {
         this.modal.open(new Group());
     }
 
-    onEditClick(subject: Group) {
-        this.modal.open(subject);
+    onEditClick(group: Group) {
+        this.modal.open(group);
     }
 
     onDeleteClick(group: Group) {
@@ -80,6 +80,5 @@ export class GroupsComponent extends SearchComponent implements OnInit {
             .subscribe(x => {
                 this.getAll(this.searchArgs);
             });
-
     }
 }

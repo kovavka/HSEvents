@@ -1,8 +1,9 @@
-﻿import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+﻿import { Component, OnInit, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { RegionService } from './regions.service';
 import { SearchArgs } from '../../../../models/other.models';
 import { SearchComponent } from '../search.component';
 import { Region } from '../../../../models/address.models';
+import { RegionModalComponent } from './region-modal/region-modal.component';
 
 @Component({
     moduleId: module.id.toString(),
@@ -12,7 +13,9 @@ import { Region } from '../../../../models/address.models';
 })
 export class RegionsComponent extends SearchComponent implements OnInit {
 
-    constructor(private managementService: RegionService,
+    regions: Region[];
+
+    constructor(private regionService: RegionService,
         protected changeDetectorRef: ChangeDetectorRef) {
         super(changeDetectorRef);
     }
@@ -27,16 +30,56 @@ export class RegionsComponent extends SearchComponent implements OnInit {
         this.getAllSubject.next(this.searchArgs);
     }
 
+    @ViewChild('modal')
+    private modal: RegionModalComponent;
+
     private getAll(args: SearchArgs) {
         this.loading = true;
-        this.managementService.getAll()
+        this.regionService.getAll()
             .finally(() => this.loading = false)
             .takeUntil<Region[]>(this.ngUnsubscribe)
             .subscribe(data => {
-                console.log(data);
+                this.regions = data;
             }, error => {
 
             });
 
+    }
+
+    onAddClick() {
+        this.modal.open(new Region());
+    }
+
+    onEditClick(region: Region) {
+        this.modal.open(region);
+    }
+
+    onDeleteClick(region: Region) {
+        this.loading = true;
+        this.regionService.delete(region.id)
+            .subscribe(x => {
+                this.getAll(this.searchArgs);
+            });
+    }
+
+    onModalApply(region: Region) {
+        if (region.id)
+            this.update(region);
+        else
+            this.add(region);
+    }
+
+    private add(region: Region) {
+        this.regionService.add(region)
+            .subscribe(x => {
+                this.getAll(this.searchArgs);
+            });
+    }
+
+    private update(region: Region) {
+        this.regionService.update(region)
+            .subscribe(x => {
+                this.getAll(this.searchArgs);
+            });
     }
 }

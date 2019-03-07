@@ -25,9 +25,9 @@ export class StreetModalComponent implements OnInit{
 
     get title(): string {
         if (this.id)
-            return 'Редактирование предмета';
+            return 'Редактирование улицы';
 
-        return 'Добавление предмета';
+        return 'Добавление улицы';
     }
     
     open(subject: Street) {

@@ -25,9 +25,9 @@ export class CityModalComponent implements OnInit{
 
     get title(): string {
         if (this.id)
-            return 'Редактирование предмета';
+            return 'Редактирование населенного пункта';
 
-        return 'Добавление предмета';
+        return 'Добавление населенного пункта';
     }
     
     open(subject: City) {

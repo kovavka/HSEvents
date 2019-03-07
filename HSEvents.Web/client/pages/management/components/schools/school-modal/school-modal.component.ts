@@ -25,9 +25,9 @@ export class SchoolModalComponent implements OnInit{
 
     get title(): string {
         if (this.id)
-            return 'Редактирование предмета';
+            return 'Редактирование образовательного учреждения';
 
-        return 'Добавление предмета';
+        return 'Добавление образовательного учреждения';
     }
     
     open(subject: School) {

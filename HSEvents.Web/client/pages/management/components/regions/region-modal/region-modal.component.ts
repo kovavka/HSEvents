@@ -25,9 +25,9 @@ export class RegionModalComponent implements OnInit{
 
     get title(): string {
         if (this.id)
-            return 'Редактирование предмета';
+            return 'Редактирование региона';
 
-        return 'Добавление предмета';
+        return 'Добавление региона';
     }
     
     open(subject: Region) {

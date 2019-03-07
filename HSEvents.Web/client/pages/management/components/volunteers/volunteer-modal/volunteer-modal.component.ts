@@ -25,9 +25,9 @@ export class VolunteerModalComponent implements OnInit{
 
     get title(): string {
         if (this.id)
-            return 'Редактирование предмета';
+            return 'Редактирование волонтера';
 
-        return 'Добавление предмета';
+        return 'Добавление волонтера';
     }
     
     open(subject: Volunteer) {
