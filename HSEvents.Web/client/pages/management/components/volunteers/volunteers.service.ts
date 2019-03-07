@@ -14,4 +14,24 @@ export class VolunteerService {
         return this.client
             .get<Volunteer[]>(this.apiBase + 'getAll');
     }
+
+    get(id: number): Observable<Volunteer> {
+        return this.client
+            .get<Volunteer>(this.apiBase + 'get', id);
+    }
+
+    add(Volunteer: Volunteer): Observable<Volunteer> {
+        return this.client
+            .put<Volunteer>(this.apiBase + 'add', Volunteer);
+    }
+
+    update(Volunteer: Volunteer): Observable<any> {
+        return this.client
+            .put<any>(this.apiBase + 'update', Volunteer);
+    }
+
+    delete(id: number): Observable<any> {
+        return this.client
+            .post<any>(this.apiBase + 'delete', id);
+    }
 }

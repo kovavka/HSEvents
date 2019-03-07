@@ -25,6 +25,12 @@ import { CountryModalComponent } from './components/countries/country-modal/coun
 import { GroupModalComponent } from './components/groups/group-modal/group-modal.component';
 import { SchoolTypeModalComponent } from './components/school-types/school-type-modal/school-type-modal.component';
 import { DepartmentModalComponent } from './components/departments/department-modal/department-modal.component';
+import { VolunteerModalComponent } from './components/volunteers/volunteer-modal/volunteer-modal.component';
+import { StreetModalComponent } from './components/streets/street-modal/street-modal.component';
+import { SchoolModalComponent } from './components/schools/school-modal/school-modal.component';
+import { RegionModalComponent } from './components/regions/region-modal/region-modal.component';
+import { CityModalComponent } from './components/cities/city-modal/city-modal.component';
+import { AddressModalComponent } from './components/addresses/address-modal/address-modal.component';
 
 @NgModule({
 	imports: [
@@ -56,6 +62,12 @@ import { DepartmentModalComponent } from './components/departments/department-mo
 	    GroupModalComponent,
         SchoolTypeModalComponent,
         DepartmentModalComponent,
+        VolunteerModalComponent,
+        StreetModalComponent,
+        SchoolModalComponent,
+        RegionModalComponent,
+        CityModalComponent,
+        AddressModalComponent
 	],
     exports: [
 	]

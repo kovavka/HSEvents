@@ -14,4 +14,24 @@ export class RegionService {
         return this.client
             .get<Region[]>(this.apiBase + 'getAll');
     }
+
+    get(id: number): Observable<Region> {
+        return this.client
+            .get<Region>(this.apiBase + 'get', id);
+    }
+
+    add(Region: Region): Observable<Region> {
+        return this.client
+            .put<Region>(this.apiBase + 'add', Region);
+    }
+
+    update(Region: Region): Observable<any> {
+        return this.client
+            .put<any>(this.apiBase + 'update', Region);
+    }
+
+    delete(id: number): Observable<any> {
+        return this.client
+            .post<any>(this.apiBase + 'delete', id);
+    }
 }

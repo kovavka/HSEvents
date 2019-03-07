@@ -1,0 +1,21 @@
+﻿<bs-modal #modal class="">
+    <bs-modal-header>
+        <h4 class="modal-title">{{title}}</h4>
+    </bs-modal-header>
+    <bs-modal-body>
+        <div class="work-area-modal">
+            <div>Наименование</div>
+            <input [(ngModel)]="name" />
+        </div>
+    </bs-modal-body>
+    <bs-modal-footer>
+        <div class="flex-container">
+            <div class="flex-container__item flat-button flat-button__blue flat-button__small" (click)="onApplyClick()">
+                <a class="flat-button__caption">Сохранить</a>
+            </div>
+            <div class="flex-container__item flat-button flat-button__blue flat-button__small" (click)="onCancelClick()">
+                <a class="flat-button__caption">Отмена</a>
+            </div>
+        </div>
+    </bs-modal-footer>
+</bs-modal>
