@@ -62,7 +62,7 @@ export class AddressesComponent extends SearchComponent implements OnInit {
     }
 
     onModalApply(address: Address) {
-        if (group.id)
+        if (address.id)
             this.update(address);
         else
             this.add(address);
