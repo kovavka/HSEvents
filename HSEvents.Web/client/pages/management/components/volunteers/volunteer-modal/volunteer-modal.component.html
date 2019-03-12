@@ -4,8 +4,18 @@
     </bs-modal-header>
     <bs-modal-body>
         <div class="work-area-modal">
-            <div>Наименование</div>
-            <input [(ngModel)]="name" />
+            <div class="work-area-modal__item">
+                <div>ФИО</div>
+                <input class="work-area-modal__input-item" [(ngModel)]="fullName" />
+            </div>
+            <div class="work-area-modal__item">
+                <div>Группа</div>
+                <search-selector
+                    [value]="group"
+                    [data]="allGroups"
+                    [displayFunc]="displayFunc"
+                    ></search-selector>
+            </div>
         </div>
     </bs-modal-body>
     <bs-modal-footer>

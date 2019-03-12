@@ -1,0 +1,6 @@
+﻿<input [value]="innerText" />
+<div class="items-container">
+    <div *ngFor="let item of data" class="items-container__item">
+        {{displayFunc(item)}}
+    </div>
+</div>

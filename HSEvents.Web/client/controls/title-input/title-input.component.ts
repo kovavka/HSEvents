@@ -1,7 +1,5 @@
 ﻿import { Component, ViewChild, ElementRef, Input, Output, EventEmitter, ChangeDetectorRef } from '@angular/core';
 
-declare var jQuery;
-
 @Component({
 	moduleId: module.id.toString(),
 	selector: 'title-input',
@@ -83,7 +81,8 @@ export class TitleInputComponent {
 
 		this.endEdit();
 		this.changeDetector.detectChanges();
-	}
+    }
+
 	dismissChanges() {
 		this.value = this.sourceValue;
 		this.endEdit();

@@ -227,6 +227,8 @@
   <ItemGroup>
     <Content Include="client\controls\color-picker\color-picker.component.css" />
     <Content Include="client\controls\color-picker\color-picker.component.html" />
+    <Content Include="client\controls\search-selector\search-selector.component.css" />
+    <Content Include="client\controls\search-selector\search-selector.component.html" />
     <Content Include="client\controls\title-input\title-input.component.css" />
     <Content Include="client\controls\title-input\title-input.component.html" />
     <Content Include="client\pages\events\calendar\day.component.html" />
@@ -318,6 +320,7 @@
     <TypeScriptCompile Include="client\controls\timepicker\timepicker.component.ts" />
     <TypeScriptCompile Include="client\controls\editable-datapicker\editable-datapicker.component.ts" />
     <TypeScriptCompile Include="client\controls\directives\window-mouse-event-handler.directive.ts" />
+    <TypeScriptCompile Include="client\controls\search-selector\search-selector.component.ts" />
     <TypeScriptCompile Include="client\pages\management\components\addresses\address-modal\address-modal.component.ts" />
     <TypeScriptCompile Include="client\pages\management\components\cities\city-modal\city-modal.component.ts" />
     <TypeScriptCompile Include="client\pages\management\components\regions\region-modal\region-modal.component.ts" />

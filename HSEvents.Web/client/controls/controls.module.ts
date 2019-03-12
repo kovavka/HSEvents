@@ -10,6 +10,7 @@ import { TimepickerComponent } from './timepicker/timepicker.component';
 import { ColorPickerComponent } from './color-picker/color-picker.component';
 import { WindowMouseEventHandlerDirective } from './directives/window-mouse-event-handler.directive';
 import { NumberDirective } from './directives/number.directive';
+import { SearchSelectorComponent } from './search-selector/search-selector.component';
 
 @NgModule({
     imports: [
@@ -25,7 +26,8 @@ import { NumberDirective } from './directives/number.directive';
 		TitleInputComponent,
 		EditableDatepickerComponent,
         TimepickerComponent,
-	    ColorPickerComponent
+        ColorPickerComponent,
+	    SearchSelectorComponent
        
     ],
 	declarations: [
@@ -36,7 +38,8 @@ import { NumberDirective } from './directives/number.directive';
 		TitleInputComponent,
 		EditableDatepickerComponent,
         TimepickerComponent,
-	    ColorPickerComponent
+        ColorPickerComponent,
+	    SearchSelectorComponent
     ],
     providers: [
     ]

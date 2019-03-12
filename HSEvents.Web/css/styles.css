@@ -91,6 +91,11 @@
     margin-bottom: 8px;
 }
 
+.work-area-modal__input-item {
+    max-width: 500px;
+    width: 90%;
+}
+
 .dictionary-block {
     width: 500px;
 }

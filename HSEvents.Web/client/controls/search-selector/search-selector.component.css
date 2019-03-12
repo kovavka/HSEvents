@@ -1,0 +1,23 @@
+﻿input {
+    max-width: 500px;
+    width: 90%;
+}
+
+.items-container {
+    background-color: #ffffff;
+    box-shadow: 0 5px 10px 0px rgba(0,0,0,0.14), 0 9px 46px 8px rgba(0,0,0,0.12), 0 11px 15px -7px rgba(0,0,0,0.2);
+    max-width: 500px;
+    width: calc(90% - 43px);
+    position: fixed;
+    z-index: 1000;
+    max-height: 115px;
+    overflow-y: scroll;
+}
+
+.items-container__item {
+    padding: 4px 8px;
+}
+
+.items-container__item:hover {
+    background-color: #efefef;
+}
