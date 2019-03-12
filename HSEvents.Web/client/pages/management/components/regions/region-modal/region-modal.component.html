@@ -8,6 +8,13 @@
                 <div>Наименование</div>
                 <input class="work-area-modal__input-item" [(ngModel)]="name" />
             </div>
+            <div class="work-area-modal__item">
+                <div>Страна</div>
+                <search-selector [value]="country"
+                                 [data]="allCountries"
+                                 [displayFunc]="displayFunc"
+                                 (valueChange)="countryChange($event)"></search-selector>
+            </div>
         </div>
     </bs-modal-body>
     <bs-modal-footer>

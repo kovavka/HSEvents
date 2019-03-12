@@ -46,6 +46,7 @@ select {
     border-radius: 4px;
     transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
     outline: none;
+    min-width: 150px;
 }
 
 textarea {
