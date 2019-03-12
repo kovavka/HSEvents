@@ -11,10 +11,11 @@ declare var jQuery;
 export class SearchSelectorComponent {
 
     innerText: string = null;
+    itemsVisible: boolean = false;
+    filteredItems: any[] = null;
 
     @Input()
     set value(value: any) {
-        console.log(this.data);
         if (this.displayFunc)
             this.innerText = this.displayFunc(value);
     }
@@ -31,5 +32,37 @@ export class SearchSelectorComponent {
     constructor(private changeDetector: ChangeDetectorRef) {
     }
 
+    get items() {
+        if (this.filteredItems)
+            return this.filteredItems;
 
+        return this.data;
+    }
+
+    onItemClick(item: any) {
+        this.valueChange.emit(item);
+    }
+
+    onValueClick() {
+        this.itemsVisible = true;
+    }
+
+    onDocumentClick($event: any) {
+        this.itemsVisible = false;
+    }
+
+    onInput($event) {
+        this.filter($event.target.value);
+        console.log();
+    }
+    
+    filter(value: string) {
+        var filtered = this.data.filter(x => this.contains(x, value));
+        this.filteredItems = filtered;
+    }
+
+    contains(item: any, value: string): boolean {
+        return this.displayFunc(item).toLowerCase().indexOf(value.toLowerCase()) != -1;
+    }
+    
 }
