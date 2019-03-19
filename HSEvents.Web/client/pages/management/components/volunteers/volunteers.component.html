@@ -13,22 +13,30 @@
         </div>
     </div>
     <div class="work-area__content">
-        <div *ngFor="let volunteer of volunteers" class="dictionary-block">
-            <div class="dictionary-block__main-info">
-                <div class="dictionary-block__main-info-item">
-                    <input type="checkbox" />
+        <div class="work-area__content-delete">
+            <ng-container *ngIf="selected.length > 0">
+                <span class="glyphicon glyphicon-remove"></span>
+                Удалить ({{selected.length}})
+            </ng-container>
+        </div>
+        
+        
+        <div class="flex-table" *ngFor="let volunteer of volunteers">
+            <div class="flex-table__row">
+                <div class="flex-table__cell flex-table__cell_fixed-width">
+                    <input type="checkbox" (change)="onCheck($event, volunteer)" />
                 </div>
-                <div class="dictionary-block__main-info-item">{{volunteer.fullName}}</div>
-                <div class="dictionary-block__main-info-item">{{volunteer.group.name}}</div>
-                <div class="dictionary-block__main-info-item dictionary-block__main-info-item_right">
+                <div class="flex-table__cell">{{volunteer.fullName}}</div>
+                <div class="flex-table__cell">{{volunteer.group.name}}</div>
+                <div class="flex-table__cell flex-table__cell_fixed-width">
                     <span class="pointer glyphicon glyphicon-pencil" (click)="onEditClick(volunteer)"></span>
                 </div>
-                <div class="dictionary-block__main-info-item">
+                <div class="flex-table__cell flex-table__cell_fixed-width">
                     <span class="pointer glyphicon glyphicon-trash" (click)="onDeleteClick(volunteer)"></span>
                 </div>
             </div>
-            <div class="dictionary-block__details"></div>
         </div>
+
     </div>
 </div>
 

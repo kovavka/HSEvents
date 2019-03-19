@@ -20,8 +20,8 @@ export class SearchSelectorComponent {
     set value(value: any) {
         this.innerValue = value;
 
-        if (this.displayFuncInner)
-            this.innerText = this.displayFuncInner(this.value);
+        if (this.displayFuncInner && this.innerValue)
+            this.innerText = this.displayFuncInner(this.innerValue);
     }
 
 	@Input()

@@ -14,6 +14,7 @@ import { VolunteerModalComponent } from './volunteer-modal/volunteer-modal.compo
 export class VolunteersComponent extends SearchComponent implements OnInit{
 
     volunteers: Volunteer[];
+    selected: Volunteer[] = [];
 
     constructor(private volunteerService: VolunteerService,
         protected changeDetectorRef: ChangeDetectorRef) {
@@ -67,6 +68,15 @@ export class VolunteersComponent extends SearchComponent implements OnInit{
             this.update(volunteer);
         else
             this.add(volunteer);
+    }
+
+    onCheck($event: any, volunteer: Volunteer) {
+        if ($event.target.checked)
+            this.selected.push(volunteer);
+        else
+            this.selected.splice(this.selected.indexOf(volunteer), 1);
+
+        console.log(this.selected);
     }
 
     private add(volunteer: Volunteer) {
