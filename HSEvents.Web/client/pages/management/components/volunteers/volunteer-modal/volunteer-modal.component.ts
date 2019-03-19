@@ -65,9 +65,10 @@ export class VolunteerModalComponent implements OnInit {
     }
 
     clear() {
+        this.id = null;
         this.fullName = null;
         this.group = null;
-        this.id = null;
+        this.allGroups = null;
     }
 
     groupChange(group: Group) {

@@ -1,7 +1,7 @@
 ﻿<input [value]="innerText" (click)="onValueClick()" (input)="onInput($event)"/>
 <div *ngIf="itemsVisible" class="items-container">
     <div *ngFor="let item of items" class="items-container__item" (click)="onItemClick(item)">
-        {{displayFunc(item)}}
+        {{displayFuncInner(item)}}
     </div>
 </div>
 <ng-container documentClickEventHandler (click)="onDocumentClick($event)"></ng-container>

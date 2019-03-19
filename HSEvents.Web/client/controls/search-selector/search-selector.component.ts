@@ -13,18 +13,27 @@ export class SearchSelectorComponent {
     innerText: string = null;
     itemsVisible: boolean = false;
     filteredItems: any[] = null;
+    displayFuncInner: (any) => string;
+    private innerValue: any;
 
     @Input()
     set value(value: any) {
-        if (this.displayFunc)
-            this.innerText = this.displayFunc(value);
+        this.innerValue = value;
+
+        if (this.displayFuncInner)
+            this.innerText = this.displayFuncInner(this.value);
     }
 
 	@Input()
     data: any[] = [];
 
-	@Input()
-    displayFunc: (any) => string;
+    @Input()
+    set displayFunc(value: (any) => string) {
+        this.displayFuncInner = value;
+        
+        if (this.innerValue)
+            this.innerText = this.displayFuncInner(this.innerValue);
+    }
     
     @Output()
     valueChange: EventEmitter<any> = new EventEmitter();
@@ -62,7 +71,7 @@ export class SearchSelectorComponent {
     }
 
     contains(item: any, value: string): boolean {
-        return this.displayFunc(item).toLowerCase().indexOf(value.toLowerCase()) != -1;
+        return this.displayFuncInner(item).toLowerCase().indexOf(value.toLowerCase()) != -1;
     }
     
 }

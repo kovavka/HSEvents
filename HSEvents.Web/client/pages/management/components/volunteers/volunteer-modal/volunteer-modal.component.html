@@ -8,7 +8,7 @@
                 <div>ФИО</div>
                 <input class="work-area-modal__input-item" [(ngModel)]="fullName" />
             </div>
-            <div class="work-area-modal__item">
+            <div *ngIf="allGroups" class="work-area-modal__item">
                 <div>Группа</div>
                 <search-selector
                     [value]="group"
