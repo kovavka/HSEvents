@@ -2,6 +2,7 @@
 import { Observable } from 'rxjs/Observable';
 import { HseHttpClient } from '../../../../services/hse-httpclient';
 import { Region } from '../../../../models/address.models';
+import { HseHttpParams } from '../../../../services/hse-httpparams';
 
 @Injectable()
 export class RegionService {
@@ -10,9 +11,14 @@ export class RegionService {
 
     constructor(private client: HseHttpClient) { }
 
-    getAll(): Observable<Region[]> {
+    getAll(country?: string): Observable<Region[]> {
+        if (!country) //Todo: это нужно убрать, когда будет фильтрация на странице с регионами
+            return this.client
+                .get<Region[]>(this.apiBase + 'getAll');
+
+        var params = new HseHttpParams().set('country', country);
         return this.client
-            .get<Region[]>(this.apiBase + 'getAll');
+            .get<Region[]>(this.apiBase + 'getAll', params.httpParams);
     }
 
     get(id: number): Observable<Region> {

@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Web.Http;
 using Domain;
-using Domain.IEntity;
 
 namespace HSEvents.Server.Api.Regions
 {
@@ -15,9 +14,9 @@ namespace HSEvents.Server.Api.Regions
         }
 
         [HttpGet]
-        public IEnumerable<Region> GetAll()
+        public IEnumerable<Region> GetAll([FromUri] RegionArgs args)
         {
-            return regionService.GetAll();
+            return regionService.GetAll(args);
         }
 
         [HttpGet]
@@ -49,5 +48,12 @@ namespace HSEvents.Server.Api.Regions
         {
             regionService.Delete(ids);
         }
+    }
+
+    public class RegionArgs
+    {
+        public string Country { get; set; }
+        public string Limit { get; set; }
+        public string Offset { get; set; }
     }
 }

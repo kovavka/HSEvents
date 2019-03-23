@@ -327,6 +327,7 @@
     <TypeScriptCompile Include="client\pages\management\components\schools\school-modal\school-modal.component.ts" />
     <TypeScriptCompile Include="client\pages\management\components\streets\street-modal\street-modal.component.ts" />
     <TypeScriptCompile Include="client\pages\management\components\volunteers\volunteer-modal\volunteer-modal.component.ts" />
+    <TypeScriptCompile Include="client\services\hse-httpparams.ts" />
     <TypeScriptCompile Include="client\utilities\round-function.ts" />
     <Compile Include="Server\Api\Cities\CityController.cs" />
     <Compile Include="Server\Api\Cities\CityService.cs" />

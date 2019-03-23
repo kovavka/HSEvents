@@ -5,10 +5,17 @@
     <bs-modal-body>
         <div class="work-area-modal">
             <div class="work-area-modal__item">
+                <div>Страна</div>
+                <search-selector [value]="country"
+                                 [data]="allCountries"
+                                 [displayFunc]="countryDisplayFunc"
+                                 (valueChange)="countryChange($event)"></search-selector>
+            </div>
+            <div class="work-area-modal__item">
                 <div>Регион</div>
                 <search-selector [value]="region"
                                  [data]="allRegions"
-                                 [displayFunc]="displayFunc"
+                                 [displayFunc]="regionDisplayFunc"
                                  (valueChange)="regionChange($event)"></search-selector>
             </div>
             <div class="work-area-modal__item">

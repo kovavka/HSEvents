@@ -12,9 +12,12 @@ namespace Infrastructure.Repositories
         {
             return GetAll().AsEnumerable().Select(ConvertToDto);
         }
+
         protected override IQueryable<City> GetAllQuery()
         {
-            var query = base.GetAllQuery().Fetch(x => x.CityType);
+            var query = base.GetAllQuery()
+                .Fetch(x => x.CityType)
+                .Fetch(x => x.Region).ThenFetch(x => x.Country);
             return query;
         }
 
@@ -25,7 +28,7 @@ namespace Infrastructure.Repositories
                 Id = entity.Id,
                 Name = entity.Name,
                 CityType = entity.CityType,
-                RegionId = entity.Region.Id,
+                Region = entity.Region,
                 AreaName = $"{entity.Region.Country.Name}, {entity.Region.Name}"
             };
         }
@@ -37,7 +40,7 @@ namespace Infrastructure.Repositories
                 Id = dto.Id,
                 Name = dto.Name,
                 CityType = RepositoryHelper.GetAnotherEntity<CityType>(dto.CityType.Id),
-                Region = RepositoryHelper.GetAnotherEntity<Region>(dto.RegionId)
+                Region = RepositoryHelper.GetAnotherEntity<Region>(dto.Region.Id)
             };
         }
     }

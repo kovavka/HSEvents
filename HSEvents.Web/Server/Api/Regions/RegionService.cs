@@ -6,7 +6,7 @@ namespace HSEvents.Server.Api.Regions
 {
     public interface IRegionService
     {
-        IEnumerable<Region> GetAll();
+        IEnumerable<Region> GetAll(RegionArgs args);
         Region Get(long id);
         Region Add(Region subject);
         void Update(Region subject);
@@ -23,9 +23,9 @@ namespace HSEvents.Server.Api.Regions
             this.regionStorage = regionStorage;
         }
         
-        public IEnumerable<Region> GetAll()
+        public IEnumerable<Region> GetAll(RegionArgs args)
         {
-           return regionStorage.GetAll();
+           return regionStorage.GetAll(args);
         }
 
         public Region Get(long id)

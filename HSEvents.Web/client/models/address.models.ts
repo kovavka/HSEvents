@@ -9,7 +9,7 @@
 export class Street {
     id: number;
     name: string;
-    cityId: number;
+    city: City;
     areaName: string;
 }
 
@@ -17,7 +17,7 @@ export class City {
     id: number;
     name: string;
     cityType: CityType;
-    regionId: number;
+    region: Region;
     areaName: string;
 }
 

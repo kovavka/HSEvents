@@ -11,17 +11,16 @@ export class HseHttpClient {
 	) {
 	}
 
-	get<T>(url: string, options?: {}): Observable<T> {
-		return this.http
-			.get<T>(url, options)
-			.pipe(
-				tap((response: T) => {
-				}),
-				catchError((err: any) => {
-					return this.handleError(err);
-				})
-			);
-	}
+    get<T>(url: string, params?: HttpParams | { }): Observable<T> {
+        return this.http
+            .get<T>(url, { headers: this.createHeaders(), params: params })
+            .pipe(
+                catchError((err: any) => {
+                    return this.handleError(err);
+                })
+            );
+    }
+
 
 	put<T>(url: string, body: any | null): Observable<T> {
 		return this.http
@@ -46,7 +45,7 @@ export class HseHttpClient {
 	}
 
 
-	protected handleError(error: any): ErrorObservable {
+	private handleError(error: any): ErrorObservable {
 		console.log(error);
 
 		if (error.error instanceof ErrorEvent) {
@@ -58,5 +57,10 @@ export class HseHttpClient {
 		}
 
 		return error;
-	}   
+    }
+
+    private createHeaders() {
+        return new HttpHeaders()
+            .set('Content-Type', 'application/json'); //Todo: здесь ещё нужно будет прописать authorization
+    }
 }

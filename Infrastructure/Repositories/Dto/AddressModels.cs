@@ -16,7 +16,7 @@ namespace Infrastructure.Repositories.Dto
     {
         public long Id { get; set; }
         public string Name { get; set; }
-        public long CityId { get; set; }
+        public City City { get; set; }
         public string AreaName { get; set; }
     }
 
@@ -25,7 +25,7 @@ namespace Infrastructure.Repositories.Dto
         public long Id { get; set; }
         public string Name { get; set; }
         public CityType CityType { get; set; }
-        public long RegionId { get; set; }
+        public Region Region { get; set; }
         public string AreaName { get; set; }
     }
 }
