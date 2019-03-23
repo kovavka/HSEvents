@@ -10,6 +10,7 @@ namespace HSEvents.Server.Api.SchoolTypes
         SchoolType Add(SchoolType type);
         void Update(SchoolType type);
         void Delete(long id);
+        void Delete(long[] ids);
     }
 
     public class SchoolTypeService : ISchoolTypeService
@@ -44,6 +45,11 @@ namespace HSEvents.Server.Api.SchoolTypes
         public void Delete(long id)
         {
             schoolTypeStorage.Delete(id);
+        }
+
+        public void Delete(long[] ids)
+        {
+            schoolTypeStorage.Delete(ids);
         }
     }
 }

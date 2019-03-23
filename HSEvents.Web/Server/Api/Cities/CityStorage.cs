@@ -13,6 +13,7 @@ namespace HSEvents.Server.Api.Cities
         CityDto Add(CityDto subject);
         void Update(CityDto subject);
         void Delete(long id);
+        void Delete(long[] ids);
     }
 
     public class CityStorage : DtoStorage<City, CityDto, CityRepository>, ICityStorage

@@ -10,6 +10,7 @@ namespace HSEvents.Server.Api.Addresses
         AddressDto Add(AddressDto subject);
         void Update(AddressDto subject);
         void Delete(long id);
+        void Delete(long[] ids);
     }
 
     public class AddressService : IAddressService
@@ -44,6 +45,11 @@ namespace HSEvents.Server.Api.Addresses
         public void Delete(long id)
         {
             addressStorage.Delete(id);
+        }
+
+        public void Delete(long[] ids)
+        {
+            addressStorage.Delete(ids);
         }
     }
 }

@@ -42,5 +42,11 @@ namespace HSEvents.Server.Api.AcademicPrograms
         {
             academicProgramService.Delete(id);
         }
+
+        [HttpPost]
+        public void DeleteSeveral([FromBody] long[] ids)
+        {
+            academicProgramService.Delete(ids);
+        }
     }
 }

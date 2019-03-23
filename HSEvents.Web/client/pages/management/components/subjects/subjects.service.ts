@@ -34,4 +34,9 @@ export class SubjectService {
         return this.client
             .post<any>(this.apiBase + 'delete', id);
     }
+
+    deleteSeveral(ids: number[]): Observable<any> {
+        return this.client
+            .post<any>(this.apiBase + 'deleteSeveral', ids);
+    }
 }

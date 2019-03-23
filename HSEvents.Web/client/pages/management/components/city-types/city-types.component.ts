@@ -14,6 +14,7 @@ import { CityTypeModalComponent } from './city-type-modal/city-type-modal.compon
 export class CityTypesComponent extends SearchComponent implements OnInit {
 
     types: CityType[] = [];
+    selected: CityType[] = [];
 
     constructor(private cityTypeService: CityTypeService,
         protected changeDetectorRef: ChangeDetectorRef) {
@@ -40,6 +41,8 @@ export class CityTypesComponent extends SearchComponent implements OnInit {
             .takeUntil<CityType[]>(this.ngUnsubscribe)
             .subscribe(data => {
                 this.types = data;
+                this.selected = [];
+                this.refreshView();
             }, error => {
 
             });
@@ -61,11 +64,26 @@ export class CityTypesComponent extends SearchComponent implements OnInit {
             });
     }
 
+    onDeleteSeveralClick() {
+        this.loading = true;
+        this.cityTypeService.deleteSeveral(this.selected.map(x => x.id))
+            .subscribe(x => {
+                this.getAll(this.searchArgs);
+            });
+    }
+
     onModalApply(subject: CityType) {
         if (subject.id)
             this.update(subject);
         else
             this.add(subject);
+    }
+
+    onCheck($event: any, subject: CityType) {
+        if ($event.target.checked)
+            this.selected.push(subject);
+        else
+            this.selected.splice(this.selected.indexOf(subject), 1);
     }
 
     private add(type: CityType) {

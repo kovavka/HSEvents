@@ -11,6 +11,7 @@ namespace HSEvents.Server.Api.Subjects
         Subject Add(Subject entity);
         void Update(Subject entity);
         void Delete(long id);
+        void Delete(long[] ids);
     }
 
     public class SubjectService : ISubjectService
@@ -45,6 +46,11 @@ namespace HSEvents.Server.Api.Subjects
         public void Delete(long id)
         {
             subjectStorage.Delete(id);
+        }
+
+        public void Delete(long[] ids)
+        {
+            subjectStorage.Delete(ids);
         }
     }
 }

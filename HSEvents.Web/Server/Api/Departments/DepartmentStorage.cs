@@ -12,6 +12,7 @@ namespace HSEvents.Server.Api.Departments
         Department Add(Department subject);
         void Update(Department subject);
         void Delete(long id);
+        void Delete(long[] ids);
     }
 
     public class DepartmentStorage : SimpleEntityStorage<Department>, IDepartmentStorage

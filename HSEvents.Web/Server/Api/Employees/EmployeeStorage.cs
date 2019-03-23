@@ -12,6 +12,7 @@ namespace HSEvents.Server.Api.Employees
         Employee Add(Employee subject);
         void Update(Employee subject);
         void Delete(long id);
+        void Delete(long[] ids);
     }
 
     public class EmployeeStorage : SimpleEntityStorage<Employee>, IEmployeeStorage

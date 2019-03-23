@@ -13,7 +13,8 @@ import { SchoolModalComponent } from './school-modal/school-modal.component';
 })
 export class SchoolsComponent extends SearchComponent implements OnInit {
 
-    schools: School[];
+    schools: School[] = [];
+    selected: School[] = [];
 
     constructor(private schoolService: SchoolService,
         protected changeDetectorRef: ChangeDetectorRef) {
@@ -40,6 +41,8 @@ export class SchoolsComponent extends SearchComponent implements OnInit {
             .takeUntil<School[]>(this.ngUnsubscribe)
             .subscribe(data => {
                 this.schools = data;
+                this.selected = [];
+                this.refreshView();
             }, error => {
 
             });
@@ -61,11 +64,26 @@ export class SchoolsComponent extends SearchComponent implements OnInit {
             });
     }
 
+    onDeleteSeveralClick() {
+        this.loading = true;
+        this.schoolService.deleteSeveral(this.selected.map(x => x.id))
+            .subscribe(x => {
+                this.getAll(this.searchArgs);
+            });
+    }
+
     onModalApply(school: School) {
         if (school.id)
             this.update(school);
         else
             this.add(school);
+    }
+
+    onCheck($event: any, school: School) {
+        if ($event.target.checked)
+            this.selected.push(school);
+        else
+            this.selected.splice(this.selected.indexOf(school), 1);
     }
 
     private add(school: School) {

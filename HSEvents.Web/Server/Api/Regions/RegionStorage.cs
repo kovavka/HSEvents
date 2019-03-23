@@ -12,6 +12,7 @@ namespace HSEvents.Server.Api.Regions
         Region Add(Region subject);
         void Update(Region subject);
         void Delete(long id);
+        void Delete(long[] ids);
     }
 
     public class RegionStorage : SimpleEntityStorage<Region>, IRegionStorage

@@ -10,6 +10,7 @@ namespace HSEvents.Server.Api.AcademicPrograms
         AcademicProgram Add(AcademicProgram program);
         void Update(AcademicProgram program);
         void Delete(long id);
+        void Delete(long[] ids);
     }
 
     public class AcademicProgramService : IAcademicProgramService
@@ -44,6 +45,11 @@ namespace HSEvents.Server.Api.AcademicPrograms
         public void Delete(long id)
         {
             academicProgramStorage.Delete(id);
+        }
+
+        public void Delete(long[] ids)
+        {
+            academicProgramStorage.Delete(ids);
         }
     }
 }

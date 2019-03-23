@@ -42,5 +42,11 @@ namespace HSEvents.Server.Api.Cities
         {
             cityService.Delete(id);
         }
+
+        [HttpPost]
+        public void DeleteSeveral([FromBody] long[] ids)
+        {
+            cityService.Delete(ids);
+        }
     }
 }

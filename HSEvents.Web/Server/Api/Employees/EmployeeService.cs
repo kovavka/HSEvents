@@ -10,6 +10,7 @@ namespace HSEvents.Server.Api.Employees
         Employee Add(Employee subject);
         void Update(Employee subject);
         void Delete(long id);
+        void Delete(long[] ids);
     }
 
     public class EmployeeService : IEmployeeService
@@ -44,6 +45,11 @@ namespace HSEvents.Server.Api.Employees
         public void Delete(long id)
         {
             employeeStorage.Delete(id);
+        }
+
+        public void Delete(long[] ids)
+        {
+            employeeStorage.Delete(ids);
         }
     }
 }

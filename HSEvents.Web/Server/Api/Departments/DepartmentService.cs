@@ -10,6 +10,7 @@ namespace HSEvents.Server.Api.Departments
         Department Add(Department entity);
         void Update(Department entity);
         void Delete(long id);
+        void Delete(long[] ids);
     }
 
     public class DepartmentService : IDepartmentService
@@ -44,6 +45,11 @@ namespace HSEvents.Server.Api.Departments
         public void Delete(long id)
         {
             departmentStorage.Delete(id);
+        }
+
+        public void Delete(long[] ids)
+        {
+            departmentStorage.Delete(ids);
         }
     }
 }

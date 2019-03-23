@@ -10,6 +10,7 @@ namespace HSEvents.Server.Api.CityTypes
         CityType Add(CityType type);
         void Update(CityType type);
         void Delete(long id);
+        void Delete(long[] ids);
     }
 
     public class CityTypeService : ICityTypeService
@@ -44,6 +45,11 @@ namespace HSEvents.Server.Api.CityTypes
         public void Delete(long id)
         {
             cityTypeStorage.Delete(id);
+        }
+
+        public void Delete(long[] ids)
+        {
+            cityTypeStorage.Delete(ids);
         }
     }
 }

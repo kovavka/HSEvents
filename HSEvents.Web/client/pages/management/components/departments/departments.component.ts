@@ -13,7 +13,8 @@ import { Department } from '../../../../models/dictionaries.models';
 })
 export class DepartmentsComponent extends SearchComponent implements OnInit {
 
-    departments: Department[];
+    departments: Department[] = [];
+    selected: Department[] = [];
 
     constructor(private departmentService: DepartmentService,
         protected changeDetectorRef: ChangeDetectorRef) {
@@ -40,6 +41,8 @@ export class DepartmentsComponent extends SearchComponent implements OnInit {
             .takeUntil<Department[]>(this.ngUnsubscribe)
             .subscribe(data => {
                 this.departments = data;
+                this.selected = [];
+                this.refreshView();
             }, error => {
 
             });
@@ -61,11 +64,26 @@ export class DepartmentsComponent extends SearchComponent implements OnInit {
             });
     }
 
+    onDeleteSeveralClick() {
+        this.loading = true;
+        this.departmentService.deleteSeveral(this.selected.map(x => x.id))
+            .subscribe(x => {
+                this.getAll(this.searchArgs);
+            });
+    }
+
     onModalApply(department: Department) {
         if (department.id)
             this.update(department);
         else
             this.add(department);
+    }
+
+    onCheck($event: any, department: Department) {
+        if ($event.target.checked)
+            this.selected.push(department);
+        else
+            this.selected.splice(this.selected.indexOf(department), 1);
     }
 
     private add(department: Department) {

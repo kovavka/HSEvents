@@ -14,6 +14,7 @@ import { Group } from '../../../../models/dictionaries.models';
 export class GroupsComponent extends SearchComponent implements OnInit {
 
     groups: Group[] = [];
+    selected: Group[] = [];
 
     constructor(private groupService: GroupService,
         protected changeDetectorRef: ChangeDetectorRef) {
@@ -40,6 +41,8 @@ export class GroupsComponent extends SearchComponent implements OnInit {
             .takeUntil<Group[]>(this.ngUnsubscribe)
             .subscribe(data => {
                 this.groups = data;
+                this.selected = [];
+                this.refreshView();
             }, error => {
 
             });
@@ -61,11 +64,26 @@ export class GroupsComponent extends SearchComponent implements OnInit {
             });
     }
 
+    onDeleteSeveralClick() {
+        this.loading = true;
+        this.groupService.deleteSeveral(this.selected.map(x => x.id))
+            .subscribe(x => {
+                this.getAll(this.searchArgs);
+            });
+    }
+
     onModalApply(group: Group) {
         if (group.id)
             this.update(group);
         else
             this.add(group);
+    }
+
+    onCheck($event: any, group: Group) {
+        if ($event.target.checked)
+            this.selected.push(group);
+        else
+            this.selected.splice(this.selected.indexOf(group), 1);
     }
 
     private add(group: Group) {

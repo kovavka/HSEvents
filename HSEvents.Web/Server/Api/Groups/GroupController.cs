@@ -43,5 +43,11 @@ namespace HSEvents.Server.Api.Groups
         {
             groupService.Delete(id);
         }
+
+        [HttpPost]
+        public void DeleteSeveral([FromBody] long[] ids)
+        {
+            groupService.Delete(ids);
+        }
     }
 }

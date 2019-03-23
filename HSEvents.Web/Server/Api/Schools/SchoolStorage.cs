@@ -13,6 +13,7 @@ namespace HSEvents.Server.Api.Schools
         SchoolDto Add(SchoolDto subject);
         void Update(SchoolDto subject);
         void Delete(long id);
+        void Delete(long[] ids);
     }
 
     public class SchoolStorage : DtoStorage<School, SchoolDto, SchoolRepository>, ISchoolStorage

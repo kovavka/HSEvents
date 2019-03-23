@@ -13,7 +13,8 @@ import { StreetModalComponent } from './street-modal/street-modal.component';
 })
 export class StreetsComponent extends SearchComponent implements OnInit {
 
-    streets: Street[];
+    streets: Street[] = [];
+    selected: Street[] = [];
 
     constructor(private streetService: StreetService,
         protected changeDetectorRef: ChangeDetectorRef) {
@@ -40,7 +41,8 @@ export class StreetsComponent extends SearchComponent implements OnInit {
             .finally(() => this.loading = false)
             .subscribe(data => {
                 this.streets = data;
-                this.changeDetectorRef.detectChanges();
+                this.selected = [];
+                this.refreshView();
             }, error => {
 
             });
@@ -62,11 +64,26 @@ export class StreetsComponent extends SearchComponent implements OnInit {
             });
     }
 
+    onDeleteSeveralClick() {
+        this.loading = true;
+        this.streetService.deleteSeveral(this.selected.map(x => x.id))
+            .subscribe(x => {
+                this.getAll(this.searchArgs);
+            });
+    }
+
     onModalApply(street: Street) {
         if (street.id)
             this.update(street);
         else
             this.add(street);
+    }
+
+    onCheck($event: any, street: Street) {
+        if ($event.target.checked)
+            this.selected.push(street);
+        else
+            this.selected.splice(this.selected.indexOf(street), 1);
     }
 
     private add(street: Street) {

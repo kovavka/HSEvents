@@ -13,6 +13,7 @@ namespace HSEvents.Server.Api.CityTypes
         CityType Add(CityType type);
         void Update(CityType type);
         void Delete(long id);
+        void Delete(long[] ids);
     }
 
     public class CityTypeStorage : SimpleEntityStorage<CityType>, ICityTypeStorage

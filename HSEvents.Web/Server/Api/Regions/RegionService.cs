@@ -11,6 +11,7 @@ namespace HSEvents.Server.Api.Regions
         Region Add(Region subject);
         void Update(Region subject);
         void Delete(long id);
+        void Delete(long[] ids);
     }
 
     public class RegionService : IRegionService
@@ -45,6 +46,11 @@ namespace HSEvents.Server.Api.Regions
         public void Delete(long id)
         {
             regionStorage.Delete(id);
+        }
+
+        public void Delete(long[] ids)
+        {
+            regionStorage.Delete(ids);
         }
     }
 }

@@ -12,6 +12,7 @@ namespace HSEvents.Server.Api.SchoolTypes
         SchoolType Add(SchoolType type);
         void Update(SchoolType type);
         void Delete(long id);
+        void Delete(long[] ids);
     }
 
     public class SchoolTypeStorage : SimpleEntityStorage<SchoolType>, ISchoolTypeStorage

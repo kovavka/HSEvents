@@ -14,6 +14,7 @@ namespace Infrastructure.Repositories
         IQueryable<T> GetAll();
         TDto Get(long id);
         void Delete(long id);
+        void Delete(long[] ids);
         void Update(TDto dto);
         TDto Add(TDto dto);
         IEnumerable<TDto> GetAllDtos();
@@ -47,6 +48,17 @@ namespace Infrastructure.Repositories
             using (var tx = session.BeginTransaction())
             {
                 session.Delete(session.Query<T>().First(x => x.Id == id));
+                tx.Commit();
+            }
+        }
+
+        public void Delete(long[] ids)
+        {
+            using (var tx = session.BeginTransaction())
+            {
+                session.Query<T>()
+                    .Where(x => ids.Contains(x.Id))
+                    .Delete();
                 tx.Commit();
             }
         }

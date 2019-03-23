@@ -12,6 +12,7 @@ namespace HSEvents.Server.Api.Groups
         Group Add(Group group);
         void Update(Group group);
         void Delete(long id);
+        void Delete(long[] ids);
     }
 
     public class GroupStorage : SimpleEntityStorage<Group>, IGroupStorage

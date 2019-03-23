@@ -42,5 +42,11 @@ namespace HSEvents.Server.Api.Addresses
         {
             addressService.Delete(id);
         }
+
+        [HttpPost]
+        public void DeleteSeveral([FromBody] long[] ids)
+        {
+            addressService.Delete(ids);
+        }
     }
 }

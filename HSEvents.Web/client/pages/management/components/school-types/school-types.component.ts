@@ -14,6 +14,7 @@ import { SchoolTypeModalComponent } from './school-type-modal/school-type-modal.
 export class SchoolTypesComponent extends SearchComponent implements OnInit {
 
     types: SchoolType[] = [];
+    selected: SchoolType[] = [];
 
     constructor(private schoolTypeService: SchoolTypeService,
         protected changeDetectorRef: ChangeDetectorRef) {
@@ -40,6 +41,8 @@ export class SchoolTypesComponent extends SearchComponent implements OnInit {
             .takeUntil<SchoolType[]>(this.ngUnsubscribe)
             .subscribe(data => {
                 this.types = data;
+                this.selected = [];
+                this.refreshView();
             }, error => {
 
             });
@@ -62,11 +65,26 @@ export class SchoolTypesComponent extends SearchComponent implements OnInit {
             });
     }
 
+    onDeleteSeveralClick() {
+        this.loading = true;
+        this.schoolTypeService.deleteSeveral(this.selected.map(x => x.id))
+            .subscribe(x => {
+                this.getAll(this.searchArgs);
+            });
+    }
+
     onModalApply(type: SchoolType) {
         if (type.id)
             this.update(type);
         else
             this.add(type);
+    }
+
+    onCheck($event: any, type: SchoolType) {
+        if ($event.target.checked)
+            this.selected.push(type);
+        else
+            this.selected.splice(this.selected.indexOf(type), 1);
     }
 
     private add(type: SchoolType) {

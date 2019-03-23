@@ -15,6 +15,7 @@ import { AcademicProgramModalComponent } from './academic-program-modal/academic
 export class AcademicProgramsComponent extends SearchComponent implements OnInit {
 
     programs: AcademicProgram[] = [];
+    selected: AcademicProgram[] = [];
 
     constructor(private academicProgramService: AcademicProgramService,
         protected changeDetectorRef: ChangeDetectorRef) {
@@ -41,6 +42,8 @@ export class AcademicProgramsComponent extends SearchComponent implements OnInit
             .takeUntil<AcademicProgram[]>(this.ngUnsubscribe)
             .subscribe(data => {
                 this.programs = data;
+                this.selected = [];
+                this.refreshView();
             }, error => {
                 
             });
@@ -61,11 +64,26 @@ export class AcademicProgramsComponent extends SearchComponent implements OnInit
             });
     }
 
+    onDeleteSeveralClick() {
+        this.loading = true;
+        this.academicProgramService.deleteSeveral(this.selected.map(x => x.id))
+            .subscribe(x => {
+                this.getAll(this.searchArgs);
+            });
+    }
+
     onModalApply(program: AcademicProgram) {
         if (program.id)
             this.update(program);
         else
             this.add(program);
+    }
+
+    onCheck($event: any, program: AcademicProgram) {
+        if ($event.target.checked)
+            this.selected.push(program);
+        else
+            this.selected.splice(this.selected.indexOf(program), 1);
     }
 
     private add(program: AcademicProgram) {

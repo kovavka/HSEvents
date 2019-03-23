@@ -13,6 +13,7 @@ namespace HSEvents.Server.Api.Addresses
         AddressDto Add(AddressDto subject);
         void Update(AddressDto subject);
         void Delete(long id);
+        void Delete(long[] ids);
     }
 
     public class AddressStorage : DtoStorage<Address, AddressDto, AddressRepository>, IAddressStorage

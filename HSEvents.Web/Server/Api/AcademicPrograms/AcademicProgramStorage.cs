@@ -12,6 +12,7 @@ namespace HSEvents.Server.Api.AcademicPrograms
         AcademicProgram Add(AcademicProgram program);
         void Update(AcademicProgram program);
         void Delete(long id);
+        void Delete(long[] ids);
     }
 
     public class AcademicProgramStorage : SimpleEntityStorage<AcademicProgram>, IAcademicProgramStorage

@@ -14,6 +14,7 @@ import { CountryModalComponent } from './country-modal/country-modal.component';
 export class CountriesComponent extends SearchComponent implements OnInit {
 
     countries: Country[] = [];
+    selected: Country[] = [];
 
     constructor(private countryService: CountryService,
         protected changeDetectorRef: ChangeDetectorRef) {
@@ -40,6 +41,8 @@ export class CountriesComponent extends SearchComponent implements OnInit {
             .takeUntil<Country[]>(this.ngUnsubscribe)
             .subscribe(data => {
                 this.countries = data;
+                this.selected = [];
+                this.refreshView();
             }, error => {
 
             });
@@ -61,11 +64,26 @@ export class CountriesComponent extends SearchComponent implements OnInit {
             });
     }
 
+    onDeleteSeveralClick() {
+        this.loading = true;
+        this.countryService.deleteSeveral(this.selected.map(x => x.id))
+            .subscribe(x => {
+                this.getAll(this.searchArgs);
+            });
+    }
+
     onModalApply(country: Country) {
         if (country.id)
             this.update(country);
         else
             this.add(country);
+    }
+
+    onCheck($event: any, country: Country) {
+        if ($event.target.checked)
+            this.selected.push(country);
+        else
+            this.selected.splice(this.selected.indexOf(country), 1);
     }
 
     private add(country: Country) {

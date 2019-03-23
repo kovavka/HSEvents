@@ -13,7 +13,8 @@ import { AddressModalComponent } from './address-modal/address-modal.component';
 })
 export class AddressesComponent extends SearchComponent implements OnInit {
 
-    addresses: Address[];
+    addresses: Address[] = [];
+    selected: Address[] = [];
 
     constructor(private addressService: AddressService,
         protected changeDetectorRef: ChangeDetectorRef) {
@@ -40,6 +41,8 @@ export class AddressesComponent extends SearchComponent implements OnInit {
             .takeUntil<Address[]>(this.ngUnsubscribe)
             .subscribe(data => {
                 this.addresses = data;
+                this.selected = [];
+                this.refreshView();
             }, error => {
 
             });
@@ -61,11 +64,26 @@ export class AddressesComponent extends SearchComponent implements OnInit {
             });
     }
 
+    onDeleteSeveralClick() {
+        this.loading = true;
+        this.addressService.deleteSeveral(this.selected.map(x => x.id))
+            .subscribe(x => {
+                this.getAll(this.searchArgs);
+            });
+    }
+
     onModalApply(address: Address) {
         if (address.id)
             this.update(address);
         else
             this.add(address);
+    }
+
+    onCheck($event: any, address: Address) {
+        if ($event.target.checked)
+            this.selected.push(address);
+        else
+            this.selected.splice(this.selected.indexOf(address), 1);
     }
 
     private add(address: Address) {

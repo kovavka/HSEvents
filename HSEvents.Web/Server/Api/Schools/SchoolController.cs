@@ -42,5 +42,11 @@ namespace HSEvents.Server.Api.Schools
         {
             schoolService.Delete(id);
         }
+
+        [HttpPost]
+        public void DeleteSeveral([FromBody] long[] ids)
+        {
+            schoolService.Delete(ids);
+        }
     }
 }

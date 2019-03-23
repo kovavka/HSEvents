@@ -13,10 +13,16 @@
         </div>
     </div>
     <div class="work-area__content">
+        <div class="work-area__content-delete">
+            <span *ngIf="selected.length > 0" class="work-area__content-delete-span" (click)="onDeleteSeveralClick()">
+                <span class="glyphicon glyphicon-remove"></span>
+                Удалить ({{selected.length}})
+            </span>
+        </div>
         <div *ngFor="let city of cities" class="dictionary-block">
             <div class="dictionary-block__main-info">
                 <div class="dictionary-block__main-info-item">
-                    <input type="checkbox" />
+                    <input type="checkbox" (change)="onCheck($event, city)" />
                 </div>
                 <div class="dictionary-block__main-info-item">{{city.name}}</div>
                 <div class="dictionary-block__main-info-item dictionary-block__main-info-item_right">

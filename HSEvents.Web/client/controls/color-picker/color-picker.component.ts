@@ -173,7 +173,7 @@ export class ColorPickerComponent implements AfterViewInit {
     }
 
     recalculateColors() {
-        //в html цветовая схема фактичести в HSB (HSV), надо переконвертировать его в HSL, RGB и HEX
+        //в html цветовая схема фактически в HSB (HSV), надо переконвертировать его в HSL, RGB и HEX
         this.hue = this.getColorValue(this.hueSelectorPosition, this.hueSelectorMax, 359);
         this.saturationHsb = this.getColorValue(this.sbSelectorPositionX + 5, this.sbSelectorMax + 5, 100);
         this.brightness = 100 - this.getColorValue(this.sbSelectorPositionY + 5, this.sbSelectorMax + 5, 100);
@@ -327,7 +327,9 @@ export class ColorPickerComponent implements AfterViewInit {
         return d;
     }
     
-    //дикий алгоритм с википедии
+    //algorithms from wikipedia
+    //https://ru.wikipedia.org/wiki/HSV_(%D1%86%D0%B2%D0%B5%D1%82%D0%BE%D0%B2%D0%B0%D1%8F_%D0%BC%D0%BE%D0%B4%D0%B5%D0%BB%D1%8C)
+    //https://ru.wikipedia.org/wiki/HSL
     calculateRgbFromHsl(): Rgb {
         var h = this.hue / 360;
         var s = this.saturationHsl / 100;
@@ -369,7 +371,6 @@ export class ColorPickerComponent implements AfterViewInit {
         };
     }
 
-    //дикий алгоритм с википедии
     updateHsb() {
         var rgbPercent = this.rgbArray;
         var red = rgbPercent[0];
@@ -401,7 +402,6 @@ export class ColorPickerComponent implements AfterViewInit {
         this.sbBackground = this.getHex(this.calculateRgb(this.hue, 100, 100));
     }
 
-    //дикий алгоритм с википедии
     calculateRgb(hue: number, saturation: number, brightness: number): Rgb {
         var h = Math.floor(hue / 60);
         var vMin = (100 - saturation) * brightness / 100;

@@ -12,6 +12,7 @@ namespace HSEvents.Server.Api.Subjects
         Subject Add(Subject subject);
         void Update(Subject subject);
         void Delete(long id);
+        void Delete(long[] ids);
     }
 
     public class SubjectStorage : SimpleEntityStorage<Subject>, ISubjectStorage

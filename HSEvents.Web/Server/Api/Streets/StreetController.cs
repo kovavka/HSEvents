@@ -42,5 +42,11 @@ namespace HSEvents.Server.Api.Streets
         {
             streetService.Delete(id);
         }
+
+        [HttpPost]
+        public void DeleteSeveral([FromBody] long[] ids)
+        {
+            streetService.Delete(ids);
+        }
     }
 }

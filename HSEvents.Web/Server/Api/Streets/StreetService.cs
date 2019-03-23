@@ -10,6 +10,7 @@ namespace HSEvents.Server.Api.Streets
         StreetDto Add(StreetDto subject);
         void Update(StreetDto subject);
         void Delete(long id);
+        void Delete(long[] ids);
     }
 
     public class StreetService : IStreetService
@@ -44,6 +45,11 @@ namespace HSEvents.Server.Api.Streets
         public void Delete(long id)
         {
             streetStorage.Delete(id);
+        }
+
+        public void Delete(long[] ids)
+        {
+            streetStorage.Delete(ids);
         }
     }
 }

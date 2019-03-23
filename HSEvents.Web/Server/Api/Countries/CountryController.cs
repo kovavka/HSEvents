@@ -42,5 +42,11 @@ namespace HSEvents.Server.Api.Countries
         {
             countryService.Delete(id);
         }
+
+        [HttpPost]
+        public void DeleteSeveral([FromBody] long[] ids)
+        {
+            countryService.Delete(ids);
+        }
     }
 }

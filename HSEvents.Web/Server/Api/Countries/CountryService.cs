@@ -10,6 +10,7 @@ namespace HSEvents.Server.Api.Countries
         Country Add(Country country);
         void Update(Country country);
         void Delete(long id);
+        void Delete(long[] ids);
     }
 
     public class CountryService : ICountryService
@@ -43,6 +44,11 @@ namespace HSEvents.Server.Api.Countries
         public void Delete(long id)
         {
             countryStorage.Delete(id);
+        }
+
+        public void Delete(long[] ids)
+        {
+            countryStorage.Delete(ids);
         }
     }
 }

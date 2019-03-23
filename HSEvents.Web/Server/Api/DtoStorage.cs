@@ -54,5 +54,13 @@ namespace HSEvents.Server.Api
                 repo.Delete(id);
             }
         }
+
+        public void Delete(long[] ids)
+        {
+            using (var repo = new Repo())
+            {
+                repo.Delete(ids);
+            }
+        }
     }
 }

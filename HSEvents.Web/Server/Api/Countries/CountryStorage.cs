@@ -12,6 +12,7 @@ namespace HSEvents.Server.Api.Countries
         Country Add(Country country);
         void Update(Country country);
         void Delete(long id);
+        void Delete(long[] ids);
     }
 
     public class CountryStorage : SimpleEntityStorage<Country>, ICountryStorage

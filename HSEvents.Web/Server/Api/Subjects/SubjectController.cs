@@ -42,5 +42,11 @@ namespace HSEvents.Server.Api.Subjects
         {
             subjectService.Delete(id);
         }
+
+        [HttpPost]
+        public void DeleteSeveral([FromBody] long[] ids)
+        {
+            subjectService.Delete(ids);
+        }
     }
 }

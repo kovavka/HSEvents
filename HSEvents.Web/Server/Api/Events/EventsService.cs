@@ -16,6 +16,7 @@ namespace HSEvents.Server.Api.Events
         EventDto Add(EventDto entity);
         void Update(EventDto entity);
         void Delete(int id);
+        void Delete(long[] ids);
     }
 
     public class EventsService : IEventsService
@@ -49,6 +50,11 @@ namespace HSEvents.Server.Api.Events
         public void Delete(int id)
         {
             eventsStorage.Delete(id);
+        }
+
+        public void Delete(long[] ids)
+        {
+            eventsStorage.Delete(ids);
         }
 
         public Month GetMonth(int year, int month)

@@ -43,5 +43,11 @@ namespace HSEvents.Server.Api.Regions
         {
             regionService.Delete(id);
         }
+
+        [HttpPost]
+        public void DeleteSeveral([FromBody] long[] ids)
+        {
+            regionService.Delete(ids);
+        }
     }
 }

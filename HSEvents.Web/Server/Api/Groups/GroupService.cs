@@ -10,6 +10,7 @@ namespace HSEvents.Server.Api.Groups
         Group Add(Group group);
         void Update(Group group);
         void Delete(long id);
+        void Delete(long[] ids);
     }
 
     public class GroupService : IGroupService
@@ -44,6 +45,11 @@ namespace HSEvents.Server.Api.Groups
         public void Delete(long id)
         {
             groupStorage.Delete(id);
+        }
+
+        public void Delete(long[] ids)
+        {
+            groupStorage.Delete(ids);
         }
     }
 }

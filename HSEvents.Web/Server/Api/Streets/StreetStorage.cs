@@ -13,6 +13,7 @@ namespace HSEvents.Server.Api.Streets
         StreetDto Add(StreetDto subject);
         void Update(StreetDto subject);
         void Delete(long id);
+        void Delete(long[] ids);
     }
 
     public class StreetStorage : DtoStorage<Street, StreetDto, StreetRepository>, IStreetStorage

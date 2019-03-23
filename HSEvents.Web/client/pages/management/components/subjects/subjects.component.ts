@@ -16,6 +16,7 @@ import { SubjectModalComponent } from './subject-modal/subject-modal.component';
 export class SubjectsComponent extends SearchComponent implements OnInit {
 
     subjects: SubjectModel[] = [];
+    selected: SubjectModel[] = [];
 
     constructor(private subjectService: SubjectService,
         protected activatedRoute: ActivatedRoute,
@@ -51,6 +52,7 @@ export class SubjectsComponent extends SearchComponent implements OnInit {
             .takeUntil<SubjectModel[]>(this.ngUnsubscribe)
             .subscribe(data => {
                 this.subjects = data;
+                this.selected = [];
                 this.refreshView();
             }, error => {
 
@@ -73,11 +75,26 @@ export class SubjectsComponent extends SearchComponent implements OnInit {
             });
     }
 
+    onDeleteSeveralClick() {
+        this.loading = true;
+        this.subjectService.deleteSeveral(this.selected.map(x => x.id))
+            .subscribe(x => {
+                this.getAll(this.searchArgs);
+            });
+    }
+
     onModalApply(subject: SubjectModel) {
         if (subject.id)
             this.update(subject);
         else
             this.add(subject);
+    }
+
+    onCheck($event: any, subject: SubjectModel) {
+        if ($event.target.checked)
+            this.selected.push(subject);
+        else
+            this.selected.splice(this.selected.indexOf(subject), 1);
     }
 
     private add(subject: SubjectModel) {

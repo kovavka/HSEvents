@@ -13,6 +13,7 @@ namespace HSEvents.Server.Api.Events
         EventDto Add(EventDto entity);
         void Update(EventDto entity);
         void Delete(int id);
+        void Delete(long[] ids);
     }
 
     public class EventsStorage : IEventsStorage
@@ -54,6 +55,14 @@ namespace HSEvents.Server.Api.Events
             using (var repo = new EventRepository())
             {
                 repo.Delete(id);
+            }
+        }
+
+        public void Delete(long[] ids)
+        {
+            using (var repo = new EventRepository())
+            {
+                repo.Delete(ids);
             }
         }
     }

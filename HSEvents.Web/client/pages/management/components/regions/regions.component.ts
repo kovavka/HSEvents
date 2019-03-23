@@ -13,7 +13,8 @@ import { RegionModalComponent } from './region-modal/region-modal.component';
 })
 export class RegionsComponent extends SearchComponent implements OnInit {
 
-    regions: Region[];
+    regions: Region[] = [];
+    selected: Region[] = [];
 
     constructor(private regionService: RegionService,
         protected changeDetectorRef: ChangeDetectorRef) {
@@ -40,6 +41,8 @@ export class RegionsComponent extends SearchComponent implements OnInit {
             .takeUntil<Region[]>(this.ngUnsubscribe)
             .subscribe(data => {
                 this.regions = data;
+                this.selected = [];
+                this.refreshView();
             }, error => {
 
             });
@@ -62,11 +65,26 @@ export class RegionsComponent extends SearchComponent implements OnInit {
             });
     }
 
+    onDeleteSeveralClick() {
+        this.loading = true;
+        this.regionService.deleteSeveral(this.selected.map(x => x.id))
+            .subscribe(x => {
+                this.getAll(this.searchArgs);
+            });
+    }
+
     onModalApply(region: Region) {
         if (region.id)
             this.update(region);
         else
             this.add(region);
+    }
+
+    onCheck($event: any, region: Region) {
+        if ($event.target.checked)
+            this.selected.push(region);
+        else
+            this.selected.splice(this.selected.indexOf(region), 1);
     }
 
     private add(region: Region) {
