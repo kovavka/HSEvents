@@ -18,7 +18,8 @@ namespace Infrastructure.Repositories
             {
                 Id = entity.Id,
                 Name = entity.Name,
-                CityId = entity.City.Id
+                CityId = entity.City.Id,
+                AreaName = $"{entity.City.Region.Country.Name}, {entity.City.Region.Name}, {entity.City.CityType.ShortName}. {entity.City.Name}"
             };
         }
 

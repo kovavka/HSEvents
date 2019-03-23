@@ -10,13 +10,15 @@ export class Street {
     id: number;
     name: string;
     cityId: number;
+    areaName: string;
 }
 
 export class City {
     id: number;
     name: string;
-    cityTypeId: number;
+    cityType: CityType;
     regionId: number;
+    areaName: string;
 }
 
 export class CityType {

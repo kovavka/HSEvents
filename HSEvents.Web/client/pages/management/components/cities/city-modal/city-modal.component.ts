@@ -1,6 +1,6 @@
 ﻿import { Component, Input, Output, EventEmitter, ViewChild, OnInit, ElementRef } from '@angular/core';
 import { BsModalComponent } from 'ng2-bs3-modal';
-import { City, Region, CityType } from '../../../../../models/address.models';
+import { City, Region, CityType, Country } from '../../../../../models/address.models';
 import { RegionService } from '../../regions/regions.service';
 import { CityTypeService } from '../../city-types/city-types.service';
 
@@ -15,6 +15,8 @@ export class CityModalComponent implements OnInit{
 
     allRegions: Region[];
     region: Region;
+    allCountries: Country[];
+    country: Country;
     cityTypes: CityType[];
     cityType: CityType;
     name: string;
@@ -40,7 +42,11 @@ export class CityModalComponent implements OnInit{
         return 'Добавление населенного пункта';
     }
 
-    displayFunc(region: Region) {
+    countryDisplayFunc(country: Country) {
+        return country.name;
+    }
+    
+    regionDisplayFunc(region: Region) {
         return region.name;
     }
     
@@ -58,12 +64,24 @@ export class CityModalComponent implements OnInit{
                     this.region = possible[0];
             });
 
+        this.regionService.getAll()
+            .subscribe(data => {
+                this.allRegions = data;
+                var possible = data.filter(x => x.id == city.regionId);
+                if (possible && possible.length == 1)
+                    this.region = possible[0];
+            });
+
         this.cityTypeService.getAll()
             .subscribe(data => {
                 this.cityTypes = data;
-                var possible = data.filter(x => x.id == city.cityTypeId);
-                if (possible && possible.length == 1)
-                    this.cityType = possible[0];
+                if (this.id) {
+                    var possible = data.filter(x => x.id == city.cityType.id);
+                    if (possible && possible.length == 1)
+                        this.cityType = possible[0];
+                } else {
+                    this.cityType = data[0];
+                }
             });
 
         this.id = city.id;
@@ -74,7 +92,7 @@ export class CityModalComponent implements OnInit{
         this.apply.emit(<City>{
             name: this.name,
             regionId: this.region.id,
-            cityTypeId: this.cityType.id,
+            cityType: this.cityType,
             id: this.id
         });
         this.modal.close();

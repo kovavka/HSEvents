@@ -24,7 +24,7 @@
                 <div class="dictionary-block__main-info-item">
                     <input type="checkbox" (change)="onCheck($event, region)" />
                 </div>
-                <div class="dictionary-block__main-info-item">{{region.name}}</div>
+                <div class="dictionary-block__main-info-item">{{region.name}}, {{region.country.name}}</div>
                 <div class="dictionary-block__main-info-item dictionary-block__main-info-item_right">
                     <span class="pointer glyphicon glyphicon-pencil" (click)="onEditClick(region)"></span>
                 </div>
@@ -32,7 +32,6 @@
                     <span class="pointer glyphicon glyphicon-trash" (click)="onDeleteClick(region)"></span>
                 </div>
             </div>
-            <div class="dictionary-block__details"></div>
         </div>
     </div>
 </div>

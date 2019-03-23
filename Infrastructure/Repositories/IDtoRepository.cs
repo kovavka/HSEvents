@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Linq.Expressions;
 using Domain.IEntity;
 using NHibernate;
 using NHibernate.Linq;
@@ -25,21 +24,21 @@ namespace Infrastructure.Repositories
         private ISession session = NHibernateHelper.OpenSession();
         public IQueryable<T> GetAll()
         {
-            IQueryable<T> entities;
+            IQueryable<T> query;
             using (var tx = session.BeginTransaction(IsolationLevel.ReadCommitted))
             {
-                entities = session.Query<T>();
+                query = GetAllQuery();
                 tx.Commit();
             }
 
-            return entities;
+            return query;
         }
 
         public abstract IEnumerable<TDto> GetAllDtos();
 
         public TDto Get(long id)
         {
-            var entity = session.Get<T>(id);
+            var entity = GetAllQuery().FirstOrDefault(x => x.Id == id);
             return ConvertToDto(entity);
         }
 
@@ -47,7 +46,9 @@ namespace Infrastructure.Repositories
         {
             using (var tx = session.BeginTransaction())
             {
-                session.Delete(session.Query<T>().First(x => x.Id == id));
+                session.Query<T>()
+                    .Where(x => x.Id == id)
+                    .Delete();
                 tx.Commit();
             }
         }
@@ -91,6 +92,11 @@ namespace Infrastructure.Repositories
             session.Close();
         }
 
+
+        protected virtual IQueryable<T> GetAllQuery()
+        {
+            return session.Query<T>();
+        }
 
         protected abstract TDto ConvertToDto(T entity);
 

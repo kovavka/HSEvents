@@ -24,7 +24,7 @@
                 <div class="dictionary-block__main-info-item">
                     <input type="checkbox" (change)="onCheck($event, city)" />
                 </div>
-                <div class="dictionary-block__main-info-item">{{city.name}}</div>
+                <div class="dictionary-block__main-info-item">{{city.cityType.shortName}}. {{city.name}} ({{city.areaName}})</div>
                 <div class="dictionary-block__main-info-item dictionary-block__main-info-item_right">
                     <span class="pointer glyphicon glyphicon-pencil" (click)="onEditClick(city)"></span>
                 </div>

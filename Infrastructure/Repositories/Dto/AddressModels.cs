@@ -1,4 +1,6 @@
 ﻿
+using Domain;
+
 namespace Infrastructure.Repositories.Dto
 {
     public class AddressDto
@@ -15,13 +17,15 @@ namespace Infrastructure.Repositories.Dto
         public long Id { get; set; }
         public string Name { get; set; }
         public long CityId { get; set; }
+        public string AreaName { get; set; }
     }
 
     public class CityDto
     {
         public long Id { get; set; }
         public string Name { get; set; }
-        public long CityTypeId { get; set; }
+        public CityType CityType { get; set; }
         public long RegionId { get; set; }
+        public string AreaName { get; set; }
     }
 }
