@@ -57,7 +57,9 @@ namespace Infrastructure.Repositories
         {
             using (var tx = session.BeginTransaction())
             {
-                session.Delete(session.Query<T>().Where(x => ids.Contains(x.Id)));
+                session.Query<T>()
+                    .Where(x => ids.Contains(x.Id))
+                    .Delete();
                 tx.Commit();
             }
         }

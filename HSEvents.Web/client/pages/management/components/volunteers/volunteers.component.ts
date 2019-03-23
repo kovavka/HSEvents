@@ -41,6 +41,7 @@ export class VolunteersComponent extends SearchComponent implements OnInit{
             .takeUntil<Volunteer[]>(this.ngUnsubscribe)
             .subscribe(data => {
                 this.volunteers = data;
+                this.selected = [];
             }, error => {
 
             });
