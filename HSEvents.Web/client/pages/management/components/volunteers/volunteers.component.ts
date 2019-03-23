@@ -63,6 +63,14 @@ export class VolunteersComponent extends SearchComponent implements OnInit{
             });
     }
 
+    onDeleteSeveralClick() {
+        this.loading = true;
+        this.volunteerService.deleteSeveral(this.selected.map(x => x.id))
+            .subscribe(x => {
+                this.getAll(this.searchArgs);
+            });
+    }
+
     onModalApply(volunteer: Volunteer) {
         if (volunteer.id)
             this.update(volunteer);

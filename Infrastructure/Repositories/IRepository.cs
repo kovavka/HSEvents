@@ -53,6 +53,15 @@ namespace Infrastructure.Repositories
             }
         }
 
+        public void Delete(long[] ids)
+        {
+            using (var tx = session.BeginTransaction())
+            {
+                session.Delete(session.Query<T>().Where(x => ids.Contains(x.Id)));
+                tx.Commit();
+            }
+        }
+
         public void Update(T entity)
         {
             using (var tx = session.BeginTransaction())

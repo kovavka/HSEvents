@@ -86,8 +86,12 @@
 .work-area__content-delete {
     color: #d64a4a;
     font-weight: 600;
-    height: 20px;
     padding-left: 3px;
+    font-size: 13px;
+}
+
+.work-area__content-delete-span {
+    cursor: pointer
 }
 
 .work-area-modal {

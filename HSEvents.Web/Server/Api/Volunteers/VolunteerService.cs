@@ -10,6 +10,7 @@ namespace HSEvents.Server.Api.Volunteers
         Volunteer Add(Volunteer subject);
         void Update(Volunteer subject);
         void Delete(long id);
+        void Delete(long[] ids);
     }
 
     public class VolunteerService : IVolunteerService
@@ -44,6 +45,11 @@ namespace HSEvents.Server.Api.Volunteers
         public void Delete(long id)
         {
             volunteerStorage.Delete(id);
+        }
+
+        public void Delete(long[] ids)
+        {
+            volunteerStorage.Delete(ids);
         }
     }
 }

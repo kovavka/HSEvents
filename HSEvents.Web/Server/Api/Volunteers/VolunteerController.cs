@@ -42,5 +42,11 @@ namespace HSEvents.Server.Api.Volunteers
         {
             volunteerService.Delete(id);
         }
+
+        [HttpPost]
+        public void DeleteSeveral([FromBody] long[] ids)
+        {
+            volunteerService.Delete(ids);
+        }
     }
 }

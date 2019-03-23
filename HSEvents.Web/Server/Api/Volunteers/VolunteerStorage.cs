@@ -12,6 +12,7 @@ namespace HSEvents.Server.Api.Volunteers
         Volunteer Add(Volunteer subject);
         void Update(Volunteer subject);
         void Delete(long id);
+        void Delete(long[] ids);
     }
 
     public class VolunteerStorage : SimpleEntityStorage<Volunteer>, IVolunteerStorage
