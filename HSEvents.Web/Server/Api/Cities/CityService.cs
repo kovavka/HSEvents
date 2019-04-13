@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
+using Infrastructure.Repositories;
 using Infrastructure.Repositories.Dto;
 
 namespace HSEvents.Server.Api.Cities
 {
     public interface ICityService
     {
-        IEnumerable<CityDto> GetAll();
+        IEnumerable<CityDto> GetAll(CityArgs args);
         CityDto Get(long id);
         CityDto Add(CityDto subject);
         void Update(CityDto subject);
@@ -22,9 +23,9 @@ namespace HSEvents.Server.Api.Cities
             this.cityStorage = cityStorage;
         }
         
-        public IEnumerable<CityDto> GetAll()
+        public IEnumerable<CityDto> GetAll(CityArgs args)
         {
-           return cityStorage.GetAllDtos();
+           return cityStorage.GetAllDtos(args);
         }
 
         public CityDto Get(long id)

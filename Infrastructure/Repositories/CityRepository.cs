@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Domain;
+using Helpers;
 using Infrastructure.Repositories.Dto;
 using NHibernate.Linq;
 
@@ -11,6 +12,19 @@ namespace Infrastructure.Repositories
         public override IEnumerable<CityDto> GetAllDtos()
         {
             return GetAll().AsEnumerable().Select(ConvertToDto);
+        }
+
+        public IEnumerable<CityDto> GetAllDtos(CityArgs args)
+        {
+            var query = GetAll();
+
+            if (args.Region.IsNotEmpty())
+                query = query.Where(x => x.Region.Name == args.Region);
+
+            if (args.Type.IsNotEmpty())
+                query = query.Where(x => x.CityType.Name == args.Type);
+
+            return query.AsEnumerable().Select(ConvertToDto).ToList();
         }
 
         protected override IQueryable<City> GetAllQuery()
@@ -45,4 +59,11 @@ namespace Infrastructure.Repositories
         }
     }
 
+    public class CityArgs
+    {
+        public string Region { get; set; }
+        public string Type { get; set; }
+        public string Limit { get; set; }
+        public string Offset { get; set; }
+    }
 }

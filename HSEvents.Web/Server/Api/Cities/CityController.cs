@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Web.Http;
+using Infrastructure.Repositories;
 using Infrastructure.Repositories.Dto;
 
 namespace HSEvents.Server.Api.Cities
@@ -14,9 +15,9 @@ namespace HSEvents.Server.Api.Cities
         }
 
         [HttpGet]
-        public IEnumerable<CityDto> GetAll()
+        public IEnumerable<CityDto> GetAll([FromUri] CityArgs args)
         {
-            return cityService.GetAll();
+            return cityService.GetAll(args);
         }
 
         [HttpGet]
