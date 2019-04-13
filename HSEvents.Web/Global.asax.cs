@@ -58,7 +58,7 @@ namespace HSEvents
 
             });
 
-            NHibernateHelper.Configure();
+            NHibernateHelper.Configure(AppSettings.DefaultConnection);
         }
 
         private void RegisterUnityComponents(UnityContainer container)

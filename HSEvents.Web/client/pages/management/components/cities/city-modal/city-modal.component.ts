@@ -1,9 +1,11 @@
-﻿import { Component, Input, Output, EventEmitter, ViewChild, OnInit, ElementRef } from '@angular/core';
+﻿import { Component, Output, EventEmitter, ViewChild, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Subject } from 'rxjs';
 import { BsModalComponent } from 'ng2-bs3-modal';
 import { City, Region, CityType, Country } from '../../../../../models/address.models';
 import { RegionService } from '../../regions/regions.service';
 import { CityTypeService } from '../../city-types/city-types.service';
 import { CountryService } from '../../countries/countries.service';
+import { SearchComponent } from '../../search.component';
 
 @Component({
     moduleId: module.id.toString(),
@@ -12,7 +14,7 @@ import { CountryService } from '../../countries/countries.service';
     styleUrls: ['city-modal.css'],
     providers: [RegionService, CityTypeService, CountryService]
 })
-export class CityModalComponent implements OnInit{
+export class CityModalComponent extends SearchComponent implements OnInit{
 
     allRegions: Region[];
     region: Region;
@@ -31,7 +33,10 @@ export class CityModalComponent implements OnInit{
 
     constructor(private regionService: RegionService,
         private countryService: CountryService,
-        private cityTypeService: CityTypeService) { }
+        private cityTypeService: CityTypeService,
+        protected changeDetectorRef: ChangeDetectorRef) {
+        super(changeDetectorRef);
+    }
 
     ngOnInit() {
         this.modal.onHide.subscribe(x => this.clear());
@@ -58,13 +63,17 @@ export class CityModalComponent implements OnInit{
     }
 
     initModal(city: City) {
+        if (city.region)
+            this.country = city.region.country;
+        this.region = city.region;
+
         this.countryService.getAll()
-            .switchMap(data => {
+            .subscribe(data => {
                 this.allCountries = data;
                 var possible: Country;
 
                 if (this.id)
-                    possible = data.find(x => x.id == city.region.country.id);
+                    possible = data.find(x => x.id == this.country.id);
                 else
                     possible = data.find(x => x.name == 'Россия');
 
@@ -73,21 +82,9 @@ export class CityModalComponent implements OnInit{
 
                 var countryName = this.country && this.country.name;
 
-                return this.regionService.getAll(countryName);
-            })
-            .subscribe(data => {
-                this.allRegions = data;
-                var possible: Region;
-
-                if (this.id)
-                    possible = data.find(x => x.id == city.region.id);
-                else
-                    possible = data.find(x => x.name == 'Пермский край');
-
-                if (possible)
-                    this.region = possible;
+                this.getRegions(countryName);
             });
-
+        
 
         this.cityTypeService.getAll()
             .subscribe(data => {
@@ -103,6 +100,25 @@ export class CityModalComponent implements OnInit{
 
         this.id = city.id;
         this.name = city.name;
+    }
+
+    getRegions(countryName: string) {
+        this.regionService.getAll(countryName)
+            .takeUntil(this.ngUnsubscribe)
+            .subscribe(data => {
+                this.allRegions = data;
+                var possible: Region;
+
+                if (this.id)
+                    possible = data.find(x => x.id == this.region.id);
+                else
+                    possible = data.find(x => x.name == 'Пермский край');
+
+                if (possible)
+                    this.region = possible;
+                else
+                    this.region = data[0];
+            });
     }
 
     onApplyClick() {
@@ -131,6 +147,7 @@ export class CityModalComponent implements OnInit{
 
     countryChange(country: Country) {
         this.country = country;
+        this.getRegions(country.name);
     }
 
     cityTypeChange(cityType: CityType) {

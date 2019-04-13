@@ -15,14 +15,10 @@ namespace Infrastructure
     {
         private static ISessionFactory sessionFactory;
 
-        public static void Configure()
+        public static void Configure(string connectionString)
         {
             sessionFactory = Fluently.Configure()
-                .Database(MsSqlConfiguration.MsSql2012.ConnectionString(
-                        @"Server=.; Initial Catalog=HSEvents; Integrated Security=SSPI;")
-                    .ShowSql()
-
-                )
+                .Database(MsSqlConfiguration.MsSql2012.ConnectionString(connectionString).ShowSql())
                 .Mappings(m => m.FluentMappings.Conventions.AddFromAssemblyOf<EnumConvention>())
                 .Mappings(m => m.FluentMappings.AddFromAssembly(Assembly.Load("Infrastructure")))
                 .ExposeConfiguration(cfg => new SchemaUpdate(cfg).Execute(true, false))

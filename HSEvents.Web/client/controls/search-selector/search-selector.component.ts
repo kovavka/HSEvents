@@ -22,6 +22,8 @@ export class SearchSelectorComponent {
 
         if (this.displayFuncInner && this.innerValue)
             this.innerText = this.displayFuncInner(this.innerValue);
+        else
+            this.innerText = null;
     }
 
 	@Input()
