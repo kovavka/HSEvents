@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Domain;
+using Helpers;
 using Infrastructure.Repositories.Dto;
 using NHibernate.Linq;
 
@@ -11,6 +12,16 @@ namespace Infrastructure.Repositories
         public override IEnumerable<StreetDto> GetAllDtos()
         {
             return GetAll().AsEnumerable().Select(ConvertToDto);
+        }
+
+        public IEnumerable<StreetDto> GetAllDtos(StreetArgs args)
+        {
+            var query = GetAll();
+
+            if (args.City.IsNotEmpty())
+                query = query.Where(x => x.City.Name == args.City);
+
+            return query.AsEnumerable().Select(ConvertToDto).ToList();
         }
 
         protected override IQueryable<Street> GetAllQuery()
@@ -42,5 +53,11 @@ namespace Infrastructure.Repositories
             };
         }
     }
-
+    
+    public class StreetArgs
+    {
+        public string City { get; set; }
+        public string Limit { get; set; }
+        public string Offset { get; set; }
+    }
 }

@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
+using Infrastructure.Repositories;
 using Infrastructure.Repositories.Dto;
 
 namespace HSEvents.Server.Api.Streets
 {
     public interface IStreetService
     {
-        IEnumerable<StreetDto> GetAll();
+        IEnumerable<StreetDto> GetAll(StreetArgs args);
         StreetDto Get(long id);
         StreetDto Add(StreetDto subject);
         void Update(StreetDto subject);
@@ -22,9 +23,9 @@ namespace HSEvents.Server.Api.Streets
             this.streetStorage = streetStorage;
         }
         
-        public IEnumerable<StreetDto> GetAll()
+        public IEnumerable<StreetDto> GetAll(StreetArgs args)
         {
-           return streetStorage.GetAllDtos();
+           return streetStorage.GetAllDtos(args);
         }
 
         public StreetDto Get(long id)

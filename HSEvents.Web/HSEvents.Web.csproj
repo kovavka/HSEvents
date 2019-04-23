@@ -225,6 +225,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Server\Api\Users\UserController.cs" />
+    <Compile Include="Server\Api\Users\UserService.cs" />
+    <Compile Include="Server\Api\Users\UserStorage.cs" />
+    <Compile Include="Server\Auth\AuthAttribute.cs" />
+    <Compile Include="Server\Auth\AuthService.cs" />
+    <Compile Include="Server\Auth\UserIdentity.cs" />
+    <Compile Include="Server\Auth\AuthInfo.cs" />
+    <Compile Include="Server\Auth\UserProvider.cs" />
     <Content Include="client\controls\color-picker\color-picker.component.css" />
     <Content Include="client\controls\color-picker\color-picker.component.html" />
     <Content Include="client\controls\search-selector\search-selector.component.css" />
@@ -392,6 +400,7 @@
     <Content Include="js-libs\bootstrap-datepicker\css\bootstrap-datepicker3.min.css.map" />
     <Content Include="js-libs\bootstrap-datepicker\css\bootstrap-datepicker3.standalone.css.map" />
     <Content Include="js-libs\bootstrap-datepicker\css\bootstrap-datepicker3.standalone.min.css.map" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -492,7 +501,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Start\" />
-    <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Domain\Domain.csproj">

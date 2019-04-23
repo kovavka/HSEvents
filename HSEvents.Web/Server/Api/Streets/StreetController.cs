@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Web.Http;
+using Infrastructure.Repositories;
 using Infrastructure.Repositories.Dto;
 
 namespace HSEvents.Server.Api.Streets
@@ -14,9 +15,9 @@ namespace HSEvents.Server.Api.Streets
         }
 
         [HttpGet]
-        public IEnumerable<StreetDto> GetAll()
+        public IEnumerable<StreetDto> GetAll(StreetArgs args)
         {
-            return streetService.GetAll();
+            return streetService.GetAll(args);
         }
 
         [HttpGet]

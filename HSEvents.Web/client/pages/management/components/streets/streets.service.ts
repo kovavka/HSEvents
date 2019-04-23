@@ -10,9 +10,13 @@ export class StreetService {
 
     constructor(private client: HseHttpClient) { }
 
-    getAll(): Observable<Street[]> {
+    getAll(city?: string): Observable<Street[]> {
+        if (!city) //todo убрать после добавления фильтрации
+            return this.client
+                .get<Street[]>(this.apiBase + 'getAll');
+
         return this.client
-            .get<Street[]>(this.apiBase + 'getAll');
+            .get<Street[]>(this.apiBase + 'getAll', city);
     }
 
     get(id: number): Observable<Street> {

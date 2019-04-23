@@ -8,7 +8,7 @@ namespace HSEvents.Server.Api.Streets
 {
     public interface IStreetStorage
     {
-        IEnumerable<StreetDto> GetAllDtos();
+        IEnumerable<StreetDto> GetAllDtos(StreetArgs args);
         StreetDto Get(long id);
         StreetDto Add(StreetDto subject);
         void Update(StreetDto subject);
@@ -18,5 +18,13 @@ namespace HSEvents.Server.Api.Streets
 
     public class StreetStorage : DtoStorage<Street, StreetDto, StreetRepository>, IStreetStorage
     {
+        public IEnumerable<StreetDto> GetAllDtos(StreetArgs args)
+        {
+            using (var repo = new StreetRepository())
+            {
+                var query = repo.GetAllDtos(args);
+                return query;
+            }
+        }
     }
 }

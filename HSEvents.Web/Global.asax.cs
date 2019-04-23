@@ -16,8 +16,11 @@ using HSEvents.Server.Api.Schools;
 using HSEvents.Server.Api.SchoolTypes;
 using HSEvents.Server.Api.Streets;
 using HSEvents.Server.Api.Subjects;
+using HSEvents.Server.Api.Users;
 using HSEvents.Server.Api.Volunteers;
+using HSEvents.Server.Auth;
 using Infrastructure;
+using Infrastructure.Repositories;
 using Microsoft.Practices.Unity;
 using Newtonsoft.Json.Serialization;
 using Unity.WebApi;
@@ -93,9 +96,14 @@ namespace HSEvents
             container.RegisterType<IRegionService, RegionService>();
             container.RegisterType<ICountryStorage, CountryStorage>();
             container.RegisterType<ICountryService, CountryService>();
+            container.RegisterType<IUserStorage, UserStorage>();
+            container.RegisterType<IUserService, UserService>();
 
             container.RegisterType<IStorage, Storage>();
             container.RegisterType<IService, Service>();
+
+            container.RegisterType<IAuthService, AuthService>();
+            container.RegisterType<IUserRepository, UserRepository>();
 
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
         }
