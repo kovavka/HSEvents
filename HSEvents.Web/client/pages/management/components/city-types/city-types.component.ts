@@ -4,6 +4,7 @@ import { SearchArgs } from '../../../../models/other.models';
 import { SearchComponent } from '../search.component';
 import { CityType } from '../../../../models/address.models';
 import { CityTypeModalComponent } from './city-type-modal/city-type-modal.component';
+import { AuthService } from '../../../../services/auth.service';
 
 @Component({
     moduleId: module.id.toString(),
@@ -17,8 +18,9 @@ export class CityTypesComponent extends SearchComponent implements OnInit {
     selected: CityType[] = [];
 
     constructor(private cityTypeService: CityTypeService,
-        protected changeDetectorRef: ChangeDetectorRef) {
-        super(changeDetectorRef);
+        protected changeDetectorRef: ChangeDetectorRef,
+        protected authService: AuthService) {
+        super(changeDetectorRef, authService);
     }
 
     @ViewChild('modal')

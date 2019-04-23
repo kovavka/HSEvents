@@ -4,6 +4,7 @@ import { SearchArgs } from '../../../../models/other.models';
 import { SearchComponent } from '../search.component';
 import { School } from '../../../../models/school.models';
 import { SchoolModalComponent } from './school-modal/school-modal.component';
+import { AuthService } from '../../../../services/auth.service';
 
 @Component({
     moduleId: module.id.toString(),
@@ -17,8 +18,9 @@ export class SchoolsComponent extends SearchComponent implements OnInit {
     selected: School[] = [];
 
     constructor(private schoolService: SchoolService,
-        protected changeDetectorRef: ChangeDetectorRef) {
-        super(changeDetectorRef);
+        protected changeDetectorRef: ChangeDetectorRef,
+        protected authService: AuthService) {
+        super(changeDetectorRef, authService);
     }
 
     ngOnInit() {

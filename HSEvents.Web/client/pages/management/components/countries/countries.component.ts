@@ -4,6 +4,7 @@ import { SearchArgs } from '../../../../models/other.models';
 import { SearchComponent } from '../search.component';
 import { Country } from '../../../../models/address.models';
 import { CountryModalComponent } from './country-modal/country-modal.component';
+import { AuthService } from '../../../../services/auth.service';
 
 @Component({
     moduleId: module.id.toString(),
@@ -17,8 +18,9 @@ export class CountriesComponent extends SearchComponent implements OnInit {
     selected: Country[] = [];
 
     constructor(private countryService: CountryService,
-        protected changeDetectorRef: ChangeDetectorRef) {
-        super(changeDetectorRef);
+        protected changeDetectorRef: ChangeDetectorRef,
+        protected authService: AuthService) {
+        super(changeDetectorRef, authService);
     }
 
     ngOnInit() {

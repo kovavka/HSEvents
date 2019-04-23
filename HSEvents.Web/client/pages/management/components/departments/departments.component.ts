@@ -4,6 +4,7 @@ import { SearchArgs } from '../../../../models/other.models';
 import { SearchComponent } from '../search.component';
 import { DepartmentModalComponent } from './department-modal/department-modal.component';
 import { Department } from '../../../../models/dictionaries.models';
+import { AuthService } from '../../../../services/auth.service';
 
 @Component({
     moduleId: module.id.toString(),
@@ -17,8 +18,9 @@ export class DepartmentsComponent extends SearchComponent implements OnInit {
     selected: Department[] = [];
 
     constructor(private departmentService: DepartmentService,
-        protected changeDetectorRef: ChangeDetectorRef) {
-        super(changeDetectorRef);
+        protected changeDetectorRef: ChangeDetectorRef,
+        protected authService: AuthService) {
+        super(changeDetectorRef, authService);
     }
 
     @ViewChild('modal')

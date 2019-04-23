@@ -1,24 +1,25 @@
-﻿import { Component } from '@angular/core';
+﻿import { Component, ChangeDetectorRef } from '@angular/core';
+import { AbstractComponent } from '../utilities/abstract.component';
+import { AuthService } from '../services/auth.service';
 
 @Component({
     moduleId: module.id.toString(),
     selector: 'top-menu',
 	templateUrl: 'top-menu.component.html'
 })
-export class TopMenuComponent {
+export class TopMenuComponent extends AbstractComponent {
 
+    constructor(protected authService: AuthService,
+        protected changeDetectorRef: ChangeDetectorRef) {
+        super(changeDetectorRef, authService);
+    }
 
 	get login():string {
-		return "test";
+        return this.authService.userLogin;
 	}
 
-	get isAuthenticated():boolean {
-		return this.isAuth;
-	}
 
-	isAuth: boolean=true;
-
-	exit() {
-		this.isAuth = !this.isAuth;
+    logout() {
+        this.authService.logout();
 	}
 }

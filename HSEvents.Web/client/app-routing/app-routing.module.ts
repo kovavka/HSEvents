@@ -17,6 +17,7 @@ import { CitiesComponent } from '../pages/management/components/cities/cities.co
 import { CityTypesComponent } from '../pages/management/components/city-types/city-types.component';
 import { RegionsComponent } from '../pages/management/components/regions/regions.component';
 import { CountriesComponent } from '../pages/management/components/countries/countries.component';
+import { LoginComponent } from '../pages/login/login.component';
 
 const routes: Routes = [
     {
@@ -44,7 +45,8 @@ const routes: Routes = [
                     { path: 'regions', component: RegionsComponent },
                     { path: 'countries', component: CountriesComponent }
                 ]
-            }
+            },
+            { path: 'login', component: LoginComponent}
         ]
     }
 ];

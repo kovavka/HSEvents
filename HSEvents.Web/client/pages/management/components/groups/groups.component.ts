@@ -4,6 +4,7 @@ import { SearchArgs } from '../../../../models/other.models';
 import { SearchComponent } from '../search.component';
 import { GroupModalComponent } from './group-modal/group-modal.component';
 import { Group } from '../../../../models/dictionaries.models';
+import { AuthService } from '../../../../services/auth.service';
 
 @Component({
     moduleId: module.id.toString(),
@@ -17,8 +18,9 @@ export class GroupsComponent extends SearchComponent implements OnInit {
     selected: Group[] = [];
 
     constructor(private groupService: GroupService,
-        protected changeDetectorRef: ChangeDetectorRef) {
-        super(changeDetectorRef);
+        protected changeDetectorRef: ChangeDetectorRef,
+        protected authService: AuthService) {
+        super(changeDetectorRef, authService);
     }
 
     ngOnInit() {

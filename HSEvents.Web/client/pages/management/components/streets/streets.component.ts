@@ -4,6 +4,7 @@ import { SearchArgs } from '../../../../models/other.models';
 import { SearchComponent } from '../search.component';
 import { Street } from '../../../../models/address.models';
 import { StreetModalComponent } from './street-modal/street-modal.component';
+import { AuthService } from '../../../../services/auth.service';
 
 @Component({
     moduleId: module.id.toString(),
@@ -17,8 +18,9 @@ export class StreetsComponent extends SearchComponent implements OnInit {
     selected: Street[] = [];
 
     constructor(private streetService: StreetService,
-        protected changeDetectorRef: ChangeDetectorRef) {
-        super(changeDetectorRef);
+        protected changeDetectorRef: ChangeDetectorRef,
+        protected authService: AuthService) {
+        super(changeDetectorRef, authService);
     }
 
     ngOnInit() {

@@ -18,20 +18,11 @@ namespace HSEvents.Server.Api.Users
         }
 
         [HttpPost]
-        public User Login(AuthInfo authInfo)
+        public AuthInfo Login(AuthArgs authInfo)
         {
             //todo нужно сделать нормальное решение
             authService.ActionContext = ActionContext;
             return authService.Login(authInfo);
         }
-
-        [HttpPost]
-        public void LogOut()
-        {
-            //todo нужно сделать нормальное решение
-            authService.ActionContext = ActionContext;
-            authService.LogOut();
-        }
-
     }
 }

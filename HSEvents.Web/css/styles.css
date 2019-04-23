@@ -184,6 +184,13 @@
         background-color: #3eddff;
     }
 
+.flat-button__dark-blue {
+    background-color: #2563c1;
+}
+    .flat-button__dark-blue:hover {
+        background-color: #2d6fd3;
+    }
+
 .flat-button__caption {
     text-align: center;
     vertical-align: middle;
@@ -192,6 +199,10 @@
     cursor: pointer;
 }
     .flat-button__caption:hover {
+        text-decoration: none;
+        color: white;
+    }
+    .flat-button__caption_dark-hover:hover {
         text-decoration: none;
         color: #000000;
 
@@ -276,6 +287,18 @@
     -ms-flex-positive: 2;
 }
 
+.content-wrapper {
+    margin-left: 6%;
+    margin-top: 20px;
+}
+
+.content-wrapper__item_margin_s {
+    margin-top: 8px;
+}
+
+.content-wrapper__item_margin_m {
+    margin-top: 16px;
+}
 
 
 
@@ -331,11 +354,6 @@
 
 .invalid-input {
     border: 1px solid #a94442;
-}
-
-.content-wrapper {
-    margin-left: 6%;
-    margin-top: 20px;
 }
 
 .ui-btn {

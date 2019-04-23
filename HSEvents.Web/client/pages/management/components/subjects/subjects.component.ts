@@ -6,6 +6,7 @@ import { SearchArgs } from '../../../../models/other.models';
 import { SearchComponent } from '../search.component';
 import { SubjectModel } from '../../../../models/dictionaries.models';
 import { SubjectModalComponent } from './subject-modal/subject-modal.component';
+import { AuthService } from '../../../../services/auth.service';
 
 @Component({
     moduleId: module.id.toString(),
@@ -21,8 +22,9 @@ export class SubjectsComponent extends SearchComponent implements OnInit {
     constructor(private subjectService: SubjectService,
         protected activatedRoute: ActivatedRoute,
         protected router: Router,
-        protected changeDetectorRef: ChangeDetectorRef) {
-        super(changeDetectorRef);
+        protected changeDetectorRef: ChangeDetectorRef,
+        protected authService: AuthService) {
+        super(changeDetectorRef, authService);
     }
 
     @ViewChild('modal')

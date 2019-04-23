@@ -6,6 +6,7 @@ import { RegionService } from '../../regions/regions.service';
 import { CityTypeService } from '../../city-types/city-types.service';
 import { CountryService } from '../../countries/countries.service';
 import { SearchComponent } from '../../search.component';
+import { AuthService } from '../../../../../services/auth.service';
 
 @Component({
     moduleId: module.id.toString(),
@@ -34,8 +35,9 @@ export class CityModalComponent extends SearchComponent implements OnInit{
     constructor(private regionService: RegionService,
         private countryService: CountryService,
         private cityTypeService: CityTypeService,
-        protected changeDetectorRef: ChangeDetectorRef) {
-        super(changeDetectorRef);
+        protected changeDetectorRef: ChangeDetectorRef,
+        protected authService: AuthService) {
+        super(changeDetectorRef, authService);
     }
 
     ngOnInit() {

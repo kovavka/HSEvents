@@ -4,6 +4,7 @@ import { SearchArgs } from '../../../../models/other.models';
 import { SearchComponent } from '../search.component';
 import { SchoolType } from '../../../../models/school.models';
 import { SchoolTypeModalComponent } from './school-type-modal/school-type-modal.component';
+import { AuthService } from '../../../../services/auth.service';
 
 @Component({
     moduleId: module.id.toString(),
@@ -17,8 +18,9 @@ export class SchoolTypesComponent extends SearchComponent implements OnInit {
     selected: SchoolType[] = [];
 
     constructor(private schoolTypeService: SchoolTypeService,
-        protected changeDetectorRef: ChangeDetectorRef) {
-        super(changeDetectorRef);
+        protected changeDetectorRef: ChangeDetectorRef,
+        protected authService: AuthService) {
+        super(changeDetectorRef, authService);
     }
 
     @ViewChild('modal')

@@ -251,6 +251,7 @@
     <Content Include="client\pages\events\event-modals\execution-editor.component.html" />
     <Content Include="client\pages\events\events.component.css" />
     <Content Include="client\pages\events\events.component.html" />
+    <Content Include="client\pages\login\login.component.html" />
     <Content Include="client\pages\home\home.component.html" />
     <Content Include="client\menus\top-menu.component.html" />
     <Content Include="client\pages\management\components\academic-programs\academic-program-modal\academic-program-modal.component.css" />
@@ -329,6 +330,9 @@
     <TypeScriptCompile Include="client\controls\editable-datapicker\editable-datapicker.component.ts" />
     <TypeScriptCompile Include="client\controls\directives\window-mouse-event-handler.directive.ts" />
     <TypeScriptCompile Include="client\controls\search-selector\search-selector.component.ts" />
+    <TypeScriptCompile Include="client\services\auth.service.ts" />
+    <TypeScriptCompile Include="client\pages\login\login.component.ts" />
+    <TypeScriptCompile Include="client\pages\login\login.module.ts" />
     <TypeScriptCompile Include="client\pages\management\components\addresses\address-modal\address-modal.component.ts" />
     <TypeScriptCompile Include="client\pages\management\components\cities\city-modal\city-modal.component.ts" />
     <TypeScriptCompile Include="client\pages\management\components\regions\region-modal\region-modal.component.ts" />

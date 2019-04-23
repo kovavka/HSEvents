@@ -5,6 +5,7 @@ import { AcademicProgram } from '../../../../models/dictionaries.models';
 import { SearchArgs } from '../../../../models/other.models';
 import { SearchComponent } from '../search.component';
 import { AcademicProgramModalComponent } from './academic-program-modal/academic-program-modal.component';
+import { AuthService } from '../../../../services/auth.service';
 
 @Component({
     moduleId: module.id.toString(),
@@ -18,8 +19,9 @@ export class AcademicProgramsComponent extends SearchComponent implements OnInit
     selected: AcademicProgram[] = [];
 
     constructor(private academicProgramService: AcademicProgramService,
-        protected changeDetectorRef: ChangeDetectorRef) {
-        super(changeDetectorRef);
+        protected changeDetectorRef: ChangeDetectorRef,
+        protected authService: AuthService) {
+        super(changeDetectorRef, authService);
     }
 
     @ViewChild('modal')

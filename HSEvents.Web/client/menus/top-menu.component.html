@@ -15,12 +15,12 @@
                 <li><a [routerLink]="['/analytics']" title="">Аналитика</a></li>
             </ul>
             <ul class="nav navbar-nav pull-right top-menu-items">
-                <ng-container *ngIf="isAuthenticated">
+                <ng-container *ngIf="isAuth">
                     <li><a>{{login}}</a></li>
-                    <li><a class="pointer" (click)="exit()" title="">Выход</a></li>
+                    <li><a class="pointer" (click)="logout()" title="">Выход</a></li>
                 </ng-container>
-                <ng-container *ngIf="!isAuthenticated">
-                    <li><a [routerLink]="['/authentication']" title="">Вход</a></li>
+                <ng-container *ngIf="!isAuth">
+                    <li><a [routerLink]="['/login']" title="">Вход</a></li>
                     <li><a [routerLink]="['/registration']" title="">Регистрация</a></li>
                 </ng-container>
                 

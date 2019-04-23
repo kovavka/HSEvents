@@ -4,7 +4,10 @@ export class HseHttpParams {
     private httpParamsInner: HttpParams = new HttpParams();
 
     set(key: string, value: string) {
-        this.httpParamsInner = this.httpParamsInner.set(key, value);
+        if (value) {
+            this.httpParamsInner = this.httpParamsInner.set(key, value);
+        }
+
         return this;
     }
 

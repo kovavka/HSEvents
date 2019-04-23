@@ -16,10 +16,8 @@ namespace HSEvents.Server.Auth
     {
         HttpActionContext ActionContext { get; set; }
 
-        User Login(AuthInfo authInfo);
+        AuthInfo Login(AuthArgs authInfo);
         
-        void LogOut();
-
         IPrincipal CurrentUser { get; }
     }
 
@@ -32,50 +30,35 @@ namespace HSEvents.Server.Auth
         [Dependency]
         public IUserRepository Repository { get; set; }
 
-        public User Login(AuthInfo authInfo)
+        public AuthInfo Login(AuthArgs authInfo)
         {
             User user = Repository.Login(authInfo.Login, authInfo.Password);
 
             if (user != null)
             {
                 var roles = user.IsAdmin ? "admin" : "";
-                CreateCookie(authInfo.Login, roles, true);
+                return new AuthInfo()
+                {
+                    Token = GetToken(authInfo.Login, roles, true),
+                    User = user
+                };
             }
 
-            return user;
+            return null;
         }
-        
-        private void CreateCookie(string login, string roles, bool isPersistent = false)
+
+        private string GetToken(string login, string roles, bool isPersistent = false)
         {
             var ticket = new FormsAuthenticationTicket(
-                  1,
-                  login,
-                  DateTime.Now,
-                  DateTime.Now.Add(FormsAuthentication.Timeout),
-                  isPersistent,
-                  roles,
-                  FormsAuthentication.FormsCookiePath);
+                1,
+                login,
+                DateTime.Now,
+                DateTime.Now.Add(FormsAuthentication.Timeout),
+                isPersistent,
+                roles,
+                FormsAuthentication.FormsCookiePath);
 
-            // Encrypt the ticket.
-            var encTicket = FormsAuthentication.Encrypt(ticket);
-
-            // Create the cookie.
-            var authCookie = new CookieHeaderValue(cookieName, encTicket)
-            {
-                Expires = DateTime.Now.Add(FormsAuthentication.Timeout)
-            };
-            ActionContext.Request.Headers.GetCookies().Add(authCookie);
-
-            _currentUser = new UserProvider(ticket.Name, Repository);
-        }
-
-        public void LogOut()
-        {
-            var httpCookie = ActionContext.Request.Headers.GetCookies(cookieName).FirstOrDefault();
-            if (httpCookie != null)
-            {
-                httpCookie[cookieName].Value = string.Empty;
-            }
+           return FormsAuthentication.Encrypt(ticket);
         }
 
         private IPrincipal _currentUser;

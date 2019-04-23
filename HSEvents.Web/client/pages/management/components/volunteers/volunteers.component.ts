@@ -4,6 +4,7 @@ import { SearchArgs } from '../../../../models/other.models';
 import { SearchComponent } from '../search.component';
 import { Volunteer } from '../../../../models/dictionaries.models';
 import { VolunteerModalComponent } from './volunteer-modal/volunteer-modal.component';
+import { AuthService } from '../../../../services/auth.service';
 
 @Component({
     moduleId: module.id.toString(),
@@ -17,8 +18,9 @@ export class VolunteersComponent extends SearchComponent implements OnInit{
     selected: Volunteer[] = [];
 
     constructor(private volunteerService: VolunteerService,
-        protected changeDetectorRef: ChangeDetectorRef) {
-        super(changeDetectorRef);
+        protected changeDetectorRef: ChangeDetectorRef,
+        protected authService: AuthService) {
+        super(changeDetectorRef, authService);
     }
 
     ngOnInit() {

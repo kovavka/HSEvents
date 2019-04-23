@@ -2,6 +2,7 @@
 import { Subject } from 'rxjs'
 import { AbstractComponent } from '../../../utilities/abstract.component';
 import { SearchArgs } from '../../../models/other.models';
+import { AuthService } from '../../../services/auth.service';
 
 export class SearchComponent extends AbstractComponent implements OnInit {
 
@@ -9,8 +10,9 @@ export class SearchComponent extends AbstractComponent implements OnInit {
     protected  getAllSubject: Subject<SearchArgs> = new Subject();
     protected searchArgs: SearchArgs;
 
-    constructor(protected changeDetectorRef: ChangeDetectorRef) {
-        super(changeDetectorRef);
+    constructor(protected changeDetectorRef: ChangeDetectorRef,
+        protected authService: AuthService) {
+        super(changeDetectorRef, authService);
 
         this.searchArgs = <SearchArgs>{
             limit: 100,
