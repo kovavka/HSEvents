@@ -1,11 +1,21 @@
-﻿Create table Attendee(
+﻿Create table "User"(
+Id bigint identity(1,1) not null,
+Login nvarchar(255) not null,
+Password nvarchar(255) not null,
+Type int not null,
+primary key (Id)
+);
+
+CREATE table Attendee(
 Id bigint identity(1,1) not null,
 FullName nvarchar(255) not null,
 PhoneNumber nvarchar(255),
 Email nvarchar(255),
 Type int not null,
+User_Id BIGINT,
 
-primary key (Id)
+primary key (Id),
+constraint FK_Attendee_User foreign key (User_Id) references "User"(Id)
 );
 
 Create table AcademicProgram(

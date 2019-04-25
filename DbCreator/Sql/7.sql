@@ -20,9 +20,9 @@ Insert into Event (Name,Info,Comment,Type) values ('Экономика прос�
 Insert into Course (Price, Duration, Subject_Id, Event_Id) values (1500, 10, 1, 1);
 Insert into EventExecution (Event_Id, Address_Id) values (1, 1);
 Insert into EventExecution (Event_Id, Address_Id) values (1, 2);
-Insert into EventDate (Date,StartTime,EndTime,EventExecution_Id) values ('2018-10-01', '14:30', '15:50', 1);
-Insert into EventDate (Date,StartTime,EndTime,EventExecution_Id) values ('2018-10-03', '14:30', '15:50', 2);
-Insert into EventDate (Date,StartTime,EndTime,EventExecution_Id) values ('2018-10-07', '14:30','15:50', 1);
+Insert into EventDate (Date,StartTime,EndTime,EventExecution_Id) values ('2019-04-01', '14:30', '15:50', 1);
+Insert into EventDate (Date,StartTime,EndTime,EventExecution_Id) values ('2019-04-03', '14:30', '15:50', 2);
+Insert into EventDate (Date,StartTime,EndTime,EventExecution_Id) values ('2019-04-07', '14:30','15:50', 1);
 Insert into DepartmentInfo (Event_Id, Department_Id) values (1, 1);
 Insert into DepartmentInfo (Event_Id, Department_Id) values (1, 2);
 
@@ -35,6 +35,6 @@ Insert into DepartmentInfo (Event_Id, Department_Id) values (2, 1);
 Insert into Event (Name,Info,Type) values ('Вышка в школы', 'Выезды в школы с академ руководителями', 3);
 Insert into SchoolWork (Program, Event_Id) values ('Программа', 3);
 Insert into EventExecution (Event_Id, Address_Id) values (3, 1);
-Insert into EventDate (Date,StartTime,EndTime,EventExecution_Id) values ('2018-10-5', '14:30', '15:50', 4);
+Insert into EventDate (Date,StartTime,EndTime,EventExecution_Id) values ('2019-04-5', '14:30', '15:50', 4);
 Insert into DepartmentInfo (Event_Id, Department_Id) values (3, 2);
 

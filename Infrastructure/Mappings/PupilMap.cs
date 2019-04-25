@@ -27,6 +27,7 @@ namespace Infrastructure.Mappings
         public AttendeeMap()
         {
             Map(x => x.Type).Nullable();
+            References(x => x.User).Cascade.SaveUpdate().ForeignKey("FK_Attendee_User");
         }
     }
 

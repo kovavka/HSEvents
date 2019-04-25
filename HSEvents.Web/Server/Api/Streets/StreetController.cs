@@ -15,7 +15,7 @@ namespace HSEvents.Server.Api.Streets
         }
 
         [HttpGet]
-        public IEnumerable<StreetDto> GetAll(StreetArgs args)
+        public IEnumerable<StreetDto> GetAll([FromUri] StreetArgs args)
         {
             return streetService.GetAll(args);
         }

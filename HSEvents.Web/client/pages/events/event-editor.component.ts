@@ -56,7 +56,10 @@ export class EventEditorComponent implements OnInit{
 			this.model.executions = [];
             this.model.type = 1;
 		    this.model.departments = [];
-		    this.model.volunteers = [];
+            this.model.volunteers = [];
+            this.model.lecturers = [];
+		    this.model.organizers = [];
+		    this.model.purchases = [];
 		}
 		else
             this.model = value;

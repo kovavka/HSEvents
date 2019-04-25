@@ -79,16 +79,17 @@ namespace Infrastructure.Mappings.Events
         public EmployeeMap()
         {
             Map(x => x.Appointment);
+            References(x => x.User).Cascade.SaveUpdate().ForeignKey("FK_Employee_User");
         }
     }
-    class UserMap : SubclassMap<User>
+    class UserMap : EntityMap<User>
     {
         public UserMap()
         {
             Map(x => x.Login);
             Map(x => x.Password);
-            Map(x => x.IsAdmin);
-            Map(x => x.Checked);
+            Map(x => x.Type);
+
         }
     }
     class EventExecutionMap : EntityMap<EventExecution>

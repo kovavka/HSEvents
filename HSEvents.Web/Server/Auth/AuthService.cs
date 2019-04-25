@@ -36,7 +36,7 @@ namespace HSEvents.Server.Auth
 
             if (user != null)
             {
-                var roles = user.IsAdmin ? "admin" : "";
+                var roles = user.Type == UserType.Admin ? "admin" : "";
                 return new AuthInfo()
                 {
                     Token = GetToken(authInfo.Login, roles, true),

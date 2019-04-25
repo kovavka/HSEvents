@@ -1,4 +1,5 @@
 ﻿using System.Security.Principal;
+using Domain;
 using Infrastructure.Repositories;
 
 namespace HSEvents.Server.Auth
@@ -20,7 +21,7 @@ namespace HSEvents.Server.Auth
             }
 
             if (role == "admin")
-                return userIdentity.User.IsAdmin;
+                return userIdentity.User.Type == UserType.Admin;
 
             return true;
         }
