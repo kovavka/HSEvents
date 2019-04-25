@@ -25,6 +25,16 @@ namespace Infrastructure.Repositories
             return ConvertToDto(Get(id));
         }
 
+        public void Delete(long id)
+        {
+            using (var repo = new NHGetAllRepository<EventExecution>())
+            {
+                repo.Delete(x => x.Event.Id == id);
+            }
+
+            base.Delete(id);
+        }
+
          public EventDto Add(EventDto dto)
         {
             var entity = ConvertToEntity(dto);
