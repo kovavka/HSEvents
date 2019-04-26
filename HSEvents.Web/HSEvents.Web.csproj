@@ -327,6 +327,8 @@
     <Content Include="js-libs\bootstrap-datepicker\js\bootstrap-datepicker.js" />
     <Content Include="js-libs\bootstrap-datepicker\js\bootstrap-datepicker.min.js" />
     <Content Include="js-libs\bootstrap-datepicker\locales\bootstrap-datepicker.ru.min.js" />
+    <Content Include="js-libs\chartistjs\chartist.min.css" />
+    <Content Include="js-libs\chartistjs\chartist.min.js" />
     <Content Include="package.json" />
     <TypeScriptCompile Include="client\controls\directives\document-click-event-handler.directive.ts" />
     <TypeScriptCompile Include="client\controls\directives\number.directive.ts" />

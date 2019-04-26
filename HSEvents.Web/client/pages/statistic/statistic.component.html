@@ -1,1 +1,14 @@
-﻿
+﻿<div class="page-container">
+    <div class="page-container__list">
+        <div class="page-container__list-group">
+            <div class="page-container__list-item">
+                <a class="page-container__list-item-link"
+                   [routerLink]="['exam']"
+                   routerLinkActive="page-container__list-item-link_selected">По баллам ЕГЭ</a>
+            </div>
+        </div>
+    </div>
+    <div class="page-container__content">
+        <router-outlet></router-outlet>
+    </div>
+</div>
