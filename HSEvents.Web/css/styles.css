@@ -382,6 +382,15 @@
 .stat-container__chart {
 }
 
+.stat-container__chart-inner {
+    height: 300px;
+}
+
+.stat-container__chart-inner_pie {
+    width: 400px;
+    height: 300px;
+}
+
 .stat-container__legend {
     margin: 0px 64px;
 }
@@ -405,6 +414,9 @@
     font-style: italic;
 }
 
+.ct-label {
+    font-size: 14px !important;
+}
 
 
 

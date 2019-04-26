@@ -12,10 +12,10 @@
                 Зависимость поступления абитуриента от числа мероприятий, в которых он участвовал <br />
                 Число абитуриентов (по вертикали) и число мероприятий (по горизонтали)
             </div>
+            <div class="stat-container__chart">
+                <div class="stat-container__chart-inner"></div>
+            </div>
             <ng-container *ngIf="data && data.length > 0">
-                <div class="stat-container__chart">
-                    <div class="stat-container__chart-inner"></div>
-                </div>
             </ng-container>
             <div *ngIf="!data || data.length == 0" class="stat-container__no-data">
                 нет данных

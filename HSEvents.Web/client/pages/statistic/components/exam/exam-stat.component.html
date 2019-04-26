@@ -12,6 +12,7 @@
                 Число выпускников курсов ЕГЭ (по вертикали) и их распределение по баллам (по горизонтали)
             </div>
             <ng-container *ngIf="data && data.length > 0">
+            </ng-container>
                 <div class="stat-container__year-dimension flex-container">
                     <a *ngFor="let item of data"
                        class="stat-container__year-dimension-item flex-container__item"
@@ -30,7 +31,6 @@
                         <div class="legend-item__name">{{item.subject}}</div>
                     </div>
                 </div>
-            </ng-container>
             <div *ngIf="!data || data.length == 0" class="stat-container__no-data">
                 нет данных
             </div>

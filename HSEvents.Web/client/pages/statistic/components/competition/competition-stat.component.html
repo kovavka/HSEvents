@@ -12,10 +12,10 @@
                 Зависимость поступления абитуриента от баллов, которые он набрал по олимпиаде <br />
                 Число абитуриентов (по вертикали) и их распределение по баллам (по горизонтали)
             </div>
+            <div class="stat-container__chart">
+                <div class="stat-container__chart-inner"></div>
+            </div>
             <ng-container *ngIf="data && data.length > 0">
-                <div class="stat-container__chart">
-                    <div class="stat-container__chart-inner"></div>
-                </div>
             </ng-container>
             <div *ngIf="!data || data.length == 0" class="stat-container__no-data">
                 нет данных

@@ -4,6 +4,7 @@ import { AbstractComponent } from '../../../../utilities/abstract.component';
 import { StatisticService } from '../../statistic.service';
 
 declare var Chartist: any;
+declare var jQuery: any;
 
 @Component({
     moduleId: module.id.toString(),
@@ -36,5 +37,16 @@ export class SeasonStatComponent extends AbstractComponent implements OnInit {
     }
 
     initChart() {
+
+        var series= [30, 17, 5];
+
+        new Chartist.Pie('.stat-container__chart-inner', {
+            series: series,
+            labels: ['Series 1', 'Series 2', 'Series 3']
+        },{
+                chartPadding: 40,
+                labelOffset: 70,
+                labelDirection: 'explode'
+        });
     }
 }

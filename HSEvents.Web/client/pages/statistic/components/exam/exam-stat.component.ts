@@ -66,7 +66,8 @@ export class ExamStatComponent extends AbstractComponent implements OnInit {
             series: series
 
         };
-        new Chartist.Bar('.stat-container__chart-inner', chartData);
+        new Chartist.Bar('.stat-container__chart-inner', chartData, {
+            axisY :{ onlyInteger: true }});
     }
 
     yearClick(item: any) {

@@ -11,11 +11,9 @@
             <div class="stat-container__description">
                 Зависимость посещаемости мероприятий от времени года
             </div>
-            <ng-container *ngIf="data && data.length > 0">
                 <div class="stat-container__chart">
-                    <div class="stat-container__chart-inner"></div>
+                    <div class="stat-container__chart-inner stat-container__chart-inner_pie"></div>
                 </div>
-            </ng-container>
             <div *ngIf="!data || data.length == 0" class="stat-container__no-data">
                 нет данных
             </div>
