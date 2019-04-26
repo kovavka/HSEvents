@@ -11,6 +11,48 @@ namespace Infrastructure.Repositories
     {
         private ISession session = NHibernateHelper.OpenSession();
 
+        public IEnumerable<object> GetCostStats()
+        {
+            return new List<object>();
+        }
+
+        public IEnumerable<object> GetSeasonStats()
+        {
+            return new List<object>();
+        }
+
+        public IEnumerable<object> GetEventsCountStats()
+        {
+            var query = session.CreateSQLQuery(@"SELECT  [YearOfGraduation], Count(*)
+  FROM [HSEvents].[dbo].[AttendanceInfo]
+  inner join [HSEvents].[dbo].[Pupil] on [Pupil].[Attendee_Id]=[AttendanceInfo].[Attendee_Id]
+  where [EnterProgram_Id] is not null
+  group by [Pupil].[Attendee_Id], [YearOfGraduation]").List();
+
+            var list = query.Cast<Array>()
+                .GroupBy(x => x.GetValue(0)) //by year
+                .Select(x => new
+                {
+                    Year = x.Key,
+                    Value = x.GroupBy(v => v.GetValue(1)) //by events count
+                        .Select(v => new
+                        {
+                            EventsCount = v.Key,
+                            AttendeesCount = v.Count()
+                        })
+                        .OrderBy(v => v.EventsCount)
+                })
+                .OrderByDescending(x => x.Year)
+                .ToList();
+
+            return list;
+        }
+
+        public IEnumerable<object> GetCompetitionStats()
+        {
+            return new List<object>();
+        }
+
         public IEnumerable<object> GetExamStats()
         {
             //вот это очень плохое решение, надо нормально оформить хотя бы
@@ -50,7 +92,6 @@ where [Participated]=1").List();
 
             return points;
         }
-
 
         public void Dispose()
         {

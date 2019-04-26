@@ -11,30 +11,51 @@ declare var Chartist: any;
 })
 export class EventsCountStatComponent extends AbstractComponent implements OnInit {
 
+    selected: any;
     data: any[] = [];
-    labels: string[];
 
     constructor(private statisticService: StatisticService,
         protected changeDetectorRef: ChangeDetectorRef,
         protected authService: AuthService) {
         super(changeDetectorRef, authService);
 
-        this.labels = [];
     }
 
     ngOnInit() {
-        this.statisticService.getExamStats()
+        this.statisticService.getEventsCountStats()
             .takeUntil(this.ngUnsubscribe)
             .subscribe(data => {
                 this.data = data;
                 console.log(data);
 
                 if (data.length) {
-                    this.initChart();
+                    var item = data[0];
+                    this.selected = item;
+                    this.initChart(item.value);
                 }
             });
     }
 
-    initChart() {
+    initChart(values: any[]) {
+        var labels = values.map(x => x.eventsCount);
+        var series = [values.map(x => x.attendeesCount)];
+        
+        console.log(series);
+        console.log(labels);
+
+
+        var chartData = {
+            labels: labels,
+            series: series
+
+        };
+        new Chartist.Bar('.stat-container__chart-inner', chartData, {
+            axisY: { onlyInteger: true }
+        });
+    }
+
+    yearClick(item: any) {
+        this.selected = item;
+        this.initChart(item.value);
     }
 }

@@ -24,7 +24,7 @@ export class SeasonStatComponent extends AbstractComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.statisticService.getExamStats()
+        this.statisticService.getSeasonStats()
             .takeUntil(this.ngUnsubscribe)
             .subscribe(data => {
                 this.data = data;

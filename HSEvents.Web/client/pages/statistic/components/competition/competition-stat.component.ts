@@ -23,7 +23,7 @@ export class CompetitionStatComponent extends AbstractComponent implements OnIni
     }
     
     ngOnInit() {
-        this.statisticService.getExamStats()
+        this.statisticService.getCompetitionStats()
             .takeUntil(this.ngUnsubscribe)
             .subscribe(data => {
                 this.data = data;

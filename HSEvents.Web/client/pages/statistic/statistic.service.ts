@@ -9,6 +9,26 @@ export class StatisticService {
 
     constructor(private client: HseHttpClient) { }
 
+    getCostStats(): Observable<any[]> {
+        return this.client
+            .get<any[]>(this.apiBase + 'GetCostStats');
+    }
+
+    getSeasonStats(): Observable<any[]> {
+        return this.client
+            .get<any[]>(this.apiBase + 'GetSeasonStats');
+    }
+
+    getEventsCountStats(): Observable<any[]> {
+        return this.client
+            .get<any[]>(this.apiBase + 'GetEventsCountStats');
+    }
+
+    getCompetitionStats(): Observable<any[]> {
+        return this.client
+            .get<any[]>(this.apiBase + 'GetCompetitionStats');
+    }
+
     getExamStats(): Observable<any[]> {
         return this.client
             .get<any[]>(this.apiBase + 'GetExamStats');

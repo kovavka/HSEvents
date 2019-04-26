@@ -24,7 +24,7 @@
                 </div>
                 <div class="stat-container__legend" *ngIf="selected">
                     <div *ngFor="let item of selected.value; index as i"
-                         class="legend-item flex-container"
+                         class="legend-item legend-item_pointer flex-container"
                          [ngClass]="getLegendClass(item.subject)"
                          (click)="onLegendClick(item.subject)">
                         <div class="legend-item__color" [style.backgroundColor]="getColorStyle(i, item.subject)"></div>

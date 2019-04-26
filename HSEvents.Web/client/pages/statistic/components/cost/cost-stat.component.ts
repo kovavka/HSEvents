@@ -23,7 +23,7 @@ export class CostStatComponent extends AbstractComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.statisticService.getExamStats()
+        this.statisticService.getCostStats()
             .takeUntil(this.ngUnsubscribe)
             .subscribe(data => {
                 this.data = data;

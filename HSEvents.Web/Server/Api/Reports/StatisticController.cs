@@ -15,6 +15,30 @@ namespace HSEvents.Server.Api.Reports
         }
 
         [HttpGet]
+        public IEnumerable<object> GetCostStats()
+        {
+            return statisticService.GetCostStats();
+        }
+
+        [HttpGet]
+        public IEnumerable<object> GetSeasonStats()
+        {
+            return statisticService.GetSeasonStats();
+        }
+
+        [HttpGet]
+        public IEnumerable<object> GetEventsCountStats()
+        {
+            return statisticService.GetEventsCountStats();
+        }
+
+        [HttpGet]
+        public IEnumerable<object> GetCompetitionStats()
+        {
+            return statisticService.GetCompetitionStats();
+        }
+
+        [HttpGet]
         public IEnumerable<object> GetExamStats()
         {
             return statisticService.GetExamStats();
