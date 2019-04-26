@@ -382,6 +382,10 @@
 .stat-container__chart {
 }
 
+.stat-container__chart_hidden {
+    display: none;
+}
+
 .stat-container__chart-inner {
     height: 300px;
 }

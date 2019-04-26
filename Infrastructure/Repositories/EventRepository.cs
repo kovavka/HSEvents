@@ -159,6 +159,12 @@ namespace Infrastructure.Repositories
             }
             ).ToSet();
 
+            if (dto.Id != 0)
+            {
+                var lastVersion = RepositoryHelper.GetAnotherEntity<Event>(dto.Id);
+                entity.AttendanceInfo = lastVersion.AttendanceInfo;
+            }
+
             return entity;
         }
         

@@ -1,8 +1,6 @@
 ﻿using Domain;
 using Domain.Events;
-using Domain.IEntity;
 using FluentNHibernate.Mapping;
-using NHibernate.Type;
 
 namespace Infrastructure.Mappings.Events
 {
@@ -13,10 +11,9 @@ namespace Infrastructure.Mappings.Events
             Map(x => x.Comment).Nullable();
             Map(x => x.Info);
             Map(x => x.Type);
+            Map(x => x.Year);
 
             HasManyToMany(x => x.Volunteers).AsBag().Cascade.SaveUpdate().Table("VolunteerInfo");
-
-            //HasMany(x => x.Purchases).AsBag().Cascade.SaveUpdate().ForeignKeyConstraintName("FK_Purchase_Event");
 
             HasMany(x => x.Purchases)
                 .ForeignKeyConstraintName("FK_Purchase_Event")
@@ -40,7 +37,6 @@ namespace Infrastructure.Mappings.Events
         {
             Map(x => x.Price).Nullable();
             Map(x => x.Duration).Nullable();
-            Map(x => x.ExamYear);
             References(x => x.Subject).Cascade.SaveUpdate().ForeignKey("FK_Course_Subject").Fetch.Join();
         }
     }
@@ -50,6 +46,7 @@ namespace Infrastructure.Mappings.Events
         public AcademicCompetitionMap()
         {
             References(x => x.Subject).Cascade.SaveUpdate().ForeignKey("FK_AcademicCompetition_Subject").Fetch.Join();
+            HasMany(x => x.Results).AsBag().Cascade.SaveUpdate().ForeignKeyConstraintName("FK_Result_AcademicCompetition");
         }
     }
 
@@ -64,6 +61,12 @@ namespace Infrastructure.Mappings.Events
     class SubjectMap : NamedEntityMap<Subject>
     {
         public SubjectMap()
+        {
+        }
+    }
+    class ResultTypeMap : NamedEntityMap<ResultType>
+    {
+        public ResultTypeMap()
         {
         }
     }
@@ -128,5 +131,13 @@ namespace Infrastructure.Mappings.Events
             References(x => x.Attendee).Cascade.SaveUpdate().ForeignKey("FK_AttendanceInfo_Attendee");
         }
     }
-
+    class ResultInfoMap : EntityMap<Result>
+    {
+        public ResultInfoMap()
+        {
+            Map(x => x.NumberOfPoints);
+            References(x => x.Type).Cascade.SaveUpdate().ForeignKey("FK_Result_ResultType");
+            References(x => x.Pupil).Cascade.SaveUpdate().ForeignKey("FK_Result_Pupil");
+        }
+    }
 }

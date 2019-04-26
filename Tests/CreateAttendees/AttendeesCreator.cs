@@ -15,46 +15,19 @@ namespace Tests.CreateAttendees
         {
 
             CreateSchools(session);
+            CreateResultTypes(session);
             CreateSubjects(session);
             CreatePrograms(session);
             CreatePupils(session);
             CreateCourses(session);
+            CreateCompetitions(session);
+            CreateSchoolWorks(session);
 
-            var pupils = session.Query<Pupil>();
-            var courses = session.Query<Course>();
+            var pupils = session.Query<Pupil>().ToList();
 
-            var random = new Random();
-
-            foreach (var course in courses)
-            {
-                var count = random.Next(50, 100);
-                var ids = pupils.Select(x => x.Id).ToList();
-
-                for (int i = 0; i < count; i++)
-                {
-                    var index = random.Next(ids.Count);
-                    var id = ids[index];
-                    if (course.AttendanceInfo==null)
-                        course.AttendanceInfo=new List<AttendanceInfo>();
-
-                    var pupil = pupils.First(x => x.Id == id);
-                    ids.Remove(id);
-
-                    var info = new AttendanceInfo
-                    {
-                        Attendee = pupil,
-                        Participated = true
-                    };
-
-                    course.AttendanceInfo.Add(info);
-                }
-
-                using (var tx = session.BeginTransaction())
-                {
-                    session.Update(course);
-                    tx.Commit();
-                }
-            }
+            SetAttendeesToCourses(session, pupils);
+            SetAttendeesToCompetitions(session, pupils);
+            SetAttendeesToSchoolWorks(session, pupils);
 
 
         }
@@ -126,6 +99,7 @@ namespace Tests.CreateAttendees
 
             return exams;
         }
+
         public List<AcademicProgram> GeneratePrograms(Random random, List<AcademicProgram> programs, int programsCount)
         {
             if (random.Next(100)>60)
@@ -165,14 +139,15 @@ namespace Tests.CreateAttendees
 
                 for (int i = 2017; i < 2020; i++)
                 {
-                    var course = forSubject.FirstOrDefault(x => x.ExamYear == i);
+                    var course = forSubject.FirstOrDefault(x => x.Year == i);
                     if (course == null)
                     {
                         course = new Course()
                         {
-                            ExamYear = i,
+                            Year = i,
                             Info = "Course",
                             Name = $"Course {subject.Name} {i}",
+                            Type = EventType.Course,
                             Subject = subject
                         };
                         session.Save(course);
@@ -180,6 +155,190 @@ namespace Tests.CreateAttendees
                 }
             }
         }
+
+        public void CreateCompetitions(ISession session)
+        {
+            var subjects = session.Query<Subject>().ToList();
+            var random = new Random();
+
+            foreach (var subject in subjects)
+            {
+                for (int i = 2017; i < 2020; i++)
+                {
+                    var competition = new AcademicCompetition()
+                    {
+                        Year = i,
+                        Info = "Competition",
+                        Name = $"Competition {subject.Name} {i}",
+                        Type = EventType.AcademicCompetition,
+                        Subject = subject,
+                        Purchases = new List<Purchase>()
+                        {
+                            new Purchase()
+                            {
+                                Name = "Name",
+                                Description = "Description",
+                                Price = random.Next(1000, 10000)
+                            }
+                        }
+                    };
+
+                    session.Save(competition);
+                }
+            }
+        }
+
+        public void CreateSchoolWorks(ISession session)
+        {
+            var random = new Random();
+
+            for (int i = 2017; i < 2020; i++)
+            for (int j = 0; j < 3; j++)
+            {
+                var schoolWork = new SchoolWork()
+                {
+                    Year = i,
+                    Info = "SchoolWork",
+                    Name = $"SchoolWork {i} {j}",
+                    Type = EventType.SchoolWork,
+                    Program = "Program",
+                    Purchases = new List<Purchase>()
+                    {
+                        new Purchase()
+                        {
+                            Name = "Name",
+                            Description = "Description",
+                            Price = random.Next(1000, 10000)
+                        }
+                    }
+                };
+
+                session.Save(schoolWork);
+            }
+        }
+
+        public void SetAttendeesToCourses(ISession session, List<Pupil> pupils)
+        {
+            var courses = session.Query<Course>();
+            var random = new Random();
+
+            foreach (var course in courses)
+            {
+                var count = random.Next(50, 100);
+                var ids = pupils.Select(x => x.Id).ToList();
+
+                for (int i = 0; i < count; i++)
+                {
+                    var index = random.Next(ids.Count);
+                    var id = ids[index];
+                    if (course.AttendanceInfo == null)
+                        course.AttendanceInfo = new List<AttendanceInfo>();
+
+                    var pupil = pupils.First(x => x.Id == id);
+                    ids.Remove(id);
+
+                    var info = new AttendanceInfo
+                    {
+                        Attendee = pupil,
+                        Participated = true
+                    };
+
+                    course.AttendanceInfo.Add(info);
+                }
+
+                using (var tx = session.BeginTransaction())
+                {
+                    session.Update(course);
+                    tx.Commit();
+                }
+            }
+        }
+        public void SetAttendeesToCompetitions(ISession session, List<Pupil> pupils)
+        {
+            var competitions = session.Query<AcademicCompetition>();
+            var resultTypes = session.Query<ResultType>().ToList();
+            var random = new Random();
+
+            foreach (var competition in competitions)
+            {
+                var count = random.Next(50, 100);
+                var ids = pupils.Select(x => x.Id).ToList();
+
+                for (int i = 0; i < count; i++)
+                {
+                    var index = random.Next(ids.Count);
+                    var id = ids[index];
+                    if (competition.AttendanceInfo == null)
+                        competition.AttendanceInfo = new List<AttendanceInfo>();
+                    if (competition.Results == null)
+                        competition.Results = new List<Result>();
+
+                    var pupil = pupils.First(x => x.Id == id);
+                    ids.Remove(id);
+
+                    var info = new AttendanceInfo
+                    {
+                        Attendee = pupil,
+                        Participated = true
+                    };
+
+                    var result = new Result()
+                    {
+                        Pupil = pupil,
+                        Type = resultTypes[random.Next(resultTypes.Count)],
+                        NumberOfPoints = random.Next(101)
+                    };
+                    
+                    competition.AttendanceInfo.Add(info);
+                    competition.Results.Add(result);
+                }
+
+                using (var tx = session.BeginTransaction())
+                {
+                    session.Update(competition);
+                    tx.Commit();
+                }
+            }
+
+        }
+        public void SetAttendeesToSchoolWorks(ISession session, List<Pupil> pupils)
+        {
+            var schoolWorks = session.Query<SchoolWork>();
+
+            var random = new Random();
+
+            foreach (var schoolWork in schoolWorks)
+            {
+                var count = random.Next(50, 100);
+                var ids = pupils.Select(x => x.Id).ToList();
+
+                for (int i = 0; i < count; i++)
+                {
+                    var index = random.Next(ids.Count);
+                    var id = ids[index];
+                    if (schoolWork.AttendanceInfo == null)
+                        schoolWork.AttendanceInfo = new List<AttendanceInfo>();
+
+                    var pupil = pupils.First(x => x.Id == id);
+                    ids.Remove(id);
+
+                    var info = new AttendanceInfo
+                    {
+                        Attendee = pupil,
+                        Participated = true
+                    };
+
+                    schoolWork.AttendanceInfo.Add(info);
+                }
+
+                using (var tx = session.BeginTransaction())
+                {
+                    session.Update(schoolWork);
+                    tx.Commit();
+                }
+            }
+        }
+
         public void CreateSubjects(ISession session)
         {
             var fileName = "CreateAttendees\\Subjects.txt";
@@ -195,6 +354,22 @@ namespace Tests.CreateAttendees
                 }
             }
         }
+        public void CreateResultTypes(ISession session)
+        {
+            var fileName = "CreateAttendees\\ResultTypes.txt";
+            var lines = File.ReadAllLines(fileName);
+
+            foreach (var line in lines)
+            {
+                var resultType = session.Query<ResultType>().FirstOrDefault(x => x.Name == line);
+                if (resultType == null)
+                {
+                    resultType = new ResultType() { Name = line };
+                    session.Save(resultType);
+                }
+            }
+        }
+
         public void CreatePrograms(ISession session)
         {
             var fileName = "CreateAttendees\\Programs.txt";

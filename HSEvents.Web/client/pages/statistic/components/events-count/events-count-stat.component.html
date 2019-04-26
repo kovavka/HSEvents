@@ -12,21 +12,25 @@
                 Зависимость поступления абитуриента от числа мероприятий, в которых он участвовал <br />
                 Число абитуриентов (по вертикали) и число мероприятий (по горизонтали)
             </div>
-            <div class="stat-container__year-dimension flex-container">
-                <a *ngFor="let item of data"
-                   class="stat-container__year-dimension-item flex-container__item"
-                   [ngClass]="selected == item ? 'stat-container__year-dimension-item_selected' : ''"
-                   (click)="yearClick(item)">{{item.year}}</a>
-            </div>
-            <div class="stat-container__chart">
+            <ng-container *ngIf="data && data.length > 0">
+                <div class="stat-container__year-dimension flex-container">
+                    <a *ngFor="let item of data"
+                       class="stat-container__year-dimension-item flex-container__item"
+                       [ngClass]="selected == item ? 'stat-container__year-dimension-item_selected' : ''"
+                       (click)="yearClick(item)">{{item.year}}</a>
+                </div>
+            </ng-container>
+            <div class="stat-container__chart" [ngClass]="data && data.length > 0 ? '' : 'stat-container__chart_hidden'">
                 <div class="stat-container__chart-inner"></div>
             </div>
-            <div class="stat-container__legend" *ngIf="selected">
-                <div class="legend-item flex-container ">
-                    <div class="legend-item__color" [style.backgroundColor]="'#d70206'"></div>
-                    <div class="legend-item__name">Количество мероприятий</div>
+            <ng-container *ngIf="data && data.length > 0">
+                <div class="stat-container__legend" *ngIf="selected">
+                    <div class="legend-item flex-container ">
+                        <div class="legend-item__color" [style.backgroundColor]="'#d70206'"></div>
+                        <div class="legend-item__name">Количество мероприятий</div>
+                    </div>
                 </div>
-            </div>
+            </ng-container>
             <div *ngIf="!data || data.length == 0" class="stat-container__no-data">
                 нет данных
             </div>

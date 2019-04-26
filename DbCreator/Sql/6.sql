@@ -40,13 +40,13 @@ Create table Result(
 Id bigint identity(1,1) not null,
 NumberOfPoints int not null,
 Type_Id bigint not null,
-AcademicCompetition_Id bigint not null,
-Attendee_Id bigint not null,
+AcademicCompetition_Id bigint,
+Pupil_Id bigint not null,
 
 primary key (Id),
 constraint FK_Result_ResultType foreign key (Type_Id) references ResultType(Id),
 constraint FK_Result_AcademicCompetition foreign key (AcademicCompetition_Id) references AcademicCompetition(Event_Id),
-constraint FK_Result_Attendee foreign key (Attendee_Id) references Attendee(Id)
+constraint FK_Result_Pupil foreign key (Pupil_Id) references Pupil(Attendee_Id)
 );
 
 Create table AttendanceInfo(

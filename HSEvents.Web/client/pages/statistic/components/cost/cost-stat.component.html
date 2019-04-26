@@ -11,11 +11,9 @@
             <div class="stat-container__description">
                 Число участников (по вертикали) и стоимость мероприятия (по горизонтали)
             </div>
-            <div class="stat-container__chart">
+            <div class="stat-container__chart" [ngClass]="data && data.length > 0 ? '' : 'stat-container__chart_hidden'">
                 <div class="stat-container__chart-inner"></div>
             </div>
-            <ng-container *ngIf="data && data.length > 0">
-            </ng-container>
             <div *ngIf="!data || data.length == 0" class="stat-container__no-data">
                 нет данных
             </div>

@@ -55,11 +55,12 @@ namespace Infrastructure.Repositories
 
         public IEnumerable<object> GetExamStats()
         {
-            //вот это очень плохое решение, надо нормально оформить хотя бы
-          var query =  session.CreateSQLQuery(@"SELECT [Year], [Subject].[Name], [NumberOfPoints] 
+            //вот это очень плохое решение, надо нормально оформить хотя бы (как и то, что выше)
+          var query =  session.CreateSQLQuery(@"SELECT [Exam].[Year], [Subject].[Name], [NumberOfPoints] 
 FROM [HSEvents].[dbo].[AttendanceInfo]
 inner join [HSEvents].[dbo].[Course] on [Course].[Event_Id]=[AttendanceInfo].[Event_Id]
-inner join [HSEvents].[dbo].[Exam] on ([Exam].[Pupil_Id]=[AttendanceInfo].[Attendee_Id] and [Exam].[Subject_Id]=[Course].[Subject_Id] and [Exam].[Year]=[Course].[ExamYear])
+inner join [HSEvents].[dbo].[Event] on [Event].[Id]=[AttendanceInfo].[Event_Id]
+inner join [HSEvents].[dbo].[Exam] on ([Exam].[Pupil_Id]=[AttendanceInfo].[Attendee_Id] and [Exam].[Subject_Id]=[Course].[Subject_Id] and [Exam].[Year]=[Event].[Year])
 inner join [HSEvents].[dbo].[Subject] on [Subject].Id=[Course].[Subject_Id]
 where [Participated]=1").List();
             
