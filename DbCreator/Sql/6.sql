@@ -52,7 +52,7 @@ constraint FK_Result_Attendee foreign key (Attendee_Id) references Attendee(Id)
 Create table AttendanceInfo(
 Id bigint identity(1,1) not null,
 Participated bit not null,
-Event_Id bigint not null,
+Event_Id bigint,
 Attendee_Id bigint not null,
 
 primary key (Id),
@@ -64,7 +64,7 @@ constraint FK_AttendanceInfo_Attendee foreign key (Attendee_Id) references Atten
 Create table Exam(
 Id bigint identity(1,1) not null,
 NumberOfPoints int not null,
-Pupil_Id bigint not null,
+Pupil_Id bigint,
 Subject_Id bigint not null,
 Year int not null,
 

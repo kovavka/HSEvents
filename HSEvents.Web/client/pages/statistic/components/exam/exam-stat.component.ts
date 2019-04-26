@@ -12,11 +12,25 @@ declare var Chartist: any;
 export class ExamStatComponent extends AbstractComponent implements OnInit {
 
     data: any[];
+    labels: string[];
 
     constructor(private statisticService: StatisticService,
         protected changeDetectorRef: ChangeDetectorRef,
         protected authService: AuthService) {
         super(changeDetectorRef, authService);
+
+        this.labels = [
+            '0-10',
+            '11-20',
+            '21-30',
+            '31-40',
+            '41-50',
+            '51-60',
+            '61-70',
+            '71-80',
+            '81-90',
+            '91-100'
+        ];
     }
     
     ngOnInit() {
@@ -24,27 +38,16 @@ export class ExamStatComponent extends AbstractComponent implements OnInit {
             .takeUntil(this.ngUnsubscribe)
             .subscribe(data => {
                 this.data = data;
-                console.log(data[0].value[0].value);
+                console.log(data);
 
-
+                var series = [];
+                for (var result of data[0].value) {
+                    series.push([...result.value]);
+                }
 
                 var chartData = {
-                    labels: [
-                        '0-10',
-                        '11-20',
-                        '21-30',
-                        '31-40',
-                        '41-50',
-                        '51-60',
-                        '61-70',
-                        '71-80',
-                        '81-90',
-                        '91-100',
-                    ],
-                    series: [
-                        [...data[0].value[0].value],
-                        [...data[1].value[0].value],
-                    ]
+                    labels: this.labels,
+                    series: series
                     
                 };
                 new Chartist.Bar('.ct-chart', chartData);

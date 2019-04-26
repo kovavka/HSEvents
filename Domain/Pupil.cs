@@ -14,7 +14,7 @@ namespace Domain
         public virtual AcademicProgram EnterProgram { get; set; }
         public virtual ICollection<AcademicProgram> InterestingPrograms { get; set; }
         public virtual ICollection<AcademicProgram> RegistrationPrograms { get; set; }
-        public virtual ICollection<Exam> Exams { get; set; }
+        public virtual ISet<Exam> Exams { get; set; }
     }
 
     public enum Sex
@@ -31,6 +31,8 @@ namespace Domain
     {
         public virtual Subject Subject { get; set; }
         public virtual int NumberOfPoints { get; set; }
+        public virtual int Year { get; set; }
+        public virtual Pupil Pupil { get; set; }
     }
 
 }

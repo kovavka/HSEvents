@@ -19,7 +19,10 @@ namespace Infrastructure.Mappings
             References(x => x.EnterProgram).Cascade.SaveUpdate().ForeignKey("FK_Pupil_EnterProgram");
             HasManyToMany(x => x.InterestingPrograms).AsBag().Cascade.SaveUpdate().Table("InterestingProgram");
             HasManyToMany(x => x.RegistrationPrograms).AsBag().Cascade.SaveUpdate().Table("RegistrationProgram");
-            HasManyToMany(x => x.Exams).AsBag().Cascade.SaveUpdate().Table("Exam");
+            HasMany(x => x.Exams)
+                .AsSet()
+                .Cascade.AllDeleteOrphan()
+                .ForeignKeyConstraintName("FK_Exam_Pupil");
         }
     }
 
@@ -49,7 +52,9 @@ namespace Infrastructure.Mappings
         public ExamMap()
         {
             Map(x => x.NumberOfPoints);
+            Map(x => x.Year);
             References(x => x.Subject).Cascade.SaveUpdate().ForeignKey("FK_Exam_Subject");
+            References(x => x.Pupil).ForeignKey("FK_Exam_Pupil");
 
         }
     }

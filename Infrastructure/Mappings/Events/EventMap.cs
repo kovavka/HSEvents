@@ -40,6 +40,7 @@ namespace Infrastructure.Mappings.Events
         {
             Map(x => x.Price).Nullable();
             Map(x => x.Duration).Nullable();
+            Map(x => x.ExamYear);
             References(x => x.Subject).Cascade.SaveUpdate().ForeignKey("FK_Course_Subject").Fetch.Join();
         }
     }
@@ -98,7 +99,7 @@ namespace Infrastructure.Mappings.Events
         {
             HasMany(x => x.Dates).AsBag().Cascade.SaveUpdate().ForeignKeyConstraintName("FK_EventDate_EventExecution");
             References(x => x.Address).Cascade.SaveUpdate().ForeignKey("FK_EventExecution_Address");
-            References(x => x.Event).ForeignKey("FK_EventExecution_Address");
+            References(x => x.Event).ForeignKey("FK_EventExecution_Event");
         }
     }
     class EventDateMap : EntityMap<EventDate>
