@@ -225,6 +225,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Server\Api\Reports\StatisticController.cs" />
+    <Compile Include="Server\Api\Reports\StatisticService.cs" />
+    <Compile Include="Server\Api\Reports\StatisticStorage.cs" />
     <Compile Include="Server\Api\Users\UserController.cs" />
     <Compile Include="Server\Api\Users\UserService.cs" />
     <Compile Include="Server\Api\Users\UserStorage.cs" />
@@ -251,6 +254,8 @@
     <Content Include="client\pages\events\event-modals\execution-editor.component.html" />
     <Content Include="client\pages\events\events.component.css" />
     <Content Include="client\pages\events\events.component.html" />
+    <Content Include="client\pages\statistic\components\exam\exam-stat.component.html" />
+    <Content Include="client\pages\statistic\statistic.component.html" />
     <Content Include="client\pages\login\login.component.html" />
     <Content Include="client\pages\home\home.component.html" />
     <Content Include="client\menus\top-menu.component.html" />
@@ -330,6 +335,10 @@
     <TypeScriptCompile Include="client\controls\editable-datapicker\editable-datapicker.component.ts" />
     <TypeScriptCompile Include="client\controls\directives\window-mouse-event-handler.directive.ts" />
     <TypeScriptCompile Include="client\controls\search-selector\search-selector.component.ts" />
+    <TypeScriptCompile Include="client\pages\statistic\components\exam\exam-stat.component.ts" />
+    <TypeScriptCompile Include="client\pages\statistic\statistic.component.ts" />
+    <TypeScriptCompile Include="client\pages\statistic\statistic.module.ts" />
+    <TypeScriptCompile Include="client\pages\statistic\statistic.service.ts" />
     <TypeScriptCompile Include="client\services\auth.service.ts" />
     <TypeScriptCompile Include="client\pages\login\login.component.ts" />
     <TypeScriptCompile Include="client\pages\login\login.module.ts" />

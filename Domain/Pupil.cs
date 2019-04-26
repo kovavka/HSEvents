@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
+using Domain.Events;
 using Domain.IEntity;
 
 namespace Domain
@@ -13,6 +14,7 @@ namespace Domain
         public virtual AcademicProgram EnterProgram { get; set; }
         public virtual ICollection<AcademicProgram> InterestingPrograms { get; set; }
         public virtual ICollection<AcademicProgram> RegistrationPrograms { get; set; }
+        public virtual ICollection<Exam> Exams { get; set; }
     }
 
     public enum Sex
@@ -23,6 +25,12 @@ namespace Domain
 
     public class AcademicProgram : NamedEntity
     {
+    }
+
+    public class Exam : Entity
+    {
+        public virtual Subject Subject { get; set; }
+        public virtual int NumberOfPoints { get; set; }
     }
 
 }

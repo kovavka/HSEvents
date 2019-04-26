@@ -19,6 +19,7 @@ namespace Infrastructure.Mappings
             References(x => x.EnterProgram).Cascade.SaveUpdate().ForeignKey("FK_Pupil_EnterProgram");
             HasManyToMany(x => x.InterestingPrograms).AsBag().Cascade.SaveUpdate().Table("InterestingProgram");
             HasManyToMany(x => x.RegistrationPrograms).AsBag().Cascade.SaveUpdate().Table("RegistrationProgram");
+            HasManyToMany(x => x.Exams).AsBag().Cascade.SaveUpdate().Table("Exam");
         }
     }
 
@@ -41,6 +42,16 @@ namespace Infrastructure.Mappings
     
     class AcademicProgramMap : NamedEntityMap<AcademicProgram>
     {
+    }
+    
+    class ExamMap : EntityMap<Exam>
+    {
+        public ExamMap()
+        {
+            Map(x => x.NumberOfPoints);
+            References(x => x.Subject).Cascade.SaveUpdate().ForeignKey("FK_Exam_Subject");
+
+        }
     }
 
 

@@ -7,6 +7,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BsModalModule } from 'ng2-bs3-modal';
+import { registerLocaleData } from '@angular/common';
+import localeRu from '@angular/common/locales/ru';
+registerLocaleData(localeRu);
 
 import { AppRoutingModule } from '../app-routing/app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,10 +21,7 @@ import { ControlsModule } from '../controls/controls.module';
 import { ManagementModule } from '../pages/management/management.module';
 import { LoginModule } from '../pages/login/login.module';
 import { AuthService } from '../services/auth.service';
-
-import { registerLocaleData } from '@angular/common';
-import localeRu from '@angular/common/locales/ru';
-registerLocaleData(localeRu);
+import { StatisticModule } from '../pages/statistic/statistic.module';
 
 @NgModule({
     imports: [
@@ -38,7 +38,8 @@ registerLocaleData(localeRu);
         EventsModule,
         ManagementModule,
         ControlsModule,
-        LoginModule
+        LoginModule,
+        StatisticModule
     ],
     declarations: [
 		AppComponent,

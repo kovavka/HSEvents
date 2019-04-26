@@ -19,6 +19,7 @@ Price money,
 Duration int,
 Subject_Id bigint not null,
 Event_Id bigint not null,
+ExamYear int not null,
 
 constraint FK_Course_Subject foreign key (Subject_Id) references Subject(Id),
 constraint FK_Course_Event foreign key (Event_Id) references Event(Id),

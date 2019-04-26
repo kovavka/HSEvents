@@ -59,3 +59,16 @@ primary key (Id),
 constraint FK_AttendanceInfo_Event foreign key (Event_Id) references Event(Id),
 constraint FK_AttendanceInfo_Attendee foreign key (Attendee_Id) references Attendee(Id)
 );
+
+
+Create table Exam(
+Id bigint identity(1,1) not null,
+NumberOfPoints int not null,
+Pupil_Id bigint not null,
+Subject_Id bigint not null,
+Year int not null,
+
+primary key (Id),
+constraint FK_Exam_Subject foreign key (Subject_Id) references Subject(Id),
+constraint FK_Exam_Pupil foreign key (Pupil_Id) references Pupil(Attendee_Id)
+);

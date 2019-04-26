@@ -18,6 +18,8 @@ import { CityTypesComponent } from '../pages/management/components/city-types/ci
 import { RegionsComponent } from '../pages/management/components/regions/regions.component';
 import { CountriesComponent } from '../pages/management/components/countries/countries.component';
 import { LoginComponent } from '../pages/login/login.component';
+import { StatisticComponent } from '../pages/statistic/statistic.component';
+import { ExamStatComponent } from '../pages/statistic/components/exam/exam-stat.component';
 
 const routes: Routes = [
     {
@@ -44,6 +46,14 @@ const routes: Routes = [
                     { path: 'cityTypes', component: CityTypesComponent },
                     { path: 'regions', component: RegionsComponent },
                     { path: 'countries', component: CountriesComponent }
+                ]
+            },
+            {
+                path: 'statistic',
+                component: StatisticComponent,
+                children: [
+                    { path: '', component: ExamStatComponent },
+                    { path: 'exam', component: ExamStatComponent },
                 ]
             },
             { path: 'login', component: LoginComponent}

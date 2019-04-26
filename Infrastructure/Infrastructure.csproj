@@ -75,6 +75,7 @@
     <Compile Include="Repositories\Dto\SchoolModels.cs" />
     <Compile Include="Repositories\Dto\AddressModels.cs" />
     <Compile Include="Repositories\Dto\EventModels.cs" />
+    <Compile Include="Repositories\StatisticRepository.cs" />
     <Compile Include="Repositories\IDtoRepository.cs" />
     <Compile Include="Repositories\AddressRepository.cs" />
     <Compile Include="Repositories\RepositoryHelper.cs" />

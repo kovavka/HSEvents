@@ -12,6 +12,7 @@ using HSEvents.Server.Api.Empty;
 using HSEvents.Server.Api.Events;
 using HSEvents.Server.Api.Groups;
 using HSEvents.Server.Api.Regions;
+using HSEvents.Server.Api.Reports;
 using HSEvents.Server.Api.Schools;
 using HSEvents.Server.Api.SchoolTypes;
 using HSEvents.Server.Api.Streets;
@@ -98,6 +99,8 @@ namespace HSEvents
             container.RegisterType<ICountryService, CountryService>();
             container.RegisterType<IUserStorage, UserStorage>();
             container.RegisterType<IUserService, UserService>();
+            container.RegisterType<IStatisticStorage, StatisticStorage>();
+            container.RegisterType<IStatisticService, StatisticService>();
 
             container.RegisterType<IStorage, Storage>();
             container.RegisterType<IService, Service>();
