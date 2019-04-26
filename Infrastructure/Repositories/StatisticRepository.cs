@@ -20,9 +20,7 @@ inner join [HSEvents].[dbo].[Course] on [Course].[Event_Id]=[AttendanceInfo].[Ev
 inner join [HSEvents].[dbo].[Exam] on ([Exam].[Pupil_Id]=[AttendanceInfo].[Attendee_Id] and [Exam].[Subject_Id]=[Course].[Subject_Id] and [Exam].[Year]=[Course].[ExamYear])
 inner join [HSEvents].[dbo].[Subject] on [Subject].Id=[Course].[Subject_Id]
 where [Participated]=1").List();
-
-            var nr = query.Cast<Array>();
-
+            
             var list = query.Cast<Array>()
                 .GroupBy(x => x.GetValue(0)) //by year
                 .Select(x => new
@@ -33,7 +31,9 @@ where [Participated]=1").List();
                         {
                             Subject = v.Key, Value = GetPoints(v)
                         }).ToList()
-                }).ToList();
+                })
+                .OrderByDescending(x=>x.Year)
+                .ToList();
 
             return list;
         }

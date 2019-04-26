@@ -354,6 +354,50 @@
     text-decoration: none
 }
 
+.stat-container {
+
+}
+
+.stat-container__year-dimension {
+    margin: 16px 0px 4px 64px;
+}
+
+.stat-container__year-dimension-item {
+    cursor: pointer;
+}
+
+.stat-container__year-dimension-item_selected {
+    color: #1b63a2;
+    font-weight: bold;
+}
+
+.stat-container__chart {
+}
+
+.stat-container__legend {
+    margin: 0px 64px;
+}
+
+.legend-item {
+    margin: 4px 0px;
+    width: fit-content;
+    cursor: pointer;
+}
+.legend-item_disabled {
+    opacity: 0.7;
+}
+
+.legend-item__color {
+    width: 10px;
+    height: 10px;
+    margin: 5px 10px;
+}
+
+.legend-item__name {
+}
+
+
+
 
 
 

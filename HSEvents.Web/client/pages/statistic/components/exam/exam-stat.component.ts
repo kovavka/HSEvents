@@ -4,6 +4,7 @@ import { AbstractComponent } from '../../../../utilities/abstract.component';
 import { StatisticService } from '../../statistic.service';
 
 declare var Chartist: any;
+declare var jQuery: any;
 
 @Component({
     moduleId: module.id.toString(),
@@ -11,7 +12,9 @@ declare var Chartist: any;
 })
 export class ExamStatComponent extends AbstractComponent implements OnInit {
 
-    data: any[];
+    selected: any;
+    subject: string;
+    data: any[] = [];
     labels: string[];
 
     constructor(private statisticService: StatisticService,
@@ -40,19 +43,66 @@ export class ExamStatComponent extends AbstractComponent implements OnInit {
                 this.data = data;
                 console.log(data);
 
-                var series = [];
-                for (var result of data[0].value) {
-                    series.push([...result.value]);
+                if (data.length) {
+                    var item = data[0];
+                    this.selected = item;
+                    this.initChart(item.value);
                 }
-
-                var chartData = {
-                    labels: this.labels,
-                    series: series
-                    
-                };
-                new Chartist.Bar('.ct-chart', chartData);
-
-
             });
+    }
+
+    initChart(values: any[]) {
+        var series = [];
+
+        if (!this.subject) {
+            for (var result of values) {
+                series.push([...result.value]);
+            }
+        } else {
+            series.push([...values.find(x => x.subject == this.subject).value]);
+        }
+
+        var chartData = {
+            labels: this.labels,
+            series: series
+
+        };
+        new Chartist.Bar('.stat-container__chart-inner', chartData);
+    }
+
+    yearClick(item: any) {
+        this.selected = item;
+        this.subject = null;
+        this.initChart(item.value);
+    }
+
+    getColorStyle(index: number, subject: string) {
+        if (this.subject) {
+            if (this.subject != subject)
+                return '';
+
+            return  jQuery('.ct-series-a .ct-bar').css("stroke");
+        }
+
+        var char = String.fromCharCode(97 + index);
+        var className = `.ct-series-${char} .ct-bar`;
+        return jQuery(className).css("stroke");
+    }
+
+    onLegendClick(subject: string) {
+        if (this.subject != subject) {
+            this.subject = subject;
+        } else {
+            this.subject = null;
+        }
+
+        this.initChart(this.selected.value);
+    }
+
+    getLegendClass(subject: string) {
+        if (this.subject && this.subject != subject)
+            return 'legend-item_disabled';
+
+        return '';
     }
 }
