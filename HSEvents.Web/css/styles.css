@@ -306,14 +306,14 @@
 
 .page-container__list {
     float: left;
-    width: 220px;
+    width: 240px;
     padding: 16px 8px;
 }
 
 .page-container__content {
     padding: 16px 8px;
     min-height: 400px;
-    margin-left: 220px;
+    margin-left: 240px;
 }
 
 .page-container__list-group {
@@ -355,7 +355,15 @@
 }
 
 .stat-container {
+}
 
+.stat-container__description {
+    font-style: italic;
+    margin: 0px 16px;
+}
+
+.stat-container__no-data {
+    margin: 32px;
 }
 
 .stat-container__year-dimension {
@@ -394,6 +402,7 @@
 }
 
 .legend-item__name {
+    font-style: italic;
 }
 
 

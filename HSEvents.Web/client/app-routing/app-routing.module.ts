@@ -20,6 +20,11 @@ import { CountriesComponent } from '../pages/management/components/countries/cou
 import { LoginComponent } from '../pages/login/login.component';
 import { StatisticComponent } from '../pages/statistic/statistic.component';
 import { ExamStatComponent } from '../pages/statistic/components/exam/exam-stat.component';
+import { CompetitionStatComponent } from '../pages/statistic/components/competition/competition-stat.component';
+import { SeasonStatComponent } from '../pages/statistic/components/season/season-stat.component';
+import { CostStatComponent } from '../pages/statistic/components/cost/cost-stat.component';
+import { EventsCountStatComponent } from '../pages/statistic/components/events-count/events-count-stat.component';
+import { HomeStatComponent } from '../pages/statistic/components/home/home-stat.component';
 
 const routes: Routes = [
     {
@@ -52,8 +57,12 @@ const routes: Routes = [
                 path: 'statistic',
                 component: StatisticComponent,
                 children: [
-                    { path: '', component: ExamStatComponent },
-                    { path: 'exam', component: ExamStatComponent },
+                    { path: '', component: HomeStatComponent },
+                    { path: 'cost', component: CostStatComponent },
+                    { path: 'season', component: SeasonStatComponent },
+                    { path: 'events-count', component: EventsCountStatComponent },
+                    { path: 'competition', component: CompetitionStatComponent },
+                    { path: 'exam', component: ExamStatComponent }
                 ]
             },
             { path: 'login', component: LoginComponent}

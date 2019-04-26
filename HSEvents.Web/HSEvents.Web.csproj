@@ -254,6 +254,11 @@
     <Content Include="client\pages\events\event-modals\execution-editor.component.html" />
     <Content Include="client\pages\events\events.component.css" />
     <Content Include="client\pages\events\events.component.html" />
+    <Content Include="client\pages\statistic\components\home\home-stat.component.html" />
+    <Content Include="client\pages\statistic\components\season\season-stat.component.html" />
+    <Content Include="client\pages\statistic\components\events-count\events-count-stat.component.html" />
+    <Content Include="client\pages\statistic\components\competition\competition-stat.component.html" />
+    <Content Include="client\pages\statistic\components\cost\cost-stat.component.html" />
     <Content Include="client\pages\statistic\components\exam\exam-stat.component.html" />
     <Content Include="client\pages\statistic\statistic.component.html" />
     <Content Include="client\pages\login\login.component.html" />
@@ -337,6 +342,11 @@
     <TypeScriptCompile Include="client\controls\editable-datapicker\editable-datapicker.component.ts" />
     <TypeScriptCompile Include="client\controls\directives\window-mouse-event-handler.directive.ts" />
     <TypeScriptCompile Include="client\controls\search-selector\search-selector.component.ts" />
+    <TypeScriptCompile Include="client\pages\statistic\components\home\home-stat.component.ts" />
+    <TypeScriptCompile Include="client\pages\statistic\components\season\season-stat.component.ts" />
+    <TypeScriptCompile Include="client\pages\statistic\components\events-count\events-count-stat.component.ts" />
+    <TypeScriptCompile Include="client\pages\statistic\components\competition\competition-stat.component.ts" />
+    <TypeScriptCompile Include="client\pages\statistic\components\cost\cost-stat.component.ts" />
     <TypeScriptCompile Include="client\pages\statistic\components\exam\exam-stat.component.ts" />
     <TypeScriptCompile Include="client\pages\statistic\statistic.component.ts" />
     <TypeScriptCompile Include="client\pages\statistic\statistic.module.ts" />

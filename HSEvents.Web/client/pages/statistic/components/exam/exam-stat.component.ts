@@ -41,7 +41,6 @@ export class ExamStatComponent extends AbstractComponent implements OnInit {
             .takeUntil(this.ngUnsubscribe)
             .subscribe(data => {
                 this.data = data;
-                console.log(data);
 
                 if (data.length) {
                     var item = data[0];

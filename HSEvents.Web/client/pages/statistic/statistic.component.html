@@ -3,8 +3,28 @@
         <div class="page-container__list-group">
             <div class="page-container__list-item">
                 <a class="page-container__list-item-link"
+                   [routerLink]="['cost']"
+                   routerLinkActive="page-container__list-item-link_selected">Статистика по стоимости мероприятия</a>
+            </div>
+            <div class="page-container__list-item">
+                <a class="page-container__list-item-link"
+                   [routerLink]="['season']"
+                   routerLinkActive="page-container__list-item-link_selected">Статистика по времени года</a>
+            </div>
+            <div class="page-container__list-item">
+                <a class="page-container__list-item-link"
+                   [routerLink]="['events-count']"
+                   routerLinkActive="page-container__list-item-link_selected">Статистика по числу мероприятий</a>
+            </div>
+            <div class="page-container__list-item">
+                <a class="page-container__list-item-link"
+                   [routerLink]="['competition']"
+                   routerLinkActive="page-container__list-item-link_selected">Статистика по олимпиадам</a>
+            </div>
+            <div class="page-container__list-item">
+                <a class="page-container__list-item-link"
                    [routerLink]="['exam']"
-                   routerLinkActive="page-container__list-item-link_selected">По баллам ЕГЭ</a>
+                   routerLinkActive="page-container__list-item-link_selected">Статистика по баллам ЕГЭ</a>
             </div>
         </div>
     </div>

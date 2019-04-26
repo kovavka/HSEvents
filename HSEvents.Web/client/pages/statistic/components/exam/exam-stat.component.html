@@ -6,26 +6,34 @@
     </div>
 </div>
 <div class="work-area">
-<div class="work-area__content">
-    <div class="stat-container">
-        <div class="stat-container__year-dimension flex-container">
-            <a *ngFor="let item of data"
-               class="stat-container__year-dimension-item flex-container__item"
-               [ngClass]="selected == item ? 'stat-container__year-dimension-item_selected' : ''"
-               (click)="yearClick(item)">{{item.year}}</a>
-        </div>
-        <div class="stat-container__chart">
-            <div class="stat-container__chart-inner"></div>
-        </div>
-        <div class="stat-container__legend" *ngIf="selected">
-            <div *ngFor="let item of selected.value; index as i"
-                 class="legend-item flex-container"
-                 [ngClass]="getLegendClass(item.subject)"
-                 (click)="onLegendClick(item.subject)">
-                <div class="legend-item__color" [style.backgroundColor]="getColorStyle(i, item.subject)"></div>
-                <div class="legend-item__name">{{item.subject}}</div>
+    <div class="work-area__content">
+        <div class="stat-container">
+            <div class="stat-container__description">
+                Число выпускников курсов ЕГЭ (по вертикали) и их распределение по баллам (по горизонтали)
+            </div>
+            <ng-container *ngIf="data && data.length > 0">
+                <div class="stat-container__year-dimension flex-container">
+                    <a *ngFor="let item of data"
+                       class="stat-container__year-dimension-item flex-container__item"
+                       [ngClass]="selected == item ? 'stat-container__year-dimension-item_selected' : ''"
+                       (click)="yearClick(item)">{{item.year}}</a>
+                </div>
+                <div class="stat-container__chart">
+                    <div class="stat-container__chart-inner"></div>
+                </div>
+                <div class="stat-container__legend" *ngIf="selected">
+                    <div *ngFor="let item of selected.value; index as i"
+                         class="legend-item flex-container"
+                         [ngClass]="getLegendClass(item.subject)"
+                         (click)="onLegendClick(item.subject)">
+                        <div class="legend-item__color" [style.backgroundColor]="getColorStyle(i, item.subject)"></div>
+                        <div class="legend-item__name">{{item.subject}}</div>
+                    </div>
+                </div>
+            </ng-container>
+            <div *ngIf="!data || data.length == 0" class="stat-container__no-data">
+                нет данных
             </div>
         </div>
-    </div>
     </div>
 </div>

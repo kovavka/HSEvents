@@ -1,0 +1,25 @@
+﻿<div class="page-header">
+    <div class="page-header__title-container">
+        <div class="page-header__title-flex-container">
+            <div class="page-header__title">Статистика по олимпиадам</div>
+        </div>
+    </div>
+</div>
+<div class="work-area">
+    <div class="work-area__content">
+        <div class="stat-container">
+            <div class="stat-container__description">
+                Зависимость поступления абитуриента от баллов, которые он набрал по олимпиаде <br />
+                Число абитуриентов (по вертикали) и их распределение по баллам (по горизонтали)
+            </div>
+            <ng-container *ngIf="data && data.length > 0">
+                <div class="stat-container__chart">
+                    <div class="stat-container__chart-inner"></div>
+                </div>
+            </ng-container>
+            <div *ngIf="!data || data.length == 0" class="stat-container__no-data">
+                нет данных
+            </div>
+        </div>
+    </div>
+</div>

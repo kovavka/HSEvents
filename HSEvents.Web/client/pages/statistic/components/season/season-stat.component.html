@@ -1,0 +1,24 @@
+﻿<div class="page-header">
+    <div class="page-header__title-container">
+        <div class="page-header__title-flex-container">
+            <div class="page-header__title">Статистика по времени года</div>
+        </div>
+    </div>
+</div>
+<div class="work-area">
+    <div class="work-area__content">
+        <div class="stat-container">
+            <div class="stat-container__description">
+                Зависимость посещаемости мероприятий от времени года
+            </div>
+            <ng-container *ngIf="data && data.length > 0">
+                <div class="stat-container__chart">
+                    <div class="stat-container__chart-inner"></div>
+                </div>
+            </ng-container>
+            <div *ngIf="!data || data.length == 0" class="stat-container__no-data">
+                нет данных
+            </div>
+        </div>
+    </div>
+</div>
