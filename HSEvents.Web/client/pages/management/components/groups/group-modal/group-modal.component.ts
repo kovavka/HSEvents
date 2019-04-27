@@ -5,8 +5,7 @@ import { Group } from '../../../../../models/dictionaries.models';
 @Component({
     moduleId: module.id.toString(),
     selector: 'group-modal',
-    templateUrl: 'group-modal.component.html',
-    styleUrls: ['group-modal.css']
+    templateUrl: 'group-modal.component.html'
 })
 export class GroupModalComponent implements OnInit{
 

@@ -5,8 +5,7 @@ import { SchoolType } from '../../../../../models/school.models';
 @Component({
     moduleId: module.id.toString(),
     selector: 'school-type-modal',
-    templateUrl: 'school-type-modal.component.html',
-    styleUrls: ['school-type-modal.css']
+    templateUrl: 'school-type-modal.component.html'
 })
 export class SchoolTypeModalComponent implements OnInit{
 

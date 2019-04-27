@@ -5,8 +5,7 @@ import { SubjectModel } from '../../../../../models/dictionaries.models';
 @Component({
     moduleId: module.id.toString(),
     selector: 'subject-modal',
-    templateUrl: 'subject-modal.component.html',
-    styleUrls: ['subject-modal.css']
+    templateUrl: 'subject-modal.component.html'
 })
 export class SubjectModalComponent implements OnInit{
 

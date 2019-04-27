@@ -12,7 +12,6 @@ import { AuthService } from '../../../../../services/auth.service';
     moduleId: module.id.toString(),
     selector: 'city-modal',
     templateUrl: 'city-modal.component.html',
-    styleUrls: ['city-modal.css'],
     providers: [RegionService, CityTypeService, CountryService]
 })
 export class CityModalComponent extends SearchComponent implements OnInit{

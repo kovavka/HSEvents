@@ -5,8 +5,7 @@ import { Country } from '../../../../../models/address.models';
 @Component({
     moduleId: module.id.toString(),
     selector: 'country-modal',
-    templateUrl: 'country-modal.component.html',
-    styleUrls: ['country-modal.css']
+    templateUrl: 'country-modal.component.html'
 })
 export class CountryModalComponent implements OnInit{
 

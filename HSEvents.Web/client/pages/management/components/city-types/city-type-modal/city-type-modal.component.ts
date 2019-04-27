@@ -6,7 +6,6 @@ import { CityType } from '../../../../../models/address.models';
     moduleId: module.id.toString(),
     selector: 'city-type-modal',
     templateUrl: 'city-type-modal.component.html',
-    styleUrls: ['city-type-modal.css']
 })
 export class CityTypeModalComponent implements OnInit{
 

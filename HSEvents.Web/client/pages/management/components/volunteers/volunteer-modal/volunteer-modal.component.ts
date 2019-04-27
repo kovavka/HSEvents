@@ -7,7 +7,6 @@ import { GroupService } from '../../groups/groups.service';
     moduleId: module.id.toString(),
     selector: 'volunteer-modal',
     templateUrl: 'volunteer-modal.component.html',
-    styleUrls: ['volunteer-modal.css'],
     providers: [GroupService]
 })
 export class VolunteerModalComponent implements OnInit {

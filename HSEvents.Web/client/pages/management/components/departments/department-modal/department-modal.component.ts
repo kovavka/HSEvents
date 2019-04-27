@@ -5,8 +5,7 @@ import { Department } from '../../../../../models/dictionaries.models';
 @Component({
     moduleId: module.id.toString(),
     selector: 'department-modal',
-    templateUrl: 'department-modal.component.html',
-    styleUrls: ['department-modal.css']
+    templateUrl: 'department-modal.component.html'
 })
 export class DepartmentModalComponent implements OnInit {
 

@@ -7,7 +7,6 @@ import { CountryService } from '../../countries/countries.service';
     moduleId: module.id.toString(),
     selector: 'region-modal',
     templateUrl: 'region-modal.component.html',
-    styleUrls: ['region-modal.css'],
     providers: [CountryService]
 })
 export class RegionModalComponent implements OnInit{

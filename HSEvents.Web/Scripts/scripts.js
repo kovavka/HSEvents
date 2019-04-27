@@ -8,17 +8,17 @@
             location.href.indexOf('https://' + domain) === 0;
     }
 
-    function addStyle(href) {
+    /*function addStyle(href) {
         var head = document.getElementsByTagName('head')[0],
-            link = document.createElement('link'),
-            t = +new Date();
+            link = document.createElement('link');
+
         link.rel = 'stylesheet';
-        link.href = href + '?t=' + t;
+        link.href = href;
         head.appendChild(link);
-    }
+    }*/
 
     window.isProduction = isProduction;
-    window.addStyle = addStyle;
+    //window.addStyle = addStyle;
 })(window);
 
 (function (xhr) {

@@ -9,7 +9,6 @@ import { StreetService } from '../../streets/streets.service';
     moduleId: module.id.toString(),
     selector: 'address-modal',
     templateUrl: 'address-modal.component.html',
-    styleUrls: ['address-modal.css'],
     providers: [CityService, StreetService]
 })
 export class AddressModalComponent implements OnInit{

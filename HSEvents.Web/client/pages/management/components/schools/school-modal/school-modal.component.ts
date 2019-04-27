@@ -5,8 +5,7 @@ import { School } from '../../../../../models/school.models';
 @Component({
     moduleId: module.id.toString(),
     selector: 'school-modal',
-    templateUrl: 'school-modal.component.html',
-    styleUrls: ['school-modal.css']
+    templateUrl: 'school-modal.component.html'
 })
 export class SchoolModalComponent implements OnInit{
 

@@ -5,8 +5,7 @@ import { AcademicProgram } from '../../../../../models/dictionaries.models';
 @Component({
     moduleId: module.id.toString(),
     selector: 'academic-program-modal',
-    templateUrl: 'academic-program-modal.component.html',
-    styleUrls: ['academic-program-modal.css']
+    templateUrl: 'academic-program-modal.component.html'
 })
 export class AcademicProgramModalComponent implements OnInit {
     
