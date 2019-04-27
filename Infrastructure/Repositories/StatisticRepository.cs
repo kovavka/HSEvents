@@ -47,27 +47,28 @@ namespace Infrastructure.Repositories
 
         public IEnumerable<object> GetSeasonStats()
         {
-            return new List<object>();
+            var events = session.Query<Event>().Where(x => x.AttendanceInfo.Any(a => a.Participated)).ToList();
+            var ids = events.Select(x => x.Id).ToList();
+            session.Query<Event>().Where(x => ids.Contains(x.Id)).Fetch(x => x.AttendanceInfo);
+            session.Query<Event>().Where(x => ids.Contains(x.Id)).FetchMany(x => x.EventExecutions).ThenFetch(x=>x.Dates);
 
-            var query = session.CreateSQLQuery(@"").List();
-
-            var list = query.Cast<Array>()
-                .GroupBy(x => x.GetValue(0)) //by year
+            var data = events
+                .Select(x => new
+                {
+                    Event = x,
+                    AttendeeCount = x.AttendanceInfo.Count(a => a.Participated)
+                })
+                .GroupBy(x => x.Event.Year)
                 .Select(x => new
                 {
                     Year = x.Key,
-                    Value = x.GroupBy(v => v.GetValue(1)) //by events count
-                        .Select(v => new
-                        {
-                            EventsCount = v.Key,
-                            AttendeesCount = v.Count()
-                        })
-                        .OrderBy(v => v.EventsCount)
+                    Value = GetSeasons(x)
                 })
                 .OrderByDescending(x => x.Year)
                 .ToList();
 
-            return list;
+
+            return data;
         }
 
         public IEnumerable<object> GetEventsCountStats()
@@ -179,6 +180,60 @@ where [Participated]=1").List();
 
             return percents;
         }
+
+        private int[] GetSeasons(IEnumerable<dynamic> list)
+        {
+            var count = new int[4];
+            var sum = new int[4];
+            foreach (var item in list)
+            {
+                var @event = (Event) item.Event;
+                var attendeeCount = (int) item.AttendeeCount;
+
+                var executions = @event.EventExecutions.ToList();
+
+                if (executions.Count == 1 && executions.First().Dates.Count == 1)
+                {
+                    var index = GetSeasonIndex(executions.First().Dates.First().Date);
+                    count[index]++;
+                    sum[index] += attendeeCount;
+                    continue;
+                }
+
+                var indexes = executions.SelectMany(x => x.Dates).Select(x => GetSeasonIndex(x.Date)).ToList();
+                var differentCount = indexes.GroupBy(x => x).Count();
+
+                if (differentCount == 1)
+                {
+                    count[indexes.First()]++;
+                    sum[indexes.First()] += attendeeCount;
+                }
+            }
+
+            var seasons = new int[4];
+            for (int i = 0; i < 4; i++)
+            {
+                if (count[i] != 0)
+                {
+                    seasons[i] = (int)Math.Floor(Math.Round(sum[i] * 1.0 / count[i], MidpointRounding.AwayFromZero));
+                }
+            }
+
+            return seasons;
+        }
+
+        private int GetSeasonIndex(DateTime date)
+        {
+            if (date.Month == 12 && date.Month == 1 && date.Month == 2)
+                return 0;
+            if(date.Month >= 3 && date.Month <= 5)
+                return 1;
+            if(date.Month >= 6 && date.Month <= 8)
+                return 2;
+
+            return 3;
+        }
+
         private int[] GetPoints(IEnumerable<Array> array)
         {
             var points = new int[10];

@@ -9,8 +9,16 @@
     <div class="work-area__content">
         <div class="stat-container">
             <div class="stat-container__description">
-                Зависимость посещаемости мероприятий от времени года
+                Зависимость посещаемости мероприятий от времени года (среднее число участиков)
             </div>
+            <ng-container *ngIf="data && data.length > 0">
+                <div class="stat-container__year-dimension flex-container">
+                    <a *ngFor="let item of data"
+                       class="stat-container__year-dimension-item flex-container__item"
+                       [ngClass]="selected == item ? 'stat-container__year-dimension-item_selected' : ''"
+                       (click)="yearClick(item)">{{item.year}}</a>
+                </div>
+            </ng-container>
             <div class="stat-container__chart" [ngClass]="data && data.length > 0 ? '' : 'stat-container__chart_hidden'">
                 <div class="stat-container__chart-inner stat-container__chart-inner_pie"></div>
             </div>

@@ -26,7 +26,6 @@ export class EventsCountStatComponent extends AbstractComponent implements OnIni
             .takeUntil(this.ngUnsubscribe)
             .subscribe(data => {
                 this.data = data;
-                console.log(data);
 
                 if (data.length) {
                     var item = data[0];
