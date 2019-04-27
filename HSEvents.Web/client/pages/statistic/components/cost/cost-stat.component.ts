@@ -11,7 +11,8 @@ declare var Chartist: any;
 })
 export class CostStatComponent extends AbstractComponent implements OnInit {
 
-    data: any[] = [];
+    selected: any;
+    data: any[] = [1];
     labels: string[];
 
     constructor(private statisticService: StatisticService,
@@ -27,14 +28,35 @@ export class CostStatComponent extends AbstractComponent implements OnInit {
             .takeUntil(this.ngUnsubscribe)
             .subscribe(data => {
                 this.data = data;
-                console.log(data);
 
                 if (data.length) {
-                    this.initChart();
+                    var item = data[0];
+                    this.selected = item;
+                    this.initChart(item.value);
                 }
             });
     }
 
-    initChart() {
+    initChart(values: any[]) {
+        var labels = values.map(x => x.sum);
+        var series = [values.map(x => x.percent)];
+
+        console.log(series);
+        console.log(labels);
+
+
+        var chartData = {
+            labels: labels,
+            series: series
+
+        };
+
+        new Chartist.Bar('.stat-container__chart-inner', chartData);
+        //new Chartist.Line('.stat-container__chart-inner', chartData);
+    }
+
+    yearClick(item: any) {
+        this.selected = item;
+        this.initChart(item.value);
     }
 }

@@ -131,7 +131,9 @@ namespace Tests.CreateAttendees
         public void CreateCourses(ISession session)
         {
             var subjects = session.Query<Subject>().ToList();
+            var address = session.Query<Address>().First();
             var courses = session.Query<Course>().ToList();
+            var random = new Random();
 
             foreach (var subject in subjects)
             {
@@ -148,8 +150,23 @@ namespace Tests.CreateAttendees
                             Info = "Course",
                             Name = $"Course {subject.Name} {i}",
                             Type = EventType.Course,
-                            Subject = subject
+                            Subject = subject,
+                            EventExecutions = new HashSet<EventExecution>()
+                            {
+                                new EventExecution()
+                                {
+                                    Address = address,
+                                    Dates = new List<EventDate>()
+                                    {
+                                        new EventDate()
+                                        {
+                                            Date = new DateTime(i, random.Next(1, 13), random.Next(1, 29))
+                                        }
+                                    }
+                                }
+                            }
                         };
+
                         session.Save(course);
                     }
                 }
@@ -159,6 +176,7 @@ namespace Tests.CreateAttendees
         public void CreateCompetitions(ISession session)
         {
             var subjects = session.Query<Subject>().ToList();
+            var address = session.Query<Address>().First();
             var random = new Random();
 
             foreach (var subject in subjects)
@@ -180,6 +198,20 @@ namespace Tests.CreateAttendees
                                 Description = "Description",
                                 Price = random.Next(1000, 10000)
                             }
+                        },
+                        EventExecutions = new HashSet<EventExecution>()
+                        {
+                            new EventExecution()
+                            {
+                                Address = address,
+                                Dates = new List<EventDate>()
+                                {
+                                    new EventDate()
+                                    {
+                                        Date = new DateTime(i, random.Next(1, 13), random.Next(1, 29))
+                                    }
+                                }
+                            }
                         }
                     };
 
@@ -190,6 +222,7 @@ namespace Tests.CreateAttendees
 
         public void CreateSchoolWorks(ISession session)
         {
+            var address = session.Query<Address>().First();
             var random = new Random();
 
             for (int i = 2017; i < 2020; i++)
@@ -209,6 +242,20 @@ namespace Tests.CreateAttendees
                             Name = "Name",
                             Description = "Description",
                             Price = random.Next(1000, 10000)
+                        }
+                    },
+                    EventExecutions = new HashSet<EventExecution>()
+                    {
+                        new EventExecution()
+                        {
+                            Address = address,
+                            Dates = new List<EventDate>()
+                            {
+                                new EventDate()
+                                {
+                                    Date = new DateTime(i, random.Next(1, 13), random.Next(1, 29))
+                                }
+                            }
                         }
                     }
                 };

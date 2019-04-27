@@ -13,12 +13,62 @@ namespace Infrastructure.Repositories
 
         public IEnumerable<object> GetCostStats()
         {
-            return new List<object>();
+            var query = session.CreateSQLQuery(@"select a.Year, Sum(Purchase.Price), AttendeeCount, StudentsCount from 
+(SELECT Event.Id, Event.Year,  Count(*) AttendeeCount, Count(Pupil.EnterProgram_Id) StudentsCount
+  FROM AttendanceInfo
+  inner join Event on Event.Id=AttendanceInfo.Event_Id
+  inner join Pupil on Pupil.Attendee_Id=AttendanceInfo.Attendee_Id
+  where Participated=1
+  group by Event.Id, Event.Year
+  ) a
+  inner join Purchase on Purchase.Event_Id=a.Id  
+  group by a.Id, a.Year, AttendeeCount, StudentsCount").List();
+
+            var list = query.Cast<Array>()
+                .GroupBy(x => x.GetValue(0)) //by year
+                .Select(x => new
+                {
+                    Year = x.Key,
+                    Value = x.Select(v => new
+                        {
+                            Sum = v.GetValue(1),
+                            Percent =
+                                Math.Round(
+                                    decimal.Parse(v.GetValue(3).ToString()) / decimal.Parse(v.GetValue(2).ToString()) *
+                                    100, MidpointRounding.AwayFromZero)
+                        })
+                        .OrderBy(v => v.Sum)
+                })
+                .OrderByDescending(x => x.Year)
+                .ToList();
+
+            return list;
+
         }
 
         public IEnumerable<object> GetSeasonStats()
         {
             return new List<object>();
+
+            var query = session.CreateSQLQuery(@"").List();
+
+            var list = query.Cast<Array>()
+                .GroupBy(x => x.GetValue(0)) //by year
+                .Select(x => new
+                {
+                    Year = x.Key,
+                    Value = x.GroupBy(v => v.GetValue(1)) //by events count
+                        .Select(v => new
+                        {
+                            EventsCount = v.Key,
+                            AttendeesCount = v.Count()
+                        })
+                        .OrderBy(v => v.EventsCount)
+                })
+                .OrderByDescending(x => x.Year)
+                .ToList();
+
+            return list;
         }
 
         public IEnumerable<object> GetEventsCountStats()
@@ -26,7 +76,7 @@ namespace Infrastructure.Repositories
             var query = session.CreateSQLQuery(@"SELECT  [YearOfGraduation], Count(*)
   FROM [HSEvents].[dbo].[AttendanceInfo]
   inner join [HSEvents].[dbo].[Pupil] on [Pupil].[Attendee_Id]=[AttendanceInfo].[Attendee_Id]
-  where [EnterProgram_Id] is not null
+  where [EnterProgram_Id] is not null  and [Participated]=1 
   group by [Pupil].[Attendee_Id], [YearOfGraduation]").List();
 
             var list = query.Cast<Array>()
@@ -51,6 +101,26 @@ namespace Infrastructure.Repositories
         public IEnumerable<object> GetCompetitionStats()
         {
             return new List<object>();
+
+            var query = session.CreateSQLQuery(@"").List();
+
+            var list = query.Cast<Array>()
+                .GroupBy(x => x.GetValue(0)) //by year
+                .Select(x => new
+                {
+                    Year = x.Key,
+                    Value = x.GroupBy(v => v.GetValue(1)) //by events count
+                        .Select(v => new
+                        {
+                            EventsCount = v.Key,
+                            AttendeesCount = v.Count()
+                        })
+                        .OrderBy(v => v.EventsCount)
+                })
+                .OrderByDescending(x => x.Year)
+                .ToList();
+
+            return list;
         }
 
         public IEnumerable<object> GetExamStats()
