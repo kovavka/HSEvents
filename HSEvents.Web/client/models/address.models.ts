@@ -3,7 +3,7 @@
     caption: string;
     shortName: string;
     house: string;
-    streetId: number;
+    street: Street;
 }
 
 export class Street {

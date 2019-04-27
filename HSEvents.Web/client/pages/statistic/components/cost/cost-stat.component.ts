@@ -40,11 +40,7 @@ export class CostStatComponent extends AbstractComponent implements OnInit {
     initChart(values: any[]) {
         var labels = values.map(x => x.sum);
         var series = [values.map(x => x.percent)];
-
-        console.log(series);
-        console.log(labels);
-
-
+        
         var chartData = {
             labels: labels,
             series: series

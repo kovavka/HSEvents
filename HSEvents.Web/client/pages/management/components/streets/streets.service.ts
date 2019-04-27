@@ -1,6 +1,7 @@
 ﻿import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { HseHttpClient } from '../../../../services/hse-httpclient';
+import { HseHttpParams } from '../../../../services/hse-httpparams';
 import { Street } from '../../../../models/address.models';
 
 @Injectable()
@@ -10,13 +11,12 @@ export class StreetService {
 
     constructor(private client: HseHttpClient) { }
 
-    getAll(city?: string): Observable<Street[]> {
-        if (!city) //todo убрать после добавления фильтрации
-            return this.client
-                .get<Street[]>(this.apiBase + 'getAll');
+    getAll(cityId?: number): Observable<Street[]> {
+        var params = new HseHttpParams()
+            .set("cityId", cityId && cityId.toString());
 
         return this.client
-            .get<Street[]>(this.apiBase + 'getAll', city);
+            .get<Street[]>(this.apiBase + 'getAll', params.httpParams);
     }
 
     get(id: number): Observable<Street> {
@@ -24,14 +24,14 @@ export class StreetService {
             .get<Street>(this.apiBase + 'get', id);
     }
 
-    add(Street: Street): Observable<Street> {
+    add(street: Street): Observable<Street> {
         return this.client
-            .put<Street>(this.apiBase + 'add', Street);
+            .put<Street>(this.apiBase + 'add', street);
     }
 
-    update(Street: Street): Observable<any> {
+    update(street: Street): Observable<any> {
         return this.client
-            .put<any>(this.apiBase + 'update', Street);
+            .put<any>(this.apiBase + 'update', street);
     }
 
     delete(id: number): Observable<any> {

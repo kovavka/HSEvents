@@ -482,7 +482,7 @@ namespace Tests.CreateAttendees
                 {
                     region = new Region()
                     {
-                        Name = countryName,
+                        Name = regionName,
                         Country = country
                     };
                     session.Save(region);

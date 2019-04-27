@@ -9,7 +9,7 @@ namespace Infrastructure.Repositories.Dto
         public string Caption { get; set; }
         public string ShortName { get; set; }
         public string House { get; set; }
-        public long StreetId { get; set; }
+        public Street Street { get; set; }
     }
 
     public class StreetDto

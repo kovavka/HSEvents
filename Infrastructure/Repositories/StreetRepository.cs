@@ -18,8 +18,8 @@ namespace Infrastructure.Repositories
         {
             var query = GetAll();
 
-            if (args.City.IsNotEmpty())
-                query = query.Where(x => x.City.Name == args.City);
+            if (args.CityId.HasValue)
+                query = query.Where(x => x.City.Id == args.CityId.Value);
 
             return query.AsEnumerable().Select(ConvertToDto).ToList();
         }
@@ -56,7 +56,7 @@ namespace Infrastructure.Repositories
     
     public class StreetArgs
     {
-        public string City { get; set; }
+        public long? CityId { get; set; }
         public string Limit { get; set; }
         public string Offset { get; set; }
     }

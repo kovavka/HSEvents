@@ -39,10 +39,6 @@ export class EventsCountStatComponent extends AbstractComponent implements OnIni
         var labels = values.map(x => x.eventsCount);
         var series = [values.map(x => x.attendeesCount)];
         
-        console.log(series);
-        console.log(labels);
-
-
         var chartData = {
             labels: labels,
             series: series

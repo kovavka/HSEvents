@@ -5,8 +5,22 @@
     <bs-modal-body>
         <div class="work-area-modal">
             <div class="work-area-modal__item">
-                <div>Наименование</div>
-                <input class="work-area-modal__input-item" [(ngModel)]="name" />
+                <div>Населенный пункт</div>
+                <search-selector [value]="city"
+                                 [data]="allCities"
+                                 [displayFunc]="cityDisplayFunc"
+                                 (valueChange)="cityChange($event)"></search-selector>
+            </div>
+            <div class="work-area-modal__item">
+                <div>Улица</div>
+                <search-selector [value]="street"
+                                 [data]="allStreets"
+                                 [displayFunc]="streetDisplayFunc"
+                                 (valueChange)="streetChange($event)"></search-selector>
+            </div>
+            <div class="work-area-modal__item">
+                <div>Дом</div>
+                <input class="work-area-modal__input-item" [(ngModel)]="house" />
             </div>
         </div>
     </bs-modal-body>

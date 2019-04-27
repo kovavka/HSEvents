@@ -20,7 +20,7 @@ namespace Infrastructure.Repositories
                 ShortName = entity.ToString(),
                 Caption = entity.FullAddress,
                 House = entity.House,
-                StreetId = entity.Street.Id,
+                Street = entity.Street,
             };
         }
 
@@ -30,7 +30,7 @@ namespace Infrastructure.Repositories
             {
                 Id = dto.Id,
                 House = dto.House,
-                Street = RepositoryHelper.GetAnotherEntity<Street>(dto.StreetId),
+                Street = RepositoryHelper.GetAnotherEntity<Street>(dto.Street.Id),
             };
         }
     }
