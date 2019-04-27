@@ -10,11 +10,30 @@
         <div class="stat-container">
             <div class="stat-container__description">
                 Зависимость поступления абитуриента от баллов, которые он набрал по олимпиаде <br />
-                Число абитуриентов (по вертикали) и их распределение по баллам (по горизонтали)
+                Процент поступивших от участников (по вертикали) и их распределение по баллам (по горизонтали)
             </div>
+            <ng-container *ngIf="data && data.length > 0">
+                <div class="stat-container__year-dimension flex-container">
+                    <a *ngFor="let item of data"
+                       class="stat-container__year-dimension-item flex-container__item"
+                       [ngClass]="selected == item ? 'stat-container__year-dimension-item_selected' : ''"
+                       (click)="yearClick(item)">{{item.year}}</a>
+                </div>
+            </ng-container>
             <div class="stat-container__chart" [ngClass]="data && data.length > 0 ? '' : 'stat-container__chart_hidden'">
                 <div class="stat-container__chart-inner"></div>
             </div>
+            <ng-container *ngIf="data && data.length > 0">
+                <div class="stat-container__legend" *ngIf="selected">
+                    <div *ngFor="let item of selected.value; index as i"
+                         class="legend-item legend-item_pointer flex-container"
+                         [ngClass]="getLegendClass(item.subject)"
+                         (click)="onLegendClick(item.subject)">
+                        <div class="legend-item__color" [style.backgroundColor]="getColorStyle(i, item.subject)"></div>
+                        <div class="legend-item__name">{{item.subject}}</div>
+                    </div>
+                </div>
+            </ng-container>
             <div *ngIf="!data || data.length == 0" class="stat-container__no-data">
                 нет данных
             </div>
