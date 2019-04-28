@@ -47,7 +47,7 @@ namespace Infrastructure.Repositories
 
         public IEnumerable<object> GetSeasonStats()
         {
-            var events = session.Query<Event>().Where(x => x.AttendanceInfo.Any(a => a.Participated)).ToList();
+            var events = session.Query<Event>().Where(x => x.AttendanceInfo.Any(a => a.Participated) && x.Year!=0).ToList();
             var ids = events.Select(x => x.Id).ToList();
             session.Query<Event>().Where(x => ids.Contains(x.Id)).Fetch(x => x.AttendanceInfo);
             session.Query<Event>().Where(x => ids.Contains(x.Id)).FetchMany(x => x.EventExecutions).ThenFetch(x=>x.Dates);

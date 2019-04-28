@@ -165,6 +165,9 @@ namespace Infrastructure.Repositories
                 entity.AttendanceInfo = lastVersion.AttendanceInfo;
             }
 
+            var dates = entity.EventExecutions.First().Dates;
+            entity.Year = dates?.First()?.Date.Year ?? 0;
+
             return entity;
         }
         
