@@ -13,6 +13,41 @@ namespace Infrastructure.Repositories
             return GetAll().Fetch(x => x.Type).AsEnumerable().Select(ConvertToDto);
         }
 
+        protected override IQueryable<School> GetAllQuery()
+        {
+            return base.GetAllQuery()
+                .FetchMany(x => x.Addresses)
+                    .ThenFetch(x => x.Street)
+                    .ThenFetch(x => x.City)
+                    .ThenFetch(x => x.Region)
+                    .ThenFetch(x => x.Country)
+                .FetchMany(x => x.Addresses)
+                    .ThenFetch(x => x.Street)
+                    .ThenFetch(x => x.City)
+                    .ThenFetch(x => x.CityType);
+        }
+
+        //todo бред, надо сделать нормальный маппинг
+        public override void Delete(long id)
+        {
+            using (var session = NHibernateHelper.OpenSession())
+            using (var tx = session.BeginTransaction())
+            {
+                var addresses = session.Query<School>()
+                    .First(x => x.Id == id)
+                    .Addresses;
+
+                foreach (var address in addresses)
+                {
+                    address.School = null;
+                    session.Save(address);
+                }
+                tx.Commit();
+            }
+
+            base.Delete(id);
+        }
+
         protected override SchoolDto ConvertToDto(School entity)
         {
             return new SchoolDto()
@@ -26,8 +61,8 @@ namespace Infrastructure.Repositories
                 Addresses = entity.Addresses.Select(a => new AddressDto
                 {
                     Id = a.Id,
-                    ShortName = a.ToString(),
-                    Caption = a.FullAddress
+                    Street = a.Street,
+                    House = a.House
                 }).ToList(),
                 Contacts = entity.Contacts.ToList()
             };
@@ -43,9 +78,31 @@ namespace Infrastructure.Repositories
                 Number = dto.Number,
                 BelongToUniversityDistrict = dto.BelongToUniversityDistrict,
                 HasPriority = dto.HasPriority,
-                Addresses = RepositoryHelper.GetAnotherEntity<Address>(dto.Addresses.Select(x => x.Id)).ToList(),
+                Addresses = GetAddresses(dto.Addresses.Select(x => x.Id).ToList()),
                 Contacts = RepositoryHelper.GetAnotherEntity<ContactPerson>(dto.Contacts.Select(x => x.Id)).ToList()
             };
+        }
+
+        //todo надо как-то решить проблему с сессией, потому что это полный бред, сохранять надо внутри одной сессии, + это очень неэффективно по памяти
+        private List<Address> GetAddresses(List<long> ids)
+        {
+            using (var session = NHibernateHelper.OpenSession())
+            {
+                var query = session.Query<Address>().Where(x => ids.Contains(x.Id));
+
+                session.Query<Address>().Where(x => ids.Contains(x.Id))
+                    .Fetch(x => x.Street)
+                    .ThenFetch(x => x.City)
+                    .ThenFetch(x => x.Region)
+                    .ThenFetch(x => x.Country).ToList();
+
+                session.Query<Address>().Where(x => ids.Contains(x.Id))
+                    .Fetch(x => x.Street)
+                    .ThenFetch(x => x.City)
+                    .ThenFetch(x => x.CityType).ToList();
+
+                return query.ToList();
+            }
         }
     }
 

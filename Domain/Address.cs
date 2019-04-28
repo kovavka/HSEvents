@@ -8,6 +8,7 @@ namespace Domain
 
         public virtual Street Street { get; set; }
 
+
         public virtual Country Country => Region.Country;
 
         public virtual Region Region => City.Region;
@@ -17,6 +18,8 @@ namespace Domain
         public virtual City City => Street.City;
 
         public virtual string FullAddress => $"{Country.Name}, {Region.Name}, {CityType.Name} {City.Name}, {Street.Name}, {House}";
+
+        public virtual School School { get; set; }
 
         public override string ToString()
         {

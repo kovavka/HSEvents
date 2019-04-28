@@ -1,13 +1,6 @@
 ﻿(function (window) {
-    function isProduction() {
-        return isDomain('app.');
-    }
-
-    function isDomain(domain) {
-        return location.href.indexOf('http://' + domain) === 0 ||
-            location.href.indexOf('https://' + domain) === 0;
-    }
-
+   
+    
     /*function addStyle(href) {
         var head = document.getElementsByTagName('head')[0],
             link = document.createElement('link');
@@ -17,7 +10,7 @@
         head.appendChild(link);
     }*/
 
-    window.isProduction = isProduction;
+    window.isProduction = true;
     //window.addStyle = addStyle;
 })(window);
 
@@ -30,7 +23,7 @@
     xhr.open = function (method, url) {
         if (url && url.indexOf('/client/') !== -1 &&
             (endsWith(url, '.js') || endsWith(url, '.css') || endsWith(url, '.html'))) {
-            url += '?t=' + t;
+            //url += '?t=' + t;
         }
         return open.call(this, method, url);
     };

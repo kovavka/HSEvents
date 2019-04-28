@@ -1,7 +1,6 @@
 ﻿import { Component, Input, Output, EventEmitter, ViewChild, OnInit } from '@angular/core';
 import { BsModalComponent } from 'ng2-bs3-modal';
-import { Address } from '../../../../../models/address.models';
-import { City, Street } from '../../../../../models/address.models';
+import { Address, City, Street } from '../../../../../models/address.models';
 import { CityService } from '../../cities/cities.service';
 import { StreetService } from '../../streets/streets.service';
 

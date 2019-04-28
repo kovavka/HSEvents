@@ -14,6 +14,7 @@ namespace Infrastructure.Mappings
         {
             Map(x => x.House);
             References(x => x.Street).Cascade.SaveUpdate().Cascade.Delete().ForeignKey("FK_House_Street");
+            References(x => x.School).Cascade.SaveUpdate().Cascade.Delete().ForeignKey("FK_Address_School");
         }
     }
     class StreetMap : NamedEntityMap<Street>

@@ -42,7 +42,7 @@ namespace Infrastructure.Repositories
             return ConvertToDto(entity);
         }
 
-        public void Delete(long id)
+        public virtual void Delete(long id)
         {
             using (var tx = session.BeginTransaction())
             {
