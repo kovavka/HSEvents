@@ -10,7 +10,7 @@ namespace Tests
     {
         static void Main(string[] args)
         {
-            NHibernateHelper.Configure("Data Source=(local);Initial Catalog=HSEvents;Integrated Security=True;");
+            NHibernateHelper.Configure("Data Source=HALA\\SQLEXPRESS;Initial Catalog=HSEvents;Integrated Security=True;");
            
             using (var session = NHibernateHelper.OpenSession())
             {

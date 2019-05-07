@@ -2,7 +2,7 @@
 import { Observable } from 'rxjs/Observable';
 import { HseHttpClient } from './hse-httpclient';
 import { HseHttpParams } from './hse-httpparams';
-import { User, AuthInfo, AuthArgs } from '../models/user.models';
+import { User, AuthInfo, AuthArgs, AttendeeDto } from '../models/user.models';
 
 @Injectable()
 export class AuthService {
@@ -40,6 +40,26 @@ export class AuthService {
         return new Observable(observer => {
             this.client
                 .post<AuthInfo>(this.apiBase + 'login', args)
+                .subscribe(authInfo => {
+                    if (!authInfo)
+                        observer.error(null);
+                        this.setUser(authInfo);
+                        observer.next(null);
+                    },
+                    (error) => {
+                        observer.error(error);
+                    },
+                    () => {
+                        observer.complete();
+                    }
+                );
+        });
+    }
+
+    signUp(dto: AttendeeDto): Observable<AuthInfo> {
+        return new Observable(observer => {
+            this.client
+                .post<AuthInfo>(this.apiBase + 'signUp', dto)
                 .subscribe(authInfo => {
                     if (!authInfo)
                         observer.error(null);

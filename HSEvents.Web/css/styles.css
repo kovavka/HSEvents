@@ -426,6 +426,10 @@
     font-size: 14px !important;
 }
 
+.input_big {
+    max-width: 500px;
+    width: 90%;
+}
 
 
 

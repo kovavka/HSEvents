@@ -13,6 +13,20 @@ export class User {
     password: string;
 }
 
+export class AttendeeDto {
+    id: number;
+    login: string;
+    password: string;
+    type: number;
+    fullName: string;
+    phoneNumber: string;
+    email: string;
+    sex: string;
+    yearOfGraduation: string;
+    interestingProgramIds: number[];
+    schoolId: number;
+}
+
 export class AuthInfo {
     user: User;
     token: string;

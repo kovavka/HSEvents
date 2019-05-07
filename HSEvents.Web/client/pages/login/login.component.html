@@ -1,11 +1,11 @@
 ﻿<div class="content-wrapper">
     <div class="content-wrapper__item">
         <div>Логин</div>
-        <input [(ngModel)]="login"/>
+        <input [(ngModel)]="login" id="login"/>
     </div>
     <div class="content-wrapper__item content-wrapper__item_margin_s">
         <div>Пароль</div>
-        <input [(ngModel)]="password" type="password"/>
+        <input [(ngModel)]="password" type="password" id="password"/>
     </div>
     <div class="content-wrapper__item content-wrapper__item_margin_m">
         <div class="flex-container__item flat-button flat-button__dark-blue" (click)="onLoginClick()">

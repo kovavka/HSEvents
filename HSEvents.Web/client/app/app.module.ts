@@ -22,6 +22,7 @@ import { ManagementModule } from '../pages/management/management.module';
 import { LoginModule } from '../pages/login/login.module';
 import { AuthService } from '../services/auth.service';
 import { StatisticModule } from '../pages/statistic/statistic.module';
+import { SignUpModule } from '../pages/sign-up/sign-up.module';
 
 @NgModule({
     imports: [
@@ -39,7 +40,8 @@ import { StatisticModule } from '../pages/statistic/statistic.module';
         ManagementModule,
         ControlsModule,
         LoginModule,
-        StatisticModule
+        StatisticModule,
+        SignUpModule
     ],
     declarations: [
 		AppComponent,

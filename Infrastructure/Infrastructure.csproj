@@ -72,6 +72,7 @@
     <Compile Include="PasswordHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\CityRepository.cs" />
+    <Compile Include="Repositories\Dto\UserModels.cs" />
     <Compile Include="Repositories\Dto\SchoolModels.cs" />
     <Compile Include="Repositories\Dto\AddressModels.cs" />
     <Compile Include="Repositories\Dto\EventModels.cs" />

@@ -25,6 +25,7 @@ import { SeasonStatComponent } from '../pages/statistic/components/season/season
 import { CostStatComponent } from '../pages/statistic/components/cost/cost-stat.component';
 import { EventsCountStatComponent } from '../pages/statistic/components/events-count/events-count-stat.component';
 import { HomeStatComponent } from '../pages/statistic/components/home/home-stat.component';
+import { SignUpComponent } from '../pages/sign-up/sign-up.component';
 
 const routes: Routes = [
     {
@@ -65,7 +66,8 @@ const routes: Routes = [
                     { path: 'exam', component: ExamStatComponent }
                 ]
             },
-            { path: 'login', component: LoginComponent}
+            { path: 'login', component: LoginComponent},
+            { path: 'signup', component: SignUpComponent},
         ]
     }
 ];

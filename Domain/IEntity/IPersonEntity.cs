@@ -12,7 +12,7 @@ namespace Domain.IEntity
 
         public PersonEntity()
         {
-            ContactInfo =new ContactInfo();
+            ContactInfo = new ContactInfo();
         }
     }
   

@@ -1,6 +1,10 @@
-﻿using System.Web.Http;
+﻿using System.Linq;
+using System.Net.Http;
+using System.Web.Http;
+using System.Web.Security;
 using Domain.Events;
 using HSEvents.Server.Api.Events.Models;
+using HSEvents.Server.Auth;
 using Infrastructure.Repositories.Dto;
 
 namespace HSEvents.Server.Api.Events
@@ -17,6 +21,15 @@ namespace HSEvents.Server.Api.Events
         [HttpGet]
         public Month GetMonth(int year, int month)
         {
+            //todo сделать нормальную аутентификацию, а не вот это вот все
+            var authCookie = ActionContext.Request.Headers.GetCookies(AuthService.CookieName).FirstOrDefault()?[AuthService.CookieName];
+            if (authCookie != null && !string.IsNullOrEmpty(authCookie.Value))
+            {
+                var ticket = FormsAuthentication.Decrypt(authCookie.Value);
+                var rtr = ticket.UserData;
+            }
+
+
             return eventsService.GetMonth(year, month);
         }
 

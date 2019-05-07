@@ -1,9 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Web.Http;
-using Domain;
-using Domain.IEntity;
-using HSEvents.Server.Api.Empty;
+﻿using System.Web.Http;
 using HSEvents.Server.Auth;
+using Infrastructure.Repositories.Dto;
 
 namespace HSEvents.Server.Api.Users
 {
@@ -23,6 +20,12 @@ namespace HSEvents.Server.Api.Users
             //todo нужно сделать нормальное решение
             authService.ActionContext = ActionContext;
             return authService.Login(authInfo);
+        }
+
+        [HttpPost]
+        public AuthInfo SignUp(AttendeeDto dto)
+        {
+            return authService.SignUp(dto);
         }
     }
 }

@@ -8,6 +8,7 @@ using System.Web.Http.Controllers;
 using System.Web.Security;
 using Domain;
 using Infrastructure.Repositories;
+using Infrastructure.Repositories.Dto;
 using Microsoft.Practices.Unity;
 
 namespace HSEvents.Server.Auth
@@ -17,29 +18,31 @@ namespace HSEvents.Server.Auth
         HttpActionContext ActionContext { get; set; }
 
         AuthInfo Login(AuthArgs authInfo);
-        
+
+        AuthInfo SignUp(AttendeeDto dto);
+
         IPrincipal CurrentUser { get; }
     }
 
     public class AuthService : IAuthService
     {
-        private const string cookieName = "__AUTH_COOKIE";
+        public static string CookieName = "__AUTH_COOKIE";
 
         public HttpActionContext ActionContext { get; set; }
 
         [Dependency]
-        public IUserRepository Repository { get; set; }
+        public IUserRepository userRepository { get; set; }
 
         public AuthInfo Login(AuthArgs authInfo)
         {
-            User user = Repository.Login(authInfo.Login, authInfo.Password);
+            var user = userRepository.Login(authInfo.Login, authInfo.Password);
 
             if (user != null)
             {
-                var roles = user.Type == UserType.Admin ? "admin" : "";
+                var role = user.Type.ToString();
                 return new AuthInfo()
                 {
-                    Token = GetToken(authInfo.Login, roles, true),
+                    Token = GetToken(authInfo.Login, role, true),
                     User = user
                 };
             }
@@ -47,7 +50,19 @@ namespace HSEvents.Server.Auth
             return null;
         }
 
-        private string GetToken(string login, string roles, bool isPersistent = false)
+        public AuthInfo SignUp(AttendeeDto dto)
+        {
+            var attendee = userRepository.SignUp(dto);
+            
+            var role = attendee.Type.ToString();
+            return new AuthInfo()
+            {
+                Token = GetToken(attendee.User.Login, role, true),
+                User = attendee.User
+            };
+        }
+
+        private string GetToken(string login, string role, bool isPersistent = false)
         {
             var ticket = new FormsAuthenticationTicket(
                 1,
@@ -55,7 +70,7 @@ namespace HSEvents.Server.Auth
                 DateTime.Now,
                 DateTime.Now.Add(FormsAuthentication.Timeout),
                 isPersistent,
-                roles,
+                role,
                 FormsAuthentication.FormsCookiePath);
 
            return FormsAuthentication.Encrypt(ticket);
@@ -71,11 +86,11 @@ namespace HSEvents.Server.Auth
                 {
                     try
                     {
-                        var authCookie = ActionContext.Request.Headers.GetCookies(cookieName).FirstOrDefault()?[cookieName];
+                        var authCookie = ActionContext.Request.Headers.GetCookies(CookieName).FirstOrDefault()?[CookieName];
                         if (authCookie != null && !string.IsNullOrEmpty(authCookie.Value))
                         {
                             var ticket = FormsAuthentication.Decrypt(authCookie.Value);
-                            _currentUser = new UserProvider(ticket.Name, Repository);
+                            _currentUser = new UserProvider(ticket.Name, userRepository);
                         }
                         else
                         {
