@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
+using Infrastructure.Repositories;
 using Infrastructure.Repositories.Dto;
 
 namespace HSEvents.Server.Api.Schools
 {
     public interface ISchoolService
     {
-        IEnumerable<SchoolDto> GetAll();
+        IEnumerable<SchoolDto> GetAll(SchoolArgs args);
         SchoolDto Get(long id);
         SchoolDto Add(SchoolDto subject);
         void Update(SchoolDto subject);
@@ -22,9 +23,9 @@ namespace HSEvents.Server.Api.Schools
             this.schoolStorage = schoolStorage;
         }
         
-        public IEnumerable<SchoolDto> GetAll()
+        public IEnumerable<SchoolDto> GetAll(SchoolArgs args)
         {
-           return schoolStorage.GetAllDtos();
+           return schoolStorage.GetAllDtos(args);
         }
 
         public SchoolDto Get(long id)

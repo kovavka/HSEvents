@@ -2,6 +2,7 @@
 import { Observable } from 'rxjs/Observable';
 import { HseHttpClient } from '../../../../services/hse-httpclient';
 import { School } from '../../../../models/school.models';
+import { HseHttpParams } from '../../../../services/hse-httpparams';
 
 @Injectable()
 export class SchoolService {
@@ -9,10 +10,13 @@ export class SchoolService {
     private apiBase: string = '/api/school/';
 
     constructor(private client: HseHttpClient) { }
+    
+    getAll(cityId?: number): Observable<School[]> {
+        var params = new HseHttpParams()
+            .set("cityId", cityId && cityId.toString());
 
-    getAll(): Observable<School[]> {
         return this.client
-            .get<School[]>(this.apiBase + 'getAll');
+            .get<School[]>(this.apiBase + 'getAll', params.httpParams);
     }
 
     get(id: number): Observable<School> {

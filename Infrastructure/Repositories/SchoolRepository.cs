@@ -10,7 +10,17 @@ namespace Infrastructure.Repositories
     {
         public override IEnumerable<SchoolDto> GetAllDtos()
         {
-            return GetAll().Fetch(x => x.Type).AsEnumerable().Select(ConvertToDto);
+            return GetAll().AsEnumerable().Select(ConvertToDto);
+        }
+
+        public IEnumerable<SchoolDto> GetAllDtos(SchoolArgs args)
+        {
+            var query = GetAll();
+
+            if (args.CityId.HasValue)
+                query = query.Where(x => x.Addresses.Any(a => a.Street.City.Id == args.CityId.Value));
+
+            return query.AsEnumerable().Select(ConvertToDto).ToList();
         }
 
         protected override IQueryable<School> GetAllQuery()
@@ -24,7 +34,8 @@ namespace Infrastructure.Repositories
                 .FetchMany(x => x.Addresses)
                     .ThenFetch(x => x.Street)
                     .ThenFetch(x => x.City)
-                    .ThenFetch(x => x.CityType);
+                    .ThenFetch(x => x.CityType)
+                .Fetch(x => x.Type);
         }
 
         //todo бред, надо сделать нормальный маппинг
@@ -106,4 +117,10 @@ namespace Infrastructure.Repositories
         }
     }
 
+    public class SchoolArgs
+    {
+        public long? CityId { get; set; }
+        public string Limit { get; set; }
+        public string Offset { get; set; }
+    }
 }

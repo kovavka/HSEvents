@@ -31,6 +31,20 @@
         <div>Год окончания школы</div>
         <input [(ngModel)]="yearOfGraduation" />
     </div>
+    <div class="work-area-modal__item">
+        <div>Населенный пункт</div>
+        <search-selector [value]="city"
+                         [data]="allCities"
+                         [displayFunc]="cityDisplayFunc"
+                         (valueChange)="cityChange($event)"></search-selector>
+    </div>
+    <div class="work-area-modal__item">
+        <div>Школа</div>
+        <search-selector [value]="school"
+                         [data]="allSchools"
+                         [displayFunc]="schoolDisplayFunc"
+                         (valueChange)="schoolChange($event)"></search-selector>
+    </div>
 
     <div class="content-wrapper__item">
         <div>Логин</div>

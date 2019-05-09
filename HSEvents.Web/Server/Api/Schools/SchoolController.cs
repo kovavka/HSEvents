@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Web.Http;
+using Infrastructure.Repositories;
 using Infrastructure.Repositories.Dto;
 
 namespace HSEvents.Server.Api.Schools
@@ -14,9 +15,9 @@ namespace HSEvents.Server.Api.Schools
         }
 
         [HttpGet]
-        public IEnumerable<SchoolDto> GetAll()
+        public IEnumerable<SchoolDto> GetAll([FromUri] SchoolArgs args)
         {
-            return schoolService.GetAll();
+            return schoolService.GetAll(args);
         }
 
         [HttpGet]
