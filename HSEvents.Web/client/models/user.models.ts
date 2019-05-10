@@ -17,11 +17,11 @@ export class AttendeeDto {
     id: number;
     login: string;
     password: string;
-    type: number;
+    type: AttendeeType;
     fullName: string;
     phoneNumber: string;
     email: string;
-    sex: string;
+    sex: SexType;
     yearOfGraduation: string;
     interestingProgramIds: number[];
     schoolId: number;
@@ -35,4 +35,15 @@ export class AuthInfo {
 export class AuthArgs {
     login: string;
     password: string;
+}
+
+export enum SexType {
+    Male = 0,
+    Female = 1
+}
+
+export enum AttendeeType {
+    Pupil = 1,
+    Parent = 2,
+    Teacher = 3
 }

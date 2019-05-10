@@ -60,11 +60,11 @@ export class SearchSelectorComponent {
 
     onDocumentClick($event: any) {
         this.itemsVisible = false;
+        window.setTimeout(() => { this.changeDetector.detectChanges(); }, 10);
     }
 
     onInput($event) {
         this.filter($event.target.value);
-        console.log();
     }
     
     filter(value: string) {

@@ -13,17 +13,17 @@
     </div>
     <div class="content-wrapper__item content-wrapper__item_margin_s">
         <div>Тип участника</div>
-        <select (change)="onSubjectChange($event.target.value)">
-            <option *ngFor="let item of subjects;" value="{{item.id}}" [selected]="item==model.subject">
-                {{item.name}}
+        <select (change)="type = $event.target.value">
+            <option *ngFor="let item of attendeeTypes;" value="{{item.value}}" [selected]="item==type">
+                {{item.caption}}
             </option>
         </select>
     </div>
     <div class="content-wrapper__item content-wrapper__item_margin_s">
         <div>Пол</div>
-        <select (change)="onSubjectChange($event.target.value)">
-            <option *ngFor="let item of subjects;" value="{{item.id}}" [selected]="item==model.subject">
-                {{item.name}}
+        <select (change)="sex = $event.target.value">
+            <option *ngFor="let item of sexTypes;" value="{{item.value}}" [selected]="item==sex">
+                {{item.caption}}
             </option>
         </select>
     </div>
@@ -31,14 +31,14 @@
         <div>Год окончания школы</div>
         <input [(ngModel)]="yearOfGraduation" />
     </div>
-    <div class="work-area-modal__item">
+    <div class="content-wrapper__item content-wrapper__item_margin_s">
         <div>Населенный пункт</div>
         <search-selector [value]="city"
                          [data]="allCities"
                          [displayFunc]="cityDisplayFunc"
                          (valueChange)="cityChange($event)"></search-selector>
     </div>
-    <div class="work-area-modal__item">
+    <div class="content-wrapper__item content-wrapper__item_margin_s">
         <div>Школа</div>
         <search-selector [value]="school"
                          [data]="allSchools"
@@ -46,7 +46,22 @@
                          (valueChange)="schoolChange($event)"></search-selector>
     </div>
 
-    <div class="content-wrapper__item">
+    <div class="content-wrapper__item content-wrapper__item_margin_s">
+        <div style="float: left; margin-right: 10px;">Интересующие программы</div>
+        <span class="pointer glyphicon glyphicon-plus" (click)="addProgram()"></span>
+    </div>
+    
+    <ng-container *ngFor="let program of selectedPrograms; index as i">
+        <div class="content-wrapper__item content-wrapper__item_margin_s">
+            <search-selector [value]="program"
+                             [data]="getPrograms(program)"
+                             [displayFunc]="programDisplayFunc"
+                             (valueChange)="programChange($event, i)"></search-selector>
+        </div>
+    </ng-container>
+    
+
+    <div class="content-wrapper__item content-wrapper__item_margin_s">
         <div>Логин</div>
         <input [(ngModel)]="login" />
     </div>
