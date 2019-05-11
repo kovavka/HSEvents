@@ -1,0 +1,36 @@
+﻿<div class="content-wrapper">
+    <div class="page-header">
+        <div class="page-header__title-container">
+            <div class="page-header__title-flex-container">
+                <div class="page-header__title">Сотрудники</div>
+            </div>
+        </div>
+    </div>
+    <div class="work-area">
+        <div class="work-area__header">
+            <input #searchInput class="work-area__header-search search-row" [(ngModel)]="searchText" placeholder="Поиск" />
+            <div class="work-area__header-button flat-button flat-button__green" (click)="onAddClick()">
+                <a class="flat-button__caption">Добавить</a>
+            </div>
+        </div>
+        <div class="work-area__content">
+            <div *ngFor="let employee of data" class="dictionary-block">
+                <div class="dictionary-block__main-info">
+                    <div class="dictionary-block__main-info-item">
+                        <input type="checkbox" (change)="onCheck($event, employee)" />
+                    </div>
+                    <div class="dictionary-block__main-info-item">{{employee.contactInfo.fullName}} — {{employee.user && employee.user.login}}</div>
+                    <div class="dictionary-block__main-info-item dictionary-block__main-info-item_right">
+                        <span class="pointer glyphicon glyphicon-pencil" (click)="onEditClick(employee)"></span>
+                    </div>
+                    <div class="dictionary-block__main-info-item">
+                        <span class="pointer glyphicon glyphicon-trash" (click)="onDeleteClick(employee)"></span>
+                    </div>
+                </div>
+                <div class="dictionary-block__details"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<employee-modal #modal (apply)="onModalApply($event)"></employee-modal>

@@ -9,8 +9,8 @@ namespace HSEvents.Server.Api.Employees
     {
         IEnumerable<Employee> GetAll();
         Employee Get(long id);
-        Employee Add(Employee subject);
-        void Update(Employee subject);
+        Employee Add(Employee employee);
+        void Update(Employee employee);
         void Delete(long id);
         void Delete(long[] ids);
     }
@@ -19,9 +19,17 @@ namespace HSEvents.Server.Api.Employees
     {
         public IEnumerable<Employee> GetAll()
         {
-            using (var repo = new NHGetAllRepository<Employee>())
+            using (var repo = new EmployeeRepository())
             {
                 return repo.GetAll().AsEnumerable();
+            }
+        }
+
+        public Employee Get(long id)
+        {
+            using (var repo = new EmployeeRepository())
+            {
+                return repo.Get(id);
             }
         }
     }

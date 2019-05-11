@@ -26,6 +26,7 @@ import { CostStatComponent } from '../pages/statistic/components/cost/cost-stat.
 import { EventsCountStatComponent } from '../pages/statistic/components/events-count/events-count-stat.component';
 import { HomeStatComponent } from '../pages/statistic/components/home/home-stat.component';
 import { SignUpComponent } from '../pages/sign-up/sign-up.component';
+import { AdminComponent } from '../pages/admin/admin.component';
 
 const routes: Routes = [
     {
@@ -68,6 +69,7 @@ const routes: Routes = [
             },
             { path: 'login', component: LoginComponent},
             { path: 'signup', component: SignUpComponent},
+            { path: 'admin', component: AdminComponent},
         ]
     }
 ];

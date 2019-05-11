@@ -242,6 +242,7 @@
     <Content Include="client\controls\search-selector\search-selector.component.html" />
     <Content Include="client\controls\title-input\title-input.component.css" />
     <Content Include="client\controls\title-input\title-input.component.html" />
+    <Content Include="client\pages\admin\employee-modal\employee-modal.component.html" />
     <Content Include="client\pages\events\calendar\day.component.html" />
     <Content Include="client\pages\events\calendar\calendar.component.html" />
     <Content Include="client\pages\events\calendar\calendar.component.css" />
@@ -254,6 +255,7 @@
     <Content Include="client\pages\events\event-modals\execution-editor.component.html" />
     <Content Include="client\pages\events\events.component.css" />
     <Content Include="client\pages\events\events.component.html" />
+    <Content Include="client\pages\admin\admin.component.html" />
     <Content Include="client\pages\sign-up\sign-up.component.html" />
     <Content Include="client\pages\statistic\components\home\home-stat.component.html" />
     <Content Include="client\pages\statistic\components\season\season-stat.component.html" />
@@ -330,6 +332,10 @@
     <TypeScriptCompile Include="client\controls\editable-datapicker\editable-datapicker.component.ts" />
     <TypeScriptCompile Include="client\controls\directives\window-mouse-event-handler.directive.ts" />
     <TypeScriptCompile Include="client\controls\search-selector\search-selector.component.ts" />
+    <TypeScriptCompile Include="client\pages\admin\employee-modal\employee-modal.component.ts" />
+    <TypeScriptCompile Include="client\pages\admin\employee.service.ts" />
+    <TypeScriptCompile Include="client\pages\admin\admin.component.ts" />
+    <TypeScriptCompile Include="client\pages\admin\admin.module.ts" />
     <TypeScriptCompile Include="client\pages\sign-up\sign-up.component.ts" />
     <TypeScriptCompile Include="client\pages\sign-up\sign-up.module.ts" />
     <TypeScriptCompile Include="client\pages\statistic\components\home\home-stat.component.ts" />

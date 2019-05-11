@@ -4,12 +4,14 @@ export class Employee {
     id: number;
     appointment: string;
     contactInfo: ContactInfo;
+    user: User;
 }
 
 export class User {
     id: number;
     login: string;
-    isAdmin: boolean;
+    isAdmin: boolean; //todo убрать
+    type: UserType;
     password: string;
 }
 
@@ -46,4 +48,10 @@ export enum AttendeeType {
     Pupil = 1,
     Parent = 2,
     Teacher = 3
+}
+
+export enum UserType {
+    Attendee = 1,
+    Employee = 2,
+    Admin = 3
 }

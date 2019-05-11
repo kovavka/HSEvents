@@ -5,7 +5,7 @@ using HSEvents.Server.Auth;
 
 namespace HSEvents.Server.Api.Employees
 {
-    [Auth]
+    //[Auth]
     public class EmployeeController : ApiController
     {
         private readonly IEmployeeService employeeService;
@@ -19,5 +19,30 @@ namespace HSEvents.Server.Api.Employees
         {
             return employeeService.GetAll();
         }
+        
+        [HttpGet]
+        public Employee Get(long id)
+        {
+            return employeeService.Get(id);
+        }
+
+        [HttpPut]
+        public Employee Add(Employee employee)
+        {
+            return employeeService.Add(employee);
+        }
+
+        [HttpPut]
+        public void Update(Employee employee)
+        {
+            employeeService.Update(employee);
+        }
+
+        [HttpPost]
+        public void Delete([FromBody] long id)
+        {
+            employeeService.Delete(id);
+        }
+
     }
 }

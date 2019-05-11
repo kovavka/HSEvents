@@ -20,14 +20,14 @@ export class AddressService {
             .get<Address>(this.apiBase + 'get', id);
     }
 
-    add(Address: Address): Observable<Address> {
+    add(address: Address): Observable<Address> {
         return this.client
-            .put<Address>(this.apiBase + 'add', Address);
+            .put<Address>(this.apiBase + 'add', address);
     }
 
-    update(Address: Address): Observable<any> {
+    update(address: Address): Observable<any> {
         return this.client
-            .put<any>(this.apiBase + 'update', Address);
+            .put<any>(this.apiBase + 'update', address);
     }
 
     delete(id: number): Observable<any> {

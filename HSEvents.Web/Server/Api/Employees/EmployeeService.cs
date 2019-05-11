@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using Domain.Events;
+using Helpers;
+using Infrastructure;
 
 namespace HSEvents.Server.Api.Employees
 {
@@ -7,8 +9,8 @@ namespace HSEvents.Server.Api.Employees
     {
         IEnumerable<Employee> GetAll();
         Employee Get(long id);
-        Employee Add(Employee subject);
-        void Update(Employee subject);
+        Employee Add(Employee employee);
+        void Update(Employee employee);
         void Delete(long id);
         void Delete(long[] ids);
     }
@@ -32,14 +34,31 @@ namespace HSEvents.Server.Api.Employees
             return employeeStorage.Get(id);
         }
 
-        public Employee Add(Employee subject)
+        public Employee Add(Employee employee)
         {
-            return employeeStorage.Add(subject);
+            if (employee.User != null)
+            {
+                employee.User.Password = PasswordHelper.GetHash(employee.User.Password);
+            }
+            return employeeStorage.Add(employee);
         }
 
-        public void Update(Employee subject)
+        public void Update(Employee employee)
         {
-            employeeStorage.Update(subject);
+            if (employee.User != null)
+            {
+                if (employee.User.Password.IsNotEmpty())
+                {
+                    employee.User.Password = PasswordHelper.GetHash(employee.User.Password);
+                }
+                else
+                {
+                    var old = Get(employee.Id);
+                    employee.User.Password = old.User?.Password;
+                }
+            }
+
+            employeeStorage.Update(employee);
         }
 
         public void Delete(long id)
