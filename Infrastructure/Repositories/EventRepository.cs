@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text.RegularExpressions;
 using Domain;
@@ -34,6 +35,36 @@ namespace Infrastructure.Repositories
                                     x.Info.ToLower().Contains(args.Key.ToLower()));
 
             return query.AsEnumerable().Select(x=>ConvertToDto(x, args.AttendeeId));
+        }
+
+        public void AddRegistration(long id, long attendeeId)
+        {
+            //todo тоже очень плохое решение
+            
+            using (var tx = session.BeginTransaction())
+            {
+                session.CreateSQLQuery(
+                    $"insert into AttendanceInfo (Participated, Event_Id, Attendee_Id) values (0, {id}, {attendeeId})")
+                    .ExecuteUpdate();
+
+
+                tx.Commit();
+            }
+        }
+
+        public void DeleteRegistration(long id, long attendeeId)
+        {
+            //todo тоже очень плохое решение
+
+            using (var tx = session.BeginTransaction())
+            {
+                session.CreateSQLQuery(
+                        $"delete from AttendanceInfo where Event_Id = {id} and Attendee_Id = {attendeeId}")
+                    .ExecuteUpdate();
+
+
+                tx.Commit();
+            }
         }
 
         public void Delete(long id)

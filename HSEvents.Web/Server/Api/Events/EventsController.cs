@@ -47,6 +47,18 @@ namespace HSEvents.Server.Api.Events
             return eventsService.Get(id);
         }
 
+        [HttpGet]
+        public void AddRegistration(long id, long attendeeId)
+        {
+            eventsService.AddRegistration(id, attendeeId);
+        }
+
+        [HttpGet]
+        public void DeleteRegistration(long id, long attendeeId)
+        {
+            eventsService.DeleteRegistration(id, attendeeId);
+        }
+
         [HttpPut]
         public EventDto Add(EventDto entity)
         {

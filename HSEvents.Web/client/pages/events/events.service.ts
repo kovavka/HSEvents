@@ -22,6 +22,17 @@ export class EventsService {
             .get<EventModel[]>('/api/events/getByArgs?key=' + key + '&attendeeId=' + attendeeId);
     }
 
+    addRegistration(eventId: number, attendeeId: number) {
+        return this.client
+            .get<EventModel[]>('/api/events/addRegistration?id=' + eventId + '&attendeeId=' + attendeeId);
+
+    }
+
+    deleteRegistration(eventId: number, attendeeId: number) {
+        return this.client
+            .get<EventModel[]>('/api/events/deleteRegistration?id=' + eventId + '&attendeeId=' + attendeeId);
+    }
+
 	get(id: number): Observable<EventModel> {
 		return this.client
 			.get<EventModel>('/api/events/get?id=' + id);

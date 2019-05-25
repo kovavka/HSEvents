@@ -24,10 +24,10 @@
                         </ul>
                     </div>
                 </div>
-                <div *ngIf="event.isRegistrationEnabled" class="flat-button flat-button__green" (click)="onAddClick()">
+                <div *ngIf="event.isRegistrationEnabled" class="flat-button flat-button__green" (click)="onAddRegistration(event.id)">
                     <a class="flat-button__caption">Зарегистироваться</a>
                 </div>
-                <div *ngIf="event.isCancelEnabled" class="flat-button flat-button__grey" (click)="onAddClick()">
+                <div *ngIf="event.isCancelEnabled" class="flat-button flat-button__grey" (click)="onCancelRegistration(event.id)">
                     <a class="flat-button__caption">Отменить регистрацию</a>
                 </div>
             </div>

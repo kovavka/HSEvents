@@ -16,6 +16,8 @@ namespace HSEvents.Server.Api.Events
         void Update(EventDto entity);
         void Delete(int id);
         void Delete(long[] ids);
+        void AddRegistration(long id, long attendeeId);
+        void DeleteRegistration(long id, long attendeeId);
     }
 
     public class EventsStorage : IEventsStorage
@@ -35,6 +37,23 @@ namespace HSEvents.Server.Api.Events
                 return repo.GetDto(id);
             }
         }
+
+        public void AddRegistration(long id, long attendeeId)
+        {
+            using (var repo = new EventRepository())
+            {
+                repo.AddRegistration(id, attendeeId);
+            }
+        }
+
+        public void DeleteRegistration(long id, long attendeeId)
+        {
+            using (var repo = new EventRepository())
+            {
+                repo.DeleteRegistration(id, attendeeId);
+            }
+        }
+
         public IEnumerable<EventDto> GetByArgs(EventFilters args)
         {
             using (var repo = new EventRepository())

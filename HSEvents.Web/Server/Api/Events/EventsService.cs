@@ -18,6 +18,8 @@ namespace HSEvents.Server.Api.Events
         void Update(EventDto entity);
         void Delete(int id);
         void Delete(long[] ids);
+        void AddRegistration(long id, long attendeeId);
+        void DeleteRegistration(long id, long attendeeId);
     }
 
     public class EventsService : IEventsService
@@ -56,6 +58,16 @@ namespace HSEvents.Server.Api.Events
         public void Delete(int id)
         {
             eventsStorage.Delete(id);
+        }
+
+        public void AddRegistration(long id, long attendeeId)
+        {
+            eventsStorage.AddRegistration(id, attendeeId);
+        }
+
+        public void DeleteRegistration(long id, long attendeeId)
+        {
+            eventsStorage.DeleteRegistration(id, attendeeId);
         }
 
         public void Delete(long[] ids)

@@ -60,11 +60,13 @@ export class EventsListComponent extends AbstractComponent implements OnInit {
         return GetTypeDescription.event(event.type);
     }
 
-    onAddRegistration() {
-
+    onAddRegistration(eventId: number) {
+        this.eventService.addRegistration(eventId, this.attendeeId)
+            .subscribe(x => this.getEvents(this.searchText));
     }
 
-    onCancelRegistration() {
-
+    onCancelRegistration(eventId: number) {
+        this.eventService.deleteRegistration(eventId, this.attendeeId)
+            .subscribe(x => this.getEvents(this.searchText));
     }
 }
