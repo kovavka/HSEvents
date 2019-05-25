@@ -36,6 +36,9 @@ namespace HSEvents.Server.Auth
         public AuthInfo Login(AuthArgs authInfo)
         {
             var user = userRepository.Login(authInfo.Login, authInfo.Password);
+            //todo по идее это уже должно быть в пользователе, надо переделать бд и маппинги
+            var employee = userRepository.GetEmployee(user.Id);
+            var attendee = userRepository.GetAttendee(user.Id);
 
             if (user != null)
             {
@@ -43,7 +46,9 @@ namespace HSEvents.Server.Auth
                 return new AuthInfo()
                 {
                     Token = GetToken(authInfo.Login, role, true),
-                    User = user
+                    User = user,
+                    Employee = employee,
+                    Attendee = attendee,
                 };
             }
 

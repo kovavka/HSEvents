@@ -1,0 +1,15 @@
+﻿.event-block {
+    padding: 8px 16px;
+    width: 500px;
+    background-color: #f4f5f5;
+    margin: 16px 0;
+}
+
+.event-block__header {
+    font-size: 14px;
+    font-weight: bold
+}
+
+.event-block__body-item {
+    margin: 4px 2px;
+}

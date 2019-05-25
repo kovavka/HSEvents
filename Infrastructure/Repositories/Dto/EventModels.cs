@@ -31,6 +31,9 @@ namespace Infrastructure.Repositories.Dto
         #endregion
 
         public List<EventExecutionDto> Executions { get; set; }
+
+        public bool IsRegistrationEnabled { get; set; }
+        public bool IsCancelEnabled { get; set; }
     }
 
      public class EventExecutionDto

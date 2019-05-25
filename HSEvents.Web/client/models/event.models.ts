@@ -16,6 +16,9 @@ export class EventModel {
     lecturers: Employee[];
     organizers: Employee[];
     purchases: Purchase[];
+
+    isRegistrationEnabled: boolean;
+    isCancelEnabled: boolean;
 }
 
 export enum EventType {

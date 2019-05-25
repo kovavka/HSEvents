@@ -17,6 +17,11 @@ export class EventsService {
 			.get<Month>('/api/events/getMonth?month=' + month + '&year=' + year);
 	}
 
+    getByArgs(key: string, attendeeId: number): Observable<EventModel[]> {
+		return this.client
+            .get<EventModel[]>('/api/events/getByArgs?key=' + key + '&attendeeId=' + attendeeId);
+    }
+
 	get(id: number): Observable<EventModel> {
 		return this.client
 			.get<EventModel>('/api/events/get?id=' + id);

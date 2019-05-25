@@ -25,6 +25,7 @@ using Infrastructure.Repositories;
 using Microsoft.Practices.Unity;
 using Newtonsoft.Json.Serialization;
 using Unity.WebApi;
+using EventArgs = System.EventArgs;
 using IStorage = HSEvents.Server.Api.Empty.IStorage;
 
 namespace HSEvents

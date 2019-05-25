@@ -1,0 +1,36 @@
+﻿<div class="content-wrapper">
+    <div class="page-header">
+        <div class="page-header__title-container">
+            <div class="page-header__title-flex-container">
+                <div class="page-header__title">Мероприятия</div>
+            </div>
+        </div>
+    </div>
+    <div class="work-area">
+        <div class="work-area__header">
+            <input #searchInput class="work-area__header-search search-row" [(ngModel)]="searchText" placeholder="Поиск" />
+        </div>
+        <div class="work-area__content">
+            <div *ngFor="let event of events" class="event-block">
+                <div class="event-block__header">
+                    {{getType(event)}} "{{event.name}}"
+                </div>
+                <div class="event-block__body">
+                    <div class="event-block__body-item">{{event.info}}</div>
+                    <div *ngFor="let execution of event.executions" class="event-block__body-item">
+                        <div>{{execution.address.caption}}</div>
+                        <ul>
+                            <li *ngFor="let date of execution.dates">{{date.date | date: 'shortDate'}}</li>
+                        </ul>
+                    </div>
+                </div>
+                <div *ngIf="event.isRegistrationEnabled" class="flat-button flat-button__green" (click)="onAddClick()">
+                    <a class="flat-button__caption">Зарегистироваться</a>
+                </div>
+                <div *ngIf="event.isCancelEnabled" class="flat-button flat-button__grey" (click)="onAddClick()">
+                    <a class="flat-button__caption">Отменить регистрацию</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

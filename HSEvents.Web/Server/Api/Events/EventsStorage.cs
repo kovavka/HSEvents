@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Domain.Events;
+using HSEvents.Server.Api.Events.Models;
 using Infrastructure.Repositories;
 using Infrastructure.Repositories.Dto;
 
@@ -10,6 +11,7 @@ namespace HSEvents.Server.Api.Events
     {
         IEnumerable<Event> GetForMonth(DateTime fromDate, DateTime toDate);
         EventDto Get(int id);
+        IEnumerable<EventDto> GetByArgs(EventFilters args);
         EventDto Add(EventDto entity);
         void Update(EventDto entity);
         void Delete(int id);
@@ -31,6 +33,13 @@ namespace HSEvents.Server.Api.Events
             using (var repo = new EventRepository())
             {
                 return repo.GetDto(id);
+            }
+        }
+        public IEnumerable<EventDto> GetByArgs(EventFilters args)
+        {
+            using (var repo = new EventRepository())
+            {
+                return repo.GetByArgs(args);
             }
         }
 

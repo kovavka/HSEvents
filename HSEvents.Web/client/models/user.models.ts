@@ -10,7 +10,6 @@ export class Employee {
 export class User {
     id: number;
     login: string;
-    isAdmin: boolean; //todo убрать
     type: UserType;
     password: string;
 }
@@ -31,6 +30,8 @@ export class AttendeeDto {
 
 export class AuthInfo {
     user: User;
+    employee: Employee;
+    attendee: AttendeeDto;
     token: string;
 }
 

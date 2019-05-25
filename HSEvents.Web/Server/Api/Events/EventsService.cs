@@ -13,6 +13,7 @@ namespace HSEvents.Server.Api.Events
     {
         Month GetMonth(int year, int month);
         EventDto Get(int id);
+        IEnumerable<EventDto> GetByArgs(EventFilters args);
         EventDto Add(EventDto entity);
         void Update(EventDto entity);
         void Delete(int id);
@@ -35,6 +36,11 @@ namespace HSEvents.Server.Api.Events
         public EventDto Get(int id)
         {
            return eventsStorage.Get(id);
+        }
+
+        public IEnumerable<EventDto> GetByArgs(EventFilters args)
+        {
+            return eventsStorage.GetByArgs(args);
         }
         
         public EventDto Add(EventDto dto)
@@ -152,7 +158,7 @@ namespace HSEvents.Server.Api.Events
                 DateAndTime = GetDateAndTime(x.Date),
             }).ToList();
         }
-
+        
         private string GetDateAndTime(EventDate date)
         {
             var dayfWeek = cultureInfo.DateTimeFormat.GetDayName(date.Date.DayOfWeek);

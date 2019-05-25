@@ -1,10 +1,12 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Security;
 using Domain.Events;
 using HSEvents.Server.Api.Events.Models;
 using HSEvents.Server.Auth;
+using Infrastructure.Repositories;
 using Infrastructure.Repositories.Dto;
 
 namespace HSEvents.Server.Api.Events
@@ -31,6 +33,12 @@ namespace HSEvents.Server.Api.Events
 
 
             return eventsService.GetMonth(year, month);
+        }
+
+        [HttpGet]
+        public IEnumerable<EventDto> GetByArgs([FromUri]EventFilters args)
+        {
+            return eventsService.GetByArgs(args);
         }
 
         [HttpGet]

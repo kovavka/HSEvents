@@ -14,6 +14,14 @@ export class AbstractComponent implements OnDestroy{
         return this.authService.isAdmin;
     }
 
+    get isEmployee(): boolean {
+        return this.authService.isEmployee;
+    }
+
+    get isAttendee(): boolean {
+        return this.authService.isAttendee;
+    }
+
     get isAuth(): boolean {
         return this.authService.isAuth;
     }

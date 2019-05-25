@@ -247,6 +247,8 @@
     <Content Include="client\pages\events\calendar\calendar.component.html" />
     <Content Include="client\pages\events\calendar\calendar.component.css" />
     <Content Include="client\pages\events\calendar\event-card\event-card.component.html" />
+    <Content Include="client\pages\events\events-list\events-list.component.css" />
+    <Content Include="client\pages\events\events-list\events-list.component.html" />
     <Content Include="client\pages\events\event-editor.component.html" />
     <Content Include="client\pages\events\event-modals\employees-selector.component.html" />
     <Content Include="client\pages\events\event-modals\purchase-editor.component.html" />
@@ -336,6 +338,7 @@
     <TypeScriptCompile Include="client\pages\admin\employee.service.ts" />
     <TypeScriptCompile Include="client\pages\admin\admin.component.ts" />
     <TypeScriptCompile Include="client\pages\admin\admin.module.ts" />
+    <TypeScriptCompile Include="client\pages\events\events-list\events-list.component.ts" />
     <TypeScriptCompile Include="client\pages\sign-up\sign-up.component.ts" />
     <TypeScriptCompile Include="client\pages\sign-up\sign-up.module.ts" />
     <TypeScriptCompile Include="client\pages\statistic\components\home\home-stat.component.ts" />

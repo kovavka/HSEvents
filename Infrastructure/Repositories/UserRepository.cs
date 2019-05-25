@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Domain;
+using Domain.Events;
 using Domain.IEntity;
+using FluentNHibernate.Conventions;
 using Infrastructure.Repositories.Dto;
 using NHibernate;
 using NHibernate.Linq;
@@ -17,6 +19,8 @@ namespace Infrastructure.Repositories
         Attendee SignUp(AttendeeDto dto);
         User Login(string login);
         bool Exists(string login);
+        Employee GetEmployee(long userId);
+        AttendeeDto GetAttendee(long userId);
     }
 
     public class UserRepository : IUserRepository
@@ -29,6 +33,23 @@ namespace Infrastructure.Repositories
                 .Where(x => x.Login == login)
                 .ToList()
                 .FirstOrDefault(x => PasswordHelper.VerifyHashedPassword(x.Password, password));
+        }
+
+        public Employee GetEmployee(long userId)
+        {
+            return session.Query<Employee>()
+                .FirstOrDefault(x => x.User.Id == userId);
+        }
+
+        public AttendeeDto GetAttendee(long userId)
+        {
+            var attendee = session.Query<Attendee>()
+                .FirstOrDefault(x => x.User.Id == userId);
+
+            if (attendee == null)
+                return null;
+
+            return ToDto(attendee);
         }
 
         public User Login(string login)
@@ -75,6 +96,29 @@ namespace Infrastructure.Repositories
             return entity;
         }
 
+        private AttendeeDto ToDto(Attendee entity)
+        {
+            var dto = new AttendeeDto()
+            {
+                Id = entity.Id,
+                FullName = entity.ContactInfo.FullName,
+                PhoneNumber = entity.ContactInfo.PhoneNumber,
+                Email = entity.ContactInfo.Email,
+                Type = entity.Type,
+            };
+
+            if (entity.Type == AttendeeType.Pupil)
+            {
+                var pupil = entity as Pupil;
+                dto.YearOfGraduation = pupil.YearOfGraduation;
+                dto.Sex = pupil.Sex;
+                dto.SchoolId = pupil.School.Id;
+            }
+            
+
+            return dto;
+        }
+
         private Pupil CreatePupil(AttendeeDto dto)
         {
             var pupil = new Pupil();
@@ -98,7 +142,8 @@ namespace Infrastructure.Repositories
             attendee.User = new User()
             {
                 Login = dto.Login,
-                Password = PasswordHelper.GetHash(dto.Password)
+                Password = PasswordHelper.GetHash(dto.Password),
+                Type = UserType.Attendee
             };
             attendee.ContactInfo = new ContactInfo(dto.FullName, dto.PhoneNumber, dto.Email);
         }

@@ -1,5 +1,6 @@
-﻿
-using Domain;
+﻿using Domain;
+using Domain.Events;
+using Infrastructure.Repositories.Dto;
 
 namespace HSEvents.Server.Auth
 {
@@ -8,6 +9,8 @@ namespace HSEvents.Server.Auth
         public string Token { get; set; }
 
         public User User { get; set; }
+        public Employee Employee { get; set; }
+        public AttendeeDto Attendee { get; set; }
     }
 
     public class AuthArgs

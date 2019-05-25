@@ -159,13 +159,16 @@
 }
 
 .flat-button {
-    width: 150px;
+    min-width: 150px;
+    width: fit-content;
+    padding: 0px 8px;
     line-height: 30px;
     position: relative;
     border-radius: 4px;
 }
 
 .flat-button__small {
+    min-width: 90px;
     width: 90px;
     font-size: 12px;
 }
@@ -175,6 +178,13 @@
 }
     .flat-button__green:hover {
         background-color: #75da53;
+    }
+
+.flat-button__grey {
+    background-color: #8e9596;
+}
+    .flat-button__grey:hover {
+        background-color: #a8aeaf;
     }
 
 .flat-button__blue {

@@ -1,7 +1,12 @@
-﻿import { Component, ViewChild } from '@angular/core';
+﻿import { Component, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { EventModel } from '../../models/event.models';
 import { EventsService } from './events.service';
 import { CalendarComponent } from './calendar/calendar.component';
+import Abstractcomponent = require("../../utilities/abstract.component");
+import AbstractComponent = Abstractcomponent.AbstractComponent;
+import Authservice = require("../../services/auth.service");
+import AuthService = Authservice.AuthService;
+import Core = require("@angular/core");
 
 @Component({
     moduleId: module.id.toString(),
@@ -9,7 +14,7 @@ import { CalendarComponent } from './calendar/calendar.component';
 	styleUrls: ['events.component.css'],
     providers: [EventsService]
 })
-export class EventsComponent {
+export class EventsComponent extends AbstractComponent {
 
 	showCalendar: boolean = true;
 	event: EventModel = null;
@@ -18,8 +23,11 @@ export class EventsComponent {
 	@ViewChild('calendar')
 	private calendar: CalendarComponent;
 
-	constructor(private eventsService: EventsService) {
-	}
+    constructor(protected eventsService: EventsService,
+        protected authService: AuthService,
+        protected changeDetectorRef: ChangeDetectorRef) {
+        super(changeDetectorRef, authService);
+    }
 
 	onEditClick(id: number) {
 		this.eventsService.get(id)

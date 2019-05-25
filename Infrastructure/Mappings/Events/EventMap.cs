@@ -93,7 +93,6 @@ namespace Infrastructure.Mappings.Events
             Map(x => x.Login);
             Map(x => x.Password);
             Map(x => x.Type);
-
         }
     }
     class EventExecutionMap : EntityMap<EventExecution>

@@ -25,6 +25,17 @@ namespace Infrastructure.Repositories
             return ConvertToDto(Get(id));
         }
 
+        public IEnumerable<EventDto> GetByArgs(EventFilters args)
+        {
+            IQueryable<Event> query = GetAll().FetchMany(x => x.EventExecutions).FetchMany(x=>x.AttendanceInfo);
+
+            if (args.Key.IsNotEmpty())
+                query = query.Where(x => x.Name.ToLower().Contains(args.Key.ToLower()) ||
+                                    x.Info.ToLower().Contains(args.Key.ToLower()));
+
+            return query.AsEnumerable().Select(x=>ConvertToDto(x, args.AttendeeId));
+        }
+
         public void Delete(long id)
         {
             using (var repo = new NHGetAllRepository<EventExecution>())
@@ -64,7 +75,7 @@ namespace Infrastructure.Repositories
             }
         }
 
-        private EventDto ConvertToDto(Event entity)
+        private EventDto ConvertToDto(Event entity, long? attendeeId = null)
         {
             var comp = entity as AcademicCompetition;
             var work = entity as SchoolWork;
@@ -105,7 +116,9 @@ namespace Infrastructure.Repositories
                 Volunteers = entity.Volunteers.ToList(),
                 Lecturers = entity.Lecturers.ToList(),
                 Organizers = entity.Organizers.ToList(),
-                Purchases = entity.Purchases.ToList()
+                Purchases = entity.Purchases.ToList(),
+                IsCancelEnabled = attendeeId != null && entity.AttendanceInfo.Any(x=>x.Attendee.Id == attendeeId),
+                IsRegistrationEnabled = attendeeId != null && entity.AttendanceInfo.All(x=>x.Attendee.Id != attendeeId)
             };
         }
 
@@ -191,6 +204,12 @@ namespace Infrastructure.Repositories
             return new TimeSpan(hours, minutes, 0);
         }
 
+    }
+
+    public class EventFilters
+    {
+        public string Key { get; set; }
+        public long? AttendeeId { get; set; }
     }
 
     public class CourseRepository : NHRepository<Course>
