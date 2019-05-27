@@ -32,7 +32,7 @@ export class EventsService {
         return this.client
             .get<EventModel[]>('/api/events/deleteRegistration?id=' + eventId + '&attendeeId=' + attendeeId);
     }
-
+    
 	get(id: number): Observable<EventModel> {
 		return this.client
 			.get<EventModel>('/api/events/get?id=' + id);

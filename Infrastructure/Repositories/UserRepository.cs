@@ -7,6 +7,7 @@ using Domain;
 using Domain.Events;
 using Domain.IEntity;
 using FluentNHibernate.Conventions;
+using Helpers;
 using Infrastructure.Repositories.Dto;
 using NHibernate;
 using NHibernate.Linq;
@@ -23,7 +24,7 @@ namespace Infrastructure.Repositories
         AttendeeDto GetAttendee(long userId);
     }
 
-    public class UserRepository : IUserRepository
+    public class UserRepository : IUserRepository, IDisposable
     {
         private ISession session = NHibernateHelper.OpenSession();
 
@@ -50,6 +51,26 @@ namespace Infrastructure.Repositories
                 return null;
 
             return ToDto(attendee);
+        }
+
+        public IEnumerable<AttendeeDto> GetAllAttendees()
+        {
+            var attendees = session.Query<Attendee>().AsEnumerable();
+
+
+            return attendees.Select(ToDto).ToList();
+        }
+
+        public IEnumerable<AttendeeDto> GetAllAttendees(long eventId)
+        {
+            var attendees = session.Query<Event>()
+                .FirstOrDefault(x=>x.Id==eventId)
+                .AttendanceInfo
+                .Select(x=>x.Attendee)
+                .AsEnumerable();
+
+
+            return attendees.Select(ToDto).ToList();
         }
 
         public User Login(string login)
@@ -83,6 +104,39 @@ namespace Infrastructure.Repositories
             }
 
             return entity;
+        }
+
+        public void AddAttendee(AttendeeDto dto)
+        {
+            var entity = ToEntity(dto);
+            using (var tx = session.BeginTransaction())
+            {
+                session.Save(entity);
+                tx.Commit();
+            }
+        }
+
+        public void UpdateAttendee(AttendeeDto dto)
+        {
+            var attendee = session.Query<Attendee>().FirstOrDefault(x => x.Id == dto.Id);
+            var userInfo = attendee.User;
+
+            if (dto.Type == AttendeeType.Pupil)
+            {
+                var pupil = attendee as Pupil;
+                SetPupilInfo(pupil, dto);
+
+                attendee = pupil;
+            }
+
+            SetAttendeeInfo(attendee, dto);
+            attendee.User = userInfo;
+
+            using (var tx = session.BeginTransaction())
+            {
+                session.Update(attendee);
+                tx.Commit();
+            }
         }
 
         private Attendee ToEntity(AttendeeDto dto)
@@ -139,12 +193,15 @@ namespace Infrastructure.Repositories
         private void SetAttendeeInfo(Attendee attendee, AttendeeDto dto)
         {
             attendee.Type = dto.Type;
-            attendee.User = new User()
+            if (dto.Login.IsNotEmpty())
             {
-                Login = dto.Login,
-                Password = PasswordHelper.GetHash(dto.Password),
-                Type = UserType.Attendee
-            };
+                attendee.User = new User()
+                {
+                    Login = dto.Login,
+                    Password = PasswordHelper.GetHash(dto.Password),
+                    Type = UserType.Attendee
+                };
+            }
             attendee.ContactInfo = new ContactInfo(dto.FullName, dto.PhoneNumber, dto.Email);
         }
 
@@ -158,6 +215,11 @@ namespace Infrastructure.Repositories
         public bool Exists(string login)
         {
             return session.Query<User>().Any(x => x.Login == login);
+        }
+
+        public void Dispose()
+        {
+            session.Close();
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Web;
 using System.Web.Http;
 using HSEvents.Server.Api.AcademicPrograms;
 using HSEvents.Server.Api.Addresses;
+using HSEvents.Server.Api.Attendees;
 using HSEvents.Server.Api.Cities;
 using HSEvents.Server.Api.CityTypes;
 using HSEvents.Server.Api.Countries;
@@ -102,6 +103,8 @@ namespace HSEvents
             container.RegisterType<IUserService, UserService>();
             container.RegisterType<IStatisticStorage, StatisticStorage>();
             container.RegisterType<IStatisticService, StatisticService>();
+            container.RegisterType<IAttendeeStorage, AttendeeStorage>();
+            container.RegisterType<IAttendeeService, AttendeeService>();
 
             container.RegisterType<IStorage, Storage>();
             container.RegisterType<IService, Service>();

@@ -24,6 +24,8 @@ import { AuthService } from '../services/auth.service';
 import { StatisticModule } from '../pages/statistic/statistic.module';
 import { SignUpModule } from '../pages/sign-up/sign-up.module';
 import { AdminModule } from '../pages/admin/admin.module';
+import Attendeesmodule = require("../pages/attendees/attendees.module");
+import AttendeesModule = Attendeesmodule.AttendeesModule;
 
 @NgModule({
     imports: [
@@ -43,7 +45,8 @@ import { AdminModule } from '../pages/admin/admin.module';
         LoginModule,
         StatisticModule,
         SignUpModule,
-        AdminModule
+        AdminModule,
+        AttendeesModule
     ],
     declarations: [
 		AppComponent,

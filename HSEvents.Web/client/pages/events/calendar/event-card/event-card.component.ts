@@ -1,6 +1,8 @@
-﻿import { Component, Output, ChangeDetectorRef, EventEmitter, OnDestroy } from '@angular/core';
+﻿import { Component, Output, ChangeDetectorRef, EventEmitter, OnDestroy, ViewChild } from '@angular/core';
 import { EventRow, RowEventArgs } from '../../models/event.models';
 import { GetTypeDescription } from '../../../../utilities/enum-helper';
+import Attendeemodalcomponent = require("../../attendees-modal/attendees-modal.component");
+import AttendeesSelectorComponent = Attendeemodalcomponent.AttendeesSelectorComponent;
 
 declare var jQuery;
 
@@ -31,7 +33,12 @@ export class EventCardComponent implements OnDestroy{
 
 	@Output()
 	deleteClick: EventEmitter<number> = new EventEmitter();
-	
+
+
+    @ViewChild('attendeesSelector')
+    private attendeesSelector: AttendeesSelectorComponent;
+
+
 	constructor(private changeDetector: ChangeDetectorRef) {
 		
 	}
@@ -137,5 +144,9 @@ export class EventCardComponent implements OnDestroy{
 
 	onClick($events) {
 		clearTimeout(this.timer);
-	}
+    }
+
+    onAttendeesClick() {
+        this.attendeesSelector.open(this.event.id);
+    }
 }

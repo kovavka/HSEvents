@@ -28,8 +28,11 @@
             <span class="fa fa-newspaper-o"></span>
             <div>{{event.info}}</div>
         </div>
+        <span class="fa fa-user-circle" style="font-size: 20px;position: absolute;right: 7px;bottom: 5px;cursor: pointer;" (click)="onAttendeesClick()"></span>
     </div>
 </div>
 
 <ng-container windowResizeEventHandler (resize)="onResize($event)"></ng-container>
 <ng-container documentClickEventHandler (click)="onDocumentClick($event)"></ng-container>
+
+<attendees-selector #attendeesSelector></attendees-selector>

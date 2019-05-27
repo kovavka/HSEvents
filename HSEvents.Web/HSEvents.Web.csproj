@@ -225,6 +225,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Server\Api\Attendees\AttendeeController.cs" />
+    <Compile Include="Server\Api\Attendees\AttendeeService.cs" />
+    <Compile Include="Server\Api\Attendees\AttendeeStorage.cs" />
     <Compile Include="Server\Api\Reports\StatisticController.cs" />
     <Compile Include="Server\Api\Reports\StatisticService.cs" />
     <Compile Include="Server\Api\Reports\StatisticStorage.cs" />
@@ -242,7 +245,10 @@
     <Content Include="client\controls\search-selector\search-selector.component.html" />
     <Content Include="client\controls\title-input\title-input.component.css" />
     <Content Include="client\controls\title-input\title-input.component.html" />
+    <Content Include="client\pages\attendees\attendees.component.html" />
+    <Content Include="client\pages\attendees\attendee-modal\attendee-modal.component.html" />
     <Content Include="client\pages\admin\employee-modal\employee-modal.component.html" />
+    <Content Include="client\pages\events\attendees-modal\attendees-modal.component.html" />
     <Content Include="client\pages\events\calendar\day.component.html" />
     <Content Include="client\pages\events\calendar\calendar.component.html" />
     <Content Include="client\pages\events\calendar\calendar.component.css" />
@@ -334,10 +340,15 @@
     <TypeScriptCompile Include="client\controls\editable-datapicker\editable-datapicker.component.ts" />
     <TypeScriptCompile Include="client\controls\directives\window-mouse-event-handler.directive.ts" />
     <TypeScriptCompile Include="client\controls\search-selector\search-selector.component.ts" />
+    <TypeScriptCompile Include="client\pages\attendees\attendees.component.ts" />
+    <TypeScriptCompile Include="client\pages\attendees\attendees.module.ts" />
+    <TypeScriptCompile Include="client\pages\attendees\attendee-modal\attendee-modal.component.ts" />
+    <TypeScriptCompile Include="client\pages\attendees\attendees.service.ts" />
     <TypeScriptCompile Include="client\pages\admin\employee-modal\employee-modal.component.ts" />
     <TypeScriptCompile Include="client\pages\admin\employee.service.ts" />
     <TypeScriptCompile Include="client\pages\admin\admin.component.ts" />
     <TypeScriptCompile Include="client\pages\admin\admin.module.ts" />
+    <TypeScriptCompile Include="client\pages\events\attendees-modal\attendees-modal.component.ts" />
     <TypeScriptCompile Include="client\pages\events\events-list\events-list.component.ts" />
     <TypeScriptCompile Include="client\pages\sign-up\sign-up.component.ts" />
     <TypeScriptCompile Include="client\pages\sign-up\sign-up.module.ts" />

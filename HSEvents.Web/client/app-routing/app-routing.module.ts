@@ -27,6 +27,8 @@ import { EventsCountStatComponent } from '../pages/statistic/components/events-c
 import { HomeStatComponent } from '../pages/statistic/components/home/home-stat.component';
 import { SignUpComponent } from '../pages/sign-up/sign-up.component';
 import { AdminComponent } from '../pages/admin/admin.component';
+import Attendeescomponent = require("../pages/attendees/attendees.component");
+import AttendeesComponent = Attendeescomponent.AttendeesComponent;
 
 const routes: Routes = [
     {
@@ -70,6 +72,7 @@ const routes: Routes = [
             { path: 'login', component: LoginComponent},
             { path: 'signup', component: SignUpComponent},
             { path: 'admin', component: AdminComponent},
+            { path: 'attendees', component: AttendeesComponent},
         ]
     }
 ];
